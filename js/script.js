@@ -27,3 +27,17 @@ console.log(typeof numHome);
 numHome = Boolean(numHome);
 console.log(numHome);
 console.log(typeof numHome);
+
+let count = 5;
+if (count < 50) {
+	count++;
+	console.log(count);
+} else {
+	count--
+	console.log(count);
+}
+
+let step;
+for (step = 48; step < 50; step++) {
+	console.log(step + ' итерация');
+}
