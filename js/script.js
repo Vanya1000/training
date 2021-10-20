@@ -46,3 +46,12 @@ let userName1 = '';
 let userNickName = '';
 let user = userName1 || userNickName || 'нет имени'
 console.log(user);
+
+console.log('35' + - "22");
+console.log('35' * "22");
+let usersCounter = 0;
+let newUsers = usersCounter++;
+console.log(newUsers);
+console.log(!false && 11 || 18 && !'');
+let name = 0;
+console.log(name ?? "Без имени")
