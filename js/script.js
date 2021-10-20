@@ -41,3 +41,8 @@ let step;
 for (step = 48; step < 50; step++) {
 	console.log(step + ' итерация');
 }
+
+let userName1 = '';
+let userNickName = '';
+let user = userName1 || userNickName || 'нет имени'
+console.log(user);
