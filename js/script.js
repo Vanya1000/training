@@ -55,3 +55,33 @@ console.log(newUsers);
 console.log(!false && 11 || 18 && !'');
 let name = 0;
 console.log(name ?? "Без имени")
+
+let a1;
+let a2 = '5';
+console.log(a1 ?? a2);
+
+let first;
+let second = 7;
+
+let message_ = 30;
+if (first == 7) {
+	message_++
+	console.log('первое!');
+} else if (first > 7) {
+	console.log('второе!');
+} else if (first < 7) {
+	console.log('третье!');
+} else {
+	console.log('пзц!');
+	console.log(typeof first);
+}
+
+
+
+let result = first == 7 ? 'первое' :
+	first > 7 ? 'второе' :
+		first < 7 ? 'третье' : 'пзц'
+
+
+console.log (result);
+
