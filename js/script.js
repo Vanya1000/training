@@ -123,3 +123,30 @@ firstFor: for (let num77 = 0; num77 < 9; num77++) {
 		console.log(size);
 	}
 }
+
+for (let i = 0; i < 10; i++){
+	if (i % 2 == 0) continue
+	console.log(i)
+}
+
+let num88 = 0;
+while (num88 < 6) {
+	console.log(num88);
+	num88++;
+}
+
+let num89 = 0;
+do {
+	console.log(num89);
+	num89++;
+} while(num89 < 6)
+
+for (let num90 = 0; num90 < 6; num90++) {
+	console.log(num90);
+}
+
+let num91 = 0;
+while (num91 < 3) {
+	console.log(`Число ${num91}`);
+	num91++;
+}
