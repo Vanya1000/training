@@ -97,3 +97,29 @@ while (num) {
 let num22 = 3;
 while (num22) console.log(num22--);
 
+let num23 = 0;
+do {
+	num23 * 53;
+	console.log(num23);
+} while (num23);
+
+let num55 = 5;
+while(num55 < 1000) {
+	console.log(num55);
+	num55 = num55 * 5;
+}
+
+for (let num57 = 0; num57 < 20; num57++){
+	if (num57 ==10) continue;
+	console.log(num57);
+}
+
+firstFor: for (let num77 = 0; num77 < 9; num77++) {
+	console.log(num77);
+	for (let size = 0; size < 7; size++){
+		if (size == 3) {
+			break firstFor;
+		}
+		console.log(size);
+	}
+}
