@@ -1,5 +1,5 @@
 "use strict"
-let userName = 22;
+/*let userName = 22;
 console.log(typeof userName);
 let i = 20 > 18;
 console.log(i)
@@ -150,3 +150,5 @@ while (num91 < 3) {
 	console.log(`Число ${num91}`);
 	num91++;
 }
+*/
+
