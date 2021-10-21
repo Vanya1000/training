@@ -85,3 +85,15 @@ let result = first == 7 ? 'первое' :
 
 console.log (result);
 
+//циклы
+
+let num = 3;
+while (num) {
+	console.log(num);
+	num--;
+}
+
+
+let num22 = 3;
+while (num22) console.log(num22--);
+
