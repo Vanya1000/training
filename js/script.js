@@ -150,5 +150,139 @@ while (num91 < 3) {
 	console.log(`Число ${num91}`);
 	num91++;
 }
+
+
+showMessage()
+function showMessage() {
+	console.log('Сообщение!');
+}
+showMessage()
+
+
+	function getSumm() {
+		let numOne, numTwo;
+
+		function getNumOne() {
+			numOne = 1;
+		}
+		function getNumTwo() {
+			numTwo = 2;
+		}
+		getNumOne();
+		getNumTwo();
+
+		let numSumm = numOne + numTwo;
+		console.log(numSumm);
+	}
+getSumm();
+
+
+function getCalc() {
+	let one, two;
+	function getOne() {
+		one = 1;
+	}
+	function getTwo() {
+		two = 4;
+	}
+	getOne()
+	getTwo()
+
+	let numCalc = one + two;
+	console.log(numCalc)
+}
+getCalc();
+
+let message = "Сообщение №1";
+
+function showMessage() {
+	// Локальная переменная
+	let message = "Сообщение №2";
+	console.log(message);
+}
+console.log(message);
+showMessage();
+
+function calcSumm(numOne = 1, numTwo = 2) {
+	console.log(`Переменная numOne:${numOne}`);
+	console.log(`Переменная numTwo:${numTwo}`);
+
+	let numSumm = numOne * numTwo;
+
+	console.log(`Результат:${numSumm}`);
+}
+
+calcSumm(580, 545);
+
+
+function calcSumm(numOne, numTwo, more, less) {
+	let numSumm = numOne + numTwo;
+
+	if (numSumm > 3) {
+		more();
+	} else {
+		less();
+	}
+}
+
+function showMoreMessage() {
+	console.log('Больше чем 3');
+}
+function showLessMessage() {
+	console.log('Меньше чем 3');
+}
+calcSumm(1, 5, showMoreMessage, showLessMessage);
+
+
+function calcSumm(numOne, numTwo) {
+
+	let numSumm = numOne + numTwo;
+
+	// Возврат
+	return numSumm;
+
+	// Дальше код не выполняется
+
+}
+let funcRezult = calcSumm(11, 2);
+
+console.log(`Сумма: ${funcRezult}`);
+
+function calcSumm(numOne, numTwo) {
+	let result = 1;
+	// умножаем result на numOne numTwo раз в цикле
+	for (let i = 0; i < numTwo; i++) {
+		result *= numOne;
+	}
+	return result;
+}
+console.log(calcSumm(2, 2));
+
+function calcSumm(numOne, numTwo) {
+	if (numTwo === 1) {
+		return numOne;
+	} else {
+		return numOne * calcSumm(numOne, numTwo - 1);
+	}
+}
+console.log(calcSumm(2, 3));
+
+
+let calcZnach = function () {
+	let numA = 3;
+	let numB = 4;
+	let summ = numA + numB;
+	return summ;
+};
+let summFunc = calcZnach();
+console.log (summFunc);
+
+let calcSumm = (numA, numB) => numA + numB;
+console.log(calcSumm(2,2));
 */
 
+function showNumber(num) {
+	console.log(num);
+	setTimeout(showNumber, 1000, ++num);
+}
+setTimeout(showNumber, 1000, 1);
