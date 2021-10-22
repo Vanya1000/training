@@ -347,7 +347,7 @@ if ('name' in userInfo) {
 } else {
 	console.log('такого свойства нет!')
 }
-*/
+
 let userInfo = {
 	name: 'Ivan',
 	age: 29,
@@ -357,8 +357,18 @@ let userInfo = {
 		street: 'Angarskaya 70'
 	},
 	showInfo() {
-		console.log(`${userInfo.name}, ${userInfo.age} лет. Адрес г.${userInfo.address.city} ул. ${userInfo.address.street}`);
+		console.log(`${this.name}, ${this.age} лет. Адрес г.${this.address.city} ул. ${this.address.street}`);
 	}
 }
 
 userInfo.showInfo();
+*/
+
+function saleHotdogs(n) {
+  if (n < 5) {
+		return n * 100;
+	};
+
+}
+
+console.log(saleHotdogs(1), 100);
