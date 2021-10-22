@@ -300,7 +300,7 @@ showMessage();
 function showMessage() {
 	console.log('Сообщение');
 }
-*/
+
 let showMessage;
 if (2 > 1) {
 	showMessage = function () {
@@ -308,3 +308,57 @@ if (2 > 1) {
 	}
 }
 showMessage();
+
+function makeUserInfo(name,age) {
+	return{
+		name: name,
+		age: age,
+		color: 'red',
+	}
+}
+let user = makeUserInfo('Ivan', '29');
+console.log(user);
+
+
+let firstPart = 'likes '
+let userInfo = {
+	name: 'Ivan',
+	age: 29,
+	[firstPart]: true,
+	address: {
+		city: 'Minsk',
+		street: 'Angarskaya',
+	}
+};
+console.log(userInfo);
+console.log(userInfo[firstPart]);
+console.log(userInfo.address.city);
+
+
+
+
+let userInfo = {
+	name: 'Ivan',
+	age: 30,
+	color: 'white',
+}
+if ('name' in userInfo) {
+	console.log(userInfo.name);
+} else {
+	console.log('такого свойства нет!')
+}
+*/
+let userInfo = {
+	name: 'Ivan',
+	age: 29,
+	color: 'white',
+	address: {
+		city: 'Minsk',
+		street: 'Angarskaya 70'
+	},
+	showInfo() {
+		console.log(`${userInfo.name}, ${userInfo.age} лет. Адрес г.${userInfo.address.city} ул. ${userInfo.address.street}`);
+	}
+}
+
+userInfo.showInfo();
