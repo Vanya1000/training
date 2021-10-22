@@ -279,10 +279,32 @@ console.log (summFunc);
 
 let calcSumm = (numA, numB) => numA + numB;
 console.log(calcSumm(2,2));
-*/
+
 
 function showNumber(num) {
 	console.log(num);
-	setTimeout(showNumber, 1000, ++num);
+	let timeId = setTimeout(showNumber, 1000, ++num);
+	if (num === 11) {
+	clearTimeout(timeId);
+	}
 }
 setTimeout(showNumber, 1000, 1);
+
+function showName() {
+	console.log('Вася!');
+}
+setTimeout(showName, 0);
+console.log('Коля!');
+
+showMessage();
+function showMessage() {
+	console.log('Сообщение');
+}
+*/
+let showMessage;
+if (2 > 1) {
+	showMessage = function () {
+		console.log('Сообщение');
+	}
+}
+showMessage();
