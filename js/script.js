@@ -403,6 +403,40 @@ function getRandomInt(min, max) {
 	return Math.floor(Math.random() * (max - min)) + min; 
 }
 console.log(getRandomInt(1, 6));
+
+let text = 'лансер';
+console.log(text.includes('лан', 0));
+
+function padIt(str, n) {
+	let strOutput;
+	if (n == 1) {
+		return strOutput = '*' + str;
+	}
+}
+		
+console.log(padIt("a", 1));
+
+function padIt(str, n) {
+	while (n > 0) {
+		str = '*' + str;
+		n--;
+		if (n > 0) {
+			str = str + '*';
+			n--;
+		}
+	}
+	return str;
+}
 */
-let text = 'фрилансер';
-console.log(text.includes('лан', 3));
+function padIt(str, n) {
+	while (n > 0) {
+		if (n % 2 == 0) {
+			str = str + "*";
+		} else {
+			str = "*" + str;
+		}
+		n--;
+	}
+	return str;
+}
+console.log(padIt("a", 3));
