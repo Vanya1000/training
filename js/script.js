@@ -362,7 +362,7 @@ let userInfo = {
 }
 
 userInfo.showInfo();
-*/
+
 
 function saleHotdogs(n) {
   if (n < 5) {
@@ -372,3 +372,27 @@ function saleHotdogs(n) {
 }
 
 console.log(saleHotdogs(1), 100);
+
+
+
+
+function animal(obj) {
+	
+	return `This ${obj.color} ${obj.name} has ${obj.legs} 'legs.`;
+}
+
+console.log(animal({ name: "dog", legs: 4, color: "white" }), "This white dog has 4 legs.");
+
+
+return `Имя ${this.name} Возраст: ${this.age}`;
+
+function UserInfo(name, age) {
+	let obj = {
+		name: name,
+		age: age,
+	};
+	return `Имя ${obj.name} Возраст: ${obj.age}`;
+}
+console.log(UserInfo('Ivan', 29));
+*/
+
