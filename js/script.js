@@ -404,5 +404,5 @@ function getRandomInt(min, max) {
 }
 console.log(getRandomInt(1, 6));
 */
-let text = 'Приветствие';
-console.log(text.toLowerCase().includes('прив'));
+let text = 'фрилансер';
+console.log(text.includes('лан', 3));
