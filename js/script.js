@@ -394,5 +394,15 @@ function UserInfo(name, age) {
 	return `Имя ${obj.name} Возраст: ${obj.age}`;
 }
 console.log(UserInfo('Ivan', 29));
-*/
 
+
+
+function getRandomInt(min, max) {
+	min = Math.ceil(min);
+	max = Math.floor(max);
+	return Math.floor(Math.random() * (max - min)) + min; 
+}
+console.log(getRandomInt(1, 6));
+*/
+let text = 'Приветствие';
+console.log(text.toLowerCase().includes('прив'));
