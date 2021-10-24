@@ -458,6 +458,26 @@ let matrix = [
 ]
 console.log(matrix);
 
+	
+	let result = arr.find(function (item, index, array) {
+	return item.age === 27;
+});
+
+
+let mass = [];
+let i = 150;
+for (mass; i > 1; i--) {
+	let rnd = Math.floor(Math.random() * 10000) + 1;
+	mass.push(rnd)
+}
+console.log(mass);
+console.log(mass.sort((a, b) => a - b));
+
+
+
+*/
+
+let arr = [
 	'Иван',
 	"Саня",
 	"Тамерлан",
@@ -465,20 +485,23 @@ console.log(matrix);
 	"Шаман",
 	"Пакистан",
 	"Дагестан",
-	let result = arr.find(function (item, index, array) {
-	return item.age === 27;
-});
-*/
-
-let arr = [
-	{name: 'Ivan', age: 29},
-	{name: 'Sanya', age: 27},
-	{name: 'Tanya', age: 'не скажу'},
 ];
-
-let resultOne = arr.findIndex(item => item.age === 27);
-console.log(resultOne);
+console.log(arr.reverse());
 
 
+let arrNum = [3,6,8,9,5,22,32,52,22]
 
-console.log(arr);
+function compareNumeric(a, b) {
+	console.log(`Сравниваем ${a} и ${b}`);
+	if (a > b) return 1;
+	if (a == b) return 0;
+	if (a < b) return -1;
+
+	//return a - b
+}
+
+console.log(arrNum.reverse((a,b) => a-b));
+
+
+
+
