@@ -427,7 +427,7 @@ function padIt(str, n) {
 	}
 	return str;
 }
-*/
+
 function padIt(str, n) {
 	while (n > 0) {
 		if (n % 2 == 0) {
@@ -441,3 +441,40 @@ function padIt(str, n) {
 }
 console.log(padIt("a", 9));
 
+let arr = [];
+let num = 1;
+for (arr; arr.length < 99; num++) {
+	arr.push(num);//?.
+}
+console.log(arr);
+arr.unshift('1'); //?.
+console.log(arr.length);//?.
+console.log(arr);
+
+let matrix = [
+	[1, 2, 3,],
+	[4, 5, 6,],
+	[7, 8, 9,],
+]
+console.log(matrix);
+
+	'Иван',
+	"Саня",
+	"Тамерлан",
+	"Нурлан",
+	"Шаман",
+	"Пакистан",
+	"Дагестан",
+*/
+
+let arr = [
+	{name: 'Ivan', age: 29},
+	{name: 'Sanya', age: 27},
+	{name: 'Tanya', age: 'не скажу'},
+];
+
+let result = arr.find(function(item, index, array) {
+	return item.age === 27;
+})
+
+console.log(arr);
