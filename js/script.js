@@ -465,6 +465,9 @@ console.log(matrix);
 	"Шаман",
 	"Пакистан",
 	"Дагестан",
+	let result = arr.find(function (item, index, array) {
+	return item.age === 27;
+});
 */
 
 let arr = [
@@ -473,8 +476,9 @@ let arr = [
 	{name: 'Tanya', age: 'не скажу'},
 ];
 
-let result = arr.find(function(item, index, array) {
-	return item.age === 27;
-})
+let resultOne = arr.findIndex(item => item.age === 27);
+console.log(resultOne);
+
+
 
 console.log(arr);
