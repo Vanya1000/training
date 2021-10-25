@@ -506,7 +506,7 @@ console.log(delUsers);
 users.unshift("Маша", "Паша")
 
 console.log(users);
-*/
+
 
 function howManydays(month) {
 	var days;
@@ -524,10 +524,44 @@ function howManydays(month) {
 			default:
 				days = 31;
 		}
-		return days; //?
+		return days; 
 	} else {
 		console.log('enter the correct month number');
 	}
 }
 
 howManydays();
+
+
+function pickIt(arr) {
+	var odd = [], even = [];
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i] % 2 !== 0) {
+			odd.push(arr[i]);
+		} else {
+			even.push(arr[i]);
+		}
+	}
+	return [odd, even];
+}
+
+console.log(pickIt([8, 1, 5, 4, 6, 1, 1]));  dolls[i]
+*/
+
+function grabDoll(dolls) {
+	let bag = [];
+	for (let i = 0; i < dolls.length; i++) {
+		if (bag.length == 3) {
+			break;
+		}
+		if (dolls[i] == "Hello Kitty" || dolls[i] == "Barbie doll") {
+			bag.push(dolls[i]);
+		}  else {
+			continue;
+		}
+	}
+	return bag;
+}
+
+
+grabDoll(["Mickey Mouse", "Barbie doll", "Hello Kitty", "Hello Kitty", "Hello Kitty", "Snow white"]);//?
