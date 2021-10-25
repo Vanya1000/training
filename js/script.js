@@ -475,8 +475,6 @@ console.log(mass.sort((a, b) => a - b));
 
 
 
-*/
-
 let arr = [
 	'Иван',
 	"Саня",
@@ -486,23 +484,50 @@ let arr = [
 	"Пакистан",
 	"Дагестан",
 ];
-console.log(arr.reverse());
+
+let reduceValue = arr.reduceRight(function (previousValue, item, index, array) {
+	return `${item}, ${previousValue}`;
+});
+console.log(`Пользователи: ${reduceValue}`);
 
 
-let arrNum = [3,6,8,9,5,22,32,52,22]
+let users = [
+	'Ваня',
+	'Иштван',
+];
+users.push('Оля');
+users.splice(1, 1, 'Петя');
 
-function compareNumeric(a, b) {
-	console.log(`Сравниваем ${a} и ${b}`);
-	if (a > b) return 1;
-	if (a == b) return 0;
-	if (a < b) return -1;
+users.includes('Ваня');
 
-	//return a - b
+let delUsers = users.splice(0,1)
+console.log(delUsers);
+
+users.unshift("Маша", "Паша")
+
+console.log(users);
+*/
+
+function howManydays(month) {
+	var days;
+	if (month <= 12) {
+		switch (month) {
+			case 4:
+			case 6:
+			case 9:
+			case 11:
+				days = 30;
+				break;
+			case 2:
+				days = 28;
+				break;
+			default:
+				days = 31;
+		}
+		return days; //?
+	} else {
+		console.log('enter the correct month number');
+	}
 }
 
-console.log(arrNum.reverse((a,b) => a-b));
-
-
-
-
-
+howManydays();
