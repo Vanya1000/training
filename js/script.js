@@ -601,4 +601,43 @@ function giveMeFive(obj) {
 console.log(giveMeFive({ Our: "earth", is: "a", beautyful: "world" }));
 console.log(giveMeFive({ Ihave: "enough", money: "to", buy: "a", car: "model" }));
 console.log(giveMeFive({ Pears: "than", apple: "sweet" }));
+
+if (isFinite(n)) {
+		return `"Input number is ${n}"`
+	}
+
+function whatNumberIsIt(n) {
+	if (n === Number.POSITIVE_INFINITY) {
+		return "Input number is Number.POSITIVE_INFINITY"
+	} if (n === Number.MAX_VALUE) {
+		return "Input number is Number.MAX_VALUE"
+	} if (n === Number.MIN_VALUE) {
+		return "Input number is Number.MIN_VALUE"
+	} if (n === Number.NEGATIVE_INFINITY) {
+		return "Input number is Number.NEGATIVE_INFINITY"
+	} if (!isFinite(n)) {
+		return "Input number is Number.NaN"
+	} if (isFinite(n)) {
+		return `Input number is ${n}`
+	}
+}
+
+
+function whatNumberIsIt(n) {
+switch (true) {
+	case (n === Number.POSITIVE_INFINITY): return "Input number is Number.POSITIVE_INFINITY"
+	case (n === Number.MAX_VALUE): return "Input number is Number.MAX_VALUE"
+	case (n === Number.MIN_VALUE): return "Input number is Number.MIN_VALUE"
+	case (n === Number.NEGATIVE_INFINITY): return "Input number is Number.NEGATIVE_INFINITY"
+	case (!isFinite(n)): return "Input number is Number.NaN"
+	default: return `Input number is ${n}`
+}
+}
+whatNumberIsIt(1 / 0);//?
+whatNumberIsIt(90071992547409923);//?
+whatNumberIsIt(1.7976931348623157e+308);//?
+whatNumberIsIt(5e-324);//?
+whatNumberIsIt(-Number.MAX_VALUE * 2);//?
+whatNumberIsIt(NaN);//?
+whatNumberIsIt(Infinity + 1);//?
 */
