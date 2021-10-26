@@ -565,3 +565,22 @@ function grabDoll(dolls) {
 
 
 grabDoll(["Mickey Mouse", "Barbie doll", "Hello Kitty", "Hello Kitty", "Hello Kitty", "Snow white"]);//?
+
+let arr = [
+	'Иван',
+	"Саня",
+	"Тамерлан",
+	"Нурлан",
+	"Шаман",
+	"Пакистан",
+	"Дагестан",
+];
+
+for (let value of arr) {
+	if (value === "Дагестан") {
+		value = `Это же город!: ${value}`
+	} else {
+		value = `Имя этого чела: ${value}`
+	}
+	console.log(value);
+}
