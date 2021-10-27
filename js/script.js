@@ -640,4 +640,13 @@ whatNumberIsIt(5e-324);//?
 whatNumberIsIt(-Number.MAX_VALUE * 2);//?
 whatNumberIsIt(NaN);//?
 whatNumberIsIt(Infinity + 1);//?
+
+DOM
 */
+
+const bodyElement = document.body;
+const childNodes = bodyElement.childNodes;
+
+console.log(bodyElement);
+console.log(childNodes);
+console.log(bodyElement.hasChildNodes());
