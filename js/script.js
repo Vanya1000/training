@@ -650,3 +650,7 @@ const childNodes = bodyElement.childNodes;
 console.log(bodyElement);
 console.log(childNodes);
 console.log(bodyElement.hasChildNodes());
+
+for (let node of childNodes) {
+	console.log(node);
+}
