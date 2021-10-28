@@ -666,6 +666,20 @@ const subList = document.querySelectorAll('.lesson__sub-list');
 console.log(subList);
 const subItems = subList[0].querySelectorAll('li');
 console.log(subItems);
-*/
+
 const id = document.getElementsByTagName('li');
 console.log(id);
+
+const elem = document.querySelector('.lesson__item-sub-list');
+const parentList = elem.closest('.lesson__list');
+console.log(parentList);
+*/
+const elems = document.querySelectorAll('.lesson__item-list');
+console.log(elems);
+for (let elem of elems) {
+	if (elem.matches('[class$="lesson__item-list_red"]')) {
+		console.log('Крассный');
+	} else if (elem.matches('[class$="lesson__item-list_blue"]')) {
+		console.log('Синий');
+	}
+}
