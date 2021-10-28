@@ -642,15 +642,30 @@ whatNumberIsIt(NaN);//?
 whatNumberIsIt(Infinity + 1);//?
 
 DOM
-*/
+
 
 const bodyElement = document.body;
 const children = bodyElement.children;
 const div = bodyElement.firstElementChild.children;
 
-
-
 console.log(bodyElement);
 console.log(children);
 console.log(div);
 
+const element = document.querySelectorAll('li');
+
+for (const item of element) {
+	console.log(item);
+}
+
+element.forEach (item => {
+	console.log(item);
+})
+
+const subList = document.querySelectorAll('.lesson__sub-list');
+console.log(subList);
+const subItems = subList[0].querySelectorAll('li');
+console.log(subItems);
+*/
+const id = document.getElementsByTagName('li');
+console.log(id);
