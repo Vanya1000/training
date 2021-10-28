@@ -645,12 +645,12 @@ DOM
 */
 
 const bodyElement = document.body;
-const childNodes = bodyElement.childNodes;
+const children = bodyElement.children;
+const div = bodyElement.firstElementChild.children;
+
+
 
 console.log(bodyElement);
-console.log(childNodes);
-console.log(bodyElement.hasChildNodes());
+console.log(children);
+console.log(div);
 
-for (let node of childNodes) {
-	console.log(node);
-}
