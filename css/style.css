@@ -89,3 +89,7 @@ h6 {
 }
 
 /*--------------------*/
+.active {
+  font-weight: 700;
+  font-size: 40px;
+}

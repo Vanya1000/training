@@ -735,4 +735,49 @@ const element = document.querySelector('.lesson__item-list_red')
 const elementClassNames = element.className;
 console.log(elementClassNames);
 element.className = 'red';
+
+const element = document.querySelector('.lesson__item-list_red');
+element.classList.add('active');
+
+const element = document.querySelector('.lesson__item-list_red');
+element.style.backgroundColor = 'red'
+element.style.marginTop = '20px'
+console.log(element.style.marginTop);
+
+const element = document.querySelector('.lesson__item-list_red');
+const elementStyle = getComputedStyle(element);
+console.log(elementStyle.backgroundColor);
+'#' + r.toString(16) + g.toString(16) + b.toString(16)
+console.log(colorOf(0, 111, 0));
+console.log(colorOf(1, 2, 3));
+
+function colorOf(r, g, b) {
+	r = r.toString(16);
+	g = g.toString(16);
+	b = b.toString(16);
+	if (r.length < 2) {
+		r = '0' + r;
+	} if (g.length < 2) {
+		g = '0' + g;
+	} if (b.length < 2) {
+		b = '0' + b;
+	} 
+	return '#' + r + g + b;
+}
+
+console.log(colorOf(255, 0, 0));
+console.log(colorOf(0, 111, 0));
+console.log(colorOf(10, 34, 183));
+
+function colorOf(r, g, b) {
+	return "#" + toHex(r) + toHex(g) + toHex(b);
+}
+
+function toHex(n) {
+	var result = n.toString(16);
+	return result.length == 1 ? "0" + result : result;
+}
+console.log(colorOf(255, 0, 0));
+console.log(colorOf(0, 111, 0));
+console.log(colorOf(10, 34, 183));
 */
