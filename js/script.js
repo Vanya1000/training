@@ -693,4 +693,16 @@ const elemCont = elem.outerHTML;
 textElement.outerHTML = `${elemCont}`
 console.log(textElement.outerHTML);
 
+
+const textElement = document.querySelector('.lesson__text');
+const textElementContent = textElement.textContent;
+textElement.textContent = `<p>Живи, а работай в
+	<span class="yellow">свободное</span> время!</p>`
+console.log(textElementContent);
+
+const textElement = document.querySelector('.lesson__text');
+const getComment = textElement.nextSibling;
+console.log(getComment);
+console.log(getComment.data);
+getComment.data = 'лось ты, а не коммент!'
 */
