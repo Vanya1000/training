@@ -673,7 +673,7 @@ console.log(id);
 const elem = document.querySelector('.lesson__item-sub-list');
 const parentList = elem.closest('.lesson__list');
 console.log(parentList);
-*/
+
 const elems = document.querySelectorAll('.lesson__item-list');
 console.log(elems);
 for (let elem of elems) {
@@ -683,3 +683,14 @@ for (let elem of elems) {
 		console.log('Синий');
 	}
 }
+
+const textElement = document.querySelector('.lesson__text');
+const textElementContent = textElement.outerHTML;
+console.log(textElementContent);
+
+const elem = document.querySelector('.lesson__list');
+const elemCont = elem.outerHTML;
+textElement.outerHTML = `${elemCont}`
+console.log(textElement.outerHTML);
+
+*/
