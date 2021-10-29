@@ -705,4 +705,34 @@ const getComment = textElement.nextSibling;
 console.log(getComment);
 console.log(getComment.data);
 getComment.data = 'лось ты, а не коммент!'
+
+const newElement = document.createElement('div');
+newElement.innerHTML = `Первое наполнение <p>Второе в абзаце</p>`;
+console.log(newElement);
+
+const textElement = document.querySelector('.lesson__text');
+const newElement = document.createElement('div');
+newElement.innerHTML = `Первое наполнение <p>Второе в абзаце</p>`;
+textElement.prepend(newElement)
+
+const textElement = document.querySelector('.lesson__text');
+textElement.insertAdjacentHTML('afterbegin', `Первое наполнение <p>Второе в абзаце</p>`)
+
+const lessonBlock = document.querySelector('.lesson__text');
+const title = document.querySelector('.lesson__title');
+lessonBlock.append(title);
+
+const title = document.querySelector('.lesson__title');
+const cloneTextElement = title.cloneNode(true);
+
+const divLessonText = document.querySelector('.lesson__text');
+divLessonText.prepend(cloneTextElement);
+
+const title = document.querySelector('.lesson__title');
+title.remove();
+
+const element = document.querySelector('.lesson__item-list_red')
+const elementClassNames = element.className;
+console.log(elementClassNames);
+element.className = 'red';
 */
