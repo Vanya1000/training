@@ -781,3 +781,6 @@ console.log(colorOf(255, 0, 0));
 console.log(colorOf(0, 111, 0));
 console.log(colorOf(10, 34, 183));
 */
+const lessonText = document.querySelector('.lesson__link');
+
+lessonText.setAttribute('href', 'http://www.google.com');
