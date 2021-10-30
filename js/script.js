@@ -780,7 +780,26 @@ function toHex(n) {
 console.log(colorOf(255, 0, 0));
 console.log(colorOf(0, 111, 0));
 console.log(colorOf(10, 34, 183));
-*/
+
 const lessonText = document.querySelector('.lesson__link');
 
 lessonText.setAttribute('href', 'http://www.google.com');
+
+const element = document.querySelector('[data-say-hi]')
+
+console.log(element.dataset.sayHi);
+
+const element = document.querySelector('ul');
+const elemLi = element.lastElementChild.textContent;
+
+console.log(elemLi);
+
+const element = document.querySelectorAll('.like');
+console.log(element);
+
+const list = document.querySelector('ul');
+list.insertAdjacentHTML(
+	'beforeend',
+	'<li>Текст</li>'
+);
+*/
