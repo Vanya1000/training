@@ -802,4 +802,85 @@ list.insertAdjacentHTML(
 	'beforeend',
 	'<li>Текст</li>'
 );
+
+const mainElement = document.documentElement;
+const mainElementWidth = mainElement.clientWidth;
+const mainElementHeight = mainElement.clientHeight;
+
+console.log(mainElementWidth);
+console.log(mainElementHeight);
+
+const windowWidth = window.innerWidth;
+const windowHeight = window.innerHeight;
+console.log(windowWidth);
+console.log(windowHeight);
+
+let scrollWidth = Math.max(
+	document.body.scrollWidth, document.documentElement.scrollWidth,
+	document.body.offsetWidth, document.documentElement.offsetWidth,
+	document.body.clientWidth, document.documentElement.clientWidth
+);
+let scrollHeight = Math.max(
+	document.body.scrollHeight, document.documentElement.scrollHeight,
+	document.body.offsetHeight, document.documentElement.offsetHeight,
+	document.body.clientHeight, document.documentElement.clientHeight
+);
+const windowScrollTop = window.pageYOffset;
+const windowScrollLeft = window.pageXOffset;
+
+console.log(windowScrollTop);
+console.log(windowScrollLeft);
+
+window.scrollBy(0, 50);
+
+function setScrollIntoView(top) {
+	const lessonSelected = document.querySelector('.lesson__selected');
+	lessonSelected.scrollIntoView(top);
+}
+setScrollIntoView(true);
+
+document.body.style.overflow = "hidden";
+function setEnableDisableScroll() {
+	//document.body.style.overflow = "hidden";
+	document.body.classList.toggle('scroll-lock');
+}
 */
+const block = document.querySelector('.lesson__block');
+const elementOffsetParent = block.offsetParent;
+console.log(elementOffsetParent);
+
+const elementOffsetLeft = block.offsetLeft;
+const elementOffsetTop = block.offsetTop;
+console.log(elementOffsetLeft);
+console.log(elementOffsetTop)
+
+const elementOffsetWidth = block.offsetWidth;
+const elementOffsetHeight = block.offsetHeight;
+
+console.log(elementOffsetWidth);
+console.log(elementOffsetHeight);
+
+const elementClientTop = block.clientTop;
+const elementClientLeft = block.clientLeft;
+
+console.log(elementClientTop);
+console.log(elementClientLeft);
+
+const elementClientWidth = block.clientWidth;
+const elementClientHeight = block.clientHeight;
+
+console.log(elementClientWidth);
+console.log(elementClientHeight);
+
+const elementScrollWidth = block.scrollWidth;
+const elementScrollHeight = block.scrollHeight;
+
+console.log(elementScrollWidth);
+console.log(elementScrollHeight);
+
+block.scrollTop = 120;
+const elementScrollLeft = block.scrollLeft;
+const elementScrollTop = block.scrollTop;
+
+console.log(elementScrollLeft);
+console.log(elementScrollTop);  
