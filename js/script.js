@@ -844,7 +844,7 @@ function setEnableDisableScroll() {
 	//document.body.style.overflow = "hidden";
 	document.body.classList.toggle('scroll-lock');
 }
-*/
+
 const block = document.querySelector('.lesson__block');
 const elementOffsetParent = block.offsetParent;
 console.log(elementOffsetParent);
@@ -884,16 +884,17 @@ const elementScrollTop = block.scrollTop;
 
 console.log(elementScrollLeft);
 console.log(elementScrollTop);  
+*/
+const block = document.querySelector('.lesson__block');
+const getItemCoords = block.getBoundingClientRect();
+console.log(getItemCoords);
 
-const elementScrollWidth = block.scrollWidth;
-const elementScrollHeight = block.scrollHeight;
+const getItemTopCoord = block.getBoundingClientRect().top;
 
-console.log(elementScrollWidth);
-console.log(elementScrollHeight);
+console.log(getItemTopCoord); 
 
-block.scrollTop = 120;
-const elementScrollLeft = block.scrollLeft;
-const elementScrollTop = block.scrollTop;
+const getItemTopDocumentCoord = getItemTopCoord + window.pageYOffset;
+console.log(getItemTopDocumentCoord);
 
-console.log(elementScrollLeft);
-console.log(elementScrollTop);
+const elem = document.elementFromPoint(500, 500);
+console.log(elem);
