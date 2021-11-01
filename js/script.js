@@ -884,3 +884,16 @@ const elementScrollTop = block.scrollTop;
 
 console.log(elementScrollLeft);
 console.log(elementScrollTop);  
+
+const elementScrollWidth = block.scrollWidth;
+const elementScrollHeight = block.scrollHeight;
+
+console.log(elementScrollWidth);
+console.log(elementScrollHeight);
+
+block.scrollTop = 120;
+const elementScrollLeft = block.scrollLeft;
+const elementScrollTop = block.scrollTop;
+
+console.log(elementScrollLeft);
+console.log(elementScrollTop);
