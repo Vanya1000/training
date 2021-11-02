@@ -943,10 +943,48 @@ function showConsole() {
 	console.log('Клак!');
 }
 button.addEventListener("click", showConsole, {"once": true,});
-*/
+
 const button = document.querySelector('.button');
 function showConsole(event) {
 	// Все детали события
 	console.log(event);
 }
 button.addEventListener("click", showConsole);
+
+function colorOf(r, g, b) {
+	r = r.toString(16);
+	g = g.toString(16);
+	b = b.toString(16);
+	if (r.length < 2) {
+		r = '0' + r;
+	} if (g.length < 2) {
+		g = '0' + g;
+	} if (b.length < 2) {
+		b = '0' + b;
+	}
+	return '#' + r + g + b;
+}
+
+console.log(colorOf(255, 0, 0));
+console.log(colorOf(0, 111, 0));//?
+console.log(colorOf(10, 34, 183));
+splitAndMerge("My name is John", " "), "M y n a m e i s J o h n");
+splitAndMerge("My name is John", "-"), "M-y n-a-m-e i-s J-o-h-n");
+splitAndMerge("Hello World!", "."), "H.e.l.l.o W.o.r.l.d.!");
+splitAndMerge("Hello World!", ","), "H,e,l,l,o W,o,r,l,d,!");
+
+
+console.log(splitAndMerge("Hello World!", "."));
+console.log(splitAndMerge("Hello World!", ","));
+console.log(splitAndMerge("My name is John", "-"));
+*/
+function splitAndMerge(string, separator) {
+	let array = string.split(' ');//?
+	let arrayOneLetter = string.split('');//?
+	 let split = arrayOneLetter.join(separator)//?
+	return split;
+}
+
+console.log(splitAndMerge("My name is John", " "));
+
+
