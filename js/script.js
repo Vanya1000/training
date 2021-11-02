@@ -914,4 +914,32 @@ setTimeout(setScrollBy, 1000);
 
 const elem = document.elementFromPoint(500, 500);
 console.log(elem);
+
+const elem = document.elementFromPoint(50, 50);
+console.log(elem);
+
+const button = document.querySelector('.button');
+button.onclick = function () {
+	window.scrollBy(0, 100);
+}
+
+function showConsole() {
+	console.log('Клик!');
+}
+button.onclick = showConsole;
+
+
+button.addEventListener("click", function () {
+	console.log('Клик!');
+});
+button.addEventListener("click", function () {
+	console.log('Клак!');
+});
 */
+const button = document.querySelector('.button');
+
+function showConsole() {
+	console.log('Клик!');
+	console.log('Клак!');
+}
+button.addEventListener("click", showConsole, {"once": true,});
