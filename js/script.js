@@ -884,7 +884,7 @@ const elementScrollTop = block.scrollTop;
 
 console.log(elementScrollLeft);
 console.log(elementScrollTop);  
-*/
+
 const block = document.querySelector('.lesson__block');
 const getItemCoords = block.getBoundingClientRect();
 console.log(getItemCoords);
@@ -898,3 +898,20 @@ console.log(getItemTopDocumentCoord);
 
 const elem = document.elementFromPoint(500, 500);
 console.log(elem);
+
+const mainElement = document.documentElement;
+const mainElementWidth = mainElement.clientWidth;
+console.log(mainElementWidth);
+window.innerWidth
+console.log(window.innerWidth);
+const valueScroll = window.innerWidth - mainElementWidth;
+console.log(valueScroll);
+
+function setScrollBy () {
+	window.scrollBy(0,100);	
+}
+setTimeout(setScrollBy, 1000);
+
+const elem = document.elementFromPoint(500, 500);
+console.log(elem);
+*/
