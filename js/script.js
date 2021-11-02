@@ -935,7 +935,7 @@ button.addEventListener("click", function () {
 button.addEventListener("click", function () {
 	console.log('Клак!');
 });
-*/
+
 const button = document.querySelector('.button');
 
 function showConsole() {
@@ -943,3 +943,10 @@ function showConsole() {
 	console.log('Клак!');
 }
 button.addEventListener("click", showConsole, {"once": true,});
+*/
+const button = document.querySelector('.button');
+function showConsole(event) {
+	// Все детали события
+	console.log(event);
+}
+button.addEventListener("click", showConsole);
