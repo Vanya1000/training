@@ -1001,6 +1001,8 @@ alienLanguage("this is an example"), "THIs Is An EXAMPLe");
 alienLanguage("Hello World"), "HELLo WORLd");
 alienLanguage("HELLO WORLD"), "HELLo WORLd");
 
+const alienLanguage = str => str.toUpperCase().replace(/\w\b/g, m => m.toLowerCase())
+*/
 function alienLanguage(str) {
 	const Upper = str.toUpperCase();
 	const words = Upper.split(" ");
@@ -1009,8 +1011,6 @@ function alienLanguage(str) {
 	}
 	return words.join(" ")
 }
-*/
-const alienLanguage = str => str.toUpperCase().replace(/\w\b/g, m => m.toLowerCase())
 
 console.log(alienLanguage("My name is John"));
 console.log(alienLanguage("this is an example"));
