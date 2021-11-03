@@ -988,7 +988,7 @@ function splitAndMerge(string, separator) {
 	let regularOut = regular.replace(/_\s_/g, ' ');
 	return regularOut;
 }
-*/
+
 function splitAndMerge(str, sp) {
 	return str.split(" ").map(word => word.split("").join(sp)).join(" ");
 }
@@ -996,3 +996,23 @@ console.log(splitAndMerge("My name is John", " "));
 console.log(splitAndMerge("My name is John", "_"));
 console.log(splitAndMerge("Hello World!", ","));
 
+alienLanguage("My name is John"), "My NAMe Is JOHn");
+alienLanguage("this is an example"), "THIs Is An EXAMPLe");
+alienLanguage("Hello World"), "HELLo WORLd");
+alienLanguage("HELLO WORLD"), "HELLo WORLd");
+
+function alienLanguage(str) {
+	const Upper = str.toUpperCase();
+	const words = Upper.split(" ");
+	for (let i = 0; i < words.length; i++) {
+		words[i] = words[i].slice(0,-1) + words[i].slice(-1).toLowerCase();//?
+	}
+	return words.join(" ")
+}
+*/
+const alienLanguage = str => str.toUpperCase().replace(/\w\b/g, m => m.toLowerCase())
+
+console.log(alienLanguage("My name is John"));
+console.log(alienLanguage("this is an example"));
+console.log(alienLanguage("Hello World"));
+console.log(alienLanguage("HELLO WORLD"));
