@@ -977,14 +977,22 @@ splitAndMerge("Hello World!", ","), "H,e,l,l,o W,o,r,l,d,!");
 console.log(splitAndMerge("Hello World!", "."));
 console.log(splitAndMerge("Hello World!", ","));
 console.log(splitAndMerge("My name is John", "-"));
-*/
+
+console.log(splitAndMerge("Hello World!", "."));
+console.log(splitAndMerge("Hello World!", ","));
+
 function splitAndMerge(string, separator) {
-	let array = string.split(' ');//?
-	let arrayOneLetter = string.split('');//?
-	 let split = arrayOneLetter.join(separator)//?
-	return split;
+	let oneLetter = string.split('');//?
+	let joinSeprator = oneLetter.join(separator);//?
+	let regular = joinSeprator.replace(/\W\s\W/g , ' ');//?
+	let regularOut = regular.replace(/_\s_/g, ' ');
+	return regularOut;
 }
-
+*/
+function splitAndMerge(str, sp) {
+	return str.split(" ").map(word => word.split("").join(sp)).join(" ");
+}
 console.log(splitAndMerge("My name is John", " "));
-
+console.log(splitAndMerge("My name is John", "_"));
+console.log(splitAndMerge("Hello World!", ","));
 
