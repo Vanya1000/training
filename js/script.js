@@ -1002,7 +1002,7 @@ alienLanguage("Hello World"), "HELLo WORLd");
 alienLanguage("HELLO WORLD"), "HELLo WORLd");
 
 const alienLanguage = str => str.toUpperCase().replace(/\w\b/g, m => m.toLowerCase())
-*/
+
 function alienLanguage(str) {
 	const Upper = str.toUpperCase();
 	const words = Upper.split(" ");
@@ -1016,3 +1016,30 @@ console.log(alienLanguage("My name is John"));
 console.log(alienLanguage("this is an example"));
 console.log(alienLanguage("Hello World"));
 console.log(alienLanguage("HELLO WORLD"));
+
+const block = document.querySelector('.block');
+const blockInner = document.querySelector('.block__inner');
+const blockInnerInner = document.querySelector('.block__inner-inner');
+block.addEventListener("click", function (event) {
+	console.log('Клик на Блок!');
+	//console.log(event.target);
+});
+blockInner.addEventListener("click", function (event) {
+	console.log('Клик на Блок второго уровня!');
+}, { "capture": false });
+blockInnerInner.addEventListener("click", function (event) {
+	console.log('Клик на Блок третьего уровня!');
+	// Остановка всплытия
+	//event.stopPropagation();
+});
+*/
+const lesson = document.querySelector('.lesson__text');
+
+function showConsole() {
+	console.log('Ура!');
+}
+lesson.addEventListener("click", function (event) {
+	if (event.target.closest('.button')) {
+		showConsole();
+	}
+});
