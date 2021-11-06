@@ -1139,4 +1139,3 @@ document.addEventListener('keydown', function (event){
 		search.classList.remove('search_active');
 	}
 });
-
