@@ -1109,9 +1109,34 @@ document.addEventListener("keydown", function (event) {
 document.addEventListener("keyup", function (event) {
 	console.log(`Отжата клавиша ${event.code} (${event.key})`);
 });
-*/
+
 document.addEventListener('keydown', function (event) {
-	if (event.code == 'KeyZ' && (event.ctrlKey || event.metaKey)) {
-		console.log('Отмена действия!');
+	console.log(event.code);
+});
+
+window.addEventListener('scroll', function (event) {
+	//кол-во прокрученных пикселей по вертикали
+	// scrollY или pageYOffset (устарел)
+	// кол-во прокрученных пикселей по горизонтали
+	// scrollX или pageXOffset (устарел)
+
+	console.log(`${scrollY}px`);
+});
+console.log(document.readyState);
+*/
+const search = document.querySelector('.input');
+document.addEventListener('click', searchF);
+function searchF(event) {
+	if (event.target.closest('.img_search')) {
+		search.classList.toggle('search_active');
+	}
+	if (!event.target.closest('.search')) {
+		search.classList.remove('search_active');
+	}
+}
+document.addEventListener('keydown', function (event){
+	if (event.code === 'Escape') {
+		search.classList.remove('search_active');
 	}
 });
+
