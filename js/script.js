@@ -1032,7 +1032,7 @@ blockInnerInner.addEventListener("click", function (event) {
 	// Остановка всплытия
 	//event.stopPropagation();
 });
-*/
+
 const lesson = document.querySelector('.lesson__text');
 
 function showConsole() {
@@ -1057,3 +1057,61 @@ function menu(event) {
 		menuBody.classList.remove('_active');
 	}
 }
+
+const link = document.querySelector('.link');
+link.addEventListener("click", function (event) {
+	console.log('Наши действия');
+	event.preventDefault();
+});
+
+const button = document.querySelector('.button');
+
+button.addEventListener("mousedown", function (event) {
+	console.log(`Нажата кнопка ${event.which}`);
+});
+
+button.addEventListener("click", function (event) {
+	console.log('Нажата основная кнопка мыши');
+});
+
+button.addEventListener("contextmenu", function (event) {
+	console.log('Вызвано контекстное меню (не основная кнопка мыши)');
+});
+
+const blockForMouse = document.querySelector('.block-for-mouse');
+blockForMouse.addEventListener("mousemove", function (event) {
+	blockForMouse.innerHTML =
+		`clientX - ${event.clientX} <br> clientY - ${event.clientY}`;
+});
+
+const blockForMouse = document.querySelector('.block-for-mouse');
+blockForMouse.addEventListener("mouseover", function (event) {
+	blockForMouse.innerHTML = `Курсор над элементом`;
+});
+blockForMouse.addEventListener("mouseout", function (event) {
+	blockForMouse.innerHTML = `Курсор уходит с элемента`;
+});
+
+const blockForMouse = document.querySelector('.block-for-mouse');
+
+blockForMouse.addEventListener("mouseenter", function (event) {
+	console.log(event.target);
+	console.log(event.relatedTarget);
+});
+blockForMouse.addEventListener("mouseleave", function (event) {
+	console.log(event.target);
+	console.log(event.relatedTarget);
+});
+
+document.addEventListener("keydown", function (event) {
+	console.log(`Нажата клавиша ${event.code} (${event.key})`);
+});
+document.addEventListener("keyup", function (event) {
+	console.log(`Отжата клавиша ${event.code} (${event.key})`);
+});
+*/
+document.addEventListener('keydown', function (event) {
+	if (event.code == 'KeyZ' && (event.ctrlKey || event.metaKey)) {
+		console.log('Отмена действия!');
+	}
+});
