@@ -1141,4 +1141,54 @@ document.addEventListener('keydown', function (event){
 	}
 });
 
+const mainForm = document.forms.main;
+const mainFormInput = mainForm.nameInput;
+console.log(mainFormInput.form);
+
+const mainFormRadioButtons = mainForm.nameRadio;
+console.log(mainFormRadioButtons);
+
+const mainForm = document.forms.main;
+const mainFormInput = mainForm.nameInput;
+const mainFormTextarea = mainForm.nameTextarea;
+
+mainFormInput.value = "Пока";
+mainFormTextarea.value = "До встречи!";
+
+const mainFormRadioButtons = mainForm.nameRadio;
+const mainFormCheckBox = mainForm.nameCheck;
+const mainFormFile = mainForm.nameFile;
+
+console.log(mainFormRadioButtons[0].value);
+console.log(mainFormRadioButtons[1].value);
+console.log(mainFormRadioButtons[0].checked);
+console.log(mainFormRadioButtons[1].checked);
+
+console.log(mainFormCheckBox.value);
+console.log(mainFormCheckBox.checked);
+
+mainFormRadioButtons[0].value = "left";
+mainFormRadioButtons[1].value = "right";
+mainFormRadioButtons[1].checked = true;
+
+mainFormCheckBox.value = "save";
+mainFormCheckBox.checked = true;
 */
+const mainForm = document.forms.main;
+const mainFormSelect = mainForm.nameSelect;
+console.log(mainFormSelect.options);
+
+const mainFormSelectIndex = mainFormSelect.selectedIndex;
+console.log(mainFormSelectIndex);
+
+
+const mainFormSelectValue = mainFormSelect.value;
+console.log(mainFormSelectValue);
+
+
+const mainFormSelectText = mainFormSelect.options[2].text;
+console.log(mainFormSelectText);
+mainFormSelect.selectedIndex = 1;
+
+let newOption = new Option("100", "4", true, true);
+mainFormSelect.append(newOption);
