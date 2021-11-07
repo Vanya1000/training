@@ -1123,12 +1123,13 @@ window.addEventListener('scroll', function (event) {
 	console.log(`${scrollY}px`);
 });
 console.log(document.readyState);
-*/
+
 const search = document.querySelector('.input');
 document.addEventListener('click', searchF);
 function searchF(event) {
 	if (event.target.closest('.img_search')) {
 		search.classList.toggle('search_active');
+		console.log(event.target);
 	}
 	if (!event.target.closest('.search')) {
 		search.classList.remove('search_active');
@@ -1139,3 +1140,5 @@ document.addEventListener('keydown', function (event){
 		search.classList.remove('search_active');
 	}
 });
+
+*/
