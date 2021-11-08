@@ -1292,7 +1292,7 @@ mainFormInput.addEventListener("focus", function (event) {
 function emailTest(input) {
 	return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.value);
 }
-*/
+
 // Выводим картинку после выбора
 const mainForm = document.forms.main;
 const mainFormFile = mainForm.nameFile;
@@ -1310,3 +1310,23 @@ mainFormFile.addEventListener("change", function (e) {
 		</div>`
 	);
 });
+console.log(howManySmaller([1.1888, 1.1868, 1.1838], 1.19));
+console.log(howManySmaller([3.1288, 3.1212, 3.1205], 3.1212));
+*/
+function howManySmaller(arr, n) {
+	let arrResult = arr.map(function(item, index, array){
+		return item.toFixed(2)
+	})
+	let count = 0;
+	arrResult.forEach(function(item) {
+		if (item < n) {
+			count++;
+		}
+	}); 
+	return count;//?
+};
+
+console.log(howManySmaller([1.234, 1.235, 1.228], 1.24));
+console.log(howManySmaller([1.1888, 1.1868, 1.1838], 1.19));
+console.log(howManySmaller([3.1288, 3.1212, 3.1205], 3.1212));
+
