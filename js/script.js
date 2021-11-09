@@ -1312,7 +1312,7 @@ mainFormFile.addEventListener("change", function (e) {
 });
 console.log(howManySmaller([1.1888, 1.1868, 1.1838], 1.19));
 console.log(howManySmaller([3.1288, 3.1212, 3.1205], 3.1212));
-*/
+
 function howManySmaller(arr, n) {
 	let arrResult = arr.map(function(item, index, array){
 		return item.toFixed(2)
@@ -1330,3 +1330,22 @@ console.log(howManySmaller([1.234, 1.235, 1.228], 1.24));
 console.log(howManySmaller([1.1888, 1.1868, 1.1838], 1.19));
 console.log(howManySmaller([3.1288, 3.1212, 3.1205], 3.1212));
 
+пройти массив и найти самую короткую динну строки
+снова пройти массив и сократить все значения до самой короткой
+var arr = [1, 2, 3];
+var min = Math.min(...arr);
+console.log(min);
+*/
+function cutIt(arr) {
+	let length = arr.map(function(item, index, array){
+		return item.length;
+	});
+	let minLength = Math.min(...length);
+	let result = arr.map(function (item, index, array) {
+		return item.slice(0, minLength);
+	});
+	return result;
+}
+console.log(cutIt(["ab", "cde", "fgh"]));
+console.log(cutIt(["abc", "defgh", "ijklmn"]));
+console.log(cutIt(["codewars", "javascript", "java"]));
