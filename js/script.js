@@ -1335,7 +1335,7 @@ console.log(howManySmaller([3.1288, 3.1212, 3.1205], 3.1212));
 var arr = [1, 2, 3];
 var min = Math.min(...arr);
 console.log(min);
-*/
+
 function cutIt(arr) {
 	let length = arr.map(function(item, index, array){
 		return item.length;
@@ -1349,3 +1349,60 @@ function cutIt(arr) {
 console.log(cutIt(["ab", "cde", "fgh"]));
 console.log(cutIt(["abc", "defgh", "ijklmn"]));
 console.log(cutIt(["codewars", "javascript", "java"]));
+
+function bark(name, weight) {
+	if (weight > 20) {
+		console.log(`${name} says WOOF WOOF`);
+	} else {
+		console.log(`${name} says woof woof`);
+	}
+}
+bark('rover', 0, 0);
+
+function playTurn(player, location) {
+	let points = 0;
+	if (location == 1) {
+		points = points + 100;
+	}
+	return points;
+}
+let total = playTurn('Ivan', 1);
+console.log(total);
+
+function makePhrases() {
+	var words1 = ["24/7", "multi-tier", "30,000 foot", "B-to-B", "win-win"];
+	var words2 = ["empowered", "value-added", "oriented", "focused", "aligned"];
+	var words3 = ["process", "solution", "tipping-point", "strategy", "vision"];
+
+	var rand1 = Math.floor(Math.random() * words1.length);
+	var rand2 = Math.floor(Math.random() * words2.length);
+	var rand3 = Math.floor(Math.random() * words3.length);
+
+	var phrase = words1[rand1] + " " + words2[rand2] + " " + words3[rand3];
+	console.log(phrase);
+}
+
+for (let i = 50; i > 0; i--) {
+	makePhrases();
+}
+*/
+const scores = [60, 50, 60, 58, 54, 54,
+					58, 50, 52, 54, 48, 69,
+					34, 55, 51, 52, 44, 51,
+					69, 64, 66, 55, 52, 61,
+					46, 31, 57, 52, 44, 18,
+					41, 53, 55, 61, 51, 44];
+let scoresLength = scores.length;
+let maxResult = Math.max(...scores);
+scores.forEach(function(item, index){
+	console.log(`Bubble solution #${index} score:${item}`);
+	
+});
+console.log(`Bubbles tests: ${scoresLength}`);
+console.log(`Highest bubble score: ${maxResult}`);
+for (i = 0; i < array.length; i++) {
+	if (scores[i] === maxResult) {
+		indexMaxResult
+	}
+}
+console.log(indexMaxResult);
