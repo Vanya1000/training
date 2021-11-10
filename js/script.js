@@ -1386,23 +1386,24 @@ for (let i = 50; i > 0; i--) {
 	makePhrases();
 }
 */
+
+
+
 const scores = [60, 50, 60, 58, 54, 54,
 					58, 50, 52, 54, 48, 69,
 					34, 55, 51, 52, 44, 51,
 					69, 64, 66, 55, 52, 61,
 					46, 31, 57, 52, 44, 18,
-					41, 53, 55, 61, 51, 44];
+					41, 53, 55, 61, 51, 44,];
 let scoresLength = scores.length;
 let maxResult = Math.max(...scores);
+let indexMaxResult = [];
 scores.forEach(function(item, index){
 	console.log(`Bubble solution #${index} score:${item}`);
-	
+	if (item == maxResult) {
+		indexMaxResult.push(index)
+	}
 });
 console.log(`Bubbles tests: ${scoresLength}`);
 console.log(`Highest bubble score: ${maxResult}`);
-for (i = 0; i < array.length; i++) {
-	if (scores[i] === maxResult) {
-		indexMaxResult
-	}
-}
-console.log(indexMaxResult);
+console.log(`Solutions with highest score: #${indexMaxResult.join(', #')}`);
