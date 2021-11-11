@@ -1402,7 +1402,7 @@ function printAllscoresAndHightScores(arr) {
 	console.log(`Solutions with highest score: #${indexMaxResult.join(', #')}`);
 }
 printAllscoresAndHightScores(scores);
-*/
+
 
 const scores = [60, 50, 60, 58, 54, 54,
 	58, 50, 52, 54, 48, 69,
@@ -1457,3 +1457,23 @@ scoreTests(scores);
 let maxRes = maxResult(scores);
 let bestRes = bestResult(scores, maxRes);
 bestOfTheBest(scores, maxRes, costs)
+
+
+console.log(firstToLast("ababc", "a"));
+console.log(firstToLast("ababc", "c"));
+console.log(firstToLast("ababc", "d"));
+
+
+function firstToLast(str, c) {
+	let indexStr = str.indexOf(c);
+	let indexLastStr = str.lastIndexOf(c);
+	if (indexStr == -1) {
+		return -1;
+	}  else {
+		return indexStr;
+	}
+}
+
+
+console.log(firstToLast("bbca", "a"));
+*/
