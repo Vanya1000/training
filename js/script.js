@@ -1411,7 +1411,11 @@ const scores = [60, 50, 60, 58, 54, 54,
 	46, 31, 57, 52, 44, 18,
 	41, 53, 55, 61, 51, 44,];
 
-
+var costs = [.25, .27, .25, .25, .25, .25, .33, .31,
+	.25, .29, .27, .22, .31, .25, .25, .33,
+	.21, .25, .25, .25, .28, .25, .24, .22,
+	.20, .25, .30, .25, .24, .25, .25, .25,
+	.27, .25, .26, .29];
 
 function printScores (arr) {
 	scores.forEach(function (item, index) {
@@ -1422,12 +1426,12 @@ function scoreTests (arr) {
 	let scoresLength = arr.length;
 	console.log(`Bubbles tests: ${scoresLength}`);
 }
-function MaxResult (arr) {
+function maxResult (arr) {
 	let maxResult = Math.max(...arr);
 	console.log(`Highest bubble score: ${maxResult}`);
 	return maxResult;
 }
-function BestResult(arr, MaxRes) {
+function bestResult(arr, MaxRes) {
 	let indexMaxResult = [];
 	arr.forEach(function (item, index) {
 		if (item == maxRes) {
@@ -1435,8 +1439,21 @@ function BestResult(arr, MaxRes) {
 		}
 	});
 	console.log(`Solutions with highest score: #${indexMaxResult.join(', #')}`);
+	return indexMaxResult
 }
-printScores(scores)
-scoreTests(scores)
-let maxRes = MaxResult(scores)
-BestResult(scores, maxRes)
+function bestOfTheBest(arr, maxRes, costs) {
+	let cost = 100;
+	arr.forEach(function (item, index) {
+		if (item == maxRes) {
+			if (costs[index] < cost){
+				cost = costs[index];
+				console.log(`Winner #${index} price: ${cost}`);
+			}
+		}
+	});
+}
+printScores(scores);
+scoreTests(scores);
+let maxRes = maxResult(scores);
+let bestRes = bestResult(scores, maxRes);
+bestOfTheBest(scores, maxRes, costs)
