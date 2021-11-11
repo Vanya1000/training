@@ -1385,25 +1385,58 @@ function makePhrases() {
 for (let i = 50; i > 0; i--) {
 	makePhrases();
 }
+
+
+function printAllscoresAndHightScores(arr) {
+	let scoresLength = arr.length;
+	let maxResult = Math.max(...arr);
+	let indexMaxResult = [];
+	scores.forEach(function (item, index) {
+		console.log(`Bubble solution #${index} score:${item}`);
+		if (item == maxResult) {
+			indexMaxResult.push(index)
+		}
+	});
+	console.log(`Bubbles tests: ${scoresLength}`);
+	console.log(`Highest bubble score: ${maxResult}`);
+	console.log(`Solutions with highest score: #${indexMaxResult.join(', #')}`);
+}
+printAllscoresAndHightScores(scores);
 */
 
-
-
 const scores = [60, 50, 60, 58, 54, 54,
-					58, 50, 52, 54, 48, 69,
-					34, 55, 51, 52, 44, 51,
-					69, 64, 66, 55, 52, 61,
-					46, 31, 57, 52, 44, 18,
-					41, 53, 55, 61, 51, 44,];
-let scoresLength = scores.length;
-let maxResult = Math.max(...scores);
-let indexMaxResult = [];
-scores.forEach(function(item, index){
-	console.log(`Bubble solution #${index} score:${item}`);
-	if (item == maxResult) {
-		indexMaxResult.push(index)
-	}
-});
-console.log(`Bubbles tests: ${scoresLength}`);
-console.log(`Highest bubble score: ${maxResult}`);
-console.log(`Solutions with highest score: #${indexMaxResult.join(', #')}`);
+	58, 50, 52, 54, 48, 69,
+	34, 55, 51, 52, 44, 51,
+	69, 64, 66, 55, 52, 61,
+	46, 31, 57, 52, 44, 18,
+	41, 53, 55, 61, 51, 44,];
+
+
+
+function printScores (arr) {
+	scores.forEach(function (item, index) {
+		console.log(`Bubble solution #${index} score:${item}`);
+	});
+}
+function scoreTests (arr) {
+	let scoresLength = arr.length;
+	console.log(`Bubbles tests: ${scoresLength}`);
+}
+function MaxResult (arr) {
+	let maxResult = Math.max(...arr);
+	console.log(`Highest bubble score: ${maxResult}`);
+	return maxResult;
+}
+function BestResult(arr, MaxRes) {
+	let indexMaxResult = [];
+	arr.forEach(function (item, index) {
+		if (item == maxRes) {
+			indexMaxResult.push(index)
+		}
+	});
+	console.log(`Solutions with highest score: #${indexMaxResult.join(', #')}`);
+}
+printScores(scores)
+scoreTests(scores)
+let maxRes = MaxResult(scores)
+BestResult(scores, maxRes)
