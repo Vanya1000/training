@@ -1477,3 +1477,13 @@ function firstToLast(str, c) {
 
 console.log(firstToLast("bbca", "a"));
 */
+let fiat = {
+	make: 'fiat',
+	model: '500',
+	years: 1957,
+	color: 'Medium Blue',
+	passangers: 2,
+	convertible: false,
+	mileage: 88000
+}
+console.log(fiat.mileage);
