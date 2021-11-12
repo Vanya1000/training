@@ -1564,7 +1564,7 @@ for (let i = 10; i > 0; i--) {
 	var carToSell = makeCar();
 	displayCar(carToSell);
 }
-*/
+
 var fiat = {
 	make: "Fiat",
 	model: "500",
@@ -1606,3 +1606,39 @@ var fiat = {
 };
 fiat.star = 5;
 console.log(fiat);
+delete fiat.star;
+console.log(fiat);
+
+
+function topSecret(str) {
+	var chars = str.split("");
+	for (var i = 0; i < chars.length; i++) {
+		chars[i] = (chars[i].charCodeAt());
+		if (chars[i] >= 65 && chars[i] <= 67 || chars[i] >= 97 && chars[i] <= 99) {
+			chars[i] = String.fromCharCode(chars[i] + 23);
+		} else if (/\s/.test(str)) {
+			chars[i] = String.fromCharCode(chars[i]);
+		} else {
+			chars[i] = String.fromCharCode(chars[i] - 3);
+		}
+	}
+	return chars.join("");
+}
+console.log(topSecret("Pb qdph lv Mrkq"));
+*/
+
+function topSecret(str) {
+	var chars = str.split("");
+	for (var i = 0; i < chars.length; i++) {
+		console.log(chars[i]);
+		if (/a/i.test(chars[i]) || /b/i.test(chars[i]) || /c/i.test(chars[i])) {
+			chars[i] = String.fromCharCode(chars[i].charCodeAt() +23);
+		} else if (/_/i.test(chars[i]) || /\d/i.test(chars[i])) {
+			chars[i] = String.fromCharCode(chars[i].charCodeAt());
+		} else if (/\w/i.test(chars[i])) {
+			chars[i] = String.fromCharCode(chars[i].charCodeAt() - 3);
+		}
+	}
+	return chars.join("");
+}
+console.log(topSecret("Wrs vhfuhw ilohv: Qr. 1870"));
