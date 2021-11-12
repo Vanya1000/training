@@ -93,7 +93,6 @@ while (num) {
 	num--;
 }
 
-
 let num22 = 3;
 while (num22) console.log(num22--);
 
@@ -1476,14 +1475,134 @@ function firstToLast(str, c) {
 
 
 console.log(firstToLast("bbca", "a"));
-*/
+
+function getSecret(file, secretPassword) {
+	file.opened = file.opened + 1;
+	if (secretPassword == file.password) {
+		return file.contents;
+	}
+	else {
+		return "Invalid password! No secret for you.";
+	}
+}
+function setSecret(file, secretPassword, secret) {
+	if (secretPassword == file.password) {
+		file.opened = 0;
+		file.contents = secret;
+	}
+}
+var superSecretFile = {
+	level: "classified",
+	opened: 0,
+	password: 2,
+	contents: "Dr. Evel's next meeting is in Detroit."
+};
+
+var secret = getSecret(superSecretFile, 2);
+console.log(secret);
+
+setSecret(superSecretFile, 2, "Dr. Evel's next meeting is in Philadelphia.");
+secret = getSecret(superSecretFile, 2);
+console.log(secret);
+
 let fiat = {
 	make: 'fiat',
 	model: '500',
-	years: 1957,
+	years: 1961,
 	color: 'Medium Blue',
 	passangers: 2,
 	convertible: false,
-	mileage: 88000
+	mileage: 8000
 }
-console.log(fiat.mileage);
+
+
+function prequal(car) {
+	if (car.mileage > 10000) {
+		return console.log('Она много ездила');;
+	} else if (car.years < 1960) {
+		return console.log('Она старая');;
+	}
+	return console.log('Она норм!');
+}
+prequal(fiat);
+
+function makeCar() {
+	var makes = ["Chevy", "GM", "Fiat", "Webville Motors", "Tucker"];
+	var models = ["Cadillac", "500", "Bel-Air", "Taxi", "Torpedo"];
+	var years = [1955, 1957, 1948, 1954, 1961];
+	var colors = ["red", "blue", "tan", "yellow", "white"];
+	var convertible = [true, false];
+
+	var rand1 = Math.floor(Math.random() * makes.length);
+	var rand2 = Math.floor(Math.random() * models.length);
+	var rand3 = Math.floor(Math.random() * years.length);
+	var rand4 = Math.floor(Math.random() * colors.length);
+	var rand5 = Math.floor(Math.random() * 5);
+	var rand6 = Math.floor(Math.random() * 2);
+
+	var car = {
+		make: makes[rand1],
+		model: models[rand2],
+		year: years[rand3],
+		color: colors[rand4],
+		passengers: rand5,
+		convertible: convertible[rand6],
+		mileage: 0
+	};
+	return car;
+}
+
+function displayCar(car) {
+	console.log("Your new car is a " + car.year + " " + car.make + " " + car.model);
+}
+
+var carToSell = makeCar();
+displayCar(carToSell);
+
+
+for (let i = 10; i > 0; i--) {
+	var carToSell = makeCar();
+	displayCar(carToSell);
+}
+*/
+var fiat = {
+	make: "Fiat",
+	model: "500",
+	year: 1957,
+	color: "Medium Blue",
+	passengers: 2,
+	convertible: false,
+	mileage: 88000,
+	started: false,
+	fuel: 0,
+	start: function () {
+		if (this.fuel > 0) {
+			this.started = true;
+		} else {
+			console.log('нет топлива.');
+		}
+	},
+	stop: function () {
+		this.started = false;
+	},
+	drive: function () {
+		if (this.started) {
+			if (this.fuel > 0) {
+				alert(this.make + " " +
+					this.model + " goes zoom zoom!");
+				this.fuel = this.fuel - 1;
+			} else {
+				alert('Oh oh, out of fuel.');
+				this.stop();
+			}
+			
+		} else {
+			alert("You need to start the engine first.");
+		}
+	},
+	addFuel: function (amount) {
+		this.fuel = this.fuel + amount;
+	}
+};
+fiat.star = 5;
+console.log(fiat);
