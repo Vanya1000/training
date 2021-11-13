@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 /*let userName = 22;
 console.log(typeof userName);
 let i = 20 > 18;
@@ -1610,15 +1610,20 @@ delete fiat.star;
 console.log(fiat);
 
 function topSecret(str) {
-	var chars = str.split("");
-	for (var i = 0; i < chars.length; i++) {
-		if (/[a-c]/i.test(chars[i])) {
-			chars[i] = String.fromCharCode(chars[i].charCodeAt() +23);
-		} else if (/[d-z]/i.test(chars[i])) {
-			chars[i] = String.fromCharCode(chars[i].charCodeAt() - 3);
-		}
-	}
-	return chars.join("");
+  var chars = str.split("");
+  for (var i = 0; i < chars.length; i++) {
+    if (/[a-c]/i.test(chars[i])) {
+      chars[i] = String.fromCharCode(chars[i].charCodeAt() + 23);
+    } else if (/[d-z]/i.test(chars[i])) {
+      chars[i] = String.fromCharCode(chars[i].charCodeAt() - 3);
+    }
+  }
+  return chars.join("");
 }
 console.log(topSecret("Wrs vhfuhw ilohv: Qr. 1870"));
 */
+let h3 = document.querySelector("h3");
+h3.innerHTML = "Урок n...";
+console.log(true == "true");
+let numHome = Number("1.2");
+console.log(numHome);
