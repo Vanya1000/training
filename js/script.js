@@ -1621,9 +1621,30 @@ function topSecret(str) {
   return chars.join("");
 }
 console.log(topSecret("Wrs vhfuhw ilohv: Qr. 1870"));
-*/
+
 let h3 = document.querySelector("h3");
 h3.innerHTML = "Урок n...";
 console.log(true == "true");
 let numHome = Number("1.2");
 console.log(numHome);
+
+function Duck(sound) {
+  this.sound = sound;
+  this.quack = function () {
+    console.log(this.sound);
+  };
+}
+var toy = new Duck("quack quack");
+toy.quack();
+console.log(typeof toy);
+console.log(toy instanceof Duck);
+
+
+function fiveLine(s) {
+	s = s.trim()
+	return `${s}\n${s.repeat(2)}\n${s.repeat(3)}\n${s.repeat(4)}\n${s.repeat(5)}`;
+}
+console.log(fiveLine("  a"));
+console.log(fiveLine("\txy \n"));
+console.log(fiveLine("           Ok               "));
+*/
