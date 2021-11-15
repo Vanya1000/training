@@ -1647,4 +1647,5 @@ function fiveLine(s) {
 console.log(fiveLine("  a"));
 console.log(fiveLine("\txy \n"));
 console.log(fiveLine("           Ok               "));
+console.log(fiveLine("           Ok"));
 */
