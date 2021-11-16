@@ -1653,7 +1653,7 @@ console.log(fiveLine("           Ok"));
 est.assertSimilar(shuffleIt([1,2,3,4,5],[1,2]) , [1,3,2,4,5]);
     Test.assertSimilar(shuffleIt([1,2,3,4,5],[1,2],[3,4]) , [1,3,2,5,4]);
     Test.assertSimilar(shuffleIt([1,2,3,4,5],[1,2],[3,4],[2,3]) , [1,3,5,2,4]);
-*/
+
 function shuffleIt(arr, ...other) {
 	other.forEach(function([i,j]){
 		[arr[i], arr[j]] = [arr[j], arr[i]];
@@ -1663,3 +1663,59 @@ function shuffleIt(arr, ...other) {
 console.log(shuffleIt([1, 2, 3, 4, 5], [1, 2]));
 console.log(shuffleIt([1, 2, 3, 4, 5], [1, 2], [3, 4]));
 console.log(shuffleIt([1, 2, 3, 4, 5], [1, 2], [3, 4], [2, 3]));
+
+let expressionMatter = (a, b, c) => Math.max(a * (b + c), a * b * c, a + b * c, (a + b) * c, a + b + c);
+console.log(expressionMatter(1, 3, 1));
+
+	return let result = (number > 0) ? number +1 : number;
+
+let opposite = (number) =>	number > 0 ? -number : Math.abs(number);
+console.log(opposite(0));
+
+let remainder = (a, b) => a > b ? a % b: b % a;
+console.log(remainder(17, 55));
+
+let even_or_odd = (number) => (number % 2) ? "Odd" : "Even";
+console.log(even_or_odd());
+
+	if (strNew.length > 3) {
+		return strNew.slice(2, -2)
+	} else {
+		return null;
+	}
+
+function array(arr) {
+	let arrsplit = arr.split(',');
+	if (arrsplit.length > 2) {
+		arrsplit.splice(0, 1);
+		arrsplit.splice(-1, 1);
+		return arrsplit.join(' ');
+	} else {
+		return null;
+	}
+}
+console.log(array('1,2,3'));
+
+let lovefunc =(flower1, flower2) => (flower1 % 2) !== (flower2 % 2);
+
+console.log(lovefunc(4, 5));
+
+let summation = function (num) {
+	let result = 0;
+	for (let i = 0; i <= num; i++) {
+		result = i + result;
+	}
+	return result
+}
+console.log(summation(899999999));
+*/
+function rentalCarCost(d) {
+	if (d < 3) {
+		return d * 40;
+	} else if (d >= 3 && d < 7) {
+		return d * 40 - 20;
+	} else {
+		return d * 40 - 50;
+	}
+}
+console.log(rentalCarCost(10));
