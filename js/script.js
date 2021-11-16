@@ -1655,11 +1655,9 @@ est.assertSimilar(shuffleIt([1,2,3,4,5],[1,2]) , [1,3,2,4,5]);
     Test.assertSimilar(shuffleIt([1,2,3,4,5],[1,2],[3,4],[2,3]) , [1,3,5,2,4]);
 */
 function shuffleIt(arr, ...other) {
-	for (let i = 0; i < other.length; i++) {
-		let one = other[i][0];
-		let two = other[i][1];
-		[arr[one], arr[two]] = [arr[two], arr[one]];
-	}
+	other.forEach(function([i,j]){
+		[arr[i], arr[j]] = [arr[j], arr[i]];
+	});
 	return arr;
 }
 console.log(shuffleIt([1, 2, 3, 4, 5], [1, 2]));
