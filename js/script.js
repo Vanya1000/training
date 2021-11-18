@@ -1758,3 +1758,5 @@ function century(year) {
 }
 console.log(century(89));
 */
+let makeUpperCase = str => str.toUpperCase();
+console.log(makeUpperCase('str'));
