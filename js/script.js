@@ -1719,7 +1719,7 @@ function rentalCarCost(d) {
 	}
 }
 console.log(rentalCarCost(10));
-*/
+
 function cookie(x) {
 	if (typeof x == 'string') {
 		return "Who ate the last cookie? It was Zach!";
@@ -1733,5 +1733,28 @@ console.log(cookie("Ryan"));
 console.log(cookie(26));
 console.log(false);
 
+let greet = name => name == "Johnny" ? "Hello, my love!" : "Hello, " + name + "!";
 
+console.log(greet("Jim"));
+console.log(greet("Johnny"));
 
+function century(year) {
+	let twoLast = String(year).slice(-2);
+	let firstNum = String(year).slice(0, -2);
+	let length = String(year).length;
+	if (length >= 3) {
+		if (twoLast > 0){
+			return +firstNum + 1;
+		} else {
+		   return +firstNum
+		}
+	} else {
+		if (twoLast > 0) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+}
+console.log(century(89));
+*/
