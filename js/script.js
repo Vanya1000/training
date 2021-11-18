@@ -1708,7 +1708,7 @@ let summation = function (num) {
 	return result
 }
 console.log(summation(899999999));
-*/
+
 function rentalCarCost(d) {
 	if (d < 3) {
 		return d * 40;
@@ -1719,3 +1719,19 @@ function rentalCarCost(d) {
 	}
 }
 console.log(rentalCarCost(10));
+*/
+function cookie(x) {
+	if (typeof x == 'string') {
+		return "Who ate the last cookie? It was Zach!";
+	} else if (typeof x == 'number') {
+		return  "Who ate the last cookie? It was Monica!";
+	} else {
+		return "Who ate the last cookie? It was the dog!";
+	}
+}
+console.log(cookie("Ryan"));
+console.log(cookie(26));
+console.log(false);
+
+
+
