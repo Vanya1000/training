@@ -1757,6 +1757,17 @@ function century(year) {
 	}
 }
 console.log(century(89));
-*/
+
 let makeUpperCase = str => str.toUpperCase();
 console.log(makeUpperCase('str'));
+
+function twiceAsOld(dadYearsOld, sonYearsOld) {
+	if (sonYearsOld * 2 < dadYearsOld) {
+		return dadYearsOld - sonYearsOld * 2;
+	} else {
+		return sonYearsOld * 2 -dadYearsOld;
+	}
+}
+console.log(twiceAsOld(36, 7));
+console.log(twiceAsOld(55, 30));
+*/
