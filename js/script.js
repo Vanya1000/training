@@ -1770,4 +1770,37 @@ function twiceAsOld(dadYearsOld, sonYearsOld) {
 }
 console.log(twiceAsOld(36, 7));
 console.log(twiceAsOld(55, 30));
+
+function change(string) {
+	let alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n',
+	               'o','p','q','r','s','t','u','v','w','x','y','z'];
+	let output = '';
+	for (let arrItem of alphabet) {
+		if (string.toLowerCase().includes(arrItem)) {
+			output += '1';
+		}  else {
+			output += '0';
+		}
+	}
+	return output
+}
+console.log(change("a **& tndkgqwertyui bZ"));
+
+
+function cookingTime (eggs) {
+	let maxEggs = 8;
+	let time = 5;
+	return time * Math.ceil(eggs / maxEggs);
+}
+console.log(cooces(10));
 */
+function maxPizza(cuts) {
+	if (cuts > 1) {
+		return ((1 + cuts) * cuts / 2) + 1;
+	} else if (cuts == 0 || cuts == 1) {
+		return cuts + 1;
+	} else {
+		return -1;
+	}
+}
+console.log(maxPizza(0));
