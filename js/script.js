@@ -1805,6 +1805,7 @@ function maxPizza(cuts) {
 }
 console.log(maxPizza(0));
 */
+// ВАЖНО!!!
 const passengers = [
   { name: "Jane Doloop", paid: true, ticket: "coach" },
   { name: "Dr. Evel", paid: true, ticket: "firstclass" },
@@ -1825,7 +1826,14 @@ function checkNoFlyList(passenger) {
 }
 
 function printPassenger(passenger) {
-	console.log(passenger.name);
+	var message = passenger.name;
+  if (passenger.paid) {
+    message = message + " has paid";
+  } else {
+    message = message + " has not paid";
+  }
+  console.log(message);
+  return false;
 }
 
 let allCanFly = processPassengers(passengers, checkNoFlyList);
@@ -1834,3 +1842,71 @@ if (!allCanFly) {
 }
 
 processPassengers (passengers, printPassenger);
+
+function createDrinkOrder(passenger) {
+  var orderFunction;
+  if (passenger.ticket === "firstclass") {
+    orderFunction = function () {
+      console.log("Would you like a cocktail or wine?");
+    };
+  } else if (passenger.ticket === "premium") {
+    orderFunction = function () {
+      console.log("Would you like wine, cola or water?");
+    };
+  } else {
+    orderFunction = function () {
+      console.log("Your choice is cola or water.");
+    };
+  }
+  return orderFunction;
+}
+
+function createDinnerOrder(passenger) {
+  var orderFunction;
+  if (passenger.ticket === "firstclass") {
+    orderFunction = function () {
+      console.log("Would you like chicken or pasta?");
+    };
+  } else if (passenger.ticket === "premium") {
+    orderFunction = function () {
+      console.log("Would you like a snack box or cheese plate?");
+    };
+  } else {
+    orderFunction = function () {
+      console.log("Would you like peanuts or pretzels?");
+    };
+  }
+  return orderFunction;
+}
+
+function pickupTrash() {
+  console.log("Can I have your trash, please?");
+}
+
+function serveCustomer(passenger) {
+  var getDrinkOrderFunction = createDrinkOrder(passenger);
+  var getDinnerOrderFunction = createDinnerOrder(passenger);
+
+  getDrinkOrderFunction();
+
+  // get dinner order
+  getDinnerOrderFunction();
+
+  getDrinkOrderFunction();
+  getDrinkOrderFunction();
+
+  // show movie
+
+  getDrinkOrderFunction();
+
+  // pick up trash
+  pickupTrash();
+}
+
+function servePassengers(passengers) {
+  for (var i = 0; i < passengers.length; i++) {
+    serveCustomer(passengers[i]);
+  }
+}
+
+servePassengers(passengers);
