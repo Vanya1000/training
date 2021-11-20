@@ -1793,7 +1793,7 @@ function cookingTime (eggs) {
 	return time * Math.ceil(eggs / maxEggs);
 }
 console.log(cooces(10));
-*/
+
 function maxPizza(cuts) {
 	if (cuts > 1) {
 		return ((1 + cuts) * cuts / 2) + 1;
@@ -1804,3 +1804,33 @@ function maxPizza(cuts) {
 	}
 }
 console.log(maxPizza(0));
+*/
+const passengers = [
+  { name: "Jane Doloop", paid: true, ticket: "coach" },
+  { name: "Dr. Evel", paid: true, ticket: "firstclass" },
+  { name: "Sue Property", paid: false, ticket: "firstclass" },
+  { name: "John Funcall", paid: true, ticket: "premium" },
+];
+function processPassengers (passengers, test) {
+  for (let item of passengers) {
+    if (test(item)) {
+		 return false;
+	 }
+  }
+  return true;
+}
+
+function checkNoFlyList(passenger) {
+	return passenger.name === "Dr. Evel";
+}
+
+function printPassenger(passenger) {
+	console.log(passenger.name);
+}
+
+let allCanFly = processPassengers(passengers, checkNoFlyList);
+if (!allCanFly) {
+	console.log('Не можем лететь');
+}
+
+processPassengers (passengers, printPassenger);
