@@ -1910,7 +1910,7 @@ function servePassengers(passengers) {
 }
 
 servePassengers(passengers);
-*/
+
 var products = [
   { name: "Grapefruit", calories: 170, color: "red", sold: 8200 },
   { name: "Orange", calories: 160, color: "orange", sold: 12101 },
@@ -1921,9 +1921,7 @@ var products = [
   { name: "Root Beer", calories: 200, color: "caramel", sold: 9909 },
   { name: "Water", calories: 0, color: "clear", sold: 62123 },
 ];
-let num = [60, 50, 62, 58, 54, 54, 8];
-num.sort(compareNumbersDesc);
-console.log(num);
+
 
 function compareNumbersDesc (num1, num2) {
 	if (num1 > num2) {
@@ -1933,4 +1931,120 @@ function compareNumbersDesc (num1, num2) {
 	} else {
 		return -1;
 	}
+}
+
+function compareSold(colaA, colaB) {
+  if (colaA.sold > colaB.sold) {
+    return 1;
+  } else if (colaA.sold === colaB.sold) {
+    return 0;
+  } else {
+    return -1;
+  }
+}
+
+products.sort(compareName);
+
+function compareName(colaA, colaB) {
+  if (colaA.name > colaB.name) {
+    return 1;
+  } else if (colaA.sold === colaB.sold) {
+    return 0;
+  } else {
+    return -1;
+  }
+}
+
+
+function printProducts(products) {
+  for (var i = 0; i < products.length; i++) {
+    console.log(
+      "Name: " +
+        products[i].name +
+        ", Calories: " +
+        products[i].calories +
+        ", Color: " +
+        products[i].color +
+        ", Sold: " +
+        products[i].sold
+    );
+  }
+}
+printProducts(products);
+
+window.onload = () => console.log('Ну!');
+setTimeout(() => console.log('Достаньте из печи'), 1000);
+
+//!!!!!!!!!!ЗАМЫКАНИЯ!!!!!!!!!
+
+function makeCounter () {
+	let count = 0;
+   function counter() {
+      count += 1;
+      return count;
+   }
+	return counter;
+}
+
+let doCount = makeCounter();//получаем замыкание функцию с окружением
+
+console.log(doCount());
+console.log(doCount());
+console.log(doCount());
+console.log(doCount());
+
+function multN (n) {
+	return function num (numb) {
+		return n*numb;
+	};
+}
+let exponent = multN(2); //получаем замыкание функцию с окружением
+console.log(exponent(10));
+
+function makeCounter() {
+  let count = 0;
+  return {
+    increment: function () {
+      count++;
+      return count;
+    },
+  };
+}
+
+let doCount = makeCounter(); //получаем замыкание функцию с окружением
+
+console.log(doCount.increment());
+console.log(doCount.increment());
+console.log(doCount.increment());
+
+function makeTimer(doneMessage, n) {
+  setTimeout(function () {  // так же создается замыкание
+    console.log(doneMessage);
+  }, n);
+  doneMessage = "OUCH!"; // значение изменится после вызова setTimeout
+}
+
+makeTimer("Cookies are done!", 1000);
+
+let count = 0;
+
+const button = document.querySelector(".main-form__button");
+button.addEventListener('click', handleclick);
+
+function handleclick () {
+	let div = document.querySelector('.message');
+	count++;
+	div.innerHTML = `Вы нажали на меня ${count} раз`;
+}
+*/ //!Обработчик событий с помощъю замыкания
+window.onload = function() {
+	let count = 0;
+	let div = document.querySelector(".message");
+
+	const button = document.querySelector(".main-form__button");
+	button.addEventListener("click", function handleclick() {// в функц выражении
+		//задейств 2 свободные переменные, по этому создается замыкание. 
+		count++;
+      div.innerHTML = `Вы нажали на меня ${count} раз`;
+	});
 }
