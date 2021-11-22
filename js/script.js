@@ -2069,8 +2069,8 @@ console.log(doCount2());
 console.log(doCount2());
 console.log(doCount2());
 console.log(doCount2());
-*/
-//ООП
+
+//!ООП
 function Dog(name, bread, weight) {// return не нужно. Вернется автоматически
 	this.name = name;
 	this.breed = bread;
@@ -2122,3 +2122,97 @@ console.log(houseBlend.toString());
 
 let darkRoast = new Coffee('Dark Roast', 16);
 console.log(darkRoast.toString());
+
+function Car (make, model, years, color, passengers, convertible, mileage, started) {
+	this.make = make;
+	this.model = model;
+	this.years = years;
+	this.color = color;
+	this.passengers = passengers;
+	this.convertible = convertible;
+	this.mileage = mileage;
+	this.started = false;
+	this.start = function () {
+		this.started = true;
+	};
+	this.stop = function () {
+		this.started = false;
+	};
+	this.drive = function () {
+		if (this.started) {
+			console.log(`${this.make} ${this.model} goes zoom zoom`)
+		} else {
+			console.log('Start the enage first');
+		}
+	};
+}
+
+let chevy = new Car("Chevy", "Bel Air", 1957, "red", 2, false, 1021);
+let cadi = new Car("GM", "Cadillac", 1955, "tan", 5, false, 12892);
+let taxi = new Car("Webville Motors", "Taxi", 1955, "yellow", 4, false, 281341);
+let fiat = new Car("Fiat", "500", 1957, "Medium Blue", 2, false, 88000);
+let testCar = new Car("Webville Motors", "Test Car", 2021, "marine", 2, true, 21);
+
+const cars = [chevy, cadi, taxi, fiat, testCar, vw];
+
+for (let item of cars) {
+	item.start();
+	item.drive();
+	item.drive();
+	item.stop();
+}
+ //! Преобразуем для передачи в качестве аргумента ОБЪЕКТ!
+let vwParams = {
+	make: "vw",
+	model: "golf5",
+	year: 2006,
+	color: "dark blue",
+	passengers: 4,
+	convertible: false,
+	mileage: 171000
+};
+
+let vw = new Car(vwParams);
+
+function Car (params) {
+	this.make = params.make;
+	this.model = params.model;
+	this.years = params.years;
+	this.color = params.color;
+	this.passengers = params.passengers;
+	this.convertible = params.convertible;
+	this.mileage = params.mileage;
+	this.started = false;
+	this.start = function () {
+		this.started = true;
+	};
+	this.stop = function () {
+		this.started = false;
+	};
+	this.drive = function () {
+		if (this.started) {
+			console.log(`${this.make} ${this.model} goes zoom zoom`)
+		} else {
+			console.log('Start the enage first');
+		}
+	};
+}
+
+vw.start();
+vw.drive();
+vw.drive();
+vw.stop();
+*/
+
+function infiniteLoop(arr, d, n) {
+if (d === 'left') {
+	let newArray = arr.flat();
+	newArray.push(newArray.shift());
+	newArray.push(newArray.shift());
+	newArray;
+} else {
+	
+}
+}
+
+infiniteLoop([[1, 2, 3], [4, 5, 6], [7, 8, 9]], "left", 1)
