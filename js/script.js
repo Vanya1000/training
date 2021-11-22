@@ -2036,7 +2036,7 @@ function handleclick () {
 	count++;
 	div.innerHTML = `Вы нажали на меня ${count} раз`;
 }
-*/ //!Обработчик событий с помощъю замыкания
+//!Обработчик событий с помощъю замыкания
 window.onload = function() {
 	let count = 0;
 	let div = document.querySelector(".message");
@@ -2048,3 +2048,38 @@ window.onload = function() {
       div.innerHTML = `Вы нажали на меня ${count} раз`;
 	});
 }
+
+	function makeCounter() {
+	let count = 0; //?
+	function counter() {
+		count += 1;
+		return count;//?
+	}
+	return counter;
+	}
+
+let doCount = makeCounter(); //получаем замыкание функцию с окружением
+let doCount2 = makeCounter(); // вторая область
+console.log(doCount());
+console.log(doCount());
+console.log(doCount());
+console.log(doCount());
+
+console.log(doCount2());
+console.log(doCount2());
+console.log(doCount2());
+console.log(doCount2());
+*/
+//ООП
+function Dog (name, bread, weight) {
+	this.name = name;
+	this.bread = bread;
+	this.weight = weight;
+}
+let dogObj = new Dog('sharik', 'dvornyaga', 14);//?
+
+	function Dog(name, bread, weight) {
+	this.name = name;
+	this.bread = bread;
+	this.weight = weight;
+	}
