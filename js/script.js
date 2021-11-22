@@ -1612,11 +1612,11 @@ console.log(fiat);
 function topSecret(str) {
   var chars = str.split("");
   for (var i = 0; i < chars.length; i++) {
-    if (/[a-c]/i.test(chars[i])) {
-      chars[i] = String.fromCharCode(chars[i].charCodeAt() + 23);
-    } else if (/[d-z]/i.test(chars[i])) {
-      chars[i] = String.fromCharCode(chars[i].charCodeAt() - 3);
-    }
+	 if (/[a-c]/i.test(chars[i])) {
+		chars[i] = String.fromCharCode(chars[i].charCodeAt() + 23);
+	 } else if (/[d-z]/i.test(chars[i])) {
+		chars[i] = String.fromCharCode(chars[i].charCodeAt() - 3);
+	 }
   }
   return chars.join("");
 }
@@ -1631,7 +1631,7 @@ console.log(numHome);
 function Duck(sound) {
   this.sound = sound;
   this.quack = function () {
-    console.log(this.sound);
+	 console.log(this.sound);
   };
 }
 var toy = new Duck("quack quack");
@@ -1651,8 +1651,8 @@ console.log(fiveLine("           Ok"));
 //Verified
 
 est.assertSimilar(shuffleIt([1,2,3,4,5],[1,2]) , [1,3,2,4,5]);
-    Test.assertSimilar(shuffleIt([1,2,3,4,5],[1,2],[3,4]) , [1,3,2,5,4]);
-    Test.assertSimilar(shuffleIt([1,2,3,4,5],[1,2],[3,4],[2,3]) , [1,3,5,2,4]);
+	 Test.assertSimilar(shuffleIt([1,2,3,4,5],[1,2],[3,4]) , [1,3,2,5,4]);
+	 Test.assertSimilar(shuffleIt([1,2,3,4,5],[1,2],[3,4],[2,3]) , [1,3,5,2,4]);
 
 function shuffleIt(arr, ...other) {
 	other.forEach(function([i,j]){
@@ -1746,7 +1746,7 @@ function century(year) {
 		if (twoLast > 0){
 			return +firstNum + 1;
 		} else {
-		   return +firstNum
+			return +firstNum
 		}
 	} else {
 		if (twoLast > 0) {
@@ -1773,7 +1773,7 @@ console.log(twiceAsOld(55, 30));
 
 function change(string) {
 	let alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n',
-	               'o','p','q','r','s','t','u','v','w','x','y','z'];
+						'o','p','q','r','s','t','u','v','w','x','y','z'];
 	let output = '';
 	for (let arrItem of alphabet) {
 		if (string.toLowerCase().includes(arrItem)) {
@@ -1814,7 +1814,7 @@ const passengers = [
 ];
 function processPassengers (passengers, test) {
   for (let item of passengers) {
-    if (test(item)) {
+	 if (test(item)) {
 		 return false;
 	 }
   }
@@ -1828,9 +1828,9 @@ function checkNoFlyList(passenger) {
 function printPassenger(passenger) {
 	var message = passenger.name;
   if (passenger.paid) {
-    message = message + " has paid";
+	 message = message + " has paid";
   } else {
-    message = message + " has not paid";
+	 message = message + " has not paid";
   }
   console.log(message);
   return false;
@@ -1846,17 +1846,17 @@ processPassengers (passengers, printPassenger);
 function createDrinkOrder(passenger) {
   var orderFunction;
   if (passenger.ticket === "firstclass") {
-    orderFunction = function () {
-      console.log("Would you like a cocktail or wine?");
-    };
+	 orderFunction = function () {
+		console.log("Would you like a cocktail or wine?");
+	 };
   } else if (passenger.ticket === "premium") {
-    orderFunction = function () {
-      console.log("Would you like wine, cola or water?");
-    };
+	 orderFunction = function () {
+		console.log("Would you like wine, cola or water?");
+	 };
   } else {
-    orderFunction = function () {
-      console.log("Your choice is cola or water.");
-    };
+	 orderFunction = function () {
+		console.log("Your choice is cola or water.");
+	 };
   }
   return orderFunction;
 }
@@ -1864,17 +1864,17 @@ function createDrinkOrder(passenger) {
 function createDinnerOrder(passenger) {
   var orderFunction;
   if (passenger.ticket === "firstclass") {
-    orderFunction = function () {
-      console.log("Would you like chicken or pasta?");
-    };
+	 orderFunction = function () {
+		console.log("Would you like chicken or pasta?");
+	 };
   } else if (passenger.ticket === "premium") {
-    orderFunction = function () {
-      console.log("Would you like a snack box or cheese plate?");
-    };
+	 orderFunction = function () {
+		console.log("Would you like a snack box or cheese plate?");
+	 };
   } else {
-    orderFunction = function () {
-      console.log("Would you like peanuts or pretzels?");
-    };
+	 orderFunction = function () {
+		console.log("Would you like peanuts or pretzels?");
+	 };
   }
   return orderFunction;
 }
@@ -1905,7 +1905,7 @@ function serveCustomer(passenger) {
 
 function servePassengers(passengers) {
   for (var i = 0; i < passengers.length; i++) {
-    serveCustomer(passengers[i]);
+	 serveCustomer(passengers[i]);
   }
 }
 
@@ -1935,11 +1935,11 @@ function compareNumbersDesc (num1, num2) {
 
 function compareSold(colaA, colaB) {
   if (colaA.sold > colaB.sold) {
-    return 1;
+	 return 1;
   } else if (colaA.sold === colaB.sold) {
-    return 0;
+	 return 0;
   } else {
-    return -1;
+	 return -1;
   }
 }
 
@@ -1947,27 +1947,27 @@ products.sort(compareName);
 
 function compareName(colaA, colaB) {
   if (colaA.name > colaB.name) {
-    return 1;
+	 return 1;
   } else if (colaA.sold === colaB.sold) {
-    return 0;
+	 return 0;
   } else {
-    return -1;
+	 return -1;
   }
 }
 
 
 function printProducts(products) {
   for (var i = 0; i < products.length; i++) {
-    console.log(
-      "Name: " +
-        products[i].name +
-        ", Calories: " +
-        products[i].calories +
-        ", Color: " +
-        products[i].color +
-        ", Sold: " +
-        products[i].sold
-    );
+	 console.log(
+		"Name: " +
+		  products[i].name +
+		  ", Calories: " +
+		  products[i].calories +
+		  ", Color: " +
+		  products[i].color +
+		  ", Sold: " +
+		  products[i].sold
+	 );
   }
 }
 printProducts(products);
@@ -1979,10 +1979,10 @@ setTimeout(() => console.log('Достаньте из печи'), 1000);
 
 function makeCounter () {
 	let count = 0;
-   function counter() {
-      count += 1;
-      return count;
-   }
+	function counter() {
+		count += 1;
+		return count;
+	}
 	return counter;
 }
 
@@ -2004,10 +2004,10 @@ console.log(exponent(10));
 function makeCounter() {
   let count = 0;
   return {
-    increment: function () {
-      count++;
-      return count;
-    },
+	 increment: function () {
+		count++;
+		return count;
+	 },
   };
 }
 
@@ -2019,7 +2019,7 @@ console.log(doCount.increment());
 
 function makeTimer(doneMessage, n) {
   setTimeout(function () {  // так же создается замыкание
-    console.log(doneMessage);
+	 console.log(doneMessage);
   }, n);
   doneMessage = "OUCH!"; // значение изменится после вызова setTimeout
 }
@@ -2045,7 +2045,7 @@ window.onload = function() {
 	button.addEventListener("click", function handleclick() {// в функц выражении
 		//задейств 2 свободные переменные, по этому создается замыкание. 
 		count++;
-      div.innerHTML = `Вы нажали на меня ${count} раз`;
+		div.innerHTML = `Вы нажали на меня ${count} раз`;
 	});
 }
 
@@ -2071,15 +2071,54 @@ console.log(doCount2());
 console.log(doCount2());
 */
 //ООП
-function Dog (name, bread, weight) {
+function Dog(name, bread, weight) {// return не нужно. Вернется автоматически
 	this.name = name;
-	this.bread = bread;
+	this.breed = bread;
 	this.weight = weight;
+	this.bark = function () {
+		if (this.weight > 25) {
+			console.log(this.name + " says Woof!");
+		} else {
+			console.log(this.name + " says Yip!");
+		}
+	};
 }
-let dogObj = new Dog('sharik', 'dvornyaga', 14);//?
-
-	function Dog(name, bread, weight) {
-	this.name = name;
-	this.bread = bread;
-	this.weight = weight;
+let fido = new Dog('Fido', 'Mixed', 38);
+var fluffy = new Dog("Fluffy", "Poodle", 30);
+var spot = new Dog("Spot", "Chihuahua", 10);
+var dogs = [fido, fluffy, spot];
+for (var i = 0; i < dogs.length; i++) {
+	var size = "small";
+	if (dogs[i].weight > 10) {
+		size = "large";
 	}
+	console.log("Dog: " + dogs[i].name
+		+ " is a " + size
+		+ " " + dogs[i].breed);
+}
+for (var i = 0; i < dogs.length; i++) {
+	dogs[i].bark();
+}
+
+function Coffee (roast, ounces) {
+	this.roast = roast;
+	this.ounces = ounces;
+	this.getSize = function() {
+		if (this.ounces < 12) {
+			return 'small';
+		} else if (this.ounces < 16) {
+			return 'medium';
+		} else {
+			return 'large';
+		}
+	};
+	this.toString = function () {
+		return `You've ordered a ${this.getSize()} ${this.roast} coffee.`
+	};
+}
+
+let houseBlend = new Coffee('House Blend', 12);
+console.log(houseBlend.toString());
+
+let darkRoast = new Coffee('Dark Roast', 16);
+console.log(darkRoast.toString());
