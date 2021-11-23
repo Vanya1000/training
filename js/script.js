@@ -2202,17 +2202,25 @@ vw.start();
 vw.drive();
 vw.drive();
 vw.stop();
+
 */
 
 function infiniteLoop(arr, d, n) {
-if (d === 'left') {
-	let newArray = arr.flat();
-	newArray.push(newArray.shift());
-	newArray.push(newArray.shift());
-	newArray;
-} else {
-	
-}
+	let arr1 = arr[0].length;
+	let arr2 = arr[1].length;
+	let arr3 = arr[2].length;
+	let deployed = arr.reduce((acc, val) => acc.concat(val), []);
+	if (d === 'left') {
+		for (let i = 0; n > i; i++) {
+			deployed.push(deployed.shift());
+		}
+	} else {
+		for (let i = 0; n > i; i++) {
+			deployed.unshift(deployed.pop());
+		}
+	}
+	let newArr = [deployed.slice(0, arr1), deployed.slice(arr1, arr1 + arr2), deployed.slice(arr1 + arr2, arr1 + arr2 + arr3)]//?
+	return newArr;
 }
 
-infiniteLoop([[1, 2, 3], [4, 5, 6], [7, 8, 9]], "left", 1)
+infiniteLoop([[1, 2, 3], [4, 5, 6], [7, 8, 9]], "right", 1);
