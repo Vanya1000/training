@@ -2203,7 +2203,6 @@ vw.drive();
 vw.drive();
 vw.stop();
 
-*/
 
 function infiniteLoop(arr, d, n) {
 	let arr1 = arr[0].length;
@@ -2224,3 +2223,84 @@ function infiniteLoop(arr, d, n) {
 }
 
 infiniteLoop([[1, 2, 3], [4, 5, 6], [7, 8, 9]], "right", 1);
+
+
+
+function dogCatcher(obj) {
+	if (obj instanceof Dog) {
+		return true;
+	} else {
+		return false;
+	}
+}
+// instanceof
+function Cat(name, breed, weight) {
+	this.name = name;
+	this.breed = breed;
+	this.weight = weight;
+}
+var meow = new Cat("Meow", "Siamese", 10);
+var whiskers = new Cat("Whiskers", "Mixed", 12);
+
+var fido = { name: "Fido", breed: "Mixed", weight: 38 };
+
+function Dog(name, breed, weight) {
+	this.name = name;
+	this.breed = breed;
+	this.weight = weight;
+	this.bark = function () {
+		if (this.weight > 25) {
+			alert(this.name + " says Woof!");
+		} else {
+			alert(this.name + " says Yip!");
+		}
+	};
+}
+var fluffy = new Dog("Fluffy", "Poodle", 30);
+var spot = new Dog("Spot", "Chihuahua", 10);
+var dogs = [meow, whiskers, fido, fluffy, spot];
+
+for (var i = 0; i < dogs.length; i++) {
+	if (dogCatcher(dogs[i])) {
+		console.log(dogs[i].name + " is a dog!");
+	}
+}
+*/
+function Dog(name, breed, weight) {//Конструктор
+	this.name = name;
+	this.breed = breed;
+	this.weight = weight;
+}
+Dog.prototype.species = 'Canine'; //Строка задается свойству прототипа species
+Dog.prototype.bark = function () {//Функция задается свойству прототипа bark
+	if (this.weight > 25) {
+		console.log(this.name + ' say Woff!');
+	} else {
+		console.log(this.name + ' say Yip!');
+	}
+
+};
+Dog.prototype.run = function () {
+	console.log('Run!');
+};
+Dog.prototype.wag = function () {
+	console.log('Wag!');
+};
+
+let fido = new Dog('Fido', 'Mixed', 38);// Создаем объект
+let fluffy = new Dog('Fluffy', 'Poodle', 30);
+let spot = new Dog('Spot', 'Chihuahua', 10);
+spot.bark = function () {
+	console.log(this.name + ' say Woff!'); // Переопределяем прототип для spot
+}
+
+
+fido.bark();
+fido.run();
+fido.wag();
+
+spot.bark();
+spot.run();
+spot.wag();
+
+
