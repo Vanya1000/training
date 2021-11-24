@@ -2305,6 +2305,56 @@ spot.bark = function () {
 }
 
 
+// Создаем экземпляр, который будет являться прототипом для экземпляров ShowDog
+
+function ShowDog (name, bread, weight, handler) {// конструктор выставочной собаки
+	this.name = name;
+	this.bread = bread;
+	this.weight = weight;
+	this.handler = handler;
+}
+
+ShowDog.prototype = new Dog(); // let aDog = new Dog(); можно было так.
+// Прототипом нового конструктора будет являться Dog
+// Говориться что прототип выставочной собаки расширяет прототип собаки.
+ShowDog.prototype.constructor = ShowDog;//необходимо явно назначить конструктор!!!
+
+ShowDog.prototype.league = 'Webville';
+
+ShowDog.prototype.stack = function () {
+	console.log("Stack");
+};
+
+ShowDog.prototype.bait = function () {
+	console.log("Bait");
+};
+
+ShowDog.prototype.gait = function (kind) {
+	console.log(kind + "ing");
+};
+
+ShowDog.prototype.groom = function () {
+	console.log("Groom");
+};
+
+let scotty = new ShowDog("Scotty", "Scottish Terrier", 15, "Cookie");
+
+if (fido instanceof Dog) {
+	console.log('Fido был создан конструктором Dog');
+} 
+if (fido instanceof ShowDog) {
+	console.log('Fido был создан конструктором ShowDog');
+}
+
+if (scotty instanceof Dog) {
+	console.log('scotty был создан конструктором Dog');
+}
+if (scotty instanceof ShowDog) {
+	console.log('scotty был создан конструктором ShowDog');
+}
+
+console.log(scotty.constructor);
+
 fido.bark();
 fido.run();
 fido.wag();
@@ -2320,3 +2370,7 @@ spot.hasOwnProperty('sitting');
 spot.sit();
 spot.hasOwnProperty('sitting'); // вернет true если свойство определяется в экземпляре объекта.
 
+
+
+scotty.stack();
+scotty.bark();
