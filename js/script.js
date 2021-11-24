@@ -2266,7 +2266,7 @@ for (var i = 0; i < dogs.length; i++) {
 	}
 }
 */
-function Dog(name, breed, weight) {//Конструктор
+function Dog(name, breed, weight) {//Конструктор  !Это прототип
 	this.name = name;
 	this.breed = breed;
 	this.weight = weight;
@@ -2287,7 +2287,17 @@ Dog.prototype.wag = function () {
 	console.log('Wag!');
 };
 
-let fido = new Dog('Fido', 'Mixed', 38);// Создаем объект
+Dog.prototype.sitting = false;
+Dog.prototype.sit = function () {
+	if (this.sitting) {
+		console.log(this.name + " Уже сидит");
+	} else {
+		this.sitting = true;
+		console.log(this.name + ' is now sitting');
+	}
+}
+
+let fido = new Dog('Fido', 'Mixed', 38);// Создаем объект !Это экземпляр
 let fluffy = new Dog('Fluffy', 'Poodle', 30);
 let spot = new Dog('Spot', 'Chihuahua', 10);
 spot.bark = function () {
@@ -2303,4 +2313,10 @@ spot.bark();
 spot.run();
 spot.wag();
 
+fido.sit();
+fido.sit();
+
+spot.hasOwnProperty('sitting');
+spot.sit();
+spot.hasOwnProperty('sitting'); // вернет true если свойство определяется в экземпляре объекта.
 
