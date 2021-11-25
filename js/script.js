@@ -2265,7 +2265,7 @@ for (var i = 0; i < dogs.length; i++) {
 		console.log(dogs[i].name + " is a dog!");
 	}
 }
-*/
+//! Работа с наследованием и прототипами
 function Dog(name, breed, weight) {//Конструктор  !Это прототип
 	this.name = name;
 	this.breed = breed;
@@ -2361,19 +2361,132 @@ console.log(scotty.constructor);
 fido.bark();
 fido.run();
 fido.wag();
-
 spot.bark();
 spot.run();
 spot.wag();
-
 fido.sit();
 fido.sit();
-
 spot.hasOwnProperty('sitting');
 spot.sit();
 spot.hasOwnProperty('sitting'); // вернет true если свойство определяется в экземпляре объекта.
-
-
-
 scotty.stack();
 scotty.bark();
+
+//Объекты, прототипы, наследование:
+let user = {
+	login: "",
+	password: "",
+	validatePassword: function () {
+		if (this.password.length > 6) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
+
+user.password = '1231231';
+user.validatePassword();//?
+
+let user_profile = {
+	userName: "",
+	photo: "",
+	age: 0,
+	__proto__: user
+}
+
+user_profile.age = 29;
+user_profile.userName = "Ivan";
+console.log(user_profile);
+
+// !КЛАСС, ОБЪЕКТ, КОНСТРУКТОР. СВОЙСТВА И МЕТОДЫ. THIS.
+class Dog {
+	constructor(name, breed, weight) {
+		this.name = name;
+		this.breed = breed;
+		this.weight = weight;
+		this.species = 'Canine';
+	}
+	bark() {
+		if (this.weight > 25) {
+			console.log(this.name + ' say Woff!');
+		} else {
+			console.log(this.name + ' say Yip!');
+		}
+	}
+	run() {
+		console.log('Run!');
+	}
+	wag() {
+		console.log('Wag!');
+	}
+}
+
+let fido = new Dog('Fido', 'Mixed', 38);
+console.log(fido);
+fido.bark();
+
+class ShowDog extends Dog { //ShowDog расширяет Dog
+	constructor(name, bread, weight, handler) { // функция конструктор
+		super(name, bread, weight); //метод super посылает родителю то что он ждет. Обязательно!
+		this.handler = handler;
+		this.league = 'Webville';
+	}
+	stack() {
+		console.log("Stack");
+	}
+	bait() {
+		console.log("Bait");
+	}
+	gait(kind) {
+		console.log(kind + "ing");
+	}
+	groom() {
+		console.log("Groom");
+	}
+	run() {
+		super.run();// Можем обращаться к родительскому методу. Мтод super это просто обращ к прототипу!
+		console.log('ShowRun!'); // Можно перезаписавать св-ва и!
+	}
+}
+
+let scotty = new ShowDog("Scotty", "Scottish Terrier", 15, "Cookie");
+console.log(scotty);
+let beatrice = new ShowDog("Beatrice", "Pomeranian", 5, "Hamilton");
+
+beatrice.run();
+
+
+//! 
+class User {
+	constructor(name) {
+
+	}
+	#test = 'text'; //Приватное свойство замкнутое внутри класса
+	set name(name) {// сеттер для записи
+		this._name = name.trim().toLowerCase();
+	}
+	get name() {// геттер для чтения Для защиты
+		return this._name;
+	}
+}
+
+const student = new User('Ivan');
+student.name = 'Ivan';
+console.log(student.test); //При попытке обратиться пусто
+
+
+console.log(student);
+*/
+// !Статические методы и свойства (без создания объекта)
+class User {
+	constructor(name) {
+		this.name = name;
+	}
+	static getRole (email) {// static возможность обращаться к методу не создавая объект.
+		//реализация
+		return 'admin';
+	}
+}
+
+console.log(User.getRole('Ivan@ex'));
