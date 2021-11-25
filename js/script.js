@@ -2308,9 +2308,11 @@ spot.bark = function () {
 // Создаем экземпляр, который будет являться прототипом для экземпляров ShowDog
 
 function ShowDog (name, bread, weight, handler) {// конструктор выставочной собаки
-	this.name = name;
-	this.bread = bread;
-	this.weight = weight;
+	Dog.call(this, name, bread, weight); //call встроенный метод.
+	// вызывает функцию Dog и передает ей объект, который должен использоваться как this
+	//this.name = name;
+	//this.bread = bread;
+	//this.weight = weight;
 	this.handler = handler;
 }
 
@@ -2338,6 +2340,7 @@ ShowDog.prototype.groom = function () {
 };
 
 let scotty = new ShowDog("Scotty", "Scottish Terrier", 15, "Cookie");
+let beatrice = new ShowDog("Beatrice", "Pomeranian", 5, "Hamilton");
 
 if (fido instanceof Dog) {
 	console.log('Fido был создан конструктором Dog');
