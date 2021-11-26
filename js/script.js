@@ -2547,3 +2547,4 @@ console.log(scotty);
 let beatrice = new ShowDog("Beatrice", "Pomeranian", 5, "Hamilton");
 
 beatrice.run();
+scotty instanceof Dog
