@@ -1,4 +1,28 @@
 "use strict";
+
+
+function howManyHoursOfTraining () {
+	let workTime = {
+		21.11: 6,
+		22.11: 4,
+		23.11: 4,
+		24.11: 3,
+		25.11: 7,
+		26.11: 7,
+		27.11: 5,
+		28.11: 9,
+		29.11: 7,
+	};
+	let allHourWorkTime = 0;
+	let workTimeArray = [];
+	for (let key in workTime) {
+		allHourWorkTime += workTime[key];
+		workTimeArray.push(workTime[key]);
+	}
+	return `${allHourWorkTime} hour learning.
+${(allHourWorkTime / workTimeArray.length).toFixed(1)} hours a day.`;
+}
+console.log(howManyHoursOfTraining());
 /*let userName = 22;
 console.log(typeof userName);
 let i = 20 > 18;
