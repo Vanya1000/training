@@ -2490,7 +2490,7 @@ class User {
 }
 
 console.log(User.getRole('Ivan@ex'));
-*/
+
 
 class Dog {
 	constructor(name, breed, weight) {
@@ -2549,3 +2549,18 @@ let beatrice = new ShowDog("Beatrice", "Pomeranian", 5, "Hamilton");
 beatrice.run();
 scotty instanceof Dog
 
+function threeInOne(arr) {
+	let arrResult = []//?
+	for(let i = 0; i < arr.length; i += 3) {
+		let newArr = arr.slice(0 + i, 3 + i);//?
+		let count = 0;//?
+		for (let j = 0; j < newArr.length; j++) {
+			count += newArr[j]; //?
+		}
+		arrResult.push(count);
+	}
+	return arrResult;
+}
+
+console.log(threeInOne([1, 2, 3, 4, 5, 6]));
+*/
