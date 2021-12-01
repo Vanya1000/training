@@ -1,6 +1,4 @@
 "use strict";
-
-
 function howManyHoursOfTraining () {
 	let workTime = {
 		21.11: 6,
@@ -2587,4 +2585,24 @@ function threeInOne(arr) {
 }
 
 console.log(threeInOne([1, 2, 3, 4, 5, 6]));
+
+function sortIt(arr) {
+	let counts = {};
+	let newArr = arr.slice();
+	for (let arrItem of newArr) {
+		let num = arrItem;
+		counts[num] = counts[num] ? counts[num] + 1 : 1;
+	}
+	newArr.sort((a, b) => {
+		if (counts[a] > counts[b]) {
+			return 1;
+		}
+		if (counts[a] == counts[b]) {
+			return b - a;
+		}
+		return -1;
+	})
+	return newArr;
+}
+console.log(sortIt([1,1,1,2,2,2,3,4,5]));//?
 */
