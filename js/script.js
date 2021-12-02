@@ -12,6 +12,7 @@ function howManyHoursOfTraining () {
 		'29.11': 7,
 		'30.11': 7,
 		'01.12': 6,
+		'02.12': 5,
 	};
 	let allHourWorkTime = 0;
 	let workTimeArray = [];
