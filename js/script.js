@@ -1,5 +1,5 @@
 "use strict";
-function howManyHoursOfTraining () {
+function howManyHoursOfTraining() {
 	let workTime = {
 		'21.11': 6,
 		'22.11': 4,
@@ -2610,65 +2610,16 @@ function sortIt(arr) {
 	return newArr;
 }
 console.log(sortIt([1,1,1,2,2,2,3,4,5]));//?
-*/
-26
-This lesson we learn a very useful method of array: map().The map() method creates a new array with the results of calling a provided function on every element in this array.This method can make people lazy; -) because it can significantly reduce the amount of code input.For more information, please refer to: Array.prototype.map()
 
-Here are some examples to help us understand the use of map():
+//task 26 finish
+function isolateIt(arr) {
+	let newArr = arr.map((item) => item.length % 2 ? `${item.slice(0, (item.length - 1) / 2)}|${item.slice(-(item.length - 1) / 2)}` : `${item.slice(0, item.length / 2)}|${item.slice(-item.length / 2)}`)
+	return newArr;
+}
 
-This example calculates the square root of each element:
-
-//example1: Direct use of the existing function
-var a = [1, 4, 9, 16]
-var b = a.map(Math.sqrt)
-console.log(a)   //output: [ 1, 4, 9, 16 ]
-console.log(b)   //output: [ 1, 2, 3, 4 ]
-This example increases the value of each element by 1:
-
-//example2: Using simple custom functions
-var a = [1, 2, 3, 4]
-var b = a.map(x => x + 1)
-console.log(a)   //output: [ 1, 2, 3, 4 ]
-console.log(b)   //output: [ 2, 3, 4, 5 ]
-This example will take the index of the array as a value:
-
-var a = [...Array(4)]
-var b = a.map((_, i) => i)
-var c = [...Array(4)].map((_, i) => i)
-var d = Array.prototype.map.call(a, (_, i) => i)
-console.log(a)   //output: [ undefined, undefined, undefined, undefined ]
-console.log(b)   //output: [ 0, 1, 2, 3 ]
-console.log(c)   //output: [ 0, 1, 2, 3 ]
-console.log(d)   //output: [ 0, 1, 2, 3 ]
-In this example, a is an initialized array, we can see that the value of all the elements is undefined.b c d is the three different form, using the map() method to assign each element to the index of the element.Need to pay attention to is that this time the map method uses two parameters, the first argument represents the element itself, the second parameter represents the index of elements, we only use the second parameter, but first parameter can not be omitted, so we use the underscore(also with other characters, use the underscore is just to let the reader know this argument is not used).
-
-The following example is the simulation of the reverse method, which uses three parameters, the third parameter represents the array itself:
-
-var a = [2, 4, 6, 8]
-var b = a.map((_, i, arr) => arr[arr.length - 1 - i])
-console.log(a)   //output: [ 2, 4, 6, 8 ]
-console.log(b)   //output: [ 8, 6, 4, 2 ]
-Ok, lesson is over.let's us do some task.
-
-Task
-Coding in function isolateIt.function accept 1 parameters arr, it's a string array. Your task is to put a character "|" into the middle of each element.
-
-If the string length is an even number, use the insert method.for example: "abcd" should became "ab|cd". "|" should be inserted between ab and cd.
-
-If the string length is an odd number, use the replacement method.for example: "abcde" should became "ab|de".Character c will be replaced by |.
-
-The original array should not be changed, you need to return a new array(if you use the map method, you do not need to worry about this).
-
-Example
-isolateIt(["abcd", "efgh"]) should return ["ab|cd", "ef|gh"]
-isolateIt(["abcde", "fghij"]) should return ["ab|de", "fg|ij"]
-isolateIt(["1234", "56789"]) should return ["12|34", "56|89"]
-a little hint: Flexible use of slice() Will make the work more simple.
-
-
-
-
-
+console.log(isolateIt(["abcd", "efgh"]));
+console.log(isolateIt(["abcde", "fghij"]));
+console.log(isolateIt(["7PaqR+j6I7", "ualIeEo", "6x-s0gZm", "-l#% h*o"]));
 
 27
 This lesson we learn a very useful method of array: filter().The filter() method creates a new array with all elements that pass the test implemented by the provided function. For more information, please refer to: Array.prototype.filter()
@@ -2754,7 +2705,7 @@ every() always return a boolean value.It executes the callback function to each 
 
 var a = [1, 2, 3, 4, 5];
 console.log(a.every(x => x > 0)); //output: true  
-                              all elements > 0
+										all elements > 0
 console.log(a.every(x => x > 1)); //output: false 
 a[0] == 1, so every() should return false
 some() and every() are opposite.some() executes the callback function to each element in turn, if one of the returns is true, then some() returns true; if all returns false, then some() returns false.
@@ -2763,7 +2714,7 @@ var a = [1, 2, 3, 4, 5];
 console.log(a.some(x => x > 4)); //output: true
 a[4] > 4 so some() should return true
 console.log(a.some(x => x > 5)); //output: false
-                             all elements <= 5
+									  all elements <= 5
 Their behavior seems to be a traversal of an array and with a break statement(When every meet false, or when the some meet true, they will jump out of the traversal of the array):
 
 var a = [1, 2, 3, 4, 5];
@@ -2803,4 +2754,60 @@ Some example:
 mirrorImage([11,22,33,33,22,11]) should return [33,33]
 mirrorImage([454,86,57,75,16,88]) should return [57,75]
 mirrorImage([454,0,57,0,16,88]) should return [-1,-1]
+
+false четные
 ```
+isolateIt(["abcd", "efgh"]) should return ["ab|cd", "ef|gh"]
+isolateIt(["abcde", "fghij"]) should return ["ab|de", "fg|ij"]
+isolateIt(["1234", "56789"]) should return ["12|34", "56|89"]
+
+
+
+
+
+
+
+Task
+Coding in function countGrade.function accept 1 parameters scores, it's a number array. Your task is to count the grade distribution of the scores, to return an object like this:
+
+{ S: 888, A: 888, B: 888, C: 888, D: 888, X: 888 }
+Grading rules:
+
+Grade S: Full marks(score = 100)
+Grade A: score < 100 and score >= 90
+Grade B: score < 90 and score >= 80
+Grade C: score < 80 and score >= 60
+Grade D: score < 60 and score >= 0
+Grade X: score = -1(The cheating guy gets a score like that)
+Example
+
+countGrade([50, 60, 70, 80, 90, 100]) should return { S: 1, A: 1, B: 1, C: 2, D: 1, X: 0 }
+countGrade([65, 75, , 85, 85, 95, 100, 100]) should return { S: 2, A: 1, B: 2, C: 2, D: 0, X: 0 }
+countGrade([-1, -1, -1, -1, -1, -1]) should return { S: 0, A: 0, B: 0, C: 0, D: 0, X: 6 }
+*/
+
+function countGrade(scores) {
+	let mark = {};
+	let s = scores.filter(item => item === 100);
+	let a = scores.filter(item => item < 100 && item >= 90);
+	let b = scores.filter(item => item < 90 && item >= 80);
+	let c = scores.filter(item => item < 80 && item >= 60);
+	let d = scores.filter(item => item < 60 && item >= 0);
+	let x = scores.filter(item => item === -1);
+	mark.S = s.length
+	mark.A = a.length
+	mark.B = b.length
+	mark.C = c.length
+	mark.D = d.length
+	mark.S = s.length
+	mark.X = x.length
+	console.log(mark);
+	return mark;
+}
+
+console.log(countGrade([50, 60, 70, 80, 90, 100]));
+console.log(countGrade([65, 75, , 85, 85, 95, 100, 100]));
+console.log(countGrade([-1, -1, -1, -1, -1, -1]));
+
+
+
