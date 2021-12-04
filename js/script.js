@@ -14,6 +14,8 @@ function howManyHoursOfTraining() {
 		'01.12': 6,
 		'02.12': 5,
 		'03.12': 6,
+		'04.12': 3,
+
 
 	};
 	let allHourWorkTime = 0;
@@ -2621,193 +2623,28 @@ console.log(isolateIt(["abcd", "efgh"]));
 console.log(isolateIt(["abcde", "fghij"]));
 console.log(isolateIt(["7PaqR+j6I7", "ualIeEo", "6x-s0gZm", "-l#% h*o"]));
 
-27
-This lesson we learn a very useful method of array: filter().The filter() method creates a new array with all elements that pass the test implemented by the provided function. For more information, please refer to: Array.prototype.filter()
-
-Here are some examples to help us understand the use of filter():
-
-filter() always accept a function as parameter, the function always return boolean value true or false.filter() returns a new array that contains only the elements that meet the conditions(The elements as a parameters of the function, return true value).
-
-var a = [1, 2, 3, 4, 5];
-var b = a.filter(function (x) { return x < 3 });
-console.log(b);   //output: [ 1, 2 ]
-The above example can be simplified:
-
-var a = [1, 2, 3, 4, 5];
-var b = a.filter(x => x < 3);
-console.log(b);   //output: [ 1, 2 ]
-If the function return value is not a Boolean value, it will be automatically converted:
-
-var a = [1, 2, 3, 4, 5];
-var b = a.filter(x => x % 2);
-console.log(b);   //output: [ 1, 3, 5 ]
-The above example x % 2 returns a value of 1 or 0, which will automatically be converted to true(1) or false(0).
-
-In many cases, the parameters of the filter() are conditional expressions that are connected by the logical operator(&&,||).
-
-var a = [3, 6, 9, 12, 24, 36]
-var b = a.filter(x => x % 2 == 0 && x % 3 == 0 && x % 4 == 0)
-console.log(b)   //output: [ 12, 24, 36 ]
-The example above filter is the number which can be divisible by 2, 3, 4.
-
-If the function does not return a conditional statement directly, it is made up of a number of statements, then the curly braces must be added.
-
-var a = ["", "a", "ab", "aba", "abab", "ababa"]
-var b = a.filter(x => {
-	if (x.length < 2) return true;
-	var y = x.split("").reverse().join("");
-	return x == y;
-})
-console.log(b)   //output: [ '', 'a', 'aba', 'ababa' ]
-The example above retained elements which is the palindrome string.
-
-Filter is often used to count the number of elements in an array:
-
-function count(arr, n) {
-	return arr.filter(x => x == n).length;
-}
-var a = [1, 1, 1, 2, 2, 3, 4, 4];
-console.log(count(a, 1))   //output: 3
-console.log(count(a, 2))   //output: 2
-The last to say is that filter() will be very slow when dealing with large data, if you need to optimize the performance of the code, please consider other methods.
-
-	Ok, lesson is over.let's us do some task.
-
-Task
-Coding in function countGrade.function accept 1 parameters scores, it's a number array. Your task is to count the grade distribution of the scores, to return an object like this:
-
-{ S: 888, A: 888, B: 888, C: 888, D: 888, X: 888 }
-Grading rules:
-
-Grade S: Full marks(score = 100)
-Grade A: score < 100 and score >= 90
-Grade B: score < 90 and score >= 80
-Grade C: score < 80 and score >= 60
-Grade D: score < 60 and score >= 0
-Grade X: score = -1(The cheating guy gets a score like that)
-Example
-countGrade([50, 60, 70, 80, 90, 100]) should return { S: 1, A: 1, B: 1, C: 2, D: 1, X: 0 }
-countGrade([65, 75, , 85, 85, 95, 100, 100]) should return { S: 2, A: 1, B: 2, C: 2, D: 0, X: 0 }
-countGrade([-1, -1, -1, -1, -1, -1]) should return { S: 0, A: 0, B: 0, C: 0, D: 0, X: 6 }
-
-
-
-28
-This lesson we learn two methods of array: every() and some().The every() method tests whether all elements in the array pass the test implemented by the provided function. The some() method tests whether some element in the array passes the test implemented by the provided function.
-
-For more information, please refer to:
-
-Array.prototype.every()
-Array.prototype.some()
-Here are some examples to help us understand the use of every() and some():
-
-every() always return a boolean value.It executes the callback function to each element in turn, if one of the returns is false, then every() returns false; if all returns true, then every() returns true.
-
-var a = [1, 2, 3, 4, 5];
-console.log(a.every(x => x > 0)); //output: true  
-										all elements > 0
-console.log(a.every(x => x > 1)); //output: false 
-a[0] == 1, so every() should return false
-some() and every() are opposite.some() executes the callback function to each element in turn, if one of the returns is true, then some() returns true; if all returns false, then some() returns false.
-
-var a = [1, 2, 3, 4, 5];
-console.log(a.some(x => x > 4)); //output: true
-a[4] > 4 so some() should return true
-console.log(a.some(x => x > 5)); //output: false
-									  all elements <= 5
-Their behavior seems to be a traversal of an array and with a break statement(When every meet false, or when the some meet true, they will jump out of the traversal of the array):
-
-var a = [1, 2, 3, 4, 5];
-a.every(x => {
-	console.log(x);
-	return x < 4;
-})
-//output:
-1
-2
-3
-4
-We can see that console.log runs 4 times.When the element = 4, x < 4 return false, so every() out of the array traversal.The same situation also occurs in the some method.We can use this feature to do some work.
-
-The following example will look for a pair of adjacent numbers in the array, and their sum is equal to 15:
-
-var a = 0, b = 0, arr = [3, 6, 9, 6, 9, 3];
-arr.some((x, i) => {
-	a = arr[i];  //or a=x
-	b = arr[i + 1];
-	return a + b == 15
-})
-console.log(a, b)   //output: 6 9
-When the some() method meets the appropriate value, the a + b == 15 returns true, the some function exits the loop, so we get the two values.And once again we see two parameters being used.Yes, it is the same as the map() method, the callback function can have up to three parameters: currentValue(required), index(optional) and array(optional).The usage is similar to the map() method, so I'm no longer crap ;-)
-
-Ok, lesson is over.let's us do some task.
-
-Task
-Coding in function ```mirrorImage```.function accept 1 parameter```arr```, it's a number array. Your task is find the first pair of mirror-image number and return as an array. The two number must be adjacent, and the returned array is in accordance with the order from left to right.
-
-What's the mirror-image number? for example:```123``` and ```321``` is a pair of mirror-image number. Two the same number of palindromes can also be seen as a pair of mirror-image number, such as ```121``` and ```121```. 
-
-If no such number is found, return ```[-1,-1]```
-   
-Some example:
-```
-mirrorImage([11,22,33,33,22,11]) should return [33,33]
-mirrorImage([454,86,57,75,16,88]) should return [57,75]
-mirrorImage([454,0,57,0,16,88]) should return [-1,-1]
-
-false четные
-```
-isolateIt(["abcd", "efgh"]) should return ["ab|cd", "ef|gh"]
-isolateIt(["abcde", "fghij"]) should return ["ab|de", "fg|ij"]
-isolateIt(["1234", "56789"]) should return ["12|34", "56|89"]
-
-
-
-
-
-
-
-Task
-Coding in function countGrade.function accept 1 parameters scores, it's a number array. Your task is to count the grade distribution of the scores, to return an object like this:
-
-{ S: 888, A: 888, B: 888, C: 888, D: 888, X: 888 }
-Grading rules:
-
-Grade S: Full marks(score = 100)
-Grade A: score < 100 and score >= 90
-Grade B: score < 90 and score >= 80
-Grade C: score < 80 and score >= 60
-Grade D: score < 60 and score >= 0
-Grade X: score = -1(The cheating guy gets a score like that)
-Example
-
-countGrade([50, 60, 70, 80, 90, 100]) should return { S: 1, A: 1, B: 1, C: 2, D: 1, X: 0 }
-countGrade([65, 75, , 85, 85, 95, 100, 100]) should return { S: 2, A: 1, B: 2, C: 2, D: 0, X: 0 }
-countGrade([-1, -1, -1, -1, -1, -1]) should return { S: 0, A: 0, B: 0, C: 0, D: 0, X: 6 }
-*/
-
+//task 27 finish
 function countGrade(scores) {
-	let mark = {};
-	let s = scores.filter(item => item === 100);
-	let a = scores.filter(item => item < 100 && item >= 90);
-	let b = scores.filter(item => item < 90 && item >= 80);
-	let c = scores.filter(item => item < 80 && item >= 60);
-	let d = scores.filter(item => item < 60 && item >= 0);
-	let x = scores.filter(item => item === -1);
-	mark.S = s.length
-	mark.A = a.length
-	mark.B = b.length
-	mark.C = c.length
-	mark.D = d.length
-	mark.S = s.length
-	mark.X = x.length
-	console.log(mark);
-	return mark;
+	return {
+		'S': scores.filter(function (x) { return x == 100 }).length,
+		'A': scores.filter(function (x) { return (x < 100 && x >= 90) }).length,
+		'B': scores.filter(function (x) { return (x < 90 && x >= 80) }).length,
+		'C': scores.filter(function (x) { return (x < 80 && x >= 60) }).length,
+		'D': scores.filter(function (x) { return (x < 60 && x >= 0) }).length,
+		'X': scores.filter(function (x) { return x == -1 }).length,
+	};
 }
 
 console.log(countGrade([50, 60, 70, 80, 90, 100]));
 console.log(countGrade([65, 75, , 85, 85, 95, 100, 100]));
 console.log(countGrade([-1, -1, -1, -1, -1, -1]));
+*/
+function mirrorImage(arr) {
+	let palendrom = arr.some((item, index) => {arr[index] == (arr[index + 1] + '').split('').reverse().join('')
+	});
+	console.log(palendrom);
+}
+console.log(mirrorImage([123, 321, 33, 23, 12, 11]));
 
 
 
