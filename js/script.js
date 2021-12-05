@@ -405,7 +405,7 @@ console.log(saleHotdogs(1), 100);
 
 
 function animal(obj) {
-	
+
 	return `This ${obj.color} ${obj.name} has ${obj.legs} 'legs.`;
 }
 
@@ -428,7 +428,7 @@ console.log(UserInfo('Ivan', 29));
 function getRandomInt(min, max) {
 	min = Math.ceil(min);
 	max = Math.floor(max);
-	return Math.floor(Math.random() * (max - min)) + min; 
+	return Math.floor(Math.random() * (max - min)) + min;
 }
 console.log(getRandomInt(1, 6));
 
@@ -441,7 +441,7 @@ function padIt(str, n) {
 		return strOutput = '*' + str;
 	}
 }
-		
+
 console.log(padIt("a", 1));
 
 function padIt(str, n) {
@@ -486,7 +486,7 @@ let matrix = [
 ]
 console.log(matrix);
 
-	
+
 	let result = arr.find(function (item, index, array) {
 	return item.age === 27;
 });
@@ -552,7 +552,7 @@ function howManydays(month) {
 			default:
 				days = 31;
 		}
-		return days; 
+		return days;
 	} else {
 		console.log('enter the correct month number');
 	}
@@ -621,7 +621,7 @@ function giveMeFive(obj) {
 			arr.push(key);
 		} if (obj[key].length == 5) {
 			arr.push(obj[key]);
-		} 
+		}
 	}
 	return arr;
 }
@@ -789,7 +789,7 @@ function colorOf(r, g, b) {
 		g = '0' + g;
 	} if (b.length < 2) {
 		b = '0' + b;
-	} 
+	}
 	return '#' + r + g + b;
 }
 
@@ -911,7 +911,7 @@ const elementScrollLeft = block.scrollLeft;
 const elementScrollTop = block.scrollTop;
 
 console.log(elementScrollLeft);
-console.log(elementScrollTop);  
+console.log(elementScrollTop);
 
 const block = document.querySelector('.lesson__block');
 const getItemCoords = block.getBoundingClientRect();
@@ -919,7 +919,7 @@ console.log(getItemCoords);
 
 const getItemTopCoord = block.getBoundingClientRect().top;
 
-console.log(getItemTopCoord); 
+console.log(getItemTopCoord);
 
 const getItemTopDocumentCoord = getItemTopCoord + window.pageYOffset;
 console.log(getItemTopDocumentCoord);
@@ -936,7 +936,7 @@ const valueScroll = window.innerWidth - mainElementWidth;
 console.log(valueScroll);
 
 function setScrollBy () {
-	window.scrollBy(0,100);	
+	window.scrollBy(0,100);
 }
 setTimeout(setScrollBy, 1000);
 
@@ -1350,7 +1350,7 @@ function howManySmaller(arr, n) {
 		if (item < n) {
 			count++;
 		}
-	}); 
+	});
 	return count;//?
 };
 
@@ -1624,7 +1624,7 @@ var fiat = {
 				alert('Oh oh, out of fuel.');
 				this.stop();
 			}
-			
+
 		} else {
 			alert("You need to start the engine first.");
 		}
@@ -2072,7 +2072,7 @@ window.onload = function() {
 
 	const button = document.querySelector(".main-form__button");
 	button.addEventListener("click", function handleclick() {// в функц выражении
-		//задейств 2 свободные переменные, по этому создается замыкание. 
+		//задейств 2 свободные переменные, по этому создается замыкание.
 		count++;
 		div.innerHTML = `Вы нажали на меня ${count} раз`;
 	});
@@ -2373,7 +2373,7 @@ let beatrice = new ShowDog("Beatrice", "Pomeranian", 5, "Hamilton");
 
 if (fido instanceof Dog) {
 	console.log('Fido был создан конструктором Dog');
-} 
+}
 if (fido instanceof ShowDog) {
 	console.log('Fido был создан конструктором ShowDog');
 }
@@ -2486,7 +2486,7 @@ let beatrice = new ShowDog("Beatrice", "Pomeranian", 5, "Hamilton");
 beatrice.run();
 
 
-//! 
+//!
 class User {
 	constructor(name) {
 
@@ -2638,13 +2638,30 @@ function countGrade(scores) {
 console.log(countGrade([50, 60, 70, 80, 90, 100]));
 console.log(countGrade([65, 75, , 85, 85, 95, 100, 100]));
 console.log(countGrade([-1, -1, -1, -1, -1, -1]));
-*/
+
 function mirrorImage(arr) {
-	let palendrom = arr.some((item, index) => {arr[index] == (arr[index + 1] + '').split('').reverse().join('')
-	});
-	console.log(palendrom);
+	let newArr = [];
+	let palendrom = arr.some((item, index) => arr[index] == (arr[index + 1] + '').split('').reverse().join(''));
+
+	if (palendrom) {
+		arr.forEach((item, index) => {
+			if (arr[index] == (arr[index + 1] + '').split('').reverse().join('')) {
+				newArr.push(arr[index], arr[index + 1])
+			}
+		})
+		newArr.splice(2,999);
+	} else {
+		newArr = [-1,-1]
+	}
+	return newArr
 }
-console.log(mirrorImage([123, 321, 33, 23, 12, 11]));
+//task 28 finish
+function mirrorImage(arr) {
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i] == (arr[i + 1] + '').split('').reverse().join(''))  return [arr[i],arr[i + 1]]
+	}
+	return [-1, -1]
+}
 
-
-
+console.log(mirrorImage([123, 321, 33, 213, 32, 11]));
+*/
