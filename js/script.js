@@ -15,8 +15,7 @@ function howManyHoursOfTraining() {
 		'02.12': 5,
 		'03.12': 6,
 		'04.12': 3,
-
-
+		'05.12': 6,
 	};
 	let allHourWorkTime = 0;
 	let workTimeArray = [];
@@ -2664,4 +2663,21 @@ function mirrorImage(arr) {
 }
 
 console.log(mirrorImage([123, 321, 33, 213, 32, 11]));
+
+//task 29 finish
+function bigToSmall(arr) {
+	let newArr = [].concat(...arr)
+	return (newArr.sort((a, b) => b - a)).join('>')
+}
+console.log(bigToSmall([[1, 2], [3, 4], [5, 6]]));
 */
+function tailAndHead(arr) {
+	let newArr = [];
+	for (let i = 0; i < arr.length - 1; i++) {
+		newArr.push(+String(arr[i]).slice(-1) + +String(arr[i + 1]).slice(0, 1))//?
+	}
+	return newArr.reduce((prev, item) => item * prev);
+}
+
+tailAndHead([123, 456, 789, 12, 34, 56, 78])//?
+
