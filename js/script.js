@@ -2683,17 +2683,19 @@ function tailAndHead(arr) {
 tailAndHead([123, 456, 789, 12, 34, 56, 78])//?
 */
 /*
-//31
+//31 finish
 function blackAndWhite(arr) {
-	return (Array.isArray(arr)) ? (arr.toString().indexOf('5,13') >= 0) ? "It's a black array" : "It's a white array" : "It's a fake array" 
+	return (Array.isArray(arr) && !undefined) ? (arr.indexOf(5) >= 0 && arr.indexOf(13) >= 0) ? "It's a black array" : "It's a white array" : "It's a fake array"
 }
+
 
 console.log(blackAndWhite(5, 13));
 console.log(blackAndWhite([5, 13]));
 console.log(blackAndWhite([5, 12]));
+console.log(blackAndWhite(undefined));//?
 */
 /*
-//32
+//32 finish
 function roundIt(n) {
 	let arr = (n + '').split('.')//?
 	if (arr[0].length < arr[1].length) {
@@ -2737,3 +2739,4 @@ console.log(cutCube(27, 3))
 console.log(cutCube(123, 456))
 console.log(cutCube(27, 8))
 */
+
