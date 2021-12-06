@@ -16,6 +16,7 @@ function howManyHoursOfTraining() {
 		'03.12': 6,
 		'04.12': 3,
 		'05.12': 6,
+		'06.12': 3,
 	};
 	let allHourWorkTime = 0;
 	let workTimeArray = [];
@@ -2681,28 +2682,34 @@ function tailAndHead(arr) {
 
 tailAndHead([123, 456, 789, 12, 34, 56, 78])//?
 */
+/*
 //31
 function blackAndWhite(arr) {
-	//coding here...
-
+	return (Array.isArray(arr)) ? (arr.toString().indexOf('5,13') >= 0) ? "It's a black array" : "It's a white array" : "It's a fake array" 
 }
 
 console.log(blackAndWhite(5, 13));
 console.log(blackAndWhite([5, 13]));
 console.log(blackAndWhite([5, 12]));
-
+*/
 /*
 //32
 function roundIt(n) {
-	//coding here...
-
+	let arr = (n + '').split('.')//?
+	if (arr[0].length < arr[1].length) {
+		return Math.ceil(n)
+	} else if (arr[0].length > arr[1].length){
+		return Math.floor(n)
+	} else {
+		return Math.round(n)
+	}
 }
 
 console.log(roundIt(3.45));
 console.log(roundIt(34.5));
 console.log(roundIt(34.56));
 */
-/*
+
 //33
 function maxMin(arr1, arr2) {
 	//coding here...
@@ -2712,7 +2719,7 @@ function maxMin(arr1, arr2) {
 console.log(maxMin([1, 3, 5], [9, 8, 7]));
 console.log(maxMin([1, 10, 100, 1000], [0, 0, 0, 0]));
 console.log(maxMin([10, 20, 30, 40], [111, 11, 1, -111]));
-*/
+
 /*
 //34
 function cutCube(volume, n) {
