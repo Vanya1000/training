@@ -2670,7 +2670,7 @@ function bigToSmall(arr) {
 	return (newArr.sort((a, b) => b - a)).join('>')
 }
 console.log(bigToSmall([[1, 2], [3, 4], [5, 6]]));
-*/
+//task 30 finish
 function tailAndHead(arr) {
 	let newArr = [];
 	for (let i = 0; i < arr.length - 1; i++) {
@@ -2680,4 +2680,53 @@ function tailAndHead(arr) {
 }
 
 tailAndHead([123, 456, 789, 12, 34, 56, 78])//?
+*/
+//31
+function blackAndWhite(arr) {
+	//coding here...
 
+}
+
+console.log(blackAndWhite(5, 13));
+console.log(blackAndWhite([5, 13]));
+console.log(blackAndWhite([5, 12]));
+
+/*
+//32
+function roundIt(n) {
+	//coding here...
+
+}
+
+console.log(roundIt(3.45));
+console.log(roundIt(34.5));
+console.log(roundIt(34.56));
+*/
+/*
+//33
+function maxMin(arr1, arr2) {
+	//coding here...
+
+}
+
+console.log(maxMin([1, 3, 5], [9, 8, 7]));
+console.log(maxMin([1, 10, 100, 1000], [0, 0, 0, 0]));
+console.log(maxMin([10, 20, 30, 40], [111, 11, 1, -111]));
+*/
+/*
+//34
+function cutCube(volume, n) {
+	//coding here...
+
+}
+
+console.log(cutCube(27, 27))
+console.log(cutCube(512, 8))
+console.log(cutCube(512, 64))
+console.log(cutCube(50000, 50))
+console.log(cutCube(432, 16))
+console.log(cutCube(256, 8))
+console.log(cutCube(27, 3))
+console.log(cutCube(123, 456))
+console.log(cutCube(27, 8))
+*/
