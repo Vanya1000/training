@@ -17,6 +17,7 @@ function howManyHoursOfTraining() {
 		'04.12': 3,
 		'05.12': 6,
 		'06.12': 3,
+		'07.12': 1,
 	};
 	let allHourWorkTime = 0;
 	let workTimeArray = [];
@@ -2711,22 +2712,23 @@ console.log(roundIt(3.45));
 console.log(roundIt(34.5));
 console.log(roundIt(34.56));
 */
-
-//33
+/*
+//33 finish
 function maxMin(arr1, arr2) {
-	//coding here...
-
+	let resultSubtrac = [];
+	for (let i = 0; i < arr1.length; i++) {
+		resultSubtrac.push(Math.abs(arr1[i] - arr2[i]));
+	}
+	return [Math.max(...resultSubtrac), Math.min(...resultSubtrac)]
 }
 
 console.log(maxMin([1, 3, 5], [9, 8, 7]));
 console.log(maxMin([1, 10, 100, 1000], [0, 0, 0, 0]));
 console.log(maxMin([10, 20, 30, 40], [111, 11, 1, -111]));
-
-/*
+*/
 //34
 function cutCube(volume, n) {
-	//coding here...
-
+	
 }
 
 console.log(cutCube(27, 27))
@@ -2738,5 +2740,5 @@ console.log(cutCube(256, 8))
 console.log(cutCube(27, 3))
 console.log(cutCube(123, 456))
 console.log(cutCube(27, 8))
-*/
+
 
