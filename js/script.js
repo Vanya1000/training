@@ -17,7 +17,7 @@ function howManyHoursOfTraining() {
 		'04.12': 3,
 		'05.12': 6,
 		'06.12': 3,
-		'07.12': 1,
+		'07.12': 7,
 	};
 	let allHourWorkTime = 0;
 	let workTimeArray = [];
@@ -28,7 +28,7 @@ function howManyHoursOfTraining() {
 	return `${allHourWorkTime} hour learning.
 ${(allHourWorkTime / workTimeArray.length).toFixed(1)} hours a day.`;
 }
-console.log(howManyHoursOfTraining());
+console.log(howManyHoursOfTraining());//?
 /*let userName = 22;
 console.log(typeof userName);
 let i = 20 > 18;
