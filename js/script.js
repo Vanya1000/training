@@ -18,6 +18,8 @@ function howManyHoursOfTraining() {
 		'05.12': 6,
 		'06.12': 3,
 		'07.12': 7,
+		'08.12': 7,
+		'09.12': 6,
 	};
 	let allHourWorkTime = 0;
 	let workTimeArray = [];
@@ -26,7 +28,7 @@ function howManyHoursOfTraining() {
 		workTimeArray.push(workTime[key]);
 	}
 	return `${allHourWorkTime} hour learning.
-${(allHourWorkTime / workTimeArray.length).toFixed(1)} hours a day.`;
+${(allHourWorkTime / workTimeArray.length).toFixed(1)} hours a day. Count day: ${workTimeArray.length}`;
 }
 console.log(howManyHoursOfTraining());//?
 /*let userName = 22;
@@ -2728,7 +2730,7 @@ console.log(maxMin([10, 20, 30, 40], [111, 11, 1, -111]));
 */
 //34
 function cutCube(volume, n) {
-	
+
 }
 
 console.log(cutCube(27, 27))
