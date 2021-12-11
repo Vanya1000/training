@@ -2709,7 +2709,7 @@ console.log(roundIt(3.45));
 console.log(roundIt(34.5));
 console.log(roundIt(34.56));
 */
-
+/*
 //33
 function maxMin(arr1, arr2) {
 	//coding here...
@@ -2720,11 +2720,17 @@ console.log(maxMin([1, 3, 5], [9, 8, 7]));
 console.log(maxMin([1, 10, 100, 1000], [0, 0, 0, 0]));
 console.log(maxMin([10, 20, 30, 40], [111, 11, 1, -111]));
 
-/*
+
 //34
 function cutCube(volume, n) {
-	//coding here...
-
+	if (!Number.isInteger(Math.cbrt(n))) {
+		return false;
+	} else if (!Number.isInteger(volume / n)) {
+		return false;
+	} else if (!Number.isInteger(Math.cbrt(volume) / Math.cbrt(n))) {
+		return false;
+	} 
+	return true;
 }
 
 console.log(cutCube(27, 27))
@@ -2737,3 +2743,18 @@ console.log(cutCube(27, 3))
 console.log(cutCube(123, 456))
 console.log(cutCube(27, 8))
 */
+
+function rndCode() {
+	let result = [];
+	function rnd (value, num) {
+		for (let i = 0; i < num; i++){
+			result.push(value[Math.floor(value.length * Math.random())]);
+		}
+	} 
+	rnd('ABCDEFGHIJKLM', 2);
+	rnd('0123456789', 4);
+	rnd('~!@#$%^&*', 2);
+	return result.join('');
+}
+
+rndCode()//?
