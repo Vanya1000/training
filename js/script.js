@@ -2716,11 +2716,7 @@ console.log(roundIt(34.5));
 console.log(roundIt(34.56));
 */
 /*
-<<<<<<< HEAD
 //33
-=======
-//33 finish
->>>>>>> fdce51c8716a7f0a54a426346ab8fbed098ecec6
 function maxMin(arr1, arr2) {
 	let resultSubtrac = [];
 	for (let i = 0; i < arr1.length; i++) {
@@ -2732,7 +2728,6 @@ function maxMin(arr1, arr2) {
 console.log(maxMin([1, 3, 5], [9, 8, 7]));
 console.log(maxMin([1, 10, 100, 1000], [0, 0, 0, 0]));
 console.log(maxMin([10, 20, 30, 40], [111, 11, 1, -111]));
-<<<<<<< HEAD
 
 
 //34
@@ -2745,13 +2740,8 @@ function cutCube(volume, n) {
 		return false;
 	} 
 	return true;
-=======
-*/
-//34
-function cutCube(volume, n) {
-
->>>>>>> fdce51c8716a7f0a54a426346ab8fbed098ecec6
 }
+
 
 console.log(cutCube(27, 27))
 console.log(cutCube(512, 8))
@@ -2762,7 +2752,6 @@ console.log(cutCube(256, 8))
 console.log(cutCube(27, 3))
 console.log(cutCube(123, 456))
 console.log(cutCube(27, 8))
-<<<<<<< HEAD
 */
 
 function rndCode() {
@@ -2779,7 +2768,3 @@ function rndCode() {
 }
 
 rndCode()//?
-=======
-
-
->>>>>>> fdce51c8716a7f0a54a426346ab8fbed098ecec6
