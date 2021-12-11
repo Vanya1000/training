@@ -17,6 +17,10 @@ function howManyHoursOfTraining() {
 		'04.12': 3,
 		'05.12': 6,
 		'06.12': 3,
+		'07.12': 7,
+		'08.12': 7,
+		'09.12': 6,
+		'10.12': 3,
 	};
 	let allHourWorkTime = 0;
 	let workTimeArray = [];
@@ -25,9 +29,9 @@ function howManyHoursOfTraining() {
 		workTimeArray.push(workTime[key]);
 	}
 	return `${allHourWorkTime} hour learning.
-${(allHourWorkTime / workTimeArray.length).toFixed(1)} hours a day.`;
+${(allHourWorkTime / workTimeArray.length).toFixed(1)} hours a day. Count day: ${workTimeArray.length}`;
 }
-console.log(howManyHoursOfTraining());
+console.log(howManyHoursOfTraining());//?
 /*let userName = 22;
 console.log(typeof userName);
 let i = 20 > 18;
@@ -2683,17 +2687,19 @@ function tailAndHead(arr) {
 tailAndHead([123, 456, 789, 12, 34, 56, 78])//?
 */
 /*
-//31
+//31 finish
 function blackAndWhite(arr) {
-	return (Array.isArray(arr)) ? (arr.toString().indexOf('5,13') >= 0) ? "It's a black array" : "It's a white array" : "It's a fake array" 
+	return (Array.isArray(arr) && !undefined) ? (arr.indexOf(5) >= 0 && arr.indexOf(13) >= 0) ? "It's a black array" : "It's a white array" : "It's a fake array"
 }
+
 
 console.log(blackAndWhite(5, 13));
 console.log(blackAndWhite([5, 13]));
 console.log(blackAndWhite([5, 12]));
+console.log(blackAndWhite(undefined));//?
 */
 /*
-//32
+//32 finish
 function roundIt(n) {
 	let arr = (n + '').split('.')//?
 	if (arr[0].length < arr[1].length) {
@@ -2710,15 +2716,23 @@ console.log(roundIt(34.5));
 console.log(roundIt(34.56));
 */
 /*
+<<<<<<< HEAD
 //33
+=======
+//33 finish
+>>>>>>> fdce51c8716a7f0a54a426346ab8fbed098ecec6
 function maxMin(arr1, arr2) {
-	//coding here...
-
+	let resultSubtrac = [];
+	for (let i = 0; i < arr1.length; i++) {
+		resultSubtrac.push(Math.abs(arr1[i] - arr2[i]));
+	}
+	return [Math.max(...resultSubtrac), Math.min(...resultSubtrac)]
 }
 
 console.log(maxMin([1, 3, 5], [9, 8, 7]));
 console.log(maxMin([1, 10, 100, 1000], [0, 0, 0, 0]));
 console.log(maxMin([10, 20, 30, 40], [111, 11, 1, -111]));
+<<<<<<< HEAD
 
 
 //34
@@ -2731,6 +2745,12 @@ function cutCube(volume, n) {
 		return false;
 	} 
 	return true;
+=======
+*/
+//34
+function cutCube(volume, n) {
+
+>>>>>>> fdce51c8716a7f0a54a426346ab8fbed098ecec6
 }
 
 console.log(cutCube(27, 27))
@@ -2742,6 +2762,7 @@ console.log(cutCube(256, 8))
 console.log(cutCube(27, 3))
 console.log(cutCube(123, 456))
 console.log(cutCube(27, 8))
+<<<<<<< HEAD
 */
 
 function rndCode() {
@@ -2758,3 +2779,7 @@ function rndCode() {
 }
 
 rndCode()//?
+=======
+
+
+>>>>>>> fdce51c8716a7f0a54a426346ab8fbed098ecec6
