@@ -21,6 +21,7 @@ function howManyHoursOfTraining() {
 		'08.12': 7,
 		'09.12': 6,
 		'10.12': 3,
+		'11.12': 4,
 	};
 	let allHourWorkTime = 0;
 	let workTimeArray = [];
@@ -2745,3 +2746,23 @@ console.log(cutCube(123, 456))
 console.log(cutCube(27, 8))
 
 
+function isDivideBy(number, a, b) {
+	return (number % a || number % b) ? false : true;
+}
+console.log(isDivideBy(-12, 2, -6));
+console.log(isDivideBy(-12, 2, -5));
+console.log(isDivideBy(45, 1, 6));
+
+function capitalizeWord(word) {
+	return word[0].toUpperCase() + word.slice(1)
+}
+
+console.log(capitalizeWord('glasswear'));
+
+function fakeBin(x) {
+	let arr = x.split('').map((item) => {
+		return item < 5 ? 0 : 1
+	})
+	return arr.join('')
+}
+console.log(fakeBin('45385593107843568'));
