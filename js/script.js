@@ -22,6 +22,7 @@ function howManyHoursOfTraining() {
 		'09.12': 6,
 		'10.12': 5,
 		'11.12': 4,
+		'12.12': 4,
 	};
 	let allHourWorkTime = 0;
 	let workTimeArray = [];
@@ -2753,7 +2754,7 @@ console.log(cutCube(256, 8))
 console.log(cutCube(27, 3))
 console.log(cutCube(123, 456))
 console.log(cutCube(27, 8))
-*/
+
 
 function rndCode() {
 	let result = [];
@@ -2788,3 +2789,35 @@ function fakeBin(x) {
 	return arr.join('')
 }
 console.log(fakeBin('45385593107843568'));
+*/
+
+function perimeterSequence(a, n) {
+	return a * n * 4;
+}
+
+perimeterSequence(1, 2);//?
+
+function noSpace(x) {
+	return x.replace(/ /g,'');
+}
+noSpace('8 j 8   mBliB8g  imjB8B8  jl  B')//?
+
+function finalGrade(exam, projects) {
+	if (exam > 90 || projects > 10) {
+		return 100;
+	} else if (exam > 75 && projects > 4) {
+		return 90;
+	} else if (exam > 50 && projects > 1) {
+		return 75;
+	} else {
+		return 0;
+	}
+}
+
+finalGrade(99, 0)//?
+
+function solution(str, ending) {
+	return str.endsWith(ending);
+}
+
+solution('abcde', 'w')//?
