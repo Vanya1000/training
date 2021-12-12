@@ -22,7 +22,7 @@ function howManyHoursOfTraining() {
 		'09.12': 6,
 		'10.12': 5,
 		'11.12': 4,
-		'12.12': 4,
+		'12.12': 6,
 	};
 	let allHourWorkTime = 0;
 	let workTimeArray = [];
@@ -2798,7 +2798,7 @@ function perimeterSequence(a, n) {
 perimeterSequence(1, 2);//?
 
 function noSpace(x) {
-	return x.replace(/ /g,'');
+	return x.replace(/ /g, '');
 }
 noSpace('8 j 8   mBliB8g  imjB8B8  jl  B')//?
 
