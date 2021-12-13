@@ -23,6 +23,7 @@ function howManyHoursOfTraining() {
 		'10.12': 5,
 		'11.12': 4,
 		'12.12': 6,
+		'13.12': 6,
 	};
 	let allHourWorkTime = 0;
 	let workTimeArray = [];
@@ -2821,3 +2822,20 @@ function solution(str, ending) {
 }
 
 solution('abcde', 'w')//?
+
+var ArrowFunc = function (arr) {
+	return arr.map((item) => String.fromCharCode(item)).join('');
+}
+
+console.log(ArrowFunc([84, 101, 115, 116]));
+
+function mergeArrays(arr1, arr2) {
+	let arr3 = [];
+	arr2.forEach((item) => {
+		if (!arr1.includes(item)) {
+			arr3.push(item);
+		};
+	});
+	return (arr1.concat(arr3)).sort((a, b) => a - b);
+}
+mergeArrays([1, 3, 5, 7, 9, 11, 12], [1, 2, 3, 4, 5, 10, 12])//?
