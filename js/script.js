@@ -25,7 +25,7 @@ function howManyHoursOfTraining() {
 		'12.12': 6,
 		'13.12': 6,
 		'14.12': 1,
-		'15.12': 4,
+		'15.12': 6,
 	};
 	let allHourWorkTime = 0;
 	let workTimeArray = [];
@@ -2743,7 +2743,7 @@ function cutCube(volume, n) {
 		return false;
 	} else if (!Number.isInteger(Math.cbrt(volume) / Math.cbrt(n))) {
 		return false;
-	} 
+	}
 	return true;
 }
 
@@ -2765,7 +2765,7 @@ function rndCode() {
 		for (let i = 0; i < num; i++){
 			result.push(value[Math.floor(value.length * Math.random())]);
 		}
-	} 
+	}
 	rnd('ABCDEFGHIJKLM', 2);
 	rnd('0123456789', 4);
 	rnd('~!@#$%^&*', 2);
@@ -2886,9 +2886,8 @@ function colourAssociation(array) {
 	});
 }
 
-colourAssociation([["white", "goodness"], ["blue", "tranquility"]])//?
-//
-*/
+colourAssociation([["white", "goodness"], ["blue", "tranquility"]]);
+
 const objA = { a: 10, b: 20, c: 30 }
 const objB = { a: 3, c: 6, d: 3 }
 const objC = { a: 5, d: 11, e: 8 }
@@ -2908,3 +2907,69 @@ function combine(...arg) {
 	return result;
 }
 combine(objA, objB);
+
+function findMissing(arr1, arr2) {
+	arr1.sort((a, b) => a - b)//?
+	arr2.sort((a, b) => a - b)//?
+	for (let i = 0; i < arr1.length; i++) {
+		if (!(arr1[i] === arr2[i])) {
+			return arr1[i];
+		}
+	}
+}
+findMissing([4, 3, 3, 61, 8, 8], [8, 61, 8, 3, 4])//?
+
+function getDecimal(n) {
+	return  n - Math.floor(n)
+}
+
+getDecimal(1.2)//?
+
+function maxTriSum(numbers) {
+	numbers.sort((a, b) => b - a);//?
+	let resultArr = [numbers[0]];
+	for (let item of numbers) {
+		if (!(item === resultArr[resultArr.length - 1]))
+		resultArr.push(item)
+	}
+	return resultArr[0] + resultArr[1] + resultArr[2]//?
+}
+
+maxTriSum([2, 9, 13, 10, 5, 2, 9, 5, 13]);
+
+function myLanguages(results) {
+	let result = [];
+	let best = [];
+	for (let key in results) {
+		if (results[key] >= 60) {
+			best.push([key, results[key]])
+		}
+	}
+	best.sort((a, b) => b[1] - a[1]);
+	for (let item of best) {
+		result.push(item[0]);
+	}
+	return result;
+}
+
+myLanguages({ "Java": 10, "Ruby": 80, "Python": 95 })//?
+
+
+var maxSpeed = {
+	car: 300,
+	bike: 60,
+	motorbike: 200,
+	airplane: 1000,
+	helicopter: 400,
+	rocket: 8 * 60 * 60
+};
+var sortable = [];
+for (var vehicle in maxSpeed) {
+	sortable.push([vehicle, maxSpeed[vehicle]]);
+}
+
+
+sortable.sort(function (a, b) {
+	return a[1] - b[1];
+});
+*/
