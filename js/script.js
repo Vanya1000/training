@@ -25,6 +25,7 @@ function howManyHoursOfTraining() {
 		'12.12': 6,
 		'13.12': 6,
 		'14.12': 1,
+		'15.12': 4,
 	};
 	let allHourWorkTime = 0;
 	let workTimeArray = [];
@@ -2791,7 +2792,7 @@ function fakeBin(x) {
 	return arr.join('')
 }
 console.log(fakeBin('45385593107843568'));
-*/
+
 
 function perimeterSequence(a, n) {
 	return a * n * 4;
@@ -2840,3 +2841,70 @@ function mergeArrays(arr1, arr2) {
 	return (arr1.concat(arr3)).sort((a, b) => a - b);
 }
 mergeArrays([1, 3, 5, 7, 9, 11, 12], [1, 2, 3, 4, 5, 10, 12])//?
+
+
+function add(num1, num2) {
+	let sum = ''
+	while (('' + num1).length > ('' + num2).length) {
+		num2 = '0' + num2;
+	}
+	while (('' + num2).length > ('' + num1).length) {
+		num1 = '0' + num1;
+	}
+	let str1 = String(num1);//?
+	let str2 = String(num2);//?
+
+	for (let i = 0; i < String(num1).length; i++) {
+	sum = sum + (+str1[i] + +str2[i])
+	}
+	return +sum;
+}
+
+
+console.log(add(122, 81));
+
+var questions = [{
+	question: "What's the currency of the USA?",
+	choices: ["US dollar", "Ruble", "Horses", "Gold"],
+	corAnswer: 0
+}, {
+	question: "Where was the American Declaration of Independence signed?",
+	choices: ["Philadelphia", "At the bottom", "Frankie's Pub", "China"],
+	corAnswer: 0
+}];
+
+for (let arrItem of questions) {
+	arrItem.usersAnswer = null;
+}
+
+console.log(questions);
+
+
+function colourAssociation(array) {
+	return array.map((item) => {
+		return {[item[0]]: item[1]}
+	});
+}
+
+colourAssociation([["white", "goodness"], ["blue", "tranquility"]])//?
+//
+*/
+const objA = { a: 10, b: 20, c: 30 }
+const objB = { a: 3, c: 6, d: 3 }
+const objC = { a: 5, d: 11, e: 8 }
+const objD = { c: 3 }
+
+function combine(...arg) {
+	let result = {};
+	for (let obj of arg) {
+		for (let prop in obj) {
+			if (!(prop in result)) {
+				result[prop] = obj[prop]
+			} else {
+				result[prop] = result[prop] + obj[prop]
+			}
+		}
+	}
+	return result;
+}
+combine(objA, objB);
