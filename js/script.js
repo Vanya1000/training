@@ -3023,24 +3023,10 @@ let List = [
 List[4]//?
 
 function sentence(List) {
+	let best = [];
 	for (let item of List) {
-		item["2"]
+		item
 	}
 }
 
 sentence(List)//?
-
-function myLanguages(results) {
-	let result = [];
-	let best = [];
-	for (let key in results) {
-		if (results[key] >= 60) {
-			best.push([key, results[key]])
-		}
-	}
-	best.sort((a, b) => b[1] - a[1]);
-	for (let item of best) {
-		result.push(item[0]);
-	}
-	return result;
-}
