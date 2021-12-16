@@ -26,6 +26,7 @@ function howManyHoursOfTraining() {
 		'13.12': 6,
 		'14.12': 1,
 		'15.12': 7,
+		'16.12': 4,
 	};
 	let allHourWorkTime = 0;
 	let workTimeArray = [];
@@ -2973,3 +2974,73 @@ sortable.sort(function (a, b) {
 	return a[1] - b[1];
 });
 */
+
+function nicknameGenerator(name) {
+	let less = ['a', 'e', 'i', 'o', 'u'];
+	if (name.length < 4) {
+		return "Error: Name too short"
+	}
+	for (let item of less) {
+		if (item == name[2]) {
+			return name.slice(0, 4);
+		}
+	}
+	return name.slice(0, 3);
+}
+
+nicknameGenerator("Sawemer");//?
+
+function sortMyString(S) {
+	let even = '';
+	let odd = ''
+	for (let i = 0; i < S.length; i++) {
+		if (!(i % 2)) {
+			even += S[i];
+		} else {
+			odd += S[i]
+		}
+	}
+	return `${even} ${odd}`
+}
+
+sortMyString("CodeWars")
+
+function isPowerOfTwo(n) {
+	return Math.log2(n) % 1 === 0;
+}
+isPowerOfTwo(4)//?
+
+
+let List = [
+	{ '4': 'dog' },
+	{ '2': 'took' },
+	{ '3': 'his' },
+	{ '-2': 'Vatsan' },
+	{ '5': 'for' },
+	{ '6': 'a' },
+	{ '12': 'spin' }
+];
+List[4]//?
+
+function sentence(List) {
+	for (let item of List) {
+		item["2"]
+	}
+}
+
+sentence(List)//?
+
+function myLanguages(results) {
+	let result = [];
+	let best = [];
+	for (let key in results) {
+		if (results[key] >= 60) {
+			best.push([key, results[key]])
+		}
+	}
+	best.sort((a, b) => b[1] - a[1]);
+	for (let item of best) {
+		result.push(item[0]);
+	}
+	return result;
+}
