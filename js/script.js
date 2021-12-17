@@ -27,6 +27,7 @@ function howManyHoursOfTraining() {
 		'14.12': 1,
 		'15.12': 7,
 		'16.12': 4,
+		'17.12': 5,
 	};
 	let allHourWorkTime = 0;
 	let workTimeArray = [];
@@ -2973,7 +2974,6 @@ for (var vehicle in maxSpeed) {
 sortable.sort(function (a, b) {
 	return a[1] - b[1];
 });
-*/
 
 function nicknameGenerator(name) {
 	let less = ['a', 'e', 'i', 'o', 'u'];
@@ -3023,10 +3023,71 @@ let List = [
 List[4]//?
 
 function sentence(List) {
-	let best = [];
+	let resultArr = [];
 	for (let item of List) {
-		item
+		for (var key in item) {
+			resultArr.push([key, item[key]]);
+		}
 	}
+	resultArr.sort(function (a, b) {
+			return a[0] - b[0];
+		});
+	let output = '';
+	for (let item of resultArr) {
+		output += `${item[1]} `//?
+	}
+	return output.slice(0, -1);
 }
 
 sentence(List)//?
+
+
+let List = [
+	{ '4': 'dog' },
+	{ '2': 'took' },
+	{ '3': 'his' },
+	{ '-2': 'Vatsan' },
+	{ '5': 'for' },
+	{ '6': 'a' },
+	{ '12': 'spin' }
+];
+
+function sentence(a) {
+	return a.sort((a, b) => Object.keys(a) - Object.keys(b)).map(x => x[+Object.keys(x)]).join` `
+}
+sentence(List)//?
+
+
+function spread(func, args) {
+	return func(...args)
+}
+spread(function (x, y) { return x + y }, [1, 2])//?
+
+function vowelOne(s) {
+	let less = 'aeiouAEIOU';
+	let result = '';
+	for (let i = 0; i < s.length; i++) {
+		if (less.includes(s[i])) {
+			result += '1';
+		} else {
+			result += '0';
+		}
+	}
+	return result;
+}
+
+vowelOne("123, arou")//?
+vowelOne("vowelOne")//?
+*/
+
+function killer(suspectInfo, dead) {
+	for (let key in suspectInfo) {
+		suspectInfo[key]//?
+	}
+}
+
+killer({ 'James': ['Jacob', 'Bill', 'Lucas'], 
+         'Johnny': ['David', 'Kyle', 'Lucas'], 
+			'Peter': ['Lucy', 'Kyle'] }, 
+			['Lucas', 'Bill'])
+//return 'James'
