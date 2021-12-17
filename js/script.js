@@ -3082,12 +3082,23 @@ vowelOne("vowelOne")//?
 
 function killer(suspectInfo, dead) {
 	for (let key in suspectInfo) {
-		suspectInfo[key]//?
+		let kill = 0;
+		for (let item of suspectInfo[key]) {
+			if (item.includes(dead[0]) || item.includes(dead[1])) {
+				kill = kill + 1;
+			}
+		}
+		if (kill == dead.length) {
+			return key
+		}
+		
 	}
 }
 
 killer({ 'James': ['Jacob', 'Bill', 'Lucas'], 
          'Johnny': ['David', 'Kyle', 'Lucas'], 
 			'Peter': ['Lucy', 'Kyle'] }, 
-			['Lucas', 'Bill'])
+			['Lucas', 'Bill'])//?
 //return 'James'
+
+//killer({ 'Brad': [], 'Megan': ['Ben', 'Kevin'], 'Finn': [] }, ['Ben'])//?
