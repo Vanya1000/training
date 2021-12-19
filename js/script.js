@@ -29,7 +29,7 @@ function howManyHoursOfTraining() {
 		'16.12': 4,
 		'17.12': 5,
 		'18.12': 5,
-		'19.12': 0,
+		'19.12': 1,
 	};
 	let allHourWorkTime = 0;
 	let workTimeArray = [];
@@ -3093,14 +3093,22 @@ function killer(suspectInfo, dead) {
 		if (kill == dead.length) {
 			return key
 		}
-		
+
 	}
 }
 
-killer({ 'James': ['Jacob', 'Bill', 'Lucas'], 
-         'Johnny': ['David', 'Kyle', 'Lucas'], 
-			'Peter': ['Lucy', 'Kyle'] }, 
-			['Lucas', 'Bill'])//?
+killer({
+	'James': ['Jacob', 'Bill', 'Lucas'],
+	'Johnny': ['David', 'Kyle', 'Lucas'],
+	'Peter': ['Lucy', 'Kyle']
+},
+	['Lucas', 'Bill'])//?
 //return 'James'
 
 //killer({ 'Brad': [], 'Megan': ['Ben', 'Kevin'], 'Finn': [] }, ['Ben'])//?
+
+function solution(str) {
+	return str.split('').reverse().join('');
+}
+
+solution('world')//?
