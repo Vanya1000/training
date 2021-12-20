@@ -30,6 +30,7 @@ function howManyHoursOfTraining() {
 		'17.12': 5,
 		'18.12': 5,
 		'19.12': 1,
+		'20.12': 3,
 	};
 	let allHourWorkTime = 0;
 	let workTimeArray = [];
@@ -3080,20 +3081,21 @@ function vowelOne(s) {
 
 vowelOne("123, arou")//?
 vowelOne("vowelOne")//?
-*/
+
 
 function killer(suspectInfo, dead) {
 	for (let key in suspectInfo) {
 		let kill = 0;
 		for (let item of suspectInfo[key]) {
-			if (item.includes(dead[0]) || item.includes(dead[1])) {
-				kill = kill + 1;
+			for (let i = 0; i < dead.length; i++){
+				if (item.includes(dead[i])) {
+					kill = kill + 1;
+				}
 			}
 		}
 		if (kill == dead.length) {
 			return key
 		}
-
 	}
 }
 
@@ -3103,12 +3105,51 @@ killer({
 	'Peter': ['Lucy', 'Kyle']
 },
 	['Lucas', 'Bill'])//?
-//return 'James'
 
-//killer({ 'Brad': [], 'Megan': ['Ben', 'Kevin'], 'Finn': [] }, ['Ben'])//?
+killer({ 'Brad': [], 'Megan': ['Ben', 'Kevin'], 'Finn': [] }, ['Ben'])//?
 
-function solution(str) {
-	return str.split('').reverse().join('');
+
+let data1 = [1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0];
+
+
+function dataReverse(data) {
+	let newMatrix = [];
+	for (let i = 0; i < data.length; i += 8) {
+		newMatrix.push(data.slice(i, i + 8));
+		
+	}
+	return [].concat(...newMatrix.reverse()) //?
 }
 
-solution('world')//?
+dataReverse(data1)//?
+*/
+function rgb(r, g, b) {
+	r = (r < 0 ? 0 : r > 255 ? 255 : r).toString(16);
+	g = (g < 0 ? 0 : g > 255 ? 255 : g).toString(16);
+	b = (b < 0 ? 0 : b > 255 ? 255 : b).toString(16);
+
+	r = r.length < 2 ? '0' + r : r;
+	g = g.length < 2 ? '0' + g : g;
+	b = b.length < 2 ? '0' + b : b;
+	return r.toUpperCase() + g.toUpperCase() + b.toUpperCase();
+}
+
+rgb(173, 255, 7)//?
+
+
+
+function colorOf(r, g, b) {
+	r = r.toString(16);
+	g = g.toString(16);
+	b = b.toString(16);
+	if (r.length < 2) {
+		r = '0' + r;
+	} if (g.length < 2) {
+		g = '0' + g;
+	} if (b.length < 2) {
+		b = '0' + b;
+	}
+	return r + g + b;
+}
+
+colorOf(300, 255, 255)//?
