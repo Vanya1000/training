@@ -30,7 +30,7 @@ function howManyHoursOfTraining() {
 		'17.12': 5,
 		'18.12': 5,
 		'19.12': 1,
-		'20.12': 3,
+		'20.12': 4,
 	};
 	let allHourWorkTime = 0;
 	let workTimeArray = [];
@@ -3122,34 +3122,43 @@ function dataReverse(data) {
 }
 
 dataReverse(data1)//?
-*/
-function rgb(r, g, b) {
-	r = (r < 0 ? 0 : r > 255 ? 255 : r).toString(16);
-	g = (g < 0 ? 0 : g > 255 ? 255 : g).toString(16);
-	b = (b < 0 ? 0 : b > 255 ? 255 : b).toString(16);
 
-	r = r.length < 2 ? '0' + r : r;
-	g = g.length < 2 ? '0' + g : g;
-	b = b.length < 2 ? '0' + b : b;
-	return r.toUpperCase() + g.toUpperCase() + b.toUpperCase();
+
+function rgb(r, g, b) {
+	return convert(r) + convert(g) + convert(b)
+	function convert(num) {
+		r = (num < 0 ? 0 : num > 255 ? 255 : num).toString(16);
+		r = r.length < 2 ? '0' + r : r;
+		return r.toUpperCase();
+	}
 }
 
 rgb(173, 255, 7)//?
+*/
 
 
-
-function colorOf(r, g, b) {
-	r = r.toString(16);
-	g = g.toString(16);
-	b = b.toString(16);
-	if (r.length < 2) {
-		r = '0' + r;
-	} if (g.length < 2) {
-		g = '0' + g;
-	} if (b.length < 2) {
-		b = '0' + b;
+function strCount(obj) {
+	let count = 0;
+	for (let key in obj) {
+		if (typeof (obj[key]) == 'string') {
+			count += 1;
+			console.log(obj[key])
+		} else if (Array.isArray(obj[key])) {
+			for (let item of obj[key]) {
+				if (typeof (item) == 'string') {
+					count += 1;
+					console.log(obj[key]);
+				}
+			}
+		}
 	}
-	return r + g + b;
+	return count;
 }
 
-colorOf(300, 255, 255)//?
+strCount({
+	first: "1",
+	second: "2",
+	third: false,
+	fourth: ["anytime", 2, 3, 4],
+	fifth: null
+})//?
