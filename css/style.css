@@ -130,3 +130,34 @@ button:hover {
 	padding: 10px 0px 0px 0px;
 	color: red;
 }
+
+.qwe {
+	color: red;
+	height: 100px;
+	animation-duration: 500ms;
+}
+
+.animation__circle{
+
+width: 100px;
+height: 100px;
+border-radius: 50%;
+background-color: #5e5373;
+position: relative;
+animation-name: circle;
+animation-duration: 0.5s;
+}
+
+/* ключевые кадры */
+@keyframes circle{
+
+0%{
+left: 0%;
+}
+50%{
+border-radius: 0%;
+}
+100%{
+left: 50%;
+}
+}

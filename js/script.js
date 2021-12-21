@@ -31,6 +31,7 @@ function howManyHoursOfTraining() {
 		'18.12': 5,
 		'19.12': 1,
 		'20.12': 4,
+		'21.12': 6,
 	};
 	let allHourWorkTime = 0;
 	let workTimeArray = [];
@@ -3137,24 +3138,6 @@ rgb(173, 255, 7)//?
 */
 
 
-function strCount(obj) {
-	let count = 0;
-	for (let key in obj) {
-		if (typeof (obj[key]) == 'string') {
-			count += 1;
-			console.log(obj[key])
-		} else if (Array.isArray(obj[key])) {
-			for (let item of obj[key]) {
-				if (typeof (item) == 'string') {
-					count += 1;
-					console.log(obj[key]);
-				}
-			}
-		}
-	}
-	return count;
-}
-
 strCount({
 	first: "1",
 	second: "2",
@@ -3162,3 +3145,16 @@ strCount({
 	fourth: ["anytime", 2, 3, 4],
 	fifth: null
 })//?
+
+function strCount(obj) {
+	let count = 0;
+	for (let key in obj) {
+		if (typeof (obj[key]) == 'object') {
+			count += strCount(obj[key]);
+		}
+		if (typeof (obj[key]) == 'string') {
+			count += 1;
+		}
+	}
+	return count;
+}
