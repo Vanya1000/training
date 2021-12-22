@@ -3190,4 +3190,19 @@ function likes(names) {
 }
 
 likes(["Alex", "Jacob", "Mark", "Max"])//?
+
+
+function toWeirdCase(string) {
+	let arr = string.split(' ');
+	let result = arr.map(item => {
+		let str = '';
+		for(let i = 0; i < item.length; i++) {
+			i % 2 ? str += item[i].toLowerCase() : str +=  item[i].toUpperCase();
+		}
+		return str
+	});
+	return result.join(' ')//?
+}
+
+toWeirdCase('This is a test')//?
 */
