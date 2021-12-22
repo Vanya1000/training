@@ -32,6 +32,7 @@ function howManyHoursOfTraining() {
 		'19.12': 1,
 		'20.12': 4,
 		'21.12': 6,
+		'22.12': 7,
 	};
 	let allHourWorkTime = 0;
 	let workTimeArray = [];
@@ -3135,7 +3136,7 @@ function rgb(r, g, b) {
 }
 
 rgb(173, 255, 7)//?
-*/
+
 
 
 strCount({
@@ -3158,3 +3159,35 @@ function strCount(obj) {
 	}
 	return count;
 }
+function getCard() {
+	function getRandomArbitrary(min, max) {
+		return Math.floor(Math.random() * (max - min) + min);
+	}
+	function calc (alph, count, min, max) {
+		let arr = [];
+		for (let i = 0; i < count; i++) {
+			
+			arr.push(alph + getRandomArbitrary(min, max))
+		}
+		return arr;
+	}
+	return calc('B', 5, 1, 15).concat(calc('I', 5, 16, 30), calc('N', 4, 31, 45), calc('G', 5, 46, 60), calc('O', 5, 61, 75));
+}
+console.log(getCard());
+
+function likes(names) {
+	if (names.length < 1) {
+		return "no one likes this"
+	} else if (names.length === 1) {
+		return `${names[0]} likes this`
+	} else if (names.length === 2) {
+		return `${names[0]} and ${names[1]} like this`
+	} else if (names.length === 3) {
+		return `${names[0]}, ${names[1]} and ${names[2]} like this`
+	} else {
+		return `${names[0]}, ${names[1]} and ${names.length - 2} others like this`
+	}
+}
+
+likes(["Alex", "Jacob", "Mark", "Max"])//?
+*/
