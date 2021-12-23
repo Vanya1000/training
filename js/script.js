@@ -33,6 +33,7 @@ function howManyHoursOfTraining() {
 		'20.12': 4,
 		'21.12': 6,
 		'22.12': 7,
+		'23.12': 5,
 	};
 	let allHourWorkTime = 0;
 	let workTimeArray = [];
@@ -3205,4 +3206,87 @@ function toWeirdCase(string) {
 }
 
 toWeirdCase('This is a test')//?
+
+var countBits = function (n) {
+	let bynary = n.toString(2);
+	let acc = 0;
+	for (let item of bynary) {
+		item == 1 ? acc+=1 : item ;
+	}
+};
+
+
+countBits(1234);//?
+
+
+var Alphabet = {
+	BINARY: '01',
+	OCTAL: '01234567',
+	DECIMAL: '0123456789',
+	HEXA_DECIMAL: '0123456789abcdef',
+	ALPHA_LOWER: 'abcdefghijklmnopqrstuvwxyz',
+	ALPHA_UPPER: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+	ALPHA: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+	ALPHA_NUMERIC: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+};
+
+function convert(input, source, target) {
+	let baseIn = source.length//?
+	let baseOut = target.length//?
+	for (let d of input) {
+	}
+	return parseInt(input, baseIn)
+}
+
+convert("15", Alphabet.DECIMAL, Alphabet.ALPHA_NUMERIC);//?
+
+15..toString(8)//?
+parseInt(17, 8)//?
+
+var whatTimeIsIt = function (angle) {
+	console.log(angle)
+	if (angle === 0) {
+		return '12:00'
+	}
+	let oneMin = 0.5;
+	let allMin = angle / oneMin;
+	let hour = Math.floor(allMin / 60) + '';
+	let min = Math.floor(allMin - (hour * 60)) + '';
+
+	if (hour.length < 2) {
+		hour = '0' + hour
+	}
+	if (min.length < 2) {
+		min = '0' + min
+	}
+	if (hour == 00) {
+		hour = '12';
+	}
+	return `${hour}:${min}`
+}
+
+whatTimeIsIt(`19.620599549224345`)//?
+//"02:30"
+
+
+const isPrime = num => {
+	for (let i = 2, s = Math.sqrt(num); i <= s; i++)
+		if (num % i === 0) return false;
+	return num > 1;
+}
+
+isPrime(3);//?
+isPrime(75);//?
+
+function bingo(ticket, win) {
+	let miniWin = 0;
+	for (let item of ticket) {
+		if (item[0].includes(String.fromCharCode(item[1]))) {
+			miniWin += 1;
+		}
+	}
+	return miniWin >= win ? 'Winner!' : 'Loser!'
+}
+
+bingo([['ABC', 65], ['HGR', 74], ['BYHT', 74]], 2)//?
 */
