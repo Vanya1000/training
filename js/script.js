@@ -34,6 +34,7 @@ function howManyHoursOfTraining() {
 		'21.12': 6,
 		'22.12': 7,
 		'23.12': 5,
+		'24.12': 6,
 	};
 	let allHourWorkTime = 0;
 	let workTimeArray = [];
@@ -3218,28 +3219,6 @@ var countBits = function (n) {
 
 countBits(1234);//?
 
-
-var Alphabet = {
-	BINARY: '01',
-	OCTAL: '01234567',
-	DECIMAL: '0123456789',
-	HEXA_DECIMAL: '0123456789abcdef',
-	ALPHA_LOWER: 'abcdefghijklmnopqrstuvwxyz',
-	ALPHA_UPPER: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-	ALPHA: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
-	ALPHA_NUMERIC: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-};
-
-function convert(input, source, target) {
-	let baseIn = source.length//?
-	let baseOut = target.length//?
-	for (let d of input) {
-	}
-	return parseInt(input, baseIn)
-}
-
-convert("15", Alphabet.DECIMAL, Alphabet.ALPHA_NUMERIC);//?
-
 15..toString(8)//?
 parseInt(17, 8)//?
 
@@ -3289,4 +3268,84 @@ function bingo(ticket, win) {
 }
 
 bingo([['ABC', 65], ['HGR', 74], ['BYHT', 74]], 2)//?
+for (let i = 0; i < skolkoBase; i++) {
+		for (let j = (result.length - 1); j >= 0; j--) {
+			if (result[j] < (target.length - 1)) {
+				result[j] = result[j] + 1;
+			} else {
+				result.push('0')
+			}
+		}
+	}
+
+
+var Alphabet = {
+	BINARY: '01',
+	OCTAL: '01234567',
+	DECIMAL: '0123456789',
+	HEXA_DECIMAL: '0123456789abcdef',
+	ALPHA_LOWER: 'abcdefghijklmnopqrstuvwxyz',
+	ALPHA_UPPER: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+	ALPHA: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+	ALPHA_NUMERIC: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+};
+
+function convert(input, source, target) {
+	let s = 0; 
+	let str = '';
+	for (let i = 0; i < input.length; i++) {
+		s = s * source.length + source.indexOf(input[i]);
+	}
+	s//?
+	while (s > 0) {
+		str = target[s % target.length] + str;
+		s = Math.floor(s / target.length);
+	}
+	return str ? str : target[0];
+}
+
+convert("15", Alphabet.DECIMAL, Alphabet.BINARY);//?
+convert("15", Alphabet.DECIMAL, Alphabet.OCTAL);//? 
+convert("1010", Alphabet.BINARY, Alphabet.DECIMAL); //?
+convert("1010", Alphabet.BINARY, Alphabet.HEXA_DECIMAL);//?
+convert("0", Alphabet.DECIMAL, Alphabet.ALPHA);//?
+convert("27", Alphabet.DECIMAL, Alphabet.ALPHA_LOWER); //?
+convert("hello", Alphabet.ALPHA_LOWER, Alphabet.HEXA_DECIMAL); //?
+convert("SAME", Alphabet.ALPHA_UPPER, Alphabet.ALPHA_UPPER); //?
+
+
+function toReadable(number) {
+	let num = ('' + number).split('');//?
+	let twelve = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
+	let ninety = ['thir', 'four', 'fif', 'six', 'seven', 'eigh', 'nine'];
+	let fromTwelve = ['twen', 'thir', 'for', 'fif', 'six', 'seven', 'eigh', 'nine']
+	let teen = 'teen'
+	let ty = 'ty';
+	let hundred = 'hundred';
+	switch (num.length) {
+		case 1:
+			return twelve[number];
+		case 2:
+			if (number < 13) {
+				return twelve[number];
+			}else if (number < 20) {
+				return ninety[number - 13] + teen;
+			} else if (number <= 99) {
+				return num[1] == 0 ? `${fromTwelve[num[0] - 2]}${ty}` : `${fromTwelve[num[0] - 2]}${ty} ${twelve[num[1]]}`;
+			}
+		case 3:
+				let first = `${twelve[num[0]]} ${hundred}`;
+				let outer = toReadable(+(num[1] + num[2]));
+				return num[1] == 0 && num[2] == 0 ? first : `${first} ${outer}`;
+		default:
+			return 'enter valid number';
+	}
+}
+
+toReadable(820);//?
 */
+function reverse(n) {
+	return +(('' + (Math.abs(n))).split('').reverse().join(''));
+}
+
+reverse(-192);//?
