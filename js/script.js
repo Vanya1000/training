@@ -3343,9 +3343,10 @@ function toReadable(number) {
 }
 
 toReadable(820);//?
-*/
+
 function reverse(n) {
 	return +(('' + (Math.abs(n))).split('').reverse().join(''));
 }
 
-reverse(-192);//?
+reverse(-192);
+*/
