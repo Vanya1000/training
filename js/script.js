@@ -38,6 +38,7 @@ function howManyHoursOfTraining() {
 		'24.12': 2,
 		'25.12': 0,
 		'27.12': 11,
+		'28.12': 4,
 	};
 	let allHourWorkTime = 0;
 	let workTimeArray = [];
@@ -3352,7 +3353,6 @@ function reverse(n) {
 }
 
 reverse(-192);//?
-*/
 const MORSE_TABLE = {
 	'.-': 'a',
 	'-...': 'b',
@@ -3397,10 +3397,30 @@ MORSE_TABLE['----.']//?
 
 function decode(expr) {
 	let arr = expr.match(/.{10}/g);//?
-	let morse = arr.map((item) => item.replace(/0{2,}/, '').replace(/10/g, '.').replace(/11/g, '-').replace(/\*/g, ' '));//?
-	return (morse.map((item) => (item == 0) ? ' ' : MORSE_TABLE[item])).join('');
+	let morse = arr.map((item) => item.replace(/0{2,}/, '').replace(/10/g, '.').replace(/11/g, '-').replace(/\* /g, ' '));//?
+return (morse.map((item) => (item == 0) ? ' ' : MORSE_TABLE[item])).join('');
 
 }
 
 decode("10111111111111101010001110101000101011101010111111101010101011111111101110101010")//?
+
+
+function absentVowel(x) {
+	let arr = ['a', 'e', 'i', 'o', 'u'];
+	let resultIndex;
+	arr.forEach((item, index) => {
+		if (!x.includes(item)) {
+			resultIndex = index;
+		}
+	})
+	return resultIndex;
+}
+
+absentVowel("John Doe hs seven red pples under his bsket")//?
+
+let getMiddle = (s) => s.length % 2 ? s[(s.length - 1) / 2] : `${s[s.length / 2 - 1]}${s[s.length / 2]}`;
+
+getMiddle("test")//?
+getMiddle("testing")//?
+*/
 
