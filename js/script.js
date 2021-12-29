@@ -40,16 +40,12 @@ function howManyHoursOfTraining() {
 		'27.12': 11,
 		'28.12': 4,
 	};
-	let allHourWorkTime = 0;
-	let workTimeArray = [];
-	for (let key in workTime) {
-		allHourWorkTime += workTime[key];
-		workTimeArray.push(workTime[key]);
-	}
+	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
+	let workTimeArray = Object.values(workTime);
 	return `${allHourWorkTime} hour learning.
 ${(allHourWorkTime / workTimeArray.length).toFixed(1)} hours a day. Count day: ${workTimeArray.length}`;
 }
-console.log(howManyHoursOfTraining());//?
+console.log(howManyHoursOfTraining());
 /*let userName = 22;
 console.log(typeof userName);
 let i = 20 > 18;
@@ -3423,4 +3419,3 @@ let getMiddle = (s) => s.length % 2 ? s[(s.length - 1) / 2] : `${s[s.length / 2 
 getMiddle("test")//?
 getMiddle("testing")//?
 */
-
