@@ -42,6 +42,7 @@ function howManyHoursOfTraining() {
 		'29.12': 8,
 		'30.12': 5,
 		'31.12': 4,
+		'01.01': 7,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -3123,7 +3124,7 @@ function dataReverse(data) {
 	let newMatrix = [];
 	for (let i = 0; i < data.length; i += 8) {
 		newMatrix.push(data.slice(i, i + 8));
-		
+
 	}
 	return [].concat(...newMatrix.reverse()) //?
 }
@@ -3171,7 +3172,7 @@ function getCard() {
 	function calc (alph, count, min, max) {
 		let arr = [];
 		for (let i = 0; i < count; i++) {
-			
+
 			arr.push(alph + getRandomArbitrary(min, max))
 		}
 		return arr;
@@ -3294,7 +3295,7 @@ var Alphabet = {
 };
 
 function convert(input, source, target) {
-	let s = 0; 
+	let s = 0;
 	let str = '';
 	for (let i = 0; i < input.length; i++) {
 		s = s * source.length + source.indexOf(input[i]);
@@ -3308,7 +3309,7 @@ function convert(input, source, target) {
 }
 
 convert("15", Alphabet.DECIMAL, Alphabet.BINARY);//?
-convert("15", Alphabet.DECIMAL, Alphabet.OCTAL);//? 
+convert("15", Alphabet.DECIMAL, Alphabet.OCTAL);//?
 convert("1010", Alphabet.BINARY, Alphabet.DECIMAL); //?
 convert("1010", Alphabet.BINARY, Alphabet.HEXA_DECIMAL);//?
 convert("0", Alphabet.DECIMAL, Alphabet.ALPHA);//?
@@ -3422,3 +3423,4 @@ let getMiddle = (s) => s.length % 2 ? s[(s.length - 1) / 2] : `${s[s.length / 2 
 getMiddle("test")//?
 getMiddle("testing")//?
 */
+//https://rolling-scopes-school.github.io/vanya1000-JSFEPRESCHOOL/portfolio/
