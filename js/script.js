@@ -45,6 +45,7 @@ function howManyHoursOfTraining() {
 		'01.01': 7,
 		'02.01': 5,
 		'03.01': 7,
+		'04.01': 9,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -3425,4 +3426,4 @@ let getMiddle = (s) => s.length % 2 ? s[(s.length - 1) / 2] : `${s[s.length / 2 
 getMiddle("test")//?
 getMiddle("testing")//?
 */
-//https://rolling-scopes-school.github.io/vanya1000-JSFEPRESCHOOL/portfolio/
+
