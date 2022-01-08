@@ -49,6 +49,7 @@ function howManyHoursOfTraining() {
 		'05.01': 7,
 		'06.01': 6,
 		'07.01': 2,
+		'08.01': 8,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -3428,5 +3429,62 @@ let getMiddle = (s) => s.length % 2 ? s[(s.length - 1) / 2] : `${s[s.length / 2 
 
 getMiddle("test")//?
 getMiddle("testing")//?
-*/
 
+
+const matrix = [
+,
+];
+
+function towelSort(matrix = []) {
+	let resultArr = [];
+	matrix.forEach((element, index) => {
+		index % 2 ? resultArr.push(...element.reverse()) : resultArr.push(...element)
+	});
+	return resultArr;
+}
+
+towelSort()//?
+function check(str, bracketsConfig) {
+	if (str.length % 2 !== 0) {
+		return false;
+	}
+	let stack = [];
+	for (let i = 0; i < str.length; i++) {
+		for (let j = 0; j < bracketsConfig.length; j++) {
+			if (str[i] == bracketsConfig[j][1] &&
+				stack[stack.length - 1] == bracketsConfig[j][0]) {
+				stack.pop(str[i]);
+			} else if (str[i] == bracketsConfig[j][0]) {
+				stack.push(str[i]);
+			}
+		}
+	}
+	return Boolean(!stack.length);
+}
+
+
+const config1 = [['(', ')']];
+const config2 = [['(', ')'], ['[', ']']];
+const config4 = [['|', '|']];
+const config5 = [['(', ')'], ['|', '|']];
+const config6 = [['1', '2'], ['3', '4'], ['5', '6'], ['7', '7'], ['8', '8']];
+const config7 = [['(', ')'], ['[', ']'], ['{', '}'], ['|', '|']];
+
+const config3 = [['(', ')'], ['[', ']'], ['{', '}']];
+
+function check(str, bracketsConfig) {
+	const arrPair = bracketsConfig.map((pair) => pair.join(''))//?
+	for (let i = 0; i < arrPair.length;) {
+		if (str.includes(arrPair[i])) {
+			str = str.replace(arrPair[i], '')
+			i = 0
+		}
+		else {i++}
+	}
+	return Boolean(!str.length);
+}
+
+
+check('||', config4)//?
+check('|()|', config5)//?
+*/
