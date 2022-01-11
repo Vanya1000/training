@@ -1,4 +1,4 @@
-"use strict";
+
 function howManyHoursOfTraining() {
 	let workTime = {
 		'21.11': 6,
@@ -52,6 +52,7 @@ function howManyHoursOfTraining() {
 		'08.01': 8,
 		'09.01': 9,
 		'10.01': 5,
+		'11.01': 6,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -59,6 +60,16 @@ function howManyHoursOfTraining() {
 ${(allHourWorkTime / workTimeArray.length).toFixed(1)} hours a day. Count day: ${workTimeArray.length}`;
 }
 console.log(howManyHoursOfTraining());
+
+
+
+
+
+let a = 1 / 0;
+
+
+console.log(typeof(a));//?
+
 /*let userName = 22;
 console.log(typeof userName);
 let i = 20 > 18;
