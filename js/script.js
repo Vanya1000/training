@@ -54,7 +54,8 @@ function howManyHoursOfTraining() {
 		'10.01': 5,
 		'11.01': 6,
 		'12.01': 7,
-		'12.01': 6,
+		'13.01': 6,
+		'14.01': 8,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -64,13 +65,27 @@ ${(allHourWorkTime / workTimeArray.length).toFixed(1)} hours a day. Count day: $
 console.log(howManyHoursOfTraining());
 
 
+let a = {
+	'21.11': 6,
+	'22.11': 4,
+	'23.11': 4,
+	'24.11': 3,
+	work: {
+		prof: 'gryz'
+	}
+};//?
+
+let b = {
+	...a
+}//?
+b.work = {
+	...a.work
+}
+a.work.prof = 'it'
+a//?
+b//?
 
 
-
-let a = 1 / 0;
-
-
-console.log(typeof (a));//?
 
 /*let userName = 22;
 console.log(typeof userName);
