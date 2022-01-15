@@ -56,6 +56,7 @@ function howManyHoursOfTraining() {
 		'12.01': 7,
 		'13.01': 6,
 		'14.01': 8,
+		'15.01': 5,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -64,26 +65,6 @@ ${(allHourWorkTime / workTimeArray.length).toFixed(1)} hours a day. Count day: $
 }
 console.log(howManyHoursOfTraining());
 
-
-let a = {
-	'21.11': 6,
-	'22.11': 4,
-	'23.11': 4,
-	'24.11': 3,
-	work: {
-		prof: 'gryz'
-	}
-};//?
-
-let b = {
-	...a
-}//?
-b.work = {
-	...a.work
-}
-a.work.prof = 'it'
-a//?
-b//?
 
 
 
@@ -3517,4 +3498,9 @@ function check(str, bracketsConfig) {
 
 check('||', config4)//?
 check('|()|', config5)//?
+
+
+const removeConsecutiveDuplicates = s => s.split(' ').filter((item, index, arr) => item !== arr[index + 1]).join(' ')
+
+removeConsecutiveDuplicates('alpha beta beta gamma gamma gamma delta alpha beta beta gamma gamma gamma delta')//?
 */
