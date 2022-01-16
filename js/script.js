@@ -57,6 +57,7 @@ function howManyHoursOfTraining() {
 		'13.01': 6,
 		'14.01': 8,
 		'15.01': 5,
+		'16.01': 7,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -66,7 +67,8 @@ ${(allHourWorkTime / workTimeArray.length).toFixed(1)} hours a day. Count day: $
 console.log(howManyHoursOfTraining());
 
 
-
+let rty = 5;
+rty === 5 && 5;//?
 
 /*let userName = 22;
 console.log(typeof userName);
@@ -3503,4 +3505,17 @@ check('|()|', config5)//?
 const removeConsecutiveDuplicates = s => s.split(' ').filter((item, index, arr) => item !== arr[index + 1]).join(' ')
 
 removeConsecutiveDuplicates('alpha beta beta gamma gamma gamma delta alpha beta beta gamma gamma gamma delta')//?
+
+
+function remove(string) {
+	let arr = string.split('')//?
+	let symbol = [];
+	let text = string.split('!').join('')//?
+	for (let i = arr.length - 1; arr[i].includes('!'); i--) {
+			symbol.push(arr[i]);
+		}
+	return [...text, ...symbol].join('')
+}
+
+remove("!Hi!!!")//?
 */
