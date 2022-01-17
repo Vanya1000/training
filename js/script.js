@@ -58,6 +58,7 @@ function howManyHoursOfTraining() {
 		'14.01': 8,
 		'15.01': 5,
 		'16.01': 7,
+		'17.01': 4,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -67,8 +68,8 @@ ${(allHourWorkTime / workTimeArray.length).toFixed(1)} hours a day. Count day: $
 console.log(howManyHoursOfTraining());
 
 
-let rty = 5;
-rty === 5 && 5;//?
+let rty_567 = 5;
+rty_567 === 5 && 5;//?
 
 /*let userName = 22;
 console.log(typeof userName);
@@ -3518,4 +3519,11 @@ function remove(string) {
 }
 
 remove("!Hi!!!")//?
+
+function jumpTo(n) {
+	let t = Math.abs(n), count = 0;
+	for (let pos = 0; pos < t || (pos - t) % 2; count++, pos += count) { }
+	return count;
+} 
+jumpTo(6)//?
 */
