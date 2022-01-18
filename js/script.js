@@ -59,6 +59,7 @@ function howManyHoursOfTraining() {
 		'15.01': 5,
 		'16.01': 7,
 		'17.01': 4,
+		'18.01': 5,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -3526,4 +3527,18 @@ function jumpTo(n) {
 	return count;
 } 
 jumpTo(6)//?
+
+
+function nbDig(n, d) {
+	let arrSearch = [];
+	for (let i = 0; i <= n; i++) {
+		let num2 = '' + Math.pow(i, 2);
+		for (let item of num2) {
+			item.includes(d) && arrSearch.push('true')
+		}
+	}
+	return arrSearch.length
+}
+
+nbDig(5750, 0)//?
 */
