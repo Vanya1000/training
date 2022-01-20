@@ -61,6 +61,7 @@ function howManyHoursOfTraining() {
 		'17.01': 4,
 		'18.01': 5,
 		'19.01': 6,
+		'20.01': 3,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -73,14 +74,14 @@ console.log(howManyHoursOfTraining());
 let rty_567 = 5;
 rty_567 === 5 && 5;//?
 
-function makeCounter() { 
+function makeCounter() {
 	let count = 0;
 	let hren = 'hren'
-	return function counter() { 
-		count += 1; 
-		return [count, hren]; 
-	} 
-} 
+	return function counter() {
+		count += 1;
+		return [count, hren];
+	}
+}
 
 let doCount = makeCounter()
 
