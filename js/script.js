@@ -64,6 +64,7 @@ function howManyHoursOfTraining() {
 		'20.01': 3,
 		'21.01': 5,
 		'22.01': 7,
+		'22.01': 6,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -3563,3 +3564,24 @@ function nbDig(n, d) {
 
 nbDig(5750, 0)//?
 */
+
+/* function getParticipants(handshakes) {
+	let participants = 1;
+	let maxH = 0;
+	while (maxH < handshakes) {
+		participants++;
+		maxH = maxH + participants - 1;
+		maxH
+	}
+	return pparticipants;
+} */
+function getParticipants(handshakes) {
+	let participant = 1;
+	let maxHandshake = 0;
+	while (maxHandshake < handshakes) {
+		participant++;
+		maxHandshake = maxHandshake + participant -1;
+	}
+	return participant;
+}
+getParticipants(7)//?
