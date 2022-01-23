@@ -3541,4 +3541,41 @@ function nbDig(n, d) {
 }
 
 nbDig(5750, 0)//?
+
+
+//str.replace(/a/g, '')//?
+
+
+function disemvowel(str) {
+	return str.replace(/[aeiouAEIOU]/g, '')
+}
+
+
+disemvowel("This website is for losers LOL!")//?
+
+function isIsogram(str) {
+	let arralph = str.toLowerCase().replace(/ /g, '').split('');//?
+	for (let item of arralph){
+		let povt = 0;
+		for (let i = 0; i < arralph.length; i++) {
+			item == arralph[i] && povt++
+		}
+		if (povt > 1) {
+			return false
+		}
+	}
+	return true;
+}
+
+isIsogram(" ")//?
+
+
+function explode(s) {
+	return s.split('').map((item) => item.repeat(item)).join('')
+}
+
+explode("312")//?
 */
+function getParticipants(handshakes) {
+	// ...
+}
