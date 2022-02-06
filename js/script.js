@@ -78,6 +78,7 @@ function howManyHoursOfTraining() {
 		'03.02': 5,
 		'04.02': 8,
 		'04.02': 7,
+		'05.02': 6,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -3633,4 +3634,22 @@ function getParticipants(handshakes) {
 	return participant;
 }
 getParticipants(7)//?
+
+function revrot(str, sz) {
+	if (sz <= 0 || str === '') { return ''}
+	let arr = str.split('')//?
+	let arrResult = [];
+	for (let i = 0; i < arr.length; i = i + sz) {
+		let temporary = arr.slice(i, sz + i);
+		temporary.length === sz && arrResult.push(temporary.join(''))
+	}
+	let output = arrResult.map((item) => {
+		let numSum = item.split('').reduce((sum, current) => +sum + +current )
+		return numSum % 2 ? item.slice(1, sz) + item.slice(0, 1) : item.split('').reverse().join('')
+	})
+	return output.join('')
+}
+
+revrot("", 6)//?
+//revrot("664438769", 8)//?
 */
