@@ -77,8 +77,9 @@ function howManyHoursOfTraining() {
 		'02.02': 6,
 		'03.02': 5,
 		'04.02': 8,
-		'04.02': 7,
-		'05.02': 6,
+		'05.02': 7,
+		'06.02': 6,
+		'07.02': 5,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -3652,4 +3653,34 @@ function revrot(str, sz) {
 
 revrot("", 6)//?
 //revrot("664438769", 8)//?
+
+
+function solution(number) {
+	if (number < 0) { return 0}
+	let arrMultiple = [];
+	function getMultiple (krat,number) {
+		for (num = 0; num < number; num++) {
+			if (num % krat === 0) {
+				if (!arrMultiple.includes(num)) { arrMultiple.push(num)}
+			}
+		}
+	}
+	getMultiple(3,number);
+	getMultiple(5, number);
+
+	let result = arrMultiple.reduce((acc, item) => acc + item, 0)
+	return result
+}
+
+solution(6)//?
+
+const head = (arr) => arr[0];
+const tail = (arr) => arr.slice(1, arr.length );
+const init = (arr) => arr.slice(0, arr.length - 1);
+const last = (arr) => arr[arr.length - 1];
+
+head([5, 1])
+tail([1, 5, 7, 9])
+init([1, 5, 7, 9])
+last([7, 2])//?
 */
