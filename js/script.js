@@ -88,6 +88,7 @@ function howManyHoursOfTraining() {
 		'13.02': 4,
 		'14.02': 5,
 		'15.02': 4,
+		'16.02': 3,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -3691,4 +3692,35 @@ head([5, 1])
 tail([1, 5, 7, 9])
 init([1, 5, 7, 9])
 last([7, 2])//?
+
+function deepCount(a) {
+	let count = 0;
+	function recursive (arr) {
+		count += arr.length;
+		for (let arrItem of arr) {
+			if (Array.isArray(arrItem)) {
+				recursive(arrItem)
+			}
+		}
+	}
+	recursive(a)
+	return count;
+}
+
+deepCount([1, 2, [3, 4, [5]]])//?
+deepCount([[[[[[[[[]]]]]]]]])//?
 */
+
+let validWord = function (dictionary, word) {
+	let checkWord = word;
+	dictionary.forEach(element => {
+		if (checkWord.indexOf(element) >= 0) {
+			var regex = new RegExp(`${element}`, 'g');
+			checkWord = checkWord.replace(regex, '');
+			checkWord//?
+		}
+	});
+	return !checkWord
+};
+
+validWord(['ab', 'a', 'bc'], 'abc')//?
