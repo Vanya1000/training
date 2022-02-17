@@ -89,6 +89,7 @@ function howManyHoursOfTraining() {
 		'14.02': 5,
 		'15.02': 4,
 		'16.02': 3,
+		'17.02': 2,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -3711,16 +3712,37 @@ deepCount([1, 2, [3, 4, [5]]])//?
 deepCount([[[[[[[[[]]]]]]]]])//?
 */
 
-let validWord = function (dictionary, word) {
+/* let validWord = function (dictionary, word) {
+	console.log(dictionary);
+	console.log(word);
 	let checkWord = word;
+	let resultWord = [];
+
 	dictionary.forEach(element => {
 		if (checkWord.indexOf(element) >= 0) {
-			var regex = new RegExp(`${element}`, 'g');
-			checkWord = checkWord.replace(regex, '');
-			checkWord//?
+			for (let ind = 0; ind < checkWord.length; ind++) {
+				if (checkWord.indexOf(element, ind) >= 0) {
+					let index = checkWord.indexOf(element, ind);
+					resultWord[index] = element
+				}
+			}
 		}
 	});
-	return !checkWord
-};
-
-validWord(['ab', 'a', 'bc'], 'abc')//?
+	resultWord
+	return resultWord.join('').includes(word);
+}; */
+function validWord(dictionary, word) {
+	for (let item of dictionary) {
+		if (word.startsWith(item) && validWord(dictionary, word.slice(item.length))) return true;
+	}
+	return !word;
+}
+validWord([
+  'maje', 'l',    'a',   'm',
+  'mjo',  'couz', 'nsl', 'jyn',
+  'nlh',  'zv',   'n',   't',
+  'tlyq', 'nl',   'l',   'b',
+  'u',    'qyi',  'nla', 'cyuk',
+  'zv',   'cuyb', 'un',  'dqg',
+  'rwy',  'zv',   'cr',  'zvk'
+], 'majel')//?
