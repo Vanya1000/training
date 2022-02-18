@@ -90,6 +90,7 @@ function howManyHoursOfTraining() {
 		'15.02': 4,
 		'16.02': 3,
 		'17.02': 2,
+		'18.02': 4,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -3730,7 +3731,7 @@ deepCount([[[[[[[[[]]]]]]]]])//?
 	});
 	resultWord
 	return resultWord.join('').includes(word);
-}; */
+}; 
 function validWord(dictionary, word) {
 	for (let item of dictionary) {
 		if (word.startsWith(item) && validWord(dictionary, word.slice(item.length))) return true;
@@ -3746,3 +3747,23 @@ validWord([
   'zv',   'cuyb', 'un',  'dqg',
   'rwy',  'zv',   'cr',  'zvk'
 ], 'majel')//?
+*/
+
+num = 10;
+num.toString(2)//?
+
+function sortByBit(arr) {
+	return arr.sort((a, b) => {
+		a2 = a.toString(2).split(1).length - 1;//?
+		b2 = b.toString(2).split(1).length - 1;//?
+		if (a2 > b2) return 1;
+		if (a2 == b2) {
+			if (a > b) return 1;
+			if (a == b) return 0;
+			if (a < b) return -1;
+		}
+		if (a2 < b2) return -1;
+	})
+}
+
+sortByBit([3, 8, 3, 6, 5, 7, 9, 1])//?
