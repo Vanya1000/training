@@ -92,6 +92,7 @@ function howManyHoursOfTraining() {
 		'17.02': 2,
 		'18.02': 4,
 		'19.02': 5,
+		'20.02': 6,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -3748,7 +3749,7 @@ validWord([
   'zv',   'cuyb', 'un',  'dqg',
   'rwy',  'zv',   'cr',  'zvk'
 ], 'majel')//?
-*/
+
 
 num = 10;
 num.toString(2)//?
@@ -3768,3 +3769,13 @@ function sortByBit(arr) {
 }
 
 sortByBit([3, 8, 3, 6, 5, 7, 9, 1])//?
+*/
+function checkCoupon(enteredCode, correctCode, currentDate, expirationDate) {
+	Date.parse(expirationDate)//?
+	let date1 = new Date(expirationDate);
+	let date2 = new Date(currentDate);
+	return (date1 > date2 && enteredCode === correctCode) ? true : false;
+}
+
+checkCoupon('123', '123', 'September 5, 2014', 'October 1, 2014') //? true
+checkCoupon('123a', '123', 'September 5, 2014', 'October 1, 2014')//? false
