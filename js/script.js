@@ -93,6 +93,7 @@ function howManyHoursOfTraining() {
 		'18.02': 4,
 		'19.02': 5,
 		'20.02': 6,
+		'21.02': 1,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -3769,7 +3770,7 @@ function sortByBit(arr) {
 }
 
 sortByBit([3, 8, 3, 6, 5, 7, 9, 1])//?
-*/
+
 function checkCoupon(enteredCode, correctCode, currentDate, expirationDate) {
 	Date.parse(expirationDate)//?
 	let date1 = new Date(expirationDate);
@@ -3779,3 +3780,16 @@ function checkCoupon(enteredCode, correctCode, currentDate, expirationDate) {
 
 checkCoupon('123', '123', 'September 5, 2014', 'October 1, 2014') //? true
 checkCoupon('123a', '123', 'September 5, 2014', 'October 1, 2014')//? false
+*/
+
+function unluckyDays(year) {
+	let count13 = 0;
+	for (let mounth = 0; mounth <= 12; mounth++) {
+		let currentYear = new Date(`${year}-${mounth}-13`);
+		currentYear.getDay() === 5 && count13++
+	}
+	return count13;
+}
+
+unluckyDays(1586)//?
+unluckyDays(1001)//?
