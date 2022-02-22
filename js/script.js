@@ -94,6 +94,7 @@ function howManyHoursOfTraining() {
 		'19.02': 5,
 		'20.02': 6,
 		'21.02': 1,
+		'22.02': 1,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -3792,4 +3793,4 @@ function unluckyDays(year) {
 }
 
 unluckyDays(1586)//?
-unluckyDays(1001)//?
+unluckyDays(258)//?
