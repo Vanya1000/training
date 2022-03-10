@@ -110,6 +110,7 @@ function howManyHoursOfTraining() {
 		'07.03': 2,
 		'08.03': 2,
 		'09.03': 4,
+		'10.03': 4,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -118,6 +119,35 @@ ${(allHourWorkTime / workTimeArray.length).toFixed(1)} hours a day. Count day: $
 }
 console.log(howManyHoursOfTraining());
 
+
+function howManyHoursOfTrainingEn() {
+	let workTime = {
+		'20.02': 2,
+		'21.02': 2,
+		'22.02': 1,
+		'23.02': 1,
+		'24.02': 0,
+		'25.02': 1,
+		'26.02': 1,
+		'27.02': 1,
+		'28.02': 1,
+		'01.03': 2,
+		'02.03': 1,
+		'03.03': 2,
+		'04.03': 1,
+		'05.03': 2,
+		'06.03': 1,
+		'07.03': 2,
+		'08.03': 2,
+		'09.03': 1,
+		'10.03': 3,
+	};
+	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
+	let workTimeArray = Object.values(workTime);
+	return `${allHourWorkTime} hour learning.
+${(allHourWorkTime / workTimeArray.length).toFixed(1)} hours a day. Count day: ${workTimeArray.length}`;
+}
+console.log(howManyHoursOfTrainingEn());
 
 let rty_567 = 5;
 rty_567 === 5 && 5;//?
