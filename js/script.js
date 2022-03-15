@@ -115,6 +115,7 @@ function howManyHoursOfTraining() {
 		'12.03': 5,
 		'13.03': 7,
 		'14.03': 9,
+		'15.03': 8,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -122,6 +123,8 @@ function howManyHoursOfTraining() {
 ${(allHourWorkTime / workTimeArray.length).toFixed(1)} hours a day. Count day: ${workTimeArray.length}`;
 }
 console.log(howManyHoursOfTraining());
+
+
 
 
 function howManyHoursOfTrainingEn() {
