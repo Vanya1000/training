@@ -124,6 +124,7 @@ function howManyHoursOfTraining() {
 		'21.03': 10,
 		'22.03': 10,
 		'23.03': 9,
+		'24.03': 8,
 
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
@@ -3889,4 +3890,99 @@ function stringify(list) {
 stringify(new Node(1, new Node(2, new Node(3))))//?
 //"1 -> 2 -> 3 -> null"
 
+
+
+function duplicateEncode(word) {
+	let arrWord = word.toLowerCase().split('')//?
+
+	let nCount = arrWord.map( (item, index, array) => {
+		let count = 0;
+		for (let i = 0; i < array.length; i++) {
+			if (item == array[i]) {count++}
+		}
+		return count > 1 ? ')' : '('
+	})
+	return nCount.join('')
+}
+
+//duplicateEncode("din") // "((("
+duplicateEncode("Success")//? 
+//duplicateEncode("(( @") //? "))(("
+
+
+
+function nthFibo(n) {
+	if (n == 1) {
+		return 0
+	} else if (n == 2) {
+		return 1
+	} else {
+		return nthFibo(n - 1) + nthFibo(n - 2);
+	}
+}
+
+nthFibo(1)//?
+nthFibo(2)//?
+nthFibo(3)//?
+nthFibo(4)//?
+*/
+
+/* function numberOfPairs(gloves) {
+	let resultArr = [];
+	let nCount = gloves.forEach((item, index, array) => {
+		let count = 0;
+		for (let i = 0; i < array.length; i++) {
+			if (item === array[i]) { count++ }
+		}
+		let pair = (count > 1) && !(count % 2) ? `${count / 2} ${item} pair` : '';//?
+		if (!resultArr.includes(pair) & pair != '' ) {
+			resultArr.push(pair)
+		}
+		resultArr//?
+	})
+	return `${resultArr.length} (${resultArr.join(' + ')})`
+}
+
+input = ["red", "red"]
+numberOfPairs(input)//? 
+
+function numberOfPairs(gloves) {
+	let resultArr = [];
+	let nCount = gloves.forEach((item, index, array) => {
+		let count = 0;
+		for (let i = 0; i < array.length; i++) {
+			if (item === array[i]) { count++ }
+		}
+		let pair;
+		if (count > 1) {
+			if (count % 2) {
+				pair = `${(count - 1)  / 2}_${item}`
+			} else {
+				pair = `${count / 2}_${item}`
+			}
+		} else {
+			pair = '';
+		}
+		if (!resultArr.includes(pair) & pair != '') {
+			resultArr.push(pair)
+		}
+	})
+	resultArr//?
+	return resultArr.reduce((prev, item) => {
+		let count = item.replace(/\D/g, '')
+		return +count + prev
+	}, 0)
+}
+
+input = [
+	'Red', 'Fuchsia', 'Lime',
+	'Teal', 'Aqua', 'Green',
+	'Silver', 'Navy', 'Blue',
+	'Aqua', 'Fuchsia', 'Purple',
+	'Red', 'Maroon', 'Navy',
+	'Black', 'Teal', 'Lime',
+	'Gray', 'Blue', 'Lime',
+	'Red'
+]
+numberOfPairs(input)//?
 */
