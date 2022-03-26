@@ -126,7 +126,7 @@ function howManyHoursOfTraining() {
 		'23.03': 9,
 		'24.03': 8,
 		'25.03': 5,
-
+		'26.03': 7,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -168,28 +168,42 @@ function howManyHoursOfTrainingEn() {
 ${(allHourWorkTime / workTimeArray.length).toFixed(1)} hours a day. Count day: ${workTimeArray.length}`;
 }
 console.log(howManyHoursOfTrainingEn());
-
-let rty_567 = 5;
-rty_567 === 5 && 5;//?
-
-function makeCounter() {
-	let count = 0;
-	let hren = 'hren'
-	return function counter() {
-		count += 1;
-		return [count, hren];
+/*
+//----------------reduce-------------------
+function reducerDataForMongoDb(objData) {
+	let resArray = [];
+	let keylo = Object.keys(objData)//?
+	let val = Object.values(objData)//?
+	for (let i = 0; i < keylo.length; i++) {
+		let transitionData = keylo[i].split('.').reverse()
+		let resData = transitionData[0] > 10 && transitionData[0] < 13 ? `2021.${transitionData[0]}.${transitionData[1]}` : `2022.${transitionData[0]}.${transitionData[1]}`
+		let res = {
+			"date": resData,
+			"hour": val[i] < 10 ? `0${val[i]}.00` : `${val[i]}.00`
+		}
+		resArray.push(res)
 	}
+	return resArray;
 }
-
-let doCount = makeCounter()
-
-console.log(doCount());
-console.log(doCount());
-console.log(doCount());
-console.log(doCount());
-
-makeCounter()//?
-/*let userName = 22;
+console.log(reducerDataForMongoDb(workTime));
+//----------------upload-------------------
+Array.prototype.asyncEach = function (each, done) {
+	var i = -1, a = this
+	function iter() {
+		if (++i === a.length) { done && done(); return }
+		each.call(a, a[i], iter)
+	}
+	iter()
+}
+//@ts-ignore
+workTimeData.asyncEach(function (item, next) {
+	setTimeout(function () {
+		console.log(item)
+		dispatch(sendAndSetNewItemDataTimes(item))
+		next()
+	}, 300)
+})
+let userName = 22;
 console.log(typeof userName);
 let i = 20 > 18;
 console.log(i)
@@ -3987,3 +4001,53 @@ input = [
 ]
 numberOfPairs(input)//?
 */
+
+function getLengthOfMissingArray(arrayOfArrays) {
+	console.log(arrayOfArrays);
+	if (arrayOfArrays == null) { return 0 }
+	if (arrayOfArrays.length === 0) {return 0}
+	for (let item of arrayOfArrays) {
+		if (item == null) {return 0}
+	}
+
+	let resSortArr = arrayOfArrays.sort((a, b) => {
+		return a.length - b.length
+	})
+	let countLengthArr = resSortArr.map((item) => item.length)//?
+   if (countLengthArr.includes(0)) {
+		return 0;
+	} 
+	countLengthArr[0]//?
+	for (let i = countLengthArr[0]; i < countLengthArr.length + countLengthArr[0]; i++) {
+		if (!countLengthArr.includes(i)) {
+			return i;
+		}
+	}
+}
+
+//getLengthOfMissingArray([])
+/* //getLengthOfMissingArray([
+[],
+[2],
+[3, 4],
+[3, 1, 0],
+[0, 0, 4, 2],
+[0, 3, 4, 2, 3],
+[1, 3, 3, 0, 2, 3],
+[1, 1, 1, 2, 0, 3, 0],
+[4, 3, 3, 0, 3, 1, 4, 0, 4],
+[3, 2, 4, 3, 0, 0, 1, 2, 1, 3],
+[0, 1, 1, 2, 0, 0, 4, 2, 2, 4, 0]]) */
+
+getLengthOfMissingArray([[[1, 2], [4, 5, 1, 1], [1], [5, 6, 7, 8, 9]]]
+[[[5, 2, 9], [4, 5, 1, 1], [1], [5, 6, 7, 8, 9]]]
+[[[null], [null, null, null]]]
+[[['a', 'a', 'a'],
+['a', 'a'],
+['a', 'a', 'a', 'a'],
+['a'],
+['a', 'a', 'a', 'a', 'a', 'a']]]
+[[[5, 2, 9], [4, 5, 1, 1, 5, 6], [1, 1], [5, 6, 7, 8, 9]]]
+[[]]
+[null])//?
+
