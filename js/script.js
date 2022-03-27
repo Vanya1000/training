@@ -127,6 +127,7 @@ function howManyHoursOfTraining() {
 		'24.03': 8,
 		'25.03': 5,
 		'26.03': 7,
+		'27.03': 6,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -4000,7 +4001,7 @@ input = [
 	'Red'
 ]
 numberOfPairs(input)//?
-*/
+
 
 function getLengthOfMissingArray(arrayOfArrays) {
 	console.log(arrayOfArrays);
@@ -4026,7 +4027,7 @@ function getLengthOfMissingArray(arrayOfArrays) {
 }
 
 //getLengthOfMissingArray([])
-/* //getLengthOfMissingArray([
+//getLengthOfMissingArray([
 [],
 [2],
 [3, 4],
@@ -4037,17 +4038,87 @@ function getLengthOfMissingArray(arrayOfArrays) {
 [1, 1, 1, 2, 0, 3, 0],
 [4, 3, 3, 0, 3, 1, 4, 0, 4],
 [3, 2, 4, 3, 0, 0, 1, 2, 1, 3],
-[0, 1, 1, 2, 0, 0, 4, 2, 2, 4, 0]]) */
+[0, 1, 1, 2, 0, 0, 4, 2, 2, 4, 0]]) 
 
-getLengthOfMissingArray([[[1, 2], [4, 5, 1, 1], [1], [5, 6, 7, 8, 9]]]
-[[[5, 2, 9], [4, 5, 1, 1], [1], [5, 6, 7, 8, 9]]]
-[[[null], [null, null, null]]]
-[[['a', 'a', 'a'],
-['a', 'a'],
-['a', 'a', 'a', 'a'],
-['a'],
-['a', 'a', 'a', 'a', 'a', 'a']]]
-[[[5, 2, 9], [4, 5, 1, 1, 5, 6], [1, 1], [5, 6, 7, 8, 9]]]
-[[]]
-[null])//?
+function calculate(...a) {
+	return function (...b) {
+		return  [...a, ...b].reduce((summ, item) => summ + item)
+	}
+}
 
+calculate(1)(1)//?
+calculate(1, 1)(1)//?
+calculate(2, 4)(3, 7, 1)//?
+
+function createFunctions(n) {
+	var callbacks = [];
+
+	for (let i = 0; i < n; i++) {
+		callbacks.push(function () {
+			return i;
+		});
+	}
+
+	return callbacks;
+}
+
+function createSecretHolder(secret) {
+	return {
+		_private: secret,
+		getSecret: function () {
+			return this._private
+		},
+		setSecret: function (saveVal) {
+			this._private = saveVal
+		}
+	}
+}
+
+let obj = createSecretHolder(5)
+obj//?
+obj.getSecret()//?
+obj.setSecret(2)//?
+obj.getSecret()//?
+
+function launchAll(launchMissile) {
+	for (let i = 0; i < 5; i++) {
+		setTimeout(function (i) {
+			launchMissile(i);
+		}, i * 1000);
+	}
+}
+launchAll(launchMissile)//?
+
+
+
+var runLengthEncoding = function (str) {
+	let resArr = [];
+	str.split('').reduce((prev, item, index, array) => {
+		if (item === array[index + 1]) {
+			return prev + 1
+		} else {
+			resArr.push([prev, item])
+			return prev = 1
+		}
+	}, 1)
+	return resArr
+}
+runLengthEncoding("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbb")//?
+runLengthEncoding("abbc abbc")//?  [[1,'a'],[2,'b'],[1,'c'],[1, ' '],[1,'a'],[2,'b'],[1,'c']]
+*/
+input = [
+	{ "type": "rotten apples", "material": "organic" },
+	{ "type": "out of date yogurt", "material": "organic", "secondMaterial": "plastic" },
+	{ "type": "wine bottle", "material": "glass", "secondMaterial": "paper" },
+	{ "type": "amazon box", "material": "paper" },
+	{ "type": "beer bottle", "material": "glass", "secondMaterial": "paper" }
+]
+
+
+function recycle(array) {
+	array.map((item)=> {
+		item//?
+	})
+}
+
+recycle(input)//?
