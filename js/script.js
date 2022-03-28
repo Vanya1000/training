@@ -128,6 +128,7 @@ function howManyHoursOfTraining() {
 		'25.03': 5,
 		'26.03': 7,
 		'27.03': 6,
+		'28.03': 6,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -4015,7 +4016,7 @@ function getLengthOfMissingArray(arrayOfArrays) {
 		return a.length - b.length
 	})
 	let countLengthArr = resSortArr.map((item) => item.length)//?
-   if (countLengthArr.includes(0)) {
+	if (countLengthArr.includes(0)) {
 		return 0;
 	} 
 	countLengthArr[0]//?
@@ -4105,20 +4106,261 @@ var runLengthEncoding = function (str) {
 }
 runLengthEncoding("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbb")//?
 runLengthEncoding("abbc abbc")//?  [[1,'a'],[2,'b'],[1,'c'],[1, ' '],[1,'a'],[2,'b'],[1,'c']]
-*/
+
+
 input = [
 	{ "type": "rotten apples", "material": "organic" },
 	{ "type": "out of date yogurt", "material": "organic", "secondMaterial": "plastic" },
 	{ "type": "wine bottle", "material": "glass", "secondMaterial": "paper" },
 	{ "type": "amazon box", "material": "paper" },
 	{ "type": "beer bottle", "material": "glass", "secondMaterial": "paper" }
+	
 ]
 
 
 function recycle(array) {
-	array.map((item)=> {
-		item//?
+	let paper = []; 
+	let glass = [];
+	let organic = [];
+	let plastic = [];
+	array.forEach((item)=> {
+		const sort = (material) => {
+			if (material === 'paper') {
+				paper.push(item.type)
+			} else if (material === 'glass') {
+				glass.push(item.type)
+			} else if (material === 'organic') {
+				organic.push(item.type)
+			} else if (material === 'plastic') {
+				plastic.push(item.type)
+			}
+		}
+		sort(item.material)
+		item.secondMaterial && sort(item.secondMaterial)
 	})
+	return [paper, glass, organic, plastic]
 }
 
 recycle(input)//?
+
+
+function formatDuration(seconds) {
+	if (seconds === 0) { return 'now' }
+	let oneMinute = 60;
+	let oneHour = 60 * oneMinute;
+	let oneDay = oneHour * 24;
+	let oneYear = oneDay * 365;
+
+	let res = [];
+
+	let data = seconds;
+
+	if (data >= oneYear) {
+		let years = Math.floor(Math.floor(data / oneDay) / 365)
+		data = data % oneYear
+		if (data > 0) {
+			years > 1 ? res.push(`${years} years,`) : res.push(`${years} year,`)
+		} else {
+			years > 1 ? res.push(`${years} years`) : res.push(`${years} year`)
+		}
+	}
+	if (data >= oneDay) {
+		let day = Math.floor(Math.floor(data / oneHour) / 24)
+		data = data % oneDay
+		if (data > 0) {
+			day > 1 ? res.push(`${day} days,`) : res.push(`${day} day,`)
+		} else {
+			day > 1 ? res.push(`${day} days`) : res.push(`${day} day`)
+		}
+	}
+	if (data >= oneHour) {
+		let hour = Math.floor(Math.floor(data / oneMinute) / 60)
+		data = data % oneHour
+		if (data > 0) {
+			hour > 1 ? res.push(`${hour} hours,`) : res.push(`${hour} hour,`)
+		} else {
+			hour > 1 ? res.push(`${hour} hours`) : res.push(`${hour} hour`)
+		}
+	}
+	if (data >= oneMinute) {
+		let minutes = Math.floor(data / oneMinute)
+		data = data % oneMinute//?
+		if (data > 0) {
+			minutes > 1 ? res.push(`${minutes} minutes,`) : res.push(`${minutes} minute,`)
+		} else {
+			minutes > 1 ? res.push(`${minutes} minutes`) : res.push(`${minutes} minute`)
+		}
+	}
+	if (data < oneMinute) {
+		if (data > 0) {
+			data > 1 ? res.push(`${data} seconds`) : res.push(`${data} second`)
+		}
+	}
+	if (res.length > 1) { res[res.length - 2] = res[res.length - 2].replace(/,/, ' and')}
+	return res.join(' ')
+}
+
+
+//formatDuration(1) // "1 second"
+//formatDuration(62) // "1 minute and 2 seconds"
+//formatDuration(120) // "2 minutes"
+//formatDuration(3600)//? 
+//formatDuration(3662) // "1 hour, 1 minute and 2 seconds"
+//formatDuration(31586009)//?
+
+
+function validateBattlefield(field) {
+	let realPositionShip = [1, 1, 1, 1, 2, 2, 2, 3, 3, 4]
+	let ship = [];
+	for (let j = 0; j < field.length; j++) {
+		for (let n = 0; n < field.length; n++) {
+			let count = 0;
+			if (field[j][n] === 1) {
+
+				
+				if (j < 9 && n < 9) {
+					if (field[j][n] === field[j + 1][n + 1]) {
+						count += 1
+					}
+				}
+				if (j > 0 && n > 0) {
+					if (field[j][n] === field[j - 1][n - 1]) {
+						count += 1
+					}
+				}
+				if (j > 0 && n < 9) {
+					if (field[j][n] === field[j - 1][n + 1]) {
+						count += 1
+					}
+				}
+				if (j < 9 && n > 0) {
+					if (field[j][n] === field[j + 1][n - 1]) {
+						count += 1
+					}
+				}
+			}
+			if (count > 0) {
+				return false
+			} else {
+				continue
+			}
+
+		}
+	}
+
+	for (let j = 0; j < field.length; j++) {
+		for (let n = 0; n < field.length; n++) {
+			let countPalub = 0;
+			if (field[j][n] === 1) {
+				field[j][n] = 2
+				searchShip(j, n)
+			}
+
+
+			function searchShip(j, n) {
+				countPalub += 1
+				if (j < 9) {
+					if (field[j + 1][n] === 1) {
+						field[j + 1][n] = 2;
+						searchShip(j + 1, n)
+					}
+				}
+				if (j > 0) {
+					if (field[j - 1][n] === 1) {
+						field[j - 1][n] = 2;
+						searchShip(j - 1, n)
+					}
+				}
+				if (n < 9) {
+					if (field[j][n + 1] === 1) {
+						field[j][n + 1] = 2;
+						searchShip(j, n + 1)
+					}
+				}
+				if (n > 0) {
+					if (field[j][n - 1] === 1) {
+						field[j][n - 1] = 2;
+						searchShip(j, n - 1)
+					}
+				}
+			}
+			if (countPalub > 0) {
+				ship.push(countPalub)
+			}
+		}
+	}
+	let actualPosShip = ship.sort((a, b) => a - b)
+	actualPosShip
+	for (let i = 0; i < realPositionShip.length; i++) {
+		if (actualPosShip[i] !== realPositionShip[i]) {
+			return false
+		}
+	}
+
+	return true
+}
+
+
+
+let variant1 = (
+[[1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
+[1, 0, 1, 0, 0, 0, 0, 0, 1, 0],
+[1, 0, 1, 0, 1, 1, 1, 0, 1, 0],
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+[0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+[0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]])
+validateBattlefield(variant1)//?
+
+let variant2 = (
+[[1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
+[1, 0, 1, 0, 0, 0, 0, 0, 1, 0],
+[1, 0, 1, 0, 1, 1, 1, 0, 1, 0],
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+[0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+[0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
+[0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]])
+validateBattlefield(variant2)//?
+let variant3 = (
+[[1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
+[1, 0, 1, 0, 0, 0, 0, 0, 1, 0],
+[1, 0, 1, 0, 1, 1, 1, 0, 1, 0],
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+[0, 0, 0, 1, 1, 1, 1, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+[0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]])
+validateBattlefield(variant3)//?
+let variant4 = (
+[[0, 0, 0, 0, 0, 1, 1, 0, 0, 0],
+[0, 0, 1, 0, 0, 0, 0, 0, 1, 0],
+[0, 0, 1, 0, 1, 1, 1, 0, 1, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+[0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+[0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]])
+validateBattlefield(variant4)//?
+let variant5 = (
+[[1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
+[1, 0, 1, 0, 0, 0, 0, 0, 1, 0],
+[1, 0, 1, 0, 1, 1, 1, 0, 1, 0],
+[1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+[0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+[0, 0, 0, 1, 0, 0, 0, 0, 1, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] )
+validateBattlefield(variant5)//?
+*/
