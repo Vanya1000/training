@@ -1,4 +1,7 @@
 
+
+
+/*
 function howManyHoursOfTraining() {
 	let workTime = {
 		'21.11': 6,
@@ -129,6 +132,7 @@ function howManyHoursOfTraining() {
 		'26.03': 7,
 		'27.03': 6,
 		'28.03': 6,
+		'29.03': 7,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -170,7 +174,17 @@ function howManyHoursOfTrainingEn() {
 ${(allHourWorkTime / workTimeArray.length).toFixed(1)} hours a day. Count day: ${workTimeArray.length}`;
 }
 console.log(howManyHoursOfTrainingEn());
-/*
+
+let name = 'Vasia';
+name.length = 50;
+
+console.log(name.length);
+
+
+
+
+
+
 //----------------reduce-------------------
 function reducerDataForMongoDb(objData) {
 	let resArray = [];
