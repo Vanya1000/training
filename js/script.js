@@ -1,5 +1,132 @@
 
 
+/* for(var i = 0; i < 10; i++) {
+
+}
+console.log(i); 
+__________________________________________________________
+(
+	function(a) {
+		arguments[0] = 10;
+		return a;
+	}
+)(5);
+__________________________________________________________
+let f = function g() { return 23; };
+
+console.log(typeof g());
+__________________________________________________________
+//!!!!!!!!!!!!!!!!! Error
+const foo  = bar();
+const number = 2;
+
+function bar() { return number; }
+__________________________________________________________
+const details = {
+	name: 'John',
+}
+function getMessage(message) {
+	return `${message} ${this.name}`;
+}
+
+console.log(getMessage.apply(details, ['Hello']));
+__________________________________________________________
+var name = 'John';
+
+var user = {
+	name: "Peter",
+	printMessage() {
+		console.log(`Hello, ${this.name}!`);
+	}
+};
+
+var printMessage = user.printMessage;
+printMessage();
+__________________________________________________________
+__________________________________________________________
+__________________________________________________________
+__________________________________________________________
+*/
+
+
+
+
+
+let name = "John";
+
+function sayHi() {
+	console.log("Hi, " + name);
+}
+
+name = "Pete";
+
+sayHi(); //?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+Какие варианты правильно объявляют функцию f, возвращающую сумму двух аргументов?
+true let f = function (a, b) { return a + b }
+
+true let f = new Function("a,b", "return a+b")
+
+true let f = new Function("a", "b", "return a+b")
+
+true let f = (a, b) => a + b
+
+false let f = (a, b) => { a + b } */
+
+/* 
+Укажите, что в JavaScript подвергается всплытию (hoisting)?
+
+false Function expression
+
+true Function declaration
+
+false Arrow function
+
+true Объявление переменной
+
+false Присваивание значения переменной
+*/
+
+
+
+
+
+
+
+
+
 
 /*
 function howManyHoursOfTraining() {
