@@ -128,6 +128,8 @@ false Присваивание значения переменной
 
 
 
+
+
 /*
 function howManyHoursOfTraining() {
 	let workTime = {
@@ -261,6 +263,7 @@ function howManyHoursOfTraining() {
 		'28.03': 6,
 		'29.03': 7,
 		'30.03': 6,
+		'01.04': 8,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
