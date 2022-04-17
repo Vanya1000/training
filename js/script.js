@@ -1,33 +1,4 @@
-/* 
-function loadScript () {
-	return new Promise(function (resolve, reject) {
-		console.log('1');
-		setTimeout(function () {
-			console.log('2');
-			resolve()
-		}, 2000);
-	});
-	
-}
-
-
-let promise = loadScript('word');
-
-promise.then(script => console.log('word'), error => console.log('error')); */
-
-
-async function f() {
-
-	let promise = new Promise((resolve, reject) => {
-		setTimeout(() => resolve("готово!"), 2000)
-	});
-
-	let result = await promise; // будет ждать, пока промис не выполнится (*)
-
-	console.log(2); // "готово!"
-}
-
-f();
+"use strict";
 
 
 
@@ -179,7 +150,8 @@ function howManyHoursOfTraining() {
 		'13.04': 7,
 		'14.04': 7,
 		'15.04': 7,
-		'16.04': 7,  
+		'16.04': 7,
+		'17.04': 5, 
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
