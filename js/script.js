@@ -1,6 +1,15 @@
 "use strict";
 
+/* document.body.appendChild(document.createElement("p")).innerHTML = "Hello World!";
+let element = document.querySelector('body')
+console.log(document.querySelectorAll('div')[0]) */
+/* const elem = document.querySelector('.wrapper');
+console.log(elem.childNodes[elem.childNodes.length] === elem.lastChild);
+elem.childNodes[elem.childNodes.length - 1] === elem.lastChild */
 
+
+
+console.log(document.nodeType)
 
 /*
 function howManyHoursOfTraining() {
@@ -153,7 +162,8 @@ function howManyHoursOfTraining() {
 		'16.04': 7,
 		'17.04': 5,
 		'18.04': 3,
-		'19.04': 6, 
+		'19.04': 6,
+		'20.04': 10, 
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -161,7 +171,6 @@ function howManyHoursOfTraining() {
 ${(allHourWorkTime / workTimeArray.length).toFixed(1)} hours a day. Count day: ${workTimeArray.length}`;
 }
 console.log(howManyHoursOfTraining());
-
 
 
 
