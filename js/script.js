@@ -8,8 +8,20 @@ console.log(elem.childNodes[elem.childNodes.length] === elem.lastChild);
 elem.childNodes[elem.childNodes.length - 1] === elem.lastChild */
 
 
-
-console.log(document.nodeType)
+//document.querySelector('.wrapper').childNodes.split(',')
+//let elem = document.querySelector('.wrapper')
+//console.log(elem);
+//arr.childNodes[arr.childNodes.length - 1] === arr.lastChild
+//console.log(elem.childNodes[elem.childNodes.length]);
+//console.log(document.body.parentNode === document.documentElement);
+//console.log(arr.childNodes[arr.childNodes.length - 1] === arr.lastChild);
+let elem = document.querySelector('.wrapper')
+elem.target !== elem.currentTarget
+console.log(elem.target !== elem.currentTarget);
+target.addEventListener(type, listener, [options]);
+document.addEventListener('click', function(event) {
+	console.log(event.currentTarget)
+})
 
 /*
 function howManyHoursOfTraining() {
@@ -163,7 +175,8 @@ function howManyHoursOfTraining() {
 		'17.04': 5,
 		'18.04': 3,
 		'19.04': 6,
-		'20.04': 10, 
+		'20.04': 10,
+		'21.04': 19,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
