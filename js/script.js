@@ -16,12 +16,11 @@ elem.childNodes[elem.childNodes.length - 1] === elem.lastChild */
 //console.log(document.body.parentNode === document.documentElement);
 //console.log(arr.childNodes[arr.childNodes.length - 1] === arr.lastChild);
 let elem = document.querySelector('.wrapper')
-elem.target !== elem.currentTarget
-console.log(elem.target !== elem.currentTarget);
-target.addEventListener(type, listener, [options]);
-document.addEventListener('click', function(event) {
-	console.log(event.currentTarget)
-})
+elem.addEventListener('keyclick', listener);
+
+function listener (e) {
+	console.log(e);
+}
 
 /*
 function howManyHoursOfTraining() {
@@ -176,7 +175,8 @@ function howManyHoursOfTraining() {
 		'18.04': 3,
 		'19.04': 6,
 		'20.04': 10,
-		'21.04': 19,
+		'21.04': 9,
+		'22.04': 8,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
