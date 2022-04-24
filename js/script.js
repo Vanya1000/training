@@ -15,12 +15,7 @@ elem.childNodes[elem.childNodes.length - 1] === elem.lastChild */
 //console.log(elem.childNodes[elem.childNodes.length]);
 //console.log(document.body.parentNode === document.documentElement);
 //console.log(arr.childNodes[arr.childNodes.length - 1] === arr.lastChild);
-let elem = document.querySelector('.wrapper')
-elem.addEventListener('keyclick', listener);
 
-function listener (e) {
-	console.log(e);
-}
 
 /*
 function howManyHoursOfTraining() {
@@ -4421,5 +4416,232 @@ let variant5 = (
 [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] )
 validateBattlefield(variant5)//?
+
+countCats([
+	["^^", ".", null, 0, false, "", NaN, "^^", 2, true, "dasdas", 1],
+	[2, null, 0, 1, ".", "dasdas", true, NaN, "", false, "^^", "^^"],
+	[false, ".", 1, 0, "^^", null, "", 2, "dasdas", "^^", NaN, true],
+	[".", false, 1, null, NaN, 2, 0, "dasdas", true, "^^", "", "^^"],
+	[false, ".", 1, 0, "^^", true, null, "^^", "", NaN, 2, "dasdas"],
+	[false, NaN, 1, 0, ".", "^^", null, true, "dasdas", "^^", 2, ""],
+	[null, 1, NaN, true, ".", "^^", "^^", 2, "", false, "dasdas", 0],
+	[null, NaN, "", false, ".", 1, 0, "^^", "dasdas", true, 2, "^^"],
+])//?
+
+function countCats(arr) {
+	let count = 0;
+	for (let arrItem of arr) {
+		for (let item of arrItem) {
+			if (item === "^^") {
+				count++;
+			}
+		}
+	}
+	return count;
+}
+
+
+const MODERN_ACTIVITY = 15;
+const HALF_LIFE_PERIOD = 5730;
+
+function dateSample(sampleActivity) {
+	if (typeof sampleActivity !== 'string' || (sampleActivity < 0 || sampleActivity > MODERN_ACTIVITY) || (!Number(sampleActivity))) {
+		return false;
+	}
+	const age = Math.ceil(Math.log(MODERN_ACTIVITY / sampleActivity) / (0.693 / HALF_LIFE_PERIOD))
+	return age;
+}
+
+dateSample('1')//? 
+//=> 22387
+
+
+function getCommonCharacterCount(s1, s2) {
+	if (s1 ==='' || s2 === '') {return 0;}
+	let first = s1.split('');
+	let second = s2.split('');
+	let count = 0;
+	for (let i = 0; i < first.length; i++) {
+		for (let j = 0; j < second.length; j++) {
+			if (first[i] === second[j]) {
+				count++;
+				second.splice(j, 1);
+				break;
+			}
+		}
+	}
+	return count;
+}
+
+getCommonCharacterCount('abca', 'xyzbac')//?
+getCommonCharacterCount("aabcc", "adcaa")//?
+getCommonCharacterCount('zzzz', 'zzzzzzz')//?
+
+
+function createDreamTeam(members) {
+	if (!Array.isArray(members)) {return []}
+	let onlyWords = members.filter(item => typeof item === 'string');
+	let onlyCapital = onlyWords.map(item => item.trim()[0].toUpperCase());
+	let sorted = onlyCapital.sort();
+	return sorted.join('');
+}
+createDreamTeam([
+	'   William Alston ',
+	' Paul Benacerraf',
+	'  Ross Cameron',
+	'       Gilles Deleuze',
+	'  Arda Denkel ',
+	'  Michael Devitt',
+	'  Kit Fine',
+	' Nelson Goodman',
+	'David Kolb',
+	'   Saul Kripke',
+	'  Trenton Merricks',
+	'  Jay Rosenberg',
+])//?
+//'ADGJKMNPRSTW'
+//createDreamTeam(['Olivia', 1111, 'Lily', 'Oscar', true, null])//?
+
+
+function getSeason(date) {
+	if (!date) { return 'Unable to determine the time of year!'}
+	if (date.toString !== Date.prototype.toString) { throw new Error("Invalid date!")}
+	let month = date.getMonth();
+	if (month >= 0 && month <= 1) {
+		return 'winter';
+	} else if (month >= 2 && month <= 4) {	
+		return 'spring';
+	} else if (month >= 5 && month <= 7) {
+		return 'summer';
+	} else if (month >= 8 && month <= 10) {
+		return 'autumn';
+	} else if (month >= 11 && month <= 12) {
+		return 'winter';
+	} 
+}
+
+   getSeason(new Date(2019, 11, 22, 23, 45, 11, 500))//?
+	getSeason(new Date(2018, 4, 17, 11, 27, 4, 321))//?
+	getSeason(new Date(2017, 6, 11, 23, 45, 11, 500))//?
+	getSeason(new Date(1994, 8, 26, 3, 0, 11, 500))//?
+	
+
+function calculateHanoi(disksNumber, turnsSpeed) {
+	let counSteps = Math.pow(2, disksNumber) - 1
+	let seconds = Math.floor((3600 / turnsSpeed) * counSteps)
+	return { turns: counSteps, seconds: seconds }
+}
+
+
+calculateHanoi(5, 4074)//?
 */
 
+function transform(arr) {
+	if (!Array.isArray(arr)) { throw new Error('\'arr\' parameter must be an instance of the Array!'); }
+	let newSlice = arr.slice();
+
+	for (let i = 0; i < newSlice.length; i++) {
+		if (typeof newSlice[i] === 'string') {
+			if (newSlice[i] === '--discard-next') {
+				let index = newSlice.indexOf('--discard-next');
+				if (index === newSlice.length - 1) {
+					newSlice.splice(index, 1);
+				} else {
+					newSlice.splice(index, 2);
+				}
+				
+			} else if (newSlice[i] === '--discard-prev') {
+				let index = newSlice.indexOf('--discard-prev');
+				if (index === 0) {
+					newSlice.splice(index, 1);
+				} else {
+					newSlice.splice(index - 1, 2);
+				}
+			} else if (newSlice[i] === '--double-next') {
+				let index = newSlice.indexOf('--double-next');
+				if (index === newSlice.length - 1) {
+					newSlice.splice(index, 1);
+				} else {
+					newSlice[index] = newSlice[index + 1];
+				}
+			} else if (newSlice[i] === '--double-prev') {
+				let index = newSlice.indexOf('--double-prev');
+				if (index === 0) {
+					newSlice.splice(index, 1);
+				} else {
+					newSlice[index] = newSlice[index - 1];
+				}
+			}
+		}
+	}
+	if (newSlice.includes('--double-prev') || newSlice.includes('--discard-next') || newSlice.includes('--double-next') || newSlice.includes('--discard-prev') ) {//?
+		return transform(newSlice)
+	} 
+	return newSlice;
+}
+/* function transform(arr) {
+	const NOT_ARRAY_ERROR = Error(
+		"'arr' parameter must be an instance of the Array!"
+	);
+
+	if (!arr || !Array.isArray(arr)) {
+		throw NOT_ARRAY_ERROR;
+	}
+
+	if (arr.length === 0) {
+		return arr;
+	}
+
+	const CONTROL_SEQUENCES = [
+		"--discard-prev",
+		"--double-prev",
+		"--discard-next",
+		"--double-next",
+	];
+
+	let transformArr = [];
+
+	for (let i = 0; i < arr.length; i++) {
+		const tailControlSequence =
+			i > 0
+				? CONTROL_SEQUENCES.find(
+					(item) => item.endsWith("next") && item === arr[i - 1]
+				)
+				: null;
+
+		const headControlSequence =
+			i < arr.length - 1
+				? CONTROL_SEQUENCES.find(
+					(item) => item.endsWith("prev") && item === arr[i + 1]
+				)
+				: null;
+
+		if (tailControlSequence) {
+			if (tailControlSequence === "--double-next") {
+				transformArr.push(arr[i]);
+			} else {
+				continue;
+			}
+		}
+
+		if (headControlSequence) {
+			if (headControlSequence === "--double-prev") {
+				transformArr.push(arr[i]);
+			} else {
+				continue;
+			}
+		}
+
+		if (arr[i] !== CONTROL_SEQUENCES.find((item) => item === arr[i])) {
+			transformArr.push(arr[i]);
+		}
+	}
+	return transformArr;
+} */
+
+
+//transform([1, 2, 3, '--discard-next', 4, 5])//?
+transform([1, 2, 3, '--discard-next', 1337, '--double-prev', 4, 5])//?
+//transform([1, 2, 3, '--double-next', 1337, '--double-prev', 4, 5])//?
+//transform([1, 2, 3, '--discard-next', 1337, '--discard-prev', 4, 5])//?
+//transform([1, 2, 3, '--double-next', 1337, '--discard-prev', 4, 5])//?
