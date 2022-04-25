@@ -173,6 +173,8 @@ function howManyHoursOfTraining() {
 		'21.04': 9,
 		'22.04': 8,
 		'23.04': 9,
+		'24.04': 10,
+		'25.04': 9,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -4520,7 +4522,7 @@ function getSeason(date) {
 	} 
 }
 
-   getSeason(new Date(2019, 11, 22, 23, 45, 11, 500))//?
+	getSeason(new Date(2019, 11, 22, 23, 45, 11, 500))//?
 	getSeason(new Date(2018, 4, 17, 11, 27, 4, 321))//?
 	getSeason(new Date(2017, 6, 11, 23, 45, 11, 500))//?
 	getSeason(new Date(1994, 8, 26, 3, 0, 11, 500))//?
@@ -4534,7 +4536,7 @@ function calculateHanoi(disksNumber, turnsSpeed) {
 
 
 calculateHanoi(5, 4074)//?
-*/
+
 
 function transform(arr) {
 	if (!Array.isArray(arr)) { throw new Error('\'arr\' parameter must be an instance of the Array!'); }
@@ -4547,7 +4549,7 @@ function transform(arr) {
 				if (index === newSlice.length - 1) {
 					newSlice.splice(index, 1);
 				} else {
-					newSlice.splice(index, 2);
+					newSlice.splice(index, 2, '--');
 				}
 				
 			} else if (newSlice[i] === '--discard-prev') {
@@ -4555,7 +4557,7 @@ function transform(arr) {
 				if (index === 0) {
 					newSlice.splice(index, 1);
 				} else {
-					newSlice.splice(index - 1, 2);
+					newSlice.splice(index - 1, 2, '--');
 				}
 			} else if (newSlice[i] === '--double-next') {
 				let index = newSlice.indexOf('--double-next');
@@ -4574,74 +4576,210 @@ function transform(arr) {
 			}
 		}
 	}
+	
 	if (newSlice.includes('--double-prev') || newSlice.includes('--discard-next') || newSlice.includes('--double-next') || newSlice.includes('--discard-prev') ) {//?
 		return transform(newSlice)
 	} 
-	return newSlice;
+	return newSlice.filter(item => item !== '--');
 }
-/* function transform(arr) {
-	const NOT_ARRAY_ERROR = Error(
-		"'arr' parameter must be an instance of the Array!"
-	);
 
-	if (!arr || !Array.isArray(arr)) {
-		throw NOT_ARRAY_ERROR;
-	}
-
-	if (arr.length === 0) {
-		return arr;
-	}
-
-	const CONTROL_SEQUENCES = [
-		"--discard-prev",
-		"--double-prev",
-		"--discard-next",
-		"--double-next",
-	];
-
-	let transformArr = [];
-
-	for (let i = 0; i < arr.length; i++) {
-		const tailControlSequence =
-			i > 0
-				? CONTROL_SEQUENCES.find(
-					(item) => item.endsWith("next") && item === arr[i - 1]
-				)
-				: null;
-
-		const headControlSequence =
-			i < arr.length - 1
-				? CONTROL_SEQUENCES.find(
-					(item) => item.endsWith("prev") && item === arr[i + 1]
-				)
-				: null;
-
-		if (tailControlSequence) {
-			if (tailControlSequence === "--double-next") {
-				transformArr.push(arr[i]);
-			} else {
-				continue;
-			}
-		}
-
-		if (headControlSequence) {
-			if (headControlSequence === "--double-prev") {
-				transformArr.push(arr[i]);
-			} else {
-				continue;
-			}
-		}
-
-		if (arr[i] !== CONTROL_SEQUENCES.find((item) => item === arr[i])) {
-			transformArr.push(arr[i]);
-		}
-	}
-	return transformArr;
-} */
-
-
-//transform([1, 2, 3, '--discard-next', 4, 5])//?
 transform([1, 2, 3, '--discard-next', 1337, '--double-prev', 4, 5])//?
-//transform([1, 2, 3, '--double-next', 1337, '--double-prev', 4, 5])//?
-//transform([1, 2, 3, '--discard-next', 1337, '--discard-prev', 4, 5])//?
-//transform([1, 2, 3, '--double-next', 1337, '--discard-prev', 4, 5])//?
+transform([1, 2, 3, '--double-next', 1337, '--double-prev', 4, 5])//?
+transform([1, 2, 3, '--discard-next', 1337, '--discard-prev', 4, 5])//?
+transform([1, 2, 3, '--double-next', 1337, '--discard-prev', 4, 5])//?
+
+
+const chainMaker = {
+	chain: [],
+	getLength() {
+		return this.chain.length;
+	},
+	addLink(value) {
+		if (typeof(value) === undefined) {
+			this.chain.push('')
+		} else {
+			let strValue = String(value);
+			this.chain.push(strValue);
+		}
+		return this;
+	},
+	removeLink(position) {
+		if (position <= 0 || position > this.chain.length || !isFinite(position) ) {
+			this.chain = [];
+			throw new Error('You can\'t remove incorrect link!');
+		}
+		this.chain = this.chain.filter((item, index) => index !== (position - 1)  )//?
+		return this;
+	},
+	reverseChain() {
+		this.chain.reverse();
+		return this;
+	},
+	finishChain() {
+		this.chain//?
+		this.chain[0] = `( ${this.chain[0]}`
+		this.chain[this.chain.length - 1] = `${this.chain[this.chain.length - 1]} )`
+		let result = this.chain.join(' )~~( ');
+		this.chain = [];
+		return result;
+	}
+};
+
+chainMaker.addLink(function () { }).addLink('2nd').addLink('3rd').removeLink(2).reverseChain().finishChain()//?
+console.log(chainMaker.addLink('GHI').addLink(null).reverseChain().addLink(333).reverseChain().reverseChain().addLink(0).reverseChain().reverseChain().addLink('GHI').finishChain());
+
+
+class DepthCalculator {
+	calculateDepth(arr) {
+		if (!Array.isArray(arr))
+			return 0;
+		let depth = 0;
+		for (let item of arr)
+			depth = Math.max(depth, this.calculateDepth(item));
+		return 1 + depth;
+	}
+}
+
+
+const depthCalc = new DepthCalculator();
+depthCalc.calculateDepth(([1, 2, 3, [1], 4, 5, [1]]))//?
+
+
+
+function repeater(str, options) {
+	let altOptions = {
+		repeatTimes: 1,
+		separator: '+',
+		additionSeparator: '|',
+		additionRepeatTimes: 1,
+		addition: ''
+	}
+	let comleteAdditionRepeat;
+	str = String(str);
+	if (options.addition !== undefined) {
+		comleteAdditionRepeat = repeat(
+			options.addition !== undefined ? String(options.addition) : '',
+			options.additionRepeatTimes ? options.additionRepeatTimes : altOptions.additionRepeatTimes,
+			options.additionSeparator ? options.additionSeparator : altOptions.additionSeparator)
+	}
+
+	if (!!comleteAdditionRepeat) {
+		comleteAdditionRepeat = str + comleteAdditionRepeat;
+	}
+
+	let compleateAllRepeat = repeat(
+		options.addition !== undefined ? comleteAdditionRepeat : String(str),
+		options.repeatTimes ? options.repeatTimes : altOptions.repeatTimes,
+		options.separator ? options.separator : altOptions.separator)
+
+	function repeat(string, n, sep) {
+		return new Array(n).fill(string).join(sep);
+	}
+	return compleateAllRepeat;
+}
+
+repeater(true, { repeatTimes: 3, separator: '??? ', addition: false, additionRepeatTimes: 2, additionSeparator: '!!!' })//?
+repeater('la', { repeatTimes: 3 })
+
+console.log('truefalse!!!false??? truefalse!!!false??? truefalse!!!false');
+
+class VigenereCipheringMachine {
+	constructor (variant) {
+		variant === undefined ? this.variant = true : this.variant = false;
+	}
+	alphabetNum = {
+		'A': 0,
+		'B': 1,
+		'C': 2,
+		'D': 3,
+		'E': 4,
+		'F': 5,
+		'G': 6,
+		'H': 7,
+		'I': 8,
+		'J': 9,
+		'K': 10,
+		'L': 11,
+		'M': 12,
+		'N': 13,
+		'O': 14,
+		'P': 15,
+		'Q': 16,
+		'R': 17,
+		'S': 18,
+		'T': 19,
+		'U': 20,
+		'V': 21,
+		'W': 22,
+		'X': 23,
+		'Y': 24,
+		'Z': 25
+	}
+	encrypt(str, key) {
+		if (str === undefined || key === undefined) { throw new Error('Incorrect arguments!') }
+		let strArr = str.toUpperCase().split('')
+		let serial = 0;
+		let similarArrKey = strArr.map(item => {
+			if (item.match(/[A-Z]/)) {
+				item = key[serial < key.length ? serial : serial = 0];
+				serial++;
+				return item.toUpperCase();
+			} else {
+				return item;
+			}
+		})
+		let encriptedStr = strArr.map((item, index) => {
+			if (item.match(/[A-Z]/)) {
+				let itemNum = this.alphabetNum[item];
+				let keyNum = this.alphabetNum[similarArrKey[index]];
+				let encriptedNum = itemNum + keyNum;
+				if (encriptedNum > 25) {
+					encriptedNum = encriptedNum - 26;
+				}
+				let encriptedItem = Object.keys(this.alphabetNum).find(key => this.alphabetNum[key] === encriptedNum);
+				return encriptedItem;
+			} else {
+				return item;
+			}
+		})
+		return this.variant ? encriptedStr.join('') : encriptedStr.reverse().join('');
+	}
+	decrypt(str, key) {
+		if (str === undefined || key === undefined) { throw new Error('Incorrect arguments!') }
+		let strArr = str.toUpperCase().split('');
+		let serial = 0;
+		let similarArrKey = strArr.map(item => {
+			if (item.match(/[A-Z]/)) {
+				item = key[serial < key.length ? serial : serial = 0];
+				serial++;
+				return item.toUpperCase();
+			} else {
+				return item;
+			}
+		})
+		let decriptedStr = strArr.map((item, index) => {
+			if (item.match(/[A-Z]/)) {
+				let itemNum = this.alphabetNum[item];
+				let keyNum = this.alphabetNum[similarArrKey[index]];
+				let decriptedNum = itemNum - keyNum;
+				if (decriptedNum < 0) {
+					decriptedNum = decriptedNum + 26;
+				}
+				let decriptedItem = Object.keys(this.alphabetNum).find(key => this.alphabetNum[key] === decriptedNum);
+				return decriptedItem;
+			} else {
+				return item;
+			}
+		})
+		return this.variant ? decriptedStr.join('') : decriptedStr.reverse().join('');
+	}
+}
+
+const directMachine = new VigenereCipheringMachine();
+const reverseMachine = new VigenereCipheringMachine(false);
+
+directMachine.encrypt('How are you?', 'cat')//?
+directMachine.decrypt('AEIHQX SX DLLU!', 'alphonse')//?
+reverseMachine.encrypt('attack at dawn!', 'alphonse')//?
+reverseMachine.decrypt('AEIHQX SX DLLU!', 'alphonse')//?
+*/
