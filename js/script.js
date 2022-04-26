@@ -175,6 +175,7 @@ function howManyHoursOfTraining() {
 		'23.04': 9,
 		'24.04': 10,
 		'25.04': 9,
+		'26.04': 7,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -4778,8 +4779,230 @@ class VigenereCipheringMachine {
 const directMachine = new VigenereCipheringMachine();
 const reverseMachine = new VigenereCipheringMachine(false);
 
-directMachine.encrypt('How are you?', 'cat')//?
+directMachine.encrypt('All like rat!', 'der')//?
 directMachine.decrypt('AEIHQX SX DLLU!', 'alphonse')//?
 reverseMachine.encrypt('attack at dawn!', 'alphonse')//?
 reverseMachine.decrypt('AEIHQX SX DLLU!', 'alphonse')//?
+
+function deleteDigit(n) {
+	let maxNum = 0;
+	let str = n.toString();
+	for (let i = 0; i < str.length; i++) {
+		maxNum < str.replace(str[i], '') 
+		? maxNum = str.replace(str[i], '')
+		: maxNum;
+	}
+	return +maxNum;
+}
+
+deleteDigit(342) //?
+
+
+function getDNSStats(domains) {
+	let stats = {};
+	domains.forEach(domain => {
+		let itemArr = domain.split('.').reverse();//?
+		let uniqueDomain = '';
+		itemArr.forEach(item => {
+			uniqueDomain += '.' + item;
+			stats.hasOwnProperty(uniqueDomain) ? stats[uniqueDomain]++ : stats[uniqueDomain] = 1;
+		})
+})
+	return stats;
+}
+
+getDNSStats(['epam.com', 'info.epam.com'])//?
+
+function encodeLine(str) {
+	let acc = 1;
+	let result =  str.split('').map((item, index, arr) => {
+		if (item !== arr[index + 1]) {
+			if (acc === 1) {
+				return item;
+			} else {
+				let el = acc + item;
+				acc = 1;
+				return el;
+			}
+		} else {
+			acc++;
+		}
+		
+	})
+	return result.join('');//?
+}
+encodeLine('aaaatttt')//?
+encodeLine('abbcca')//?
+
+function renameFiles(names) {
+	return names.reduce((prev, item) => {
+		let rename = item;
+		let count = 0;
+		while (prev.includes(rename)) {
+			count++;
+			rename = item + `(${count})`
+		}
+		prev.push(rename);
+		return prev;
+	}, [])
+}
+
+renameFiles(['doc', 'doc', 'image', 'doc(1)', 'doc'])//?
+//['doc', 'doc(1)', 'image', 'doc(1)(1)', 'doc(2)'])
+
+function getEmailDomain(email) {
+	email = email.split('@')
+	return email[email.length - 1];
+}
+
+getEmailDomain('example-indeed@strange-example.com')//?
+
+
+function isMAC48Address(n) {
+	if (n.split('-').length === 6) {
+		return n.split('-').every(item => item.match(/[0-9A-F]{2}/))
+	} else {
+		return false;
+	}
+}
+
+isMAC48Address('00-1B-63-84-45-E6')//?
+isMAC48Address('Z1-1B-63-84-45-E6')//?
+
+
+function getMatrixElementsSum(matrix) {
+	let sum = 0;
+	for (let i = 0; i < matrix[0].length; i++) {
+		for (let j = 0; j < matrix.length; j++) {
+			if (matrix[j][i] !== 0) {
+				sum += matrix[j][i];
+			} else {
+				break;
+			}
+		}
+	}
+	return sum;
+}
+	getMatrixElementsSum([
+		[0, 1, 1, 2],
+		[0, 5, 0, 0],
+		[2, 0, 3, 3],
+		
+	])
+
+function sortByHeight(arr) {
+	let sortedArr = arr.filter(item => item !== -1).sort((a, b) => a - b);
+	return arr.map(item => {
+		if (item !== -1) {
+			return sortedArr.shift();
+		} else {
+			return item;
+		}
+	})
+}
+
+sortByHeight([-1, 150, 190, 170, -1, -1, 160, 180])//?
+
+
+function getSumOfDigits(n) {
+	let sum = 0;
+	let str = n.toString();
+	for (let i = 0; i < str.length; i++) {
+		sum += +str[i];
+	}
+	return sum > 9 ? getSumOfDigits(sum) : sum;
+}
+
+getSumOfDigits(91)//?
+*/
+
+/* matrix = matrix.map((itemUp, indexUp, arrUp) => {
+	return itemUp.map((itemDown, indexDown, arrDown) => {
+		let sum = 0;
+		if (indexUp < arrUp.length - 1 && indexDown < arrDown.length - 1) {
+			if (matrix[indexUp + 1][indexDown + 1]) {
+				sum++;
+			}
+			if (indexUp > 1 && indexDown > 1) {
+				if (matrix[indexUp - 1][indexDown - 1]) {
+					sum++;
+				}
+			}
+			if (indexUp > 1) {
+				if (matrix[indexUp - 1][indexDown + 1]) {
+					sum++;
+				}
+			}
+			if (indexDown > 1) {
+				if (matrix[indexUp + 1][indexDown - 1]) {
+					sum++;
+				}
+			}
+			return sum;
+		})
+});
+return matrix; 
+
+function minesweeper(matrix) {
+	let result = JSON.parse(JSON.stringify(matrix));
+	for (let j = 0; j < matrix.length; j++) {
+		for (let n = 0; n < matrix[0].length; n++) {
+			let count = 0;
+			if (j < matrix.length - 1 && n < matrix.length - 1) {
+				if (matrix[j + 1][n + 1]) {
+					count++
+				}
+			}
+			if (j > 0 && n > 0) {
+				if (matrix[j - 1][n - 1]) {
+					count++
+				}
+			}
+			if (j > 0 && n < matrix.length - 1) {
+				if (matrix[j - 1][n + 1]) {
+					count++
+				}
+			}
+			if (j < matrix.length - 1 && n > 0) {
+				if (matrix[j + 1][n - 1]) {
+					count++
+				}
+			}
+			if (j > 0) {
+				if (matrix[j - 1][n]) {
+					count++
+				}
+			}
+			if (n > 0) {
+				if (matrix[j][n - 1]) {
+					count++
+				}
+			}
+			if (j < matrix.length - 1) {
+				if (matrix[j + 1][n]) {
+					count++
+				}
+			}
+			if (n < matrix.length - 1) {
+				if (matrix[j][n + 1]) {
+					count++
+				}
+			}
+			count//?
+			result[j][n] = count;
+			
+		}
+	}
+	return result;
+}
+
+ minesweeper([
+	[true, false, false],
+	[false, true, false],
+	[false, false, false],
+])//? 
+minesweeper([
+	[false, false, false],
+	[false, false, false],
+])//?
 */
