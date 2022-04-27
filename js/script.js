@@ -176,6 +176,7 @@ function howManyHoursOfTraining() {
 		'24.04': 10,
 		'25.04': 9,
 		'26.04': 7,
+		'27.04': 6,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -5005,4 +5006,131 @@ minesweeper([
 	[false, false, false],
 	[false, false, false],
 ])//?
+
+let arr = [
+	[true, false, false],
+	[false, true, false],
+	[false, false, false],
+];
+
+let copy = JSON.parse(JSON.stringify(arr));
+copy[0][1] = '4567'
+
+arr//?
+
+
+class Stack {
+	constructor() {
+		this.stack = [];
+	}
+	push(element) {
+		this.stack.push(element);
+	}
+
+	pop() {
+		return this.stack.pop();
+	}
+
+	peek() {
+		return this.stack[this.stack.length - 1];
+	}
+}
+
+const stack = new Stack();
+stack.push(5);
+stack.peek()//?
+
+
+class ListNode {
+	constructor(x) {
+		this.value = x;
+		this.next = null;
+	}
+}
+
+function removeKFromList(l, k) {
+	let delNode = null;
+	// Если head нужно удалить, то переписываем все последующие
+	while (l && l.value === k) {
+		delNode = l.value;
+		l = l.next;
+	}
+	let currNode = l;
+	// перебираем все следующие элементы
+	while (currNode.next) {
+		console.log(currNode.value)
+		if (currNode.next.value === k) {
+			// когда нашли, то удаляем 
+			delNode = currNode.next;
+			currNode.next = currNode.next.next;
+		} else {
+			currNode = currNode.next;
+		}
+	}
+	return l;
+}
+
+function convertArrayToList(arr) {
+	return arr.reverse().reduce((acc, cur) => {
+		if (acc) {
+			const node = new ListNode(cur);
+			node.next = acc;
+			return node;
+		}
+		return new ListNode(cur);
+	}, null);
+}
+
+
+const initial = convertArrayToList([3, 1, 2, 3, 4, 5])//?
+console.log(initial);
+removeKFromList(initial, 3)//?
+removeKFromList(initial, 3);
+
+
+class ListNode {
+	constructor(x) {
+		this.value = x;
+		this.next = null;
+	}
+}
+
+class Queue {
+	constructor() {
+		this.head = null;
+		this.tail = null;
+	}
+
+	getUnderlyingList() {
+		return this.head;
+	}
+
+	enqueue(value) {
+		const node = new ListNode(value);
+		if (!this.head) {
+			this.head = node;
+			this.tail = node;
+		} else {
+			this.tail.next = node;
+			this.tail = node;
+		}
+	}
+
+	dequeue() {
+		if (!this.head) {
+			return null;
+		}
+		const value = this.head.value;
+		this.head = this.head.next;
+		return value;
+	}
+}
+
+const queue = new Queue();
+
+queue.enqueue(5);
+queue.enqueue(6);
+queue.enqueue(7);
+queue.dequeue();
+console.log(queue.getUnderlyingList());
 */
