@@ -194,8 +194,6 @@ ${(allHourWorkTime / workTimeArray.length).toFixed(1)} hours a day. Count day: $
 }
 console.log(howManyHoursOfTraining());
 
-
-
 function howManyHoursOfTrainingEn() {
 	let workTime = {
 		'20.02': 2,
