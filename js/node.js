@@ -243,5 +243,87 @@ server.listen(PORT, 'localhost', () => {
 }); */
 
 //?! Модуль events  Модуль Events предназначен для работы с событиями
+// У него есть два полезных метода:
+// emit(<event>) - генерирует событие event, заставляя срабатывать обработчики этого события у подписчиков
+// on(<event>, <handler>) - подписка на события (выполнение функции handler действий при наступлении события event
+// 
+// При вызове события в методе emit() можно передать какое-то дополнительное значение (payload). Это значение будет передано в качестве аргумента в функцию-обработчик
+//
+// При подписке на событие его обработчик ставится в очередь обработчиков. Одному и тому же событию можно назначить несколько обработчиков 
+// (по умолчанию не больше 10, но это не жесткий лимит). Обработчики срабатывают в том порядке, в котором они были назначены:
+// 
+// Один и тот же обработчик может быть назначен несколько раз:
+//
+// Обработчик срабатывает на каждую генерацию события:
+// 
+// Если необходимо, чтобы обработчик срабатывал только один раз, для подписки используем метод once()
+// 
+/* const EventEmitter = require('events');
+const emitter = new EventEmitter();
 
-const EventEmitter = require('events');
+emitter.on('start', message => console.log(message));
+
+emitter.emit('start', 'Start message'); */
+
+//! Поток чтения (Readable stream)
+
+/* const fs = require('fs');
+
+const stream = fs.createReadStream('source.txt', 'utf-8');
+
+let data = '';
+
+stream.on('data', chunk => data += chunk);
+stream.on('end', () => console.log('End', data));
+stream.on('error', error => console.log('Error', error.message)); */
+
+//!  Поток записи (Writable stream)
+
+/* const fs = require('fs');
+
+const input = fs.createReadStream('source.txt', 'utf-8');
+const output = fs.createWriteStream('destination.txt');
+
+input.on('data', chunk => output.write(chunk));
+input.on('error', error => console.log('Error', error.message)); */
+
+//! Объединение потоков чтения-записи
+// Метод pipe(), имеющийся у каждого потока, можно использовать для объединения одних потоков с другими. Такие цепочки могут объединять несколько потоков.
+
+/* const fs = require('fs');
+
+const input = fs.createReadStream('source.txt', 'utf-8');
+const output = fs.createWriteStream('destination.txt');
+
+input.pipe(output); */
+
+/* const fs = require('fs');
+const zlib = require('zlib');
+const { pipeline } = require('stream');
+
+const input = fs.createReadStream('source.txt', 'utf-8');
+const output = fs.createWriteStream('destination.txt.gz');
+const gzip = zlib.createGzip();
+
+pipeline(
+	input,
+	gzip,
+	output,
+	err => {
+		if (err) {
+			// обрабатываем ошибки
+		}
+	}
+); */
+
+const fs = require('fs');
+const path = require('path');
+
+fs.writeFile(
+	path.join(__dirname, 'mynotes.txt'),
+	'Hello world',
+	(err) => {
+		if (err) throw err;
+		console.log('Файл был создан');
+	}
+);
