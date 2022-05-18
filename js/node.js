@@ -316,7 +316,7 @@ pipeline(
 	}
 ); */
 
-const fs = require('fs');
+/* const fs = require('fs');
 const path = require('path');
 
 fs.writeFile(
@@ -326,4 +326,41 @@ fs.writeFile(
 		if (err) throw err;
 		console.log('Файл был создан');
 	}
-);
+); */
+
+/* async function writeAndInjectHtmlTemplate(source, target, components) {
+	try {
+		let data = await readFile(source, 'utf8');
+		const tempTags = data.match(/{{\w*}}/g);
+		const replaceTags = await Promise.all(
+			tempTags.map((tag) => {
+				return readFile(path.join(components, `/${tag.slice(2, -2)}.html`), 'utf8');
+			}));
+		replaceTags.forEach((item) => {
+			data = data.replace(/{{\w*}}/, item);
+		});
+		await writeFile(path.join(target, '/index.html'), data, 'utf8');
+	} catch (err) {
+		stdout.write(`\nError: ${err.message}\n`);
+	}
+}
+ */
+/* let promise1 = (ms, n) => {
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			console.log(n);
+			resolve()
+		}, ms);
+	})
+};
+
+async function test() {
+	console.log('start');
+	const arr = [1, 2, 3, 4, 5];
+	for (let i = 0; i < arr.length; i++) {
+		await promise1(1000, i);
+	}
+	console.log('end');
+}
+
+test(); */
