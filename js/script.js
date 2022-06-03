@@ -213,6 +213,7 @@ function howManyHoursOfTraining() {
 		'31.04': 1,
 		'01.05': 2,
 		'02.05': 5,
+		'03.05': 5,
 	};
 	let allHourWorkTime = Object.values(workTime).reduce((previous, item) => item + previous);
 	let workTimeArray = Object.values(workTime);
@@ -5317,73 +5318,5 @@ console.log(tree.root());
 //!!! ctrl + D
 */
 
-class Node {
-	constructor(value) {
-		this.value = value;
-		this.next = null;
-	}
-}
-
-class LinkedList {
-	constructor() {
-		this.head = null;
-		this.length = 0;
-	}
-
-	getList () {
-		return this.head;
-	}
-
-	addToTheEnd(value) {
-		let node = new Node(value); //creating the node using class Node
-
-		if (this.length === 0) {
-			this.head = node; // If there are no nodes 
-			// node variable will be the first and head node in the list
-		} else {
-			let current = this.head;
-
-			while (current.next) {
-				current = current.next;
-			}
-
-			current.next = new Node(value);
-		}
-
-		this.length++;
-	}
-
-	printToConsole() {
-		let current = this.head;
-
-		while (current) {
-			console.log(current.value);
-			current = current.next;
-		}
-	}
-}
-
-let list = new LinkedList();
-
-for (let i = 0; i < 10000; i++) {
-	list.addToTheEnd(Math.floor(Math.random() * 1000))
-}
-
-list.printToConsole()//?.
-//?
-
-/* let arr = [];
-
-for (let i = 0; i < 10000; i++) {
-	arr.push(Math.floor(Math.random() * 1000))
-}
-
-function printToConsole(arr) {
-	for (let i = 0; i < arr.length; i++) {
-		console.log(arr[i])
-	}
-}
-
-printToConsole(arr)//?. 
-//70ms  */
-
+function SomeFunc() { }
+console.log(SomeFunc.prototype);//?.
