@@ -64,9 +64,12 @@ let fido = new Dog('Fido', 'Mixed', 38);
 console.log(fido);
 fido.bark();
 
+//В JavaScript существует различие между «функцией-конструктором наследующего класса» и всеми остальными. 
+//В наследующем классе соответствующая функция-конструктор помечена специальным внутренним свойством [[ConstructorKind]]:"derived".
+
 class ShowDog extends Dog { //ShowDog расширяет Dog
 	constructor(name, bread, weight, handler) { // функция конструктор
-		super(name, bread, weight); //метод super посылает родителю то что он ждет. Обязательно!
+		super(name, bread, weight); //метод super посылает родителю то что он ждет. Обязательно! До использования this
 		this.handler = handler;
 		this.league = 'Webville';
 	}
