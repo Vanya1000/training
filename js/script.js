@@ -5126,3 +5126,250 @@ class Man {
 
 let man1 = new Man('Ivan', 29);
 */
+
+/* var Ball = function (ballType) {
+  this.ballType =  ballType ? ballType : 'regular'
+};
+
+new Ball().ballType//?
+new Ball("super").ballType//? 
+
+class Song {
+  constructor(title, artist) {
+    this.title = title;
+    this.artist = artist;
+    this.user = [];
+  }
+  howMany (user) {
+    let count = 0;
+    const nameLower = user.map(item => item.toLowerCase());//?
+    const filter = nameLower.filter((item, index) => nameLower.indexOf(item) === index);//?
+    filter.forEach(item => {
+      if (!this.user.includes(item)) {
+        this.user.push(item);
+        count++;
+      }
+    });
+    return count;
+  }
+}
+
+const mountMoose = new Song('Mount Moose', 'The Snazzy Moose');
+mountMoose.howMany(['John', 'Fred', 'Bob', 'Carl', 'RyAn']);//?
+mountMoose.howMany(['JoHn', 'Luke', 'AmAndA']);//?
+
+
+class Animal {
+  constructor(name, age, legs, species, status) {
+    this.name = name;
+    this.age = age;
+    this.legs = legs;
+    this.species = species;
+    this.status = status;
+  }
+  introduce() {
+    return `Hello, my name is ${this.name} and I am ${this.age} years old.`;
+  }
+}
+
+class Shark extends Animal {
+  constructor(name, age, status) {
+    super(name, age, 0, 'shark', status);
+  }
+}
+
+class Cat extends Animal {
+  constructor(name, age, status) {
+    super(name, age, 4, 'cat', status);
+  }
+  introduce() {
+    return `${super.introduce()}  Meow meow!`;
+  }
+}
+
+class Dog extends Animal {
+  constructor(name, age, status, master) {
+    super(name, age, 4, 'dog', status);
+    this.master = master;
+  }
+  greetMaster() {
+    return `Hello ${this.master}`;
+  }
+}
+
+const billy = new Shark("Billy", 3, "Alive and well");
+console.log(billy);//?
+
+const cathy = new Cat("Cathy", 7, "Playing with a ball of yarn");
+console.log(cathy);//?
+console.log(cathy.introduce());//?
+
+const doug = new Dog("Doug", 12, "Serving his master", "Eliza");
+console.log(doug);//?
+console.log(doug.greetMaster());//?
+
+
+class Cube {
+  constructor(length) {
+    this.length = length;
+  }
+  get surfaceArea() {
+    return this.length * this.length * 6;
+  }
+  get volume() {
+    return this.length * this.length * this.length;
+  }
+  set surfaceArea(value) {
+    this.length = Math.sqrt(value / 6);
+  }
+  set volume(value) {
+    this.length = Math.cbrt(value);
+  }
+}
+
+var cube = new Cube(1);
+
+cube.surfaceArea //?
+cube.length = 2;
+cube.surfaceArea //?
+
+
+class File {
+  constructor(fullName, contents) {
+    this._fullName = fullName;
+    this.contents = contents;
+    this._filename = fullName.match(/([^]+)(?=\.\w+$)/)[0];
+    this._extension = fullName.match(/\.(\w+)$/)[1];
+    this.stroke = contents.split('\n');
+    this.strokeCount = -1;
+    this.letters = contents.split('');
+    this.lettersCount = -1;
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+  set fullName(value) {
+    console.log('You can\'t change the name of a file');
+  }
+
+  get filename() {
+    return this._filename;
+  }
+  set filename(value) {
+    console.log('You can\'t change the name of a file');
+  }
+  get extension() {
+    return this._extension;
+  }
+  set extension(value) {
+    console.log('You can\'t change the name of a file');
+  }
+
+  getContents() {
+    return this.contents;
+  }
+  write(str) {
+    this.contents = this.contents.length ? `${this.contents}\n${str}` : str;
+    this.stroke = this.contents.split('\n');
+    this.letters = this.contents.split('');
+  }
+  gets() {
+    this.strokeCount++
+    return this.stroke[this.strokeCount];
+  }
+  getc() {
+    this.lettersCount++
+    return this.letters[this.lettersCount];
+  }
+}
+//? красиво!
+class File {
+  constructor(file, contents) {
+    Object.defineProperties(this, {
+      'fullName': { value: file },
+      'filename': {
+        value: file.slice(0, file.lastIndexOf('.'))
+      },
+      'extension': {
+        value: file.slice(file.lastIndexOf('.') + 1)
+      },
+      'line': {
+        value: 0,
+        configurable: true,
+        writable: true
+      },
+      'char': {
+        value: 0,
+        configurable: true,
+        writable: true
+      },
+      'contents': {
+        value: contents,
+        configurable: true,
+        writable: true
+      }
+    });
+  }
+  getContents() {
+    return this.contents;
+  }
+  write(str) {
+    this.contents += (this.contents ? '\n' : '') + str;
+  }
+  gets() {
+    return this.getContents().split('\n')[this.line++];
+  }
+  getc() {
+    return this.getContents()[this.char++];
+  }
+}
+
+var example = new File("example.txt", "An example file");
+example.fullName//? "example.txt"
+example.filename//? "example"
+example.extension//? "txt"
+example.fullName = "modified.txt";
+example.fullName//? "modified.txt"
+example.fullName//? "example.txt"
+example.filename = "hacked";
+example.filename//? "hacked"
+example.filename//? "example"
+example.extension = "locky";
+example.extension//? "locky"
+example.extension//? "txt"
+example.getContents()//? "An example file"
+example.write("Hello World");
+example.getContents()//? "An example file\nHello World"
+example.write("This is an example file provided to you by the Kata author");
+example.getContents()//? "An example file\nHello World\nThis is an example file provided to you by the Kata author"
+example.write("This example file is used as an example test case.");
+example.getContents()//? "An example file\nHello World\nThis is an example file provided to you by the Kata author\nThis example file is used as an example test case."
+console.log('example.getContents(): ', example.getContents());
+//example.gets()//? "An example file"
+console.log(example.stroke);//?!
+console.log('example.gets(): ', example.gets());
+//example.gets()//? "Hello World"
+console.log('example.gets(): ', example.gets());
+example.gets()//? "This is an example file provided to you by the Kata author"
+example.gets()//? "This example file is used as an example test case."
+example.gets()//? undefined
+example.gets()//? undefined
+example.gets()//? undefined
+example.getc()//? "A"
+example.getc()//? "n"
+example.getc()//? " "
+example.getc()//? "e"
+example.getc()//? "x"
+example.getc()//? "a"
+example.getc()//? "m"
+example.getc()//? "p"
+example.getc()//? "l"
+example.getc()//? "e"
+for (let i = 0; i < 1000; i++) {
+  example.getc();//?
+}
+example.getc()//? undefined
+example.getc()//? undefined
+example.getc()//? undefined
+*/
