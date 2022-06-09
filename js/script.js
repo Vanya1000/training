@@ -5372,4 +5372,122 @@ for (let i = 0; i < 1000; i++) {
 example.getc()//? undefined
 example.getc()//? undefined
 example.getc()//? undefined
+
+
+Object.assign(Array.prototype, {
+  square() { return this.map(x => x * x); },
+  cube() { return this.map(x => x * x * x); },
+  sum() { return this.reduce((p, n) => p + n, 0); },
+  average() { return this.reduce((p, n) => p + n, 0) / this.length; },
+  even() { return this.filter(x => x % 2 === 0); },
+  odd() { return this.filter(x => x % 2 !== 0); }
+});
+
+var numbers = [];
+numbers.square()//? [1, 4, 9, 16, 25]
+numbers.cube()//? [1, 8, 27, 64, 125]
+numbers.average()//? 3
+numbers.sum()//? 15
+numbers.even()//? [2, 4]
+numbers.odd()//? [1, 3, 5]
+
+
+Array.prototype.reduce1 = function (process, initial) {
+  let result = initial;
+
+  if (!initial) { 
+    result = this[0];
+    for (let i = 1; i < this.length; i++) {
+      result = process(result, this[i], i, this);
+    }
+  } else {
+    for (let i = 0; i < this.length; i++) {
+      result = process(result, this[i], i, this);
+    }
+  }
+  return result;
+}
+
+let res = [1, 2, 3].reduce1(function (sum, next) { return sum + next }, 0)//?
+console.log(res);//?
+
+let res2 = ['a', 'b', 'a'].reduce1(function (obj, elem) { if (!obj[elem]) obj[elem] = 0; obj[elem] += 1; return obj }, {})
+console.log(res2);//?
+
+/* let test = [1,2,3,4].reduce(function (sum, next) { return sum + next }, 2);
+console.log(test);//?
+
+
+var Cat = (function () {
+  const weightAllCats = [];
+
+  const constructor = function (name, weight) {
+    if (!name || !weight) throw Error('invalid parameters')
+    Object.defineProperty(this, 'name', { get: () => name })
+    Object.defineProperty(this, 'weight', { get: () => weight, set: value => weight = value })
+    weightAllCats.push(this)
+  }
+
+  constructor.averageWeight = () => weightAllCats.reduce((acc, cat) => (acc + cat.weight), 0) / weightAllCats.length
+
+  return constructor
+}())
+
+const garfield = new Cat('garfield', 25);
+console.log(Cat);
+
+
+function task(task) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(30);
+    }, 1000);
+  });
+}
+
+function antiOptimizeAsync(task) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(task());
+    }, 0);
+  });
+}
+
+antiOptimizeAsync(task).then(result => console.log(result));
 */
+
+
+async function sayJoke(apiUrl, jokeId) {
+    if (apiUrl !== 'http://great.jokes/christmas') {
+      throw new Error(`No jokes at url: ${apiUrl}`)
+    }
+    const response = await fetch(apiUrl);
+    if (!response) {
+      throw new Error(`No jokes found id: ${jokeId}`)
+    }
+    const jokes = await response.json();
+    const jokeItem = jokes.jokes.find((x) => x.id === jokeId);
+    return {
+      saySetup: () => jokeItem.setup,
+      sayPunchLine: () => jokeItem.punchline
+    }
+}
+
+
+const result = (data) => {
+  for (let joke of data.jokes) {
+    if (joke.id === jokeId) {
+      return {
+        saySetup: () => joke.setup,
+        sayPunchLine: () => joke.punchLine
+      };
+    }
+  }
+  throw new Error(`No jokes found id: ${jokeId}`);
+};
+console.log(result(data).saySetup());
+
+fetch(apiUrl)
+  .then(response => response.json())
+  .then(data => console.log(data))
+const joke = data.jokes.find((x) => x.id === jokeId);
