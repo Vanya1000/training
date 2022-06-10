@@ -5454,40 +5454,197 @@ function antiOptimizeAsync(task) {
 }
 
 antiOptimizeAsync(task).then(result => console.log(result));
-*/
-
 
 async function sayJoke(apiUrl, jokeId) {
-    if (apiUrl !== 'http://great.jokes/christmas') {
-      throw new Error(`No jokes at url: ${apiUrl}`)
-    }
-    const response = await fetch(apiUrl);
-    if (!response) {
-      throw new Error(`No jokes found id: ${jokeId}`)
-    }
-    const jokes = await response.json();
-    const jokeItem = jokes.jokes.find((x) => x.id === jokeId);
-    return {
-      saySetup: () => jokeItem.setup,
-      sayPunchLine: () => jokeItem.punchline
-    }
+  if (apiUrl !== 'http://great.jokes/christmas') {
+    throw new Error(`No jokes at url: ${apiUrl}`)
+  }
+  const response = await fetch(apiUrl);
+  const jokes = await response.json();
+  const jokeItem = jokes.jokes.find((x) => x.id === jokeId);
+  if (!jokeItem) {
+    throw new Error(`No jokes found id: ${jokeId}`)
+  }
+  return {
+    saySetup: () => jokeItem.setup,
+    sayPunchLine: () => jokeItem.punchLine
+  }
 }
 
 
-const result = (data) => {
-  for (let joke of data.jokes) {
-    if (joke.id === jokeId) {
-      return {
-        saySetup: () => joke.setup,
-        sayPunchLine: () => joke.punchLine
-      };
+var santa = {
+  sayHoHoHo: function () { console.log('Ho Ho Ho!') },
+  distributeGifts: function () { console.log('Gifts for all!'); },
+  goDownTheChimney: function () { console.log('*whoosh*'); }
+};
+
+var NotSantaClaus = { name: undefined }
+
+function isSantaClausable(obj) {
+  return ['sayHoHoHo', 'distributeGifts', 'goDownTheChimney'].every(function (methodName) {
+    return typeof obj[methodName] == 'function';
+  });
+}
+
+isSantaClausable(santa);//?
+
+isSantaClausable(NotSantaClaus);//?
+
+class Marine {
+  attack(target) {
+    target.health -= 6;
+  }
+}
+
+class Zealot {
+  attack(target) {
+    target.health -= 8;
+  }
+}
+
+class Zergling {
+  attack(target) {
+    target.health -= 5;
+  }
+}
+
+class Mario {
+  jumpAttack() {
+    console.log('Mamamia!');
+    return 3;
+  }
+}
+
+class MarioAdapter {
+  constructor(mario) {
+    this.mario = mario;
+  }
+
+  attack(target) {
+    target.health -= this.mario.jumpAttack();
+  }
+}
+const mario = new Mario();
+const marioAdapter = new MarioAdapter(mario);
+const target = { health: 33 };
+
+marioAdapter.attack(target);
+target.health;
+
+
+class Marine {
+  constructor() {
+    this.health = 100;
+  }
+  accept(visitor) {
+    return visitor.visitLight(this);
+  }
+}
+
+class Marauder {
+  constructor() {
+    this.health = 125;
+  }
+  accept(visitor) {
+    return visitor.visitArmored(this);
+  }
+}
+
+class TankBullet {
+  visitLight(unit) {
+    return unit.health -= 21;
+  }
+  visitArmored(unit) {
+    return unit.health -= 32;
+  }
+}
+
+let bullet = new TankBullet();
+let light = new Marine();
+
+light.accept(bullet);//?
+
+
+class SiegeState {// режим осады and damage+20
+  constructor() {
+    this.damage = 20;
+    this.canMove = false;
+  }
+}
+
+class TankState {// может двигаться and damag =5
+  constructor() {
+    this.damage = 5;
+    this.canMove = true;
+  }
+}
+
+class Tank {
+  constructor() {
+    this.state = new TankState();
+  }
+
+  get canMove() {
+    return this.state.canMove;
+  }
+  get damage() {
+    return this.state.damage;
+  }
+}
+
+let tank = new Tank();
+console.log(tank);
+tank.state = new SiegeState();
+console.log(tank);
+tank.canMove//?
+
+
+class Fly {
+  move(unit) { // when fly - position +10
+    unit.position += 10;
+  }
+}
+
+class Walk {
+  move(unit) { // when walk - position +1
+    unit.position += 1;
+  }
+}
+
+class Viking {
+  constructor() {
+    this.position = 0;
+    this.moveBehavior = new Walk();
+  }
+
+  move() {
+    this.moveBehavior.move(this);
+  }
+}
+
+let viking = new Viking();
+viking.move();
+viking.position//?
+
+viking.moveBehavior = new Fly();
+viking.move();
+viking.position//?
+*/
+
+const sortedDigits = n => { let arr = n.toString().split(''); arr.sort((a, b) => b - a); return arr; };
+
+function nextBigger(n) {
+
+  let arr = sortedDigits(n);
+  let max = parseInt(arr.join(''), 10);
+
+  for (var i = n + 1; i <= max; i++) {
+    if (sortedDigits(i).every((x, j) => x === arr[j])) {
+      return i;
     }
   }
-  throw new Error(`No jokes found id: ${jokeId}`);
-};
-console.log(result(data).saySetup());
 
-fetch(apiUrl)
-  .then(response => response.json())
-  .then(data => console.log(data))
-const joke = data.jokes.find((x) => x.id === jokeId);
+  return -1;
+}
+
+nextBigger(2017);//?
