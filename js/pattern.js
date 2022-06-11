@@ -85,6 +85,42 @@ console.log(newCalc.add(10, 5))
 const adapter = new CalcAdapter()
 console.log(adapter.operations(25, 10, 'sub'))
 
+//? Decorator – это паттерн проектирования, который позволяет добавлять дополнительную функциональность к объекту.
+class Server {// Есть базовый класс сервер.И дальше мы можем создавать различные типы серверов.
+  constructor(ip, port) {
+    this.ip = ip
+    this.port = port
+  }
+
+  get url() {
+    return `https://${this.ip}:${this.port}`
+  }
+}
+// Декораторами являются обычные функции, которые принимают instance класса. Модифицируя его и возвращая обратно.
+function aws(server) { // Принимает instance класса сервер.
+  server.isAWS = true //Добавляет сюда функционал.
+  server.awsInfo = function () {// Добавляет методы.
+    return server.url
+  }
+  return server // Возвращает измененный объект.
+}
+
+function azure(server) {
+  server.isAzure = true
+  server.port += 500
+  return server
+}
+
+const s1 = aws(new Server('12.34.56.78', 8080))// Оборачиваем его декоратор AWS.
+console.log(s1.isAWS)
+console.log(s1.awsInfo())
+
+const s2 = azure(new Server('98.87.76.12', 1000))
+console.log(s2.isAzure)
+console.log(s2.url)
+
+
+
 //! behavioral Паттерны поведения позволяют объектам взаимодействовать друг с другом в различных схемах поведения.
 //? visitor Суть в том, что он добавляет новую функциональность к уже существующим классам. 
 //? Он расширяет функциональность класса. Не изменяя его первоначальную реализацию.

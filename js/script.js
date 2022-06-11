@@ -5629,7 +5629,7 @@ viking.position//?
 viking.moveBehavior = new Fly();
 viking.move();
 viking.position//?
-*/
+
 
 const sortedDigits = n => { let arr = n.toString().split(''); arr.sort((a, b) => b - a); return arr; };
 
@@ -5648,3 +5648,123 @@ function nextBigger(n) {
 }
 
 nextBigger(2017);//?
+
+
+class Marine {
+  constructor(damage, armor) {
+    this._damage = damage
+    this._armor = armor
+  }
+
+  get damage() { return this._damage }
+  get armor() { return this._armor }
+}
+
+class MarineWeaponUpgrade { // increases the damage + 1
+  constructor(marine) {
+    this.marine = marine;
+  }
+
+  get damage() { return this.marine.damage + 1; }
+  get armor() { return this.marine.armor; }
+}
+
+class MarineArmorUpgrade { // increases the armor + 1
+  constructor(marine) {
+    this.marine = marine;
+  }
+
+  get damage() { return this.marine.damage; }
+  get armor() { return this.marine.armor + 1; }
+}
+
+let marine = new Marine(10, 1);
+console.log(marine);//?
+console.log(marine.armor);
+new MarineWeaponUpgrade(marine).damage;//?
+new MarineWeaponUpgrade(marine).damage;//?
+
+
+function extend(className, superClass, mixin, scope = global) {
+  scope[className] = class extends superClass {};
+  mixin && Object.assign(superClass.prototype, new mixin(), mixin.prototype);
+}
+
+function base() {
+  this.name = 'base';
+}
+
+function mixin() {
+  this.addProp = function (p) { };
+  this.getProp = function (p) { };
+}
+
+//Test inheritance
+extend('child', base);
+//console.log(extend('child', base));
+
+var c = new child();//?
+c.name//?
+console.log(c);//?
+
+/* 
+//Test the mixin
+extend('child', base, mixin);
+var c = new child();
+typeof (c.addProp)//?
+
+
+
+//Test scope
+var ns = {};
+extend('child', base, mixin, ns);
+var c = new child();
+typeof (ns['child'])//?
+
+Object.prototype.hash = function (string) {
+  return string.split('.').reduce((acc, item) => acc ? acc[item] : acc, this);
+}
+
+var obj = {
+  person: {
+    name: 'joe',
+    history: {
+      hometown: 'bratislava',
+      bio: {
+        funFact: 'I like fishing.'
+      }
+    }
+  }
+};
+
+obj.hash('person.name');//?
+obj.hash('person.history.bio');//?
+obj.hash('person.history.homeStreet');//?
+obj.hash('person.animal.pet.needNoseAntEater');//?
+
+
+//nameManager {
+//  nameExists: [Function],
+//  addName: [Function],
+//  nameWasUnique: [Function]
+//}
+
+function generateName() {
+  const generateName = () => {
+    let name = '';
+    for (let i = 0; i < 6; i++) {
+      let rand = 65 + Math.random() * (90 + 1 - 65);
+      name += String.fromCharCode(Math.floor(rand));
+    }
+    return name;
+  }
+  const possibleName = generateName();
+  return nameManager.nameWasUnique(possibleName) ? possibleName : generateName();
+}
+
+var name = generateName();
+
+String.fromCharCode(65, 66, 67);//?
+let rand = 65 + Math.random() * (90 + 1 - 65);
+String.fromCharCode(Math.floor(rand));
+ */
