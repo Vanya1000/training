@@ -5767,4 +5767,260 @@ var name = generateName();
 String.fromCharCode(65, 66, 67);//?
 let rand = 65 + Math.random() * (90 + 1 - 65);
 String.fromCharCode(Math.floor(rand));
+
+class Animal {
+  constructor (name, type) {
+    this.name = name;
+    this.type = type;
+  }
+
+  toString() {
+    return `${this.name} is a ${this.type}`;
+  }
+  set name(name) {
+    this._name = name;
+  }
+}
+
+var dog = new Animal('Max', 'dog');
+dog.toString();//?
+dog.type; //?
+dog.name; //?
+dog.name = 'Lassie'; // should set name to 'Lassie'
+dog.name; //?
+
+const newFunction = function () {
+  return this.constructor;
+}
+
+new newFunction;
+
+Array.prototype.myMap = function (callback) {
+  this//?
+  let newArray = [];
+  for (let i = 0; i < this.length; i++) {
+    newArray.push(callback(this[i]));
+  }
+  return [...newArray];
+}
+
+
+
+let example = [1, 2, 3].myMap(x => x ** 2)//?
+
+
+class Person {
+  constructor(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  getName() {
+    return this.firstName + ' ' + this.lastName;
+  }
+
+  get name () {
+    return this.firstName + ' ' + this.lastName;
+  }
+  
+  set name (name) {
+    let arr = name.split(' ');
+    this.firstName = arr[0];
+    this.lastName = arr[1];
+  } 
+}
+//! Дескрипторы
+Object.defineProperty(Person.prototype, 'name', {
+  set: function (name) {
+    let arr = name.split(' ');
+    this.firstName = arr[0];
+    this.lastName = arr[1];
+  },
+  get: function () {
+    return this.firstName + ' ' + this.lastName;
+  }
+});
+
+let augustusCole = new Person('Augustus', 'Cole');
+augustusCole.name = 'Cole Train';
+console.log(augustusCole.firstName); // => 'Cole'
+console.log(augustusCole.lastName); // => 'Train'
+console.log(augustusCole.getName()); // => 'Cole Train'
+console.log(augustusCole.name); // => 'Cole Train'
  */
+/* 
+  //function nouveau(Constructor) {
+  //let args = Array.prototype.slice.call(arguments, 1);
+  //let obj = Object.create(Constructor.prototype);
+  //let ret = Constructor.apply(obj, args);
+  //return typeof ret === 'object' ? ret : obj;
+} 
+
+// Don't forget, unnamed arguments after Constructor may be passed in!
+
+//!new
+function nouveau(Constructor, ...args) {
+  let instance = Object.create(Constructor.prototype);
+  let ret = Constructor.apply(obj, args);
+  return ret === Object(ret) ? ret : instance;
+}
+
+
+function Person(name) {
+  this.name = name;
+}
+
+Person.prototype.sayHi = function () {
+  return 'Hi, I am ' + this.name;
+};
+
+var guy = nouveau(Person, 'Guy');
+console.log(guy); //?
+
+//var guyNew = new Person('Guy');//?
+*/
+
+
+/* class Event {
+  constructor(type) {
+    this.name = type;
+    this.listeners = [];
+  }
+
+  subscribe (listener) {
+    this.listeners.push(listener);
+  };
+  unsubscribe (listener) {
+    this.listeners = this.listeners.filter(l => l !== listener);
+  };
+  emit (...args) {
+    this.listeners.forEach(l => l(...args));
+  };
+}
+
+
+var event = new Event();//?
+
+function f() {
+  f.calls = (f.calls || 0) + 1;
+  f.args = Array.prototype.slice.call(arguments);
+}
+
+event.subscribe(f);
+event.emit(1, 'foo', true); 
+*/
+
+function undoRedo(object) {
+  console.log(object)
+  let history = [];//?
+  let current = object;//?
+  let countUndo = 0;
+  history.push(Object.assign({}, current));
+  let index = 0;
+  return {
+    set: function (key, value) {
+      console.log(`set: ${key}, ${value}`)
+      current[key] = value;
+      history.push(Object.assign({}, current));
+      index++;
+      index//?
+    },
+    get: function (key) {
+      console.log(`get: ${key}`);
+      return current[key];
+    },
+    del: function (key) {
+      console.log(`del: ${key}`)
+      delete current[key];
+      history.push(Object.assign({}, current));
+      index++;
+      index//?
+    },
+    undo: function () {
+      console.log('undo')
+      if (index > 0) {
+        index--;
+        index//?
+        current = history[index];
+        countUndo++;
+      }
+    },
+    redo: function () {
+      console.log('redo')
+      if (countUndo > 0) {
+        if (index < history.length - 1) {
+          countUndo--;
+          index++;
+          current = history[index];
+        }
+      }
+    },
+    getHistory: function () {
+      return history;
+    },
+    getCurrent: function () {
+      return current;
+    }
+  };
+}
+
+var obj = {};
+
+var unRe = undoRedo(obj);
+//unRe.getCurrent();//?
+
+
+unRe.set('x', 5);
+unRe.set('y', 10);
+unRe.set('y', 8);
+unRe.del('y');
+unRe.undo();
+unRe.get('y');//? 
+console.log(unRe.get('y'));
+
+
+
+
+
+
+unRe.getHistory();//?
+unRe.getCurrent();//?
+
+
+
+
+/* function undoRedoTest(object) {
+  let history = [];
+  let current = object;
+  let index = 0;
+  return {
+    undo: function () {
+      if (index > 0) {
+        index--;
+        current = history[index];
+      }
+    },
+    redo: function () {
+      if (index < history.length - 1) {
+        index++;
+        current = history[index];
+      }
+    },
+    save: function () {
+      history.push(current);
+      index = history.length - 1;
+    },
+    gethistory: function () {
+      return history;
+    }
+  };
+}
+
+var objTest = {
+  x: 1,
+  y: 2
+};
+
+const test = undoRedoTest(objTest);//?
+test.save();//?
+test.gethistory();//? */
