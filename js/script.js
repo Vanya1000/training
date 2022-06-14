@@ -5908,119 +5908,93 @@ function f() {
 
 event.subscribe(f);
 event.emit(1, 'foo', true); 
-*/
 
-function undoRedo(object) {
-  console.log(object)
-  let history = [];//?
-  let current = object;//?
-  let countUndo = 0;
-  history.push(Object.assign({}, current));
+
+function undoRedo(object) { //good
+  let history = [];
   let index = 0;
   return {
     set: function (key, value) {
-      console.log(`set: ${key}, ${value}`)
-      current[key] = value;
-      history.push(Object.assign({}, current));
+      if (object.hasOwnProperty(key)) {
+        history.push({ type: 'set', key, prev: object[key], current: value});
+      } else {
+        history.push({ type: 'add', key, prev: null, current: value});
+      }
+      object[key] = value;
       index++;
-      index//?
     },
     get: function (key) {
-      console.log(`get: ${key}`);
-      return current[key];
+      return object[key];
     },
     del: function (key) {
-      console.log(`del: ${key}`)
-      delete current[key];
-      history.push(Object.assign({}, current));
+      history.push({ type: 'del', key, prev: object[key], current: null});
+      delete object[key];
       index++;
-      index//?
     },
     undo: function () {
-      console.log('undo')
       if (index > 0) {
         index--;
-        index//?
-        current = history[index];
-        countUndo++;
+        let current = history[index];//?
+        if (current.type === 'set' || current.type === 'del') {
+          object[current.key] = current.prev;
+        } else if (current.type === 'add') {
+          delete object[current.key];
+        }
       }
     },
     redo: function () {
-      console.log('redo')
-      if (countUndo > 0) {
-        if (index < history.length - 1) {
-          countUndo--;
-          index++;
-          current = history[index];
+      if (index < history.length) {
+        let current = history[index];
+        if (current.type === 'set' || current.type === 'add') {
+          object[current.key] = current.current;
+        } else if (current.type === 'del') {
+          delete object[current.key];
         }
+        index++;
       }
     },
     getHistory: function () {
       return history;
     },
-    getCurrent: function () {
-      return current;
-    }
   };
+} */
+
+
+let obj = {
+  a: 1,
+  b: 2,
+  c: 3,
 }
 
-var obj = {};
+let num = 6;
 
-var unRe = undoRedo(obj);
-//unRe.getCurrent();//?
+obj instanceof Object;//?
+num instanceof Object;//?
 
-
-unRe.set('x', 5);
-unRe.set('y', 10);
-unRe.set('y', 8);
-unRe.del('y');
-unRe.undo();
-unRe.get('y');//? 
-console.log(unRe.get('y'));
-
-
-
-
-
-
-unRe.getHistory();//?
-unRe.getCurrent();//?
-
-
-
-
-/* function undoRedoTest(object) {
-  let history = [];
-  let current = object;
-  let index = 0;
-  return {
-    undo: function () {
-      if (index > 0) {
-        index--;
-        current = history[index];
-      }
-    },
-    redo: function () {
-      if (index < history.length - 1) {
-        index++;
-        current = history[index];
-      }
-    },
-    save: function () {
-      history.push(current);
-      index = history.length - 1;
-    },
-    gethistory: function () {
-      return history;
+class Dog {
+  constructor(name, breed, weight) {
+    this.name = name;
+    this.breed = breed;
+    this.weight = weight;
+    this.species = 'Canine';
+    return [name, breed, weight];
+  }
+  bark() {
+    if (this.weight > 25) {
+      console.log(this.name + ' say Woff!');
+    } else {
+      console.log(this.name + ' say Yip!');
     }
-  };
+  }
+  run() {
+    console.log('Run!');
+  }
+  wag() {
+    console.log('Wag!');
+  }
 }
 
-var objTest = {
-  x: 1,
-  y: 2
-};
-
-const test = undoRedoTest(objTest);//?
-test.save();//?
-test.gethistory();//? */
+let fido = new Dog('Fido', 'Mixed', 38);
+console.log(fido);
+//fido.bark();
+fido instanceof Object;//?
