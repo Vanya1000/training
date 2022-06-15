@@ -129,3 +129,8 @@ Object, Promise, Function, Boolean, Number, String, Array, Date, RegExp, Error, 
 ! И зачем объектам созданным с помощъю этого класса, св-во __proto__, которое ссылается на этот объект prototype
 ? Если мы пытаемся прочитать свойство объекта, либо вызвать его метод, а его нет, то объект полезет искать его через ссылку __proto__ в prototype класса, с помощью которого он был создан.
 */
+
+//* sdfsadfsdfdfssdfjk;lskdfj;lkjsdfljlsdfjk;lkj
+/* dfghfdgh
+dfghfdghgfdhfdgh
+fdghgfdhg */
