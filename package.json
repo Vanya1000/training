@@ -4,8 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "node start": "node js/node.js"
+    "node start": "node js/node.js",
+    "tsBuild": "tsc -p tsconfig.json",
+    "tsWatch": "tsc -w -p tsconfig.json",
+    "nodeStartBuild": "node ts/build/info.js",
+    "jsWatchNodemon": "nodemon ts/build/info.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
 }
