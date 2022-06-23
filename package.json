@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
+    "publish": "./scripts/publish.js",
     "node start": "node js/node.js",
     "tsBuild": "tsc -p tsconfig.json",
     "tsWatch": "tsc -w -p tsconfig.json",
