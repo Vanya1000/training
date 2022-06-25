@@ -5958,3 +5958,17 @@ function undoRedo(object) { //good
     },
   };
 } */
+
+
+let options = {
+  apiKey: '34c4aada741a4117b4289fd93e941e93'
+}
+
+let options2 = {
+  /* apiKey: '34c4aada741a4117b4289fd93e941e931' */
+}
+
+
+
+const urlOptions = { ...options, ...options2 };
+urlOptions//?
