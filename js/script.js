@@ -5959,16 +5959,27 @@ function undoRedo(object) { //good
   };
 } */
 
+let qwe = 3;
+function outer() {
+  // область видимости функции outer()
+  let v = 'Я из области видимости функции outer()!'
 
-let options = {
-  apiKey: '34c4aada741a4117b4289fd93e941e93'
+  function inner() {
+    // область видимости функции inner()
+    console.log(v) // 'Я из области видимости функции outer()!'
+    qwe++
+    console.log(qwe) //?);
+  }
+
+  return inner
 }
 
-let options2 = {
-  /* apiKey: '34c4aada741a4117b4289fd93e941e931' */
-}
-
-
-
-const urlOptions = { ...options, ...options2 };
-urlOptions//?
+const f = outer()
+f()
+f()
+f()
+f()
+qwe//?
+qwe--
+qwe//?
+f()

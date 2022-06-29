@@ -41,29 +41,37 @@ function getData<T>(title: string): void {
 
 getResp<Obj1>('title1');
  */
-
-function http<T>(request: string): void {
-  fetch(request)
-    .then(response => response.json() as Promise<T>)
-    .then(data => data.status)
+/* type Obj1 = {
+  title: string;
+  data: number;
 }
 
-type SourceData = {
-    id: string;
-    name: string;
-    description: string;
-    url: string;
-    category: string;
-    language: string;
-    country: string;
-};
+function genric<T>(data: T): void {
+  genric2<T>(data);
+}
 
-type SourceResponse = {
-    status: 'ok' | 'error';
-    code?: string;
-    message?: string;
-    sources: SourceData[];
-};
+function genric2<T>(data: T): void {
+  genric3<T>(data);
+}
 
-http<SourceResponse>("https://jsonplaceholder.typicode.com/todos")
-/* console.log(data[0].userId); */
+function genric3<T>(data: T): T {
+  return data;
+}
+
+let funcResult = genric<Obj1>({ title: 'title1', data: 1 });
+console.log(funcResult); */
+
+interface Todo {
+  title: string;
+  description: string;
+  completed: boolean;
+}
+ 
+type TodoPreview = Pick<Todo, "title" | "completed">;
+ 
+const todo: TodoPreview = {
+  title: "Clean room",
+  completed: false,
+};
+ 
+todo;

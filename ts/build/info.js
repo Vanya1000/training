@@ -42,10 +42,27 @@ function getData<T>(title: string): void {
 
 getResp<Obj1>('title1');
  */
-function http(request) {
-    fetch(request)
-        .then(response => response.json())
-        .then(data => data.status);
+/* type Obj1 = {
+  title: string;
+  data: number;
 }
-http("https://jsonplaceholder.typicode.com/todos");
-/* console.log(data[0].userId); */ 
+
+function genric<T>(data: T): void {
+  genric2<T>(data);
+}
+
+function genric2<T>(data: T): void {
+  genric3<T>(data);
+}
+
+function genric3<T>(data: T): T {
+  return data;
+}
+
+let funcResult = genric<Obj1>({ title: 'title1', data: 1 });
+console.log(funcResult); */
+const todo = {
+    title: "Clean room",
+    completed: false,
+};
+todo;
