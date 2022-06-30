@@ -61,7 +61,7 @@ function genric3<T>(data: T): T {
 let funcResult = genric<Obj1>({ title: 'title1', data: 1 });
 console.log(funcResult); */
 
-interface Todo {
+/* interface Todo {
   title: string;
   description: string;
   completed: boolean;
@@ -74,4 +74,33 @@ const todo: TodoPreview = {
   completed: false,
 };
  
-todo;
+todo; */
+/* 
+type obj1 = {
+  readonly title: string;
+  data?: number;
+  something: string;
+}
+
+type obj2 = {
+  title2: string;
+  data2: number;
+  something2: boolean;
+}
+
+type someType = obj1 | obj2; */
+
+
+interface Todo {
+  _title: string;
+  get title(): string;
+  set title(value: string);
+}
+
+class TodoClass implements Todo {
+  _title: string = 'default';
+
+  get title(): string {
+    return this._title;
+  }
+}

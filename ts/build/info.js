@@ -61,8 +61,11 @@ function genric3<T>(data: T): T {
 
 let funcResult = genric<Obj1>({ title: 'title1', data: 1 });
 console.log(funcResult); */
-const todo = {
-    title: "Clean room",
-    completed: false,
-};
-todo;
+class TodoClass {
+    constructor() {
+        this._title = 'default';
+    }
+    get title() {
+        return this._title;
+    }
+}
