@@ -5958,7 +5958,7 @@ function undoRedo(object) { //good
     },
   };
 } */
-
+/* 
 let qwe = 3;
 function outer() {
   // область видимости функции outer()
@@ -5982,4 +5982,13 @@ f()
 qwe//?
 qwe--
 qwe//?
-f()
+f() */
+
+function foo () {
+  console.log(1);
+  setImmediate(() => {
+    console.log(2);
+  })
+}
+
+foo();
