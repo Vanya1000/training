@@ -5984,11 +5984,49 @@ qwe--
 qwe//?
 f() */
 
-function foo () {
-  console.log(1);
-  setImmediate(() => {
-    console.log(2);
+
+/* function doItAfterAsync(seconds) {
+  let promise = new Promise((resolve, reject) => {
+    console.log('I am doing something asinc');
+    setTimeout(() => {
+      resolve([1, 2, 3, 4])
+    }, seconds * 1000);
+  }).then(data => {
+    console.log(data);
   })
 }
 
-foo();
+doItAfterAsync(4);
+
+
+function d() { 
+  console.log('d');
+}
+
+d(); */
+
+/* function first () {
+  setTimeout(() => console.log('1'), 0);
+}
+
+function second () {
+  console.log('2');
+  return new Promise((resolve, reject) => {
+    resolve();
+    console.log('3');
+  }).then(() => {console.log('4');})
+}
+
+first();
+second();
+console.log('5'); */
+
+/* localStorage.user = JSON.stringify({ name: "John", age: 30 });
+
+let keys = Object.keys(localStorage);
+for (let key of keys) {
+  console.log(`${key}: ${localStorage.getItem(key)}`);
+}
+
+console.log((JSON.stringify(localStorage, null, 2))); */
+

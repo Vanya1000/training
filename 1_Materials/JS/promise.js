@@ -79,10 +79,6 @@ async function doItAfterAsync(seconds) {  //? Так что ключевое с�
 
 
 
-
-
-
-
 //!--------------Владилен-------------------------------------------------------------------------------------------------------
 const delay = ms => {
 	return new Promise(resolve => setTimeout(() => resolve(), ms));
@@ -165,10 +161,10 @@ class MyPromise {
 		return new MyPromise((resolve, reject) => {
 			if (this.state === "pending") { // если есть какой то отложенный вызов и промис еще не завершен
 				if (onFulfilled) { // если в метод передан обработчик успешного завершения
-					this.onFulfilledFns.push(() => {
+					this.onFulfilledFns.push(() => { // пушим весь колбек в массив
 						try {
-							// на этом этапе уже есть результат промиса раз мы зашли в этот if
-							const newResult = onFulfilled(this.result); // 
+							// этот колбэк будет выполняться после завершения промиса и соответственно известен его результат
+							const newResult = onFulfilled(this.result);
 							if (newResult instanceof MyPromise) { // для 11го пункта. если возвращенное значение промиса то мы передаем его в качестве промиса в метод then
 								newResult.then(resolve, reject);// Это промис и мы возвращаем результат этого промиса.
 							} else {
@@ -339,3 +335,21 @@ const promise = new MyPromise((resolve, reject) => {
 }).then(value => {
 	console.log(11, value);
 });
+
+//----test---me---
+
+function first() {
+	setTimeout(() => console.log('1'), 0);
+}
+
+function second() {
+	console.log('2');
+	return new Promise((resolve, reject) => {
+		resolve();
+		console.log('3');
+	}).then(() => { console.log('4'); })
+}
+
+first();
+second();
+console.log('5');
