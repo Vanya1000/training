@@ -1,6 +1,6 @@
 // 1. prototype - это самый обычный объект
 // 2. У кого есть личный прототип? у class либо function
-// 3. У кого есть доступ к прототипу, некоторой функции? У объекта, созданного с помощью этой функции.Купи удобно голосовой ввод.
+// 3. У кого есть доступ к прототипу, некоторой функции? У объекта, созданного с помощью этой функции.
 // 4. Зачем нужен прототип?Так как функция это объект, значит она съедает память, если мы насоздаем с помощью этой функции миллион объектов, то все они смогут юзать единственные расшаренные в прототипе конструктора функции.
 
 /* class Man {
@@ -28,32 +28,32 @@ let clone = Object.create(Object.getPrototypeOf(rabbit), Object.getOwnPropertyDe
 let clear = Object.create(null); чистый объект без прототипа (словари)
 
 1)
-console.log(({}).prototype === ({}).__proto__); // false
+console.log(({}).prototype === ({}).__proto__); // //false
 
 2)
 function ITKamasutra() {}
-console.log(ITKamasutra.prototype === ITKamasutra.__proto__); // false
+console.log(ITKamasutra.prototype === ITKamasutra.__proto__); //// false
 
 3,4)
 function ITIncubator() {}
 function ITKamasutra() {}
-console.log(ITIncubator.__proto__ === ITKamasutra.__proto__); // true 
-console.log(ITIncubator.prototype === ITKamasutra.prototype); // false
+console.log(ITIncubator.__proto__ === ITKamasutra.__proto__); //// true 
+console.log(ITIncubator.prototype === ITKamasutra.prototype); //// false
 
 5)
 let Component = (props) => {
   return `<div>Some text</div>`;
 }
-console.log(Component.prototype === Object.prototype); // false
+console.log(Component.prototype === Object.prototype); //// false
 
 6,7)
 let age = 18;
-console.log(age.prototype === Number.prototype); // false
-console.log(age.__proto__ === Number.prototype); // true
+console.log(age.prototype === Number.prototype);// // false
+console.log(age.__proto__ === Number.prototype); //// true
 
 8)
 class Hacker {}
-console.log(Hacker.__proto__ === Function.prototype); // true
+console.log(Hacker.__proto__ === Function.prototype);// // true
 
 9)
 function ITIncubator()
@@ -120,17 +120,12 @@ Object, Promise, Function, Boolean, Number, String, Array, Date, RegExp, Error, 
 ? И у любого объекта который одновременно является классом или функцией с помощю function есть свойство prototype
 ? Каждый prototype - это независимый объект, сам по себе с определенным набором свойств и методов.
 И соответственно console.log(Object.prototype) не будет равен console.log(Promise.prototype)
-! __proto__ -  у любого объекта (равно прототипу того класса с помощью которого он был создан)                              prototype - у class либо function
-! __proto__ любого объекта всегда ссылается на prototype класса(функции-конструктора), с помощью которой этот объект был создан!
++ __proto__ -  у любого объекта (равно прототипу того класса с помощью которого он был создан)                              prototype - у class либо function
++ __proto__ любого объекта всегда ссылается на prototype класса(функции-конструктора), с помощью которой этот объект был создан!
 ? Пример: let man = {} man.__proto__ === Object.prototype
 
 
-! ЗАЧЕМ КЛАССУ НУЖЕН ОБЪЕКТ prototype?
-! И зачем объектам созданным с помощъю этого класса, св-во __proto__, которое ссылается на этот объект prototype
++ ЗАЧЕМ КЛАССУ НУЖЕН ОБЪЕКТ prototype?
++ И зачем объектам созданным с помощъю этого класса, св-во __proto__, которое ссылается на этот объект prototype
 ? Если мы пытаемся прочитать свойство объекта, либо вызвать его метод, а его нет, то объект полезет искать его через ссылку __proto__ в prototype класса, с помощью которого он был создан.
 */
-
-//* sdfsadfsdfdfssdfjk;lskdfj;lkjsdfljlsdfjk;lkj
-/* dfghfdgh
-dfghfdghgfdhfdgh
-fdghgfdhg */
