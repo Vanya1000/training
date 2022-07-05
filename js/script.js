@@ -6030,3 +6030,7 @@ for (let key of keys) {
 
 console.log((JSON.stringify(localStorage, null, 2))); */
 
+let wer = 123
+typeof wer.toString();//?
+Math.ceil(2.2);//?
+parseFloat("10.33");//?
