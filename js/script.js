@@ -6028,5 +6028,86 @@ for (let key of keys) {
   console.log(`${key}: ${localStorage.getItem(key)}`);
 }
 
-console.log((JSON.stringify(localStorage, null, 2))); */
+console.log((JSON.stringify(localStorage, null, 2))); 
 
+
+function toNumber(value, def) {
+  return Number.isFinite(parseInt(value)) ? parseInt(value) : def;
+}
+
+toNumber(new Number(42), 0); //?
+
+function generateOdds(len) {
+  return Array.from({ length: len }, (v, k) => k * 2 + 1);
+}
+
+generateOdds(3);//?.
+
+
+const x2Array = [
+   [  0, 1, 2, 3, 4 ],
+   [ 10,11,12,13,14 ],
+   [ 20,21,22,23,24 ],
+   [ 30,31,32,33,34 ]
+]
+
+function toCsvText(arr) {
+  const line = arr.join('\n');
+  console.log(line);
+}
+
+toCsvText(x2Array)//?
+
+
+function getMovingSum(arr) {
+  const newArr = [];
+  arr.reduce((acc, v) => {
+    newArr.push(acc + v);
+    return acc + v;
+  } , 0);
+  return newArr;
+}
+
+getMovingSum( [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]);//?
+
+arr.map((v, i, a) => (i !== 0 ? a[i - 1] + v : v));
+  arr//?
+  */
+
+/* function propagateItemsByPositionIndex(source) {
+    let acc, fill;
+    acc = [];
+    fill = function (length, value) {
+      if (length > 0) {
+        let array = [];
+        array.length = length;
+        array.fill(value);
+        return array;
+      }
+      return [];
+    }
+    source.map((value, index) => { acc.push(fill(index + 1, value)); });
+    return acc.reduce((a, b) => { return a.concat(b); });
+  return [source];
+} 
+function propagateItemsByPositionIndex(arr) {
+  return arr.flatMap((v, i) => {
+    let temp = [];
+    temp.length = i + 1;
+    return temp.fill(v);
+  });
+}
+
+propagateItemsByPositionIndex([1, 2, null, 4, 5])//?
+*/
+
+function getPositivesCount(arr) {
+  return arr.reduce((acc, v) => {
+    if (v > 0 && typeof v === 'number') {
+      acc++;
+    }
+    return acc;
+  }, 0);
+}
+
+getPositivesCount([1, 2, 3])
