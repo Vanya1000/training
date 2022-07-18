@@ -6099,7 +6099,7 @@ function propagateItemsByPositionIndex(arr) {
 }
 
 propagateItemsByPositionIndex([1, 2, null, 4, 5])//?
-*/
+
 
 function getPositivesCount(arr) {
   return arr.reduce((acc, v) => {
@@ -6111,3 +6111,118 @@ function getPositivesCount(arr) {
 }
 
 getPositivesCount([1, 2, 3])
+
+function sortDigitNamesByNumericOrder(arr) {
+  let numArr = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+  return arr.sort((a, b) => numArr.indexOf(a) - numArr.indexOf(b));
+}
+
+sortDigitNamesByNumericOrder(['nine', 'eight', 'nine', 'eight'])
+
+function findAllOccurrences(arr, item) {
+  return arr.reduce((acc, v) => v === item ? acc + 1 : acc, 0);
+}
+
+findAllOccurrences([0, 0, 1, 1, 1, 2], 1)//?
+
+
+function sortCitiesArray(arr) {
+  return arr.sort((a, b) => {
+    if (a.country < b.country) {
+      return -1;
+    } else if (a.country > b.country) {
+      return 1;
+    } else {
+      if (a.city < b.city) {
+        return -1;
+      } else if (a.city > b.city) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
+  });
+}
+
+console.log(sortCitiesArray([
+  { country: 'Russia',  city: 'Moscow' },
+  { country: 'Belarus', city: 'Minsk' },
+  { country: 'Poland',  city: 'Warsaw' },
+  { country: 'Russia',  city: 'Saint Petersburg' },
+  { country: 'Poland',  city: 'Krakow' },
+  { country: 'Belarus', city: 'Brest' }
+  ]));
+
+function xxx(arr) {
+  const newArr = [];
+  arr.reduce((acc, v) => {
+    if (acc[v]) {
+      return acc;
+    }
+    newArr.push(v);
+    acc[v] = true;
+    return acc;
+  },{});
+  return newArr;
+}
+
+xxx([ 1, 2, 3, 3, 2, 1 ])
+
+
+const arr123 = [
+  { country: 'Belarus', city: 'Brest' },
+  { country: 'Russia', city: 'Omsk' },
+  { country: 'Russia', city: 'Samara' },
+  { country: 'Belarus', city: 'Grodno' },
+  { country: 'Belarus', city: 'Minsk' },
+  { country: 'Poland', city: 'Lodz' },
+]
+
+const keySelector = (item) => item.country;
+const valueSelector = (item) => item.city;
+
+function group(array, keySelector, valueSelector) {
+  return array.reduce((map, v) => {
+    const key = keySelector(v);
+    const value = valueSelector(v);
+    if (map.has(key)) {
+      map.get(key).push(value);
+    } else {
+      map.set(key, [value]);
+    }
+    return map;
+  }, new Map());
+}
+
+const res = group(arr123, keySelector, valueSelector);
+console.log(res);
+
+function selectMany(arr, childrenSelector) {
+  return arr.map(childrenSelector).flat();
+}
+
+selectMany([[11, 12, 13, 14, 15], [21, 22, undefined, 23, 24, 25], [31, 32, 34, 35]], (x) => x.slice(0, 2));//?
+
+
+function getElementByIndexes(arr, indexes) {
+  return indexes.reduce((acc, v) => acc[v] , [...arr]);
+}
+
+getElementByIndexes([[[1, 2, 3]]], [0, 0, 1])
+
+const arr1 = [[[1, 2, 3]]];
+arr1[0][0]//?
+
+
+function swapHeadAndTail(arr) {
+  const halfLength = Math.floor(arr.length / 2);
+  if (arr.length % 2 === 0) {
+    return [...arr.slice(halfLength), ...arr.slice(0, halfLength)];
+  } else {
+    return [...arr.slice(halfLength + 1), halfLength + 1, ...arr.slice(0, halfLength)];
+  }
+}
+
+swapHeadAndTail([ 1, 2, 3, 4, 5 ])
+*/
+// copilot disabled bellow
