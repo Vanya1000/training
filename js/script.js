@@ -6224,5 +6224,25 @@ function swapHeadAndTail(arr) {
 }
 
 swapHeadAndTail([ 1, 2, 3, 4, 5 ])
+
+function isLeapYear(date) {
+  if (date.getFullYear() % 4 !== 0) {
+    return false;
+  } else if (date.getFullYear() % 100 !== 0) {
+    return true;
+  } else if (date.getFullYear() % 400 !== 0) {
+    return false;
+  }
+  return true;
+}
+
+isLeapYear(new Date(1900, 1, 1))//?
+isLeapYear(new Date(2000, 1, 1))//?
+isLeapYear(new Date(2001, 1, 1))//?
+isLeapYear(new Date(2012, 1, 1))//?
 */
 // copilot disabled bellow
+function timeSpanToString(startDate, endDate) {
+  return new Date(endDate - startDate).toJSON().slice(-13, -1);
+}
+timeSpanToString(new Date(2000,1,1,10,0,0),  new Date(2000,1,1,11,0,0))//?
