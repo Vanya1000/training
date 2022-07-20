@@ -6242,7 +6242,12 @@ isLeapYear(new Date(2001, 1, 1))//?
 isLeapYear(new Date(2012, 1, 1))//?
 */
 // copilot disabled bellow
-function timeSpanToString(startDate, endDate) {
-  return new Date(endDate - startDate).toJSON().slice(-13, -1);
+
+function angleBetweenClockHands(date) {
+  const hours = date.getUTCHours() % 12;
+  const minutes = date.getUTCMinutes();
+  const angle = (60 * hours - 11 * minutes) * 0.5;
+  return angle > 180 ? (Math.abs(360 - angle) * Math.PI) / 180 : (angle * Math.PI) / 180;
 }
-timeSpanToString(new Date(2000,1,1,10,0,0),  new Date(2000,1,1,11,0,0))//?
+
+angleBetweenClockHands(new Date(Date.UTC(2016, 3, 5, 14, 20))) //? 0 deg
