@@ -1326,7 +1326,7 @@ mainForm.addEventListener("submit", function (event) {
   if (emailTest(mainFormInput)) {
     mainFormInput.parentElement.insertAdjacentHTML(
       "beforeend",
-      `<div class="main-form__error">
+      `<div class="main-form__throwErr">
         Введите email
       </div>`
     );
@@ -2991,7 +2991,7 @@ sortable.sort(function (a, b) {
 function nicknameGenerator(name) {
   let less = ['a', 'e', 'i', 'o', 'u'];
   if (name.length < 4) {
-    return "Error: Name too short"
+    return "throwErr: Name too short"
   }
   for (let item of less) {
     if (item == name[2]) {
@@ -4299,7 +4299,7 @@ createDreamTeam([
 
 function getSeason(date) {
   if (!date) { return 'Unable to determine the time of year!'}
-  if (date.toString !== Date.prototype.toString) { throw new Error("Invalid date!")}
+  if (date.toString !== Date.prototype.toString) { throw new throwErr("Invalid date!")}
   let month = date.getMonth();
   if (month >= 0 && month <= 1) {
     return 'winter';
@@ -4331,7 +4331,7 @@ calculateHanoi(5, 4074)//?
 
 
 function transform(arr) {
-  if (!Array.isArray(arr)) { throw new Error('\'arr\' parameter must be an instance of the Array!'); }
+  if (!Array.isArray(arr)) { throw new throwErr('\'arr\' parameter must be an instance of the Array!'); }
   let newSlice = arr.slice();
 
   for (let i = 0; i < newSlice.length; i++) {
@@ -4398,7 +4398,7 @@ const chainMaker = {
   removeLink(position) {
     if (position <= 0 || position > this.chain.length || !isFinite(position) ) {
       this.chain = [];
-      throw new Error('You can\'t remove incorrect link!');
+      throw new throwErr('You can\'t remove incorrect link!');
     }
     this.chain = this.chain.filter((item, index) => index !== (position - 1)  )//?
     return this;
@@ -4508,7 +4508,7 @@ class VigenereCipheringMachine {
     'Z': 25
   }
   encrypt(str, key) {
-    if (str === undefined || key === undefined) { throw new Error('Incorrect arguments!') }
+    if (str === undefined || key === undefined) { throw new throwErr('Incorrect arguments!') }
     let strArr = str.toUpperCase().split('')
     let serial = 0;
     let similarArrKey = strArr.map(item => {
@@ -4537,7 +4537,7 @@ class VigenereCipheringMachine {
     return this.variant ? encriptedStr.join('') : encriptedStr.reverse().join('');
   }
   decrypt(str, key) {
-    if (str === undefined || key === undefined) { throw new Error('Incorrect arguments!') }
+    if (str === undefined || key === undefined) { throw new throwErr('Incorrect arguments!') }
     let strArr = str.toUpperCase().split('');
     let serial = 0;
     let similarArrKey = strArr.map(item => {
@@ -5422,7 +5422,7 @@ var Cat = (function () {
   const weightAllCats = [];
 
   const constructor = function (name, weight) {
-    if (!name || !weight) throw Error('invalid parameters')
+    if (!name || !weight) throw throwErr('invalid parameters')
     Object.defineProperty(this, 'name', { get: () => name })
     Object.defineProperty(this, 'weight', { get: () => weight, set: value => weight = value })
     weightAllCats.push(this)
@@ -5457,13 +5457,13 @@ antiOptimizeAsync(task).then(result => console.log(result));
 
 async function sayJoke(apiUrl, jokeId) {
   if (apiUrl !== 'http://great.jokes/christmas') {
-    throw new Error(`No jokes at url: ${apiUrl}`)
+    throw new throwErr(`No jokes at url: ${apiUrl}`)
   }
   const response = await fetch(apiUrl);
   const jokes = await response.json();
   const jokeItem = jokes.jokes.find((x) => x.id === jokeId);
   if (!jokeItem) {
-    throw new Error(`No jokes found id: ${jokeId}`)
+    throw new throwErr(`No jokes found id: ${jokeId}`)
   }
   return {
     saySetup: () => jokeItem.setup,
@@ -6240,14 +6240,98 @@ isLeapYear(new Date(1900, 1, 1))//?
 isLeapYear(new Date(2000, 1, 1))//?
 isLeapYear(new Date(2001, 1, 1))//?
 isLeapYear(new Date(2012, 1, 1))//?
-*/
-// copilot disabled bellow
 
-function angleBetweenClockHands(date) {
-  const hours = date.getUTCHours() % 12;
-  const minutes = date.getUTCMinutes();
-  const angle = (60 * hours - 11 * minutes) * 0.5;
-  return angle > 180 ? (Math.abs(360 - angle) * Math.PI) / 180 : (angle * Math.PI) / 180;
+const cssSelectorBuilder = {
+  result: '',
+
+  element(value) {
+    this.throwErr(1);
+    const obj = Object.create(cssSelectorBuilder);
+    obj.throwErrId = 1;
+    obj.result = this.result + value;
+    return obj;
+  },
+
+  id(value) {
+    this.throwErr(2);
+    const obj = Object.create(cssSelectorBuilder);
+    obj.throwErrId = 2;
+    obj.result = `${this.result}#${value}`;
+    return obj;
+  },
+
+  class(value) {
+    this.throwErr(3);
+    const obj = Object.create(cssSelectorBuilder);
+    obj.throwErrId = 3;
+    obj.result = `${this.result}.${value}`;
+    return obj;
+  },
+
+  attr(value) {
+    this.throwErr(4);
+    const obj = Object.create(cssSelectorBuilder);
+    obj.throwErrId = 4;
+    obj.result = `${this.result}[${value}]`;
+    return obj;
+  },
+
+  pseudoClass(value) {
+    this.throwErr(5);
+    const obj = Object.create(cssSelectorBuilder);
+    obj.throwErrId = 5;
+    obj.result = `${this.result}:${value}`;
+    return obj;
+  },
+
+  pseudoElement(value) {
+    this.throwErr(6);
+    const obj = Object.create(cssSelectorBuilder);
+    obj.throwErrId = 6;
+    obj.result = `${this.result}::${value}`;
+    return obj;
+  },
+
+  combine(selector1, combinator, selector2) {
+    const obj = Object.create(cssSelectorBuilder);
+    obj.result = `${selector1.result} ${combinator} ${selector2.result}`;
+    return obj;
+  },
+
+  stringify() {
+    return this.result;
+  },
+
+  throwErr(throwErrId) {
+    if (this.throwErrId > throwErrId) throw new Error('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element');
+    if (this.throwErrId === throwErrId && (throwErrId === 1 || throwErrId === 2 || throwErrId === 6)) throw new Error('Element, id and pseudo-element should not occur more then one time inside the selector');
+  },
+};
+
+cssSelectorBuilder.combine(
+  cssSelectorBuilder.element('p').pseudoClass('focus'),
+  '>',
+  cssSelectorBuilder.element('a').attr('href$=".png"'),
+).stringify()//?
+*/
+
+function isBracketsBalanced(str) {
+  const stack = [];
+  const brackets = {
+    '(': ')',
+    '[': ']',
+    '{': '}',
+    '<': '>',
+  };
+  for (let i = 0; i < str.length; i += 1) {
+    const char = str[i];
+    if (brackets[char]) {
+      stack.push(char);
+    } else if (brackets[stack[stack.length - 1]] === char) {
+      stack.pop();
+    }
+  }
+  return stack.length === 0;
 }
 
-angleBetweenClockHands(new Date(Date.UTC(2016, 3, 5, 14, 20))) //? 0 deg
+isBracketsBalanced('{{[]}}>')//?
