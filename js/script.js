@@ -6313,7 +6313,7 @@ cssSelectorBuilder.combine(
   '>',
   cssSelectorBuilder.element('a').attr('href$=".png"'),
 ).stringify()//?
-*/
+
 
 function isBracketsBalanced(str) {
   const stack = [];
@@ -6329,9 +6329,178 @@ function isBracketsBalanced(str) {
       stack.push(char);
     } else if (brackets[stack[stack.length - 1]] === char) {
       stack.pop();
+    } else {
+      return false;
     }
   }
   return stack.length === 0;
 }
 
 isBracketsBalanced('{{[]}}>')//?
+
+const brackets = {
+  '(': ')',
+  '[': ']',
+  '{': '}',
+  '<': '>',
+};
+brackets['']//?
+
+function getCommonDirectoryPath(pathes) {
+  const pathsArr = pathes.map((path) => path.split('/'));//?
+  const commonPath = pathsArr[0].reduce((acc, el, i) => {
+    if (pathsArr.every((path) => path[i] === el)) {
+      return acc + el + '/';
+    }
+    return acc;
+  }, '');
+  return commonPath;
+}
+
+getCommonDirectoryPath(['/web/images/image1.png', '/web/images/image2.png'])//?
+
+
+function getMatrixProduct(m1, m2) {
+  const m1Rows = m1.length;
+  const m1Cols = m1[0].length;
+  const m2Cols = m2[0].length;
+  const m3 = [];
+  for (let i = 0; i < m1Rows; i += 1) {
+    m3[i] = [];
+    for (let j = 0; j < m2Cols; j += 1) {
+      m3[i][j] = 0;
+      for (let k = 0; k < m1Cols; k += 1) {
+        m3[i][j] += m1[i][k] * m2[k][j];
+      }
+    }
+  }
+  return m3;
+}
+
+getMatrixProduct([[ 1, 2, 3]], [[4], [5], [6]])//?
+
+function evaluateTicTacToePosition(position) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+  const repairArr = position.map((item) => item.length === 3 ? item : [...item, undefined]);
+  const flatArr = repairArr.flat();
+  let isWin;
+  lines.forEach((line) => {
+    const [a, b, c] = line;
+    if (flatArr[a] === flatArr[b] && flatArr[b] === flatArr[c] && flatArr[a] !== undefined) {
+      isWin = flatArr[b];
+    }
+  });
+  return isWin;
+}
+const X = 'X';
+const O = '0';
+
+evaluateTicTacToePosition(
+  [
+    [X, X, X],
+    [O, O],
+    [O, undefined, undefined],
+  ])//?
+
+
+  function getPolynom() {
+    const arg = [...arguments];
+    if (!arg.length) return null;
+    return (x) => {
+      let res = 0;
+      for (let i = 0; i < arg.length; i += 1) {
+        res += arg[i] * (x ** (arg.length - 1 - i));
+      }
+      return res;
+    };
+  }
+
+  getPolynom(2,3,5)//?
+
+  function memoize(func) {
+    const result = func();
+    return function () {
+      return result;
+    };
+  }
+
+  const memoizer = memoize(() => Math.random());
+  memoizer()//?
+  memoizer()//?
+
+//Returns the function trying to call the passed function and if it throws, re trying it specified number of attempts.
+function retry(func, attempts) {
+  return () => {
+    let result;
+    for (let attempt = 0; attempt < attempts; attempt += 1) {
+      try {
+        result = func();
+      } catch (err) {
+        result = attempt;
+      }
+    }
+    return result;
+  }
+}
+
+
+function logger(func, logFunc) {
+  return (...args) => {
+    logFunc(`${func.name}(${JSON.stringify(args).slice(1, -1)}) starts`);
+    const result = func(...args);
+    logFunc(`${func.name}(${JSON.stringify(args).slice(1, -1)}) ends`);
+    return result;
+  };
+}
+
+const tryed = logger(Math.cos, console.log);//?
+tryed(0)//?
+
+function partialUsingArguments(fn, ...args1) {
+  return (...args2) => fn(...args1, ...args2)
+}
+
+function getIdGenerator(startFrom) {
+  return () => {
+    startFrom += 1;
+    return startFrom;
+  }
+}
+const getId4 = getIdGenerator(4);
+const getId10 = getIdGenerator(10);
+getId4()//?
+getId10() //?
+getId4()//?
+getId4()//?
+getId4()//?
+//?getId10() //?
+
+
+function factory(x){
+  return (arr) => {
+    return arr.map(el => el * x);
+  }
+}
+
+var fives = factory(5);       // returns a function - fives
+var myArray = [1, 2, 3];
+fives(myArray);
+
+function squaresNeeded(grains){
+  return Math.ceil(Math.log2(grains+1))
+}
+squaresNeeded(0) // => 0
+squaresNeeded(1) // => 1
+squaresNeeded(2) // => 2
+squaresNeeded(3) // => 2
+squaresNeeded(9695398707) // => 3
+*/
