@@ -6504,3 +6504,97 @@ squaresNeeded(2) // => 2
 squaresNeeded(3) // => 2
 squaresNeeded(9695398707) // => 3
 */
+
+function sum (a, b, c) {
+  return a + b + c;
+}
+
+function curry(fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) {
+      return fn.apply(this, args);
+    }
+    return curried.bind(this, ...args);
+  }
+}
+
+const curryedSum = curry(sum);
+curryedSum(1,2,3)//?
+
+/* function factorial(n) {
+  // Если мы пытаемся найти факториал 1,
+  // возвращаем 1 — это базовый случай.
+  if (n <= 1) {
+    return 1
+  }
+
+  // В остальных случаях
+  // возвращаем произведение n
+  // на факториал предыдущего числа —
+  // таким образом мы от n дойдём до 1,
+  // перебрав каждое число.
+  return n * factorial(n - 1)
+}
+
+factorial(50)//? 
+
+// уже знакомая нам функция memoize
+const memoize = (fn) => {
+  let cache = {};
+  return (...args) => {
+    let n = args[0];
+    if (n in cache) {
+      console.log('Fetching from cache', n);
+      return cache[n];
+    }
+    else {
+      console.log('Calculating result', n);
+      let result = fn(n);
+      cache[n] = result;
+      return result;
+    }
+  }
+}
+const factorial = memoize(
+  (x) => {
+    if (x === 0) {
+      return 1;
+    }
+    else {
+      return x * factorial(x - 1);
+    }
+  }
+);
+factorial(3); //?. вычислено
+factorial(4); //?. вычислено для 6, но для предыдущих значений взято из кэшачислено для 6, но для предыдущих значений взято из кэша
+
+function test (x) {
+  return x * x;
+}
+
+test(6, test(5, test(4, 4)));
+
+const foo = () => 'str';
+const str = 'Longstring';
+str.search(foo);
+*/
+setTimeout(() => console.log('timeout'))
+
+Promise.resolve().then(() => console.log('promise'))
+console.log('code');
+
+function mul(a, b) {
+  return a * b;
+}
+
+function square(a) {
+  return mul(a, a);
+}
+
+function printSquare() {
+  console.log(square(42));
+}
+
+printSquare();
+
+setTimeout(function timeout(){console.log('234');}, 5000)
