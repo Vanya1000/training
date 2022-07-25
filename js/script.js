@@ -6577,7 +6577,7 @@ test(6, test(5, test(4, 4)));
 const foo = () => 'str';
 const str = 'Longstring';
 str.search(foo);
-*/
+
 setTimeout(() => console.log('timeout'))
 
 Promise.resolve().then(() => console.log('promise'))
@@ -6598,3 +6598,177 @@ function printSquare() {
 printSquare();
 
 setTimeout(function timeout(){console.log('234');}, 5000)
+
+
+const add1 = function(a){return a + 1}
+const addAll3 = function(a,b,c){return a + b + c}
+
+add1(addAll3(1,2,3))//?
+
+function compose(f,g) {
+  return function(...args) {
+    return f(g(...args));
+  }
+}
+
+compose(add1,addAll3)(1,2,3) // 7;
+
+
+function compose(...fns) {
+  return function(n) {
+    return fns.reduceRight((acc, fn) => fn(acc), n);
+  }
+}
+
+const addOne = (a) => a + 1
+const multTwo = (b) => b * 2
+compose(addOne, multTwo, addOne, addOne)(2) //?
+
+function memo(fn) {
+  const cache = new Map();
+  return function () {
+    const item = arguments[0];
+    if (cache.has(item)) {
+      return cache.get(item);
+    } else {
+      cache.set(item, fn(item));
+      return cache.get(item);
+    }
+  }
+}
+
+function testfn (a) {
+  return a * a;
+}
+const update = memo(testfn);
+update(4); //?
+update(4);
+
+
+function F(n) {
+  return n === 0 ? 1 : n - M(F(n - 1));
+}
+
+function M(n) {
+  return n === 0 ? 0 : n - F(M(n - 1));
+}
+
+function once(fn) {
+  let isOnce = true;
+  return function () {
+    if (isOnce) {
+      isOnce = false;
+      return fn.apply(this, arguments);
+    }
+  }
+}
+
+const logOnce = once(console.log)
+
+logOnce("foo") //?
+logOnce("bar") //?
+
+
+function compose(...fns) {
+  return function(n) {
+    return fns.reduceRight((acc, fn) => fn(acc), n);
+  }
+}
+
+const multiFilter = function(...fns){
+	return function(item){
+    return fns.every((fn) => fn(item))
+  };
+};
+
+
+var isOdd = function(el) {
+  return el % 2 === 1;
+};
+
+var isEven = function(el) {
+  return el % 2 === 0;
+};
+
+const testArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+const result = testArray.filter(multiFilter(isOdd));
+console.log(result);
+
+
+function flip(fn) {
+  return function (...arg) {
+    return fn(...arg.reverse());
+  }
+}
+
+function print(a,b) {
+  return a + " -> " + b;
+}
+
+flip(print)(4,5)
+
+
+function cache(func) {
+  const cache1 = {};
+  return function (...args) {
+    const key = JSON.stringify(args);
+    if (key in cache1) {
+      return cache1[key];
+    }
+    cache1[key] = func(...args);
+    return cache1[key];
+  }
+}
+
+const complexFunction = function(arg1, arg2) {
+  return arg1 + arg2;
+};
+const cachedFunction = cache(complexFunction);
+
+cachedFunction('foo', 'bar');//?
+cachedFunction('foo', 'bar');//?
+
+
+function add(a) {
+  let curry = (b) => {
+    a += b
+    return curry
+  }
+  curry.toString = () => a
+  return curry
+}
+
+
+add(1)(2)(3);//?
+console.log('add(1)(2)(3): ', add(1)(2)(3));
+
+
+function makeLooper(str) {
+  let pos = 0;
+  return () => {
+    const res = str[pos];
+    pos === str.length - 1 ? pos = 0 : pos++; 
+    return res;
+  }
+}
+
+const abc = makeLooper('abc');
+abc();
+abc();
+abc();
+abc();
+*/
+
+function curryPartial(fn, ...args) {
+  if (args.length >= fn.length) {
+    return fn(...args)
+  } else {
+    return (...rest) => curryPartial(fn, ...args, ...rest)
+  }
+}
+
+function add(a, b, c) {
+  return a + b + c;
+}
+
+curryPartial(add)()(1)()()(2)(3); //6
