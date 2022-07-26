@@ -6757,7 +6757,7 @@ abc();
 abc();
 abc();
 abc();
-*/
+
 
 function curryPartial(fn, ...args) {
   if (args.length >= fn.length) {
@@ -6772,3 +6772,18 @@ function add(a, b, c) {
 }
 
 curryPartial(add)()(1)()()(2)(3); //6
+
+Array.prototype.myReduce = function(fn, initial) {
+  let acc = initial;
+  for (let i = 0; i < this.length; i++) {
+    acc = fn(acc, this[i]);
+  }
+  return acc;
+}
+
+const arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+const result = arr.myReduce((acc, item) => acc + item, 0);//?
+*/
+let arr = ["t", "e", "s", "t"];  
+
+let res = [...arr, "test", "test2"];
