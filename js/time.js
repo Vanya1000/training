@@ -251,8 +251,9 @@ function howManyHoursOfTraining() {
     '28.07': 9,
     '29.07': 10,
     '30.07': 10,
-    '01.08': 9,
-    '02.08': 5,
+    '31.08': 9,
+    '01.08': 5,
+    '02.08': 9,
     '03.08': 9,
   };
   let workTimeArray = Object.values(workTime);

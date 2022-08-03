@@ -6783,7 +6783,15 @@ Array.prototype.myReduce = function(fn, initial) {
 
 const arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
 const result = arr.myReduce((acc, item) => acc + item, 0);//?
-*/
+
 let arr = ["t", "e", "s", "t"];  
 
 let res = [...arr, "test", "test2"];
+*/
+const obj = {
+  a: 1,
+  b: 2,
+}
+Object.entries(obj)//?
+const color = 10000
+color.toString(16)//?
