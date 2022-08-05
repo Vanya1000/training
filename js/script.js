@@ -6795,3 +6795,157 @@ const obj = {
 Object.entries(obj)//?
 const color = 10000
 color.toString(16)//?
+
+
+
+
+
+
+
+
+
+
+//! Трудно!
+function generateKeyboard() {
+  const BODY = document.querySelector('body');
+  const wrapper = document.createElement('div');
+  wrapper.classList.add('wrapper');
+  BODY.appendChild(wrapper);
+  const INPUT = document.createElement('textarea');
+  wrapper.appendChild(INPUT);
+  const KEYBOARD = document.createElement('div');
+  KEYBOARD.classList.add('keyboard');
+  wrapper.appendChild(KEYBOARD);
+  const DESCRIPTION2 = document.createElement('p');
+  DESCRIPTION2.innerText = 'Are you reading this???';
+  wrapper.appendChild(DESCRIPTION2);
+  const DESCRIPTION = document.createElement('p');
+  DESCRIPTION.innerText = 'Thanks for watching :)';
+  wrapper.appendChild(DESCRIPTION);
+
+  for (let i = 0; i < KEY_CODES.length; i += 1) {
+    const BUTTON = (`
+    <div class="key ${CLASSES[i]}" data-code="${KEY_CODES[i]}">
+      <span class="eng ${keyboardState.language === 'ENG' ? '' : 'hidden'}">
+        <span class="letter base">${ENG[i]}</span>
+        <span class="letter caps-on hidden">${ENG_CAPS_LOCK_ON[i]}</span>
+        <span class="letter shift-on hidden">${ENG_SHIFT_ON[i]}</span>
+        <span class="letter caps-on-shift-on hidden">${ENG_CAPS_LOCK_ON_SHIFT_ON[i]}</span>
+      </span>
+      <span class="rus ${keyboardState.language === 'ENG' ? 'hidden' : ''}">
+        <span class="letter base">${RUS[i]}</span>
+        <span class="letter caps-on hidden">${RUS_CAPS_LOCK_ON[i]}</span>
+        <span class="letter shift-on hidden">${RUS_SHIFT_ON[i]}</span>
+        <span class="letter caps-on-shift-on hidden">${RUS_CAPS_LOCK_ON_SHIFT_ON[i]}</span>
+      </span>
+    </div>`);
+    KEYBOARD.insertAdjacentHTML('beforeend', BUTTON);
+  }
+}
+
+function arrowDown(event) {
+  countletterInString();
+  getIndexInString();
+  if (keyboardState.letterInString[keyboardState.indexInString - 1] !== undefined) {
+    const countLetterLeft = keyboardState.currentPositionInString;
+    const needRight = keyboardState.letterInString[keyboardState.indexInString - 1]
+    - countLetterLeft + 1;
+    if (keyboardState.letterInString[keyboardState.indexInString - 1] >= countLetterLeft) {
+      keyboardState.cursorPosition -= (needRight + countLetterLeft);
+      updateCursorPosition();
+    } else {
+      keyboardState.cursorPosition -= countLetterLeft + 1;
+      updateCursorPosition();
+    }
+  } else {
+    keyboardState.cursorPosition = 0;
+    updateCursorPosition();
+  }
+}
+
+
+// React 2й абзац
+const Garage = ({isGarage}) => {
+  return (
+    <div className={isGarage ? 'visible' : 'none'}>
+      <Control/>
+      <CarView/>
+      <Сongrat/>
+    </div>
+  )
+}
+
+//3й абзац
+const CarView = () => {
+  const totalCarsCount = useAppSelector(state => state.garage.totalCarsCount);
+  const currentPage = useAppSelector(state => state.garage.currentPage);
+  const cars = useAppSelector(state => state.garage.cars);
+
+  return (
+    <>
+      <div className='count-cars'>{`Garage (${totalCarsCount})`}</div>
+      <div className='count-pages'>{`Page #${currentPage}`}</div>
+      {cars.map(car => <CarItem key={car.id} car={car}/>)}
+      <Pagination/>
+    </>
+  )
+}
+
+// React has three main design concepts that drive its popularity:
+// 1. The use of reusable, composable, and stateful components
+// 2. The nature of reactive updates
+// 3. The virtual representation of views in memory
+
+// 1
+
+import React, { useState } from 'react';
+
+const Example = () => {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+
+const ExampleCompose = () => {
+  return (
+    <>
+      <Example/>
+      <Example/>
+      <Example/>
+      <Example/>
+    </>
+  );
+}
+
+// 2
+const root = ReactDOM.createRoot(
+  document.getElementById('root')
+);
+
+function tick() {
+  const element = (
+    <div>
+      <h1>Hello, world!</h1>
+      <h2>It is {new Date().toLocaleTimeString()}.</h2>
+    </div>
+  );
+  root.render(element);
+}
+
+setInterval(tick, 1000);
+// 3
+// Картнка c virtual DOM
+
+
+
+
+
+
+// Reconciliation
