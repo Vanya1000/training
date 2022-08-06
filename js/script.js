@@ -6788,20 +6788,36 @@ let arr = ["t", "e", "s", "t"];
 
 let res = [...arr, "test", "test2"];
 */
-const obj = {
-  a: 1,
-  b: 2,
+let i = undefined;
+let b = null;
++i//?
++b//?
+null == undefined//?
+ NaN === NaN//?
+
+
+const newObj = {
+  name: 'test',
+  age: 20,
 }
-Object.entries(obj)//?
-const color = 10000
-color.toString(16)//?
+
+Object.preventExtensions( newObj );
+newObj.name = 'test2';
 
 
+for (let key in newObj) {
+  if (newObj.hasOwnProperty(key)) {
+    console.log(key, newObj[key]);
+  }
+  console.log(key);
+}
+
+const arrTest = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
 
 
-
-
-
+const sum22 = arrTest.reduce((acc, item, index) => index % 2 ? acc + item : acc, 0)//?
+sum//?
+console.log(sum22);
 
 
 
