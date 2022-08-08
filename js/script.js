@@ -6818,3 +6818,8 @@ const arrTest = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
 const sum22 = arrTest.reduce((acc, item, index) => index % 2 ? acc + item : acc, 0)//?
 sum//?
 console.log(sum22);
+
+
+	console.log(typeof name); //?
+  let name = 'test';
+
