@@ -260,6 +260,7 @@ function howManyHoursOfTraining() {
     '06.08': 8,
     '07.08': 6,
     '08.08': 9,
+    '09.08': 7,
   };
   let workTimeArray = Object.values(workTime);
   let allHourWorkTime = workTimeArray.reduce((previous, item) => item + previous);
