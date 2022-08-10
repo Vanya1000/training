@@ -6787,7 +6787,7 @@ const result = arr.myReduce((acc, item) => acc + item, 0);//?
 let arr = ["t", "e", "s", "t"];  
 
 let res = [...arr, "test", "test2"];
-*/
+
 let i = undefined;
 let b = null;
 +i//?
@@ -6820,6 +6820,21 @@ sum//?
 console.log(sum22);
 
 
-	console.log(typeof name); //?
   let name = 'test';
 
+  const hardWork = () => {
+    const firtDate = Date.now();
+    for (let i = 0; i < 1; i++) {
+      i++;
+    }
+    const secondDate = Date.now();
+    console.log(secondDate - firtDate);
+  }
+  hardWork();
+*/
+
+const newObj = Object.create({}, {name: {value: 'test', writable: true, enumerable: true, configurable: true}});
+
+let arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+arr.splice(5);
+arr//?
