@@ -8,7 +8,7 @@
       Примитивы:
         -String строковый тип данных
         -Number числовой тип данных
-        -BigInt number не может содержать числа больше, чем  9007199254740991 что бы создать значен типа BigInt добавляем n в конце лисла.
+        -BigInt number не может содержать числа больше, чем  9007199254740991 9 квадрильенов что бы создать значен типа BigInt добавляем n в конце лисла.
         -Boolean логический тип данных
         -Undefined переменная объявлена, но значение не присвоено
         -Null typeof instance === "object". Специальный примитив, используемый не только для данных но и в качестве указателя на финальную точку в Цепочке Прототипов; При попытке обратиться к объекту которого нет. Это просто специальное значение, которое представляет собой «ничего», «пусто» или «значение неизвестно».
@@ -16,6 +16,10 @@
       Object:
         Простая структура, используемая не только для хранения данных, но и для создания других структур, где любая структура создаётся с использованием ключевого слова new: new Object, new Array, new Map (en-US), new Set, new WeakMap, new WeakSet, new Date и множество других структур;
         Все остальные типы называются «примитивными», потому что их значениями могут быть только простые значения (будь то строка, или число, или что-то ещё). В объектах же хранят коллекции данных или более сложные структуры.
+        JavaScript позволяет нам работать с примитивными типами данных – строками, числами и т.д., как будто они являются объектами.
+        Чтобы это работало, при таком доступе создаётся специальный «объект-обёртка», который предоставляет нужную функциональность, а после удаляется.
+        Каждый примитив имеет свой собственный «объект-обёртку», которые называются: String, Number, Boolean, Symbol и BigInt. Таким образом, они имеют разный набор методов.
+        Все примитивы, кроме null и undefined, предоставляют множество полезных методов. 
     ?Number methods
         -num.toString(base) возвращает строковое представление числа в той или иной системе счисления (base). от 2 до 36 (по умолчанию 10) 
         -num.toFixed(...) возвращает строку с числом, записанным с указанным числом десятичных знаков: var x = 9.656; x.toFixed(2); => "9.66" x.toFixed(0); => returns 10 x.toFixed(6); => returns 9.656000
@@ -118,6 +122,18 @@
         0, null, undefined, NaN, "" => false
         любое другое значение => true
       Автоматическое: математические операторы преобразуют знач к числам, кроме + если одно из слагаемых строка, то и все остальные приводятся к строкам ‘1’ + 2 // '12’
+
+      Converting Strings to Numbers
+        The global method Number() can convert strings to numbers. parseFloat() and parseInt() can also be used to convert strings to numbers. The Unary + Operator
+      Converting Numbers to Strings
+        The global method String() toFixed()
+      Converting Dates to Numbers
+        The global method Number() d = new Date(); Number(d) // returns 1404568027739
+      Converting Numbers to Dates
+      Converting Booleans to Numbers
+        The global method Number()
+      Converting Numbers to Booleans
+      Automatic Type Conversion
 
   +Advanced Expressions
     ?Be able to discover cases of implicit data types conversion into boolean, string, number
@@ -279,6 +295,7 @@
 
       -Object.prototype.hasOwnProperty() -  возвращает логическое значение, указывающее, содержит ли объект указанное свойство. obj.hasOwnProperty(prop) prop Имя проверяемого свойства. в отличие от оператора in, этот метод не проверяет существование свойств в цепочке прототипов объекта.
       -Object.prototype.propertyIsEnumerable() - возвращает логическое значение, указывающее, является ли указанное свойство перечислимым. obj.propertyIsEnumerable(prop) prop Имя проверяемого свойства.
+      -Object.getPrototypeOf() - возвращает прототип (то есть значение внутреннего свойства [[Prototype]]) указанного объекта. Object.getPrototypeOf(obj)
 
       -Object.freeze() - замораживает объект, после чего нельзя будет изменить значения свойств объекта.
       -Object.isFrozen() - возвращает true, если объект заморожен, иначе false.

@@ -6836,5 +6836,7 @@ console.log(sum22);
 const newObj = Object.create({}, {name: {value: 'test', writable: true, enumerable: true, configurable: true}});
 
 let arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
-arr.splice(5);
+arr.slice(5);
 arr//?
+
+typeof ('sdfdsf'.codePointAt(0))
