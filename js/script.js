@@ -6831,8 +6831,195 @@ console.log(sum22);
     console.log(secondDate - firtDate);
   }
   hardWork();
+
+
+
+
+const createIterator = (array) => {
+  return {
+    arr: [...array],
+    index: 0,
+    next: function () {
+      const res = {
+        value: this.arr[this.index],
+        done: this.index >= this.arr.length ? true : false,
+      }
+      this.index = this.index >= this.arr.length ? this.index : this.index + 1;
+      return res;
+    }
+  }
+};
+
+const iterator = createIterator(['One', , 'Two']);
+iterator.index  //?
+iterator.next()//?
+iterator.index//?
+
+iterator.next()//?
+iterator.index//?
+
+iterator.next() //? { value: 'Two', done: false }
+iterator.index  //?
+
+iterator.next() //?
+iterator.index //?
 */
-const id = setTimeout(() => {
-  console.log('test');
-}, 1000);
-console.log(id);
+// Create different shapes that can be part of a sortable list. The sort order is based on the size of their respective areas:
+// The area of a Square is the square of its side
+// The area of a Rectangle is width multiplied by height
+// The area of a Triangle is base multiplied by height divided by 2
+// The area of a Circle is the square of its radius multiplied by π
+// The area of a CustomShape is given
+
+/* class Shape {
+  [Symbol.toPrimitive] () {
+    return this.area
+  }
+}
+class CustomShape extends Shape {
+  constructor (area) {
+    super()
+    this.area = area
+  }
+}
+class Square extends Shape {
+  constructor (s) {
+    super()
+    this.area = Math.pow(s, 2)
+  }
+}
+class Rectangle extends Shape {
+  constructor (w, h) {
+    super()
+    this.area = w * h
+  }
+}
+class Triangle extends Shape {
+  constructor (b, h) {
+    super()
+    this.area = (b * h) / 2
+  }
+}
+class Circle extends Shape {
+  constructor (r) {
+    super()
+    this.area = Math.PI * Math.pow(r, 2)
+  }
+} 
+
+class Shape {
+  [Symbol.toPrimitive] () {
+    return this.area
+  }
+}
+
+class Square extends Shape {
+  constructor(side) {
+    super();
+    this.side = side;
+  }
+  get area() {
+    return this.side * this.side;
+  }
+}
+
+class Rectangle extends Shape {
+  constructor(width, height) {
+    super(width, height);
+    this.width = width;
+    this.height = height;
+  }
+  get area() {
+    return this.width * this.height;
+  }
+}
+
+class Circle extends Shape {
+  
+  constructor(radius) {
+    super(radius);
+    this.radius = radius;
+  }
+  get area() {
+    return this.radius * this.radius * Math.PI;
+  }
+}
+
+class Triangle extends Shape {
+  constructor(base, height) {
+    super(base, height);
+    this.base = base;
+    this.height = height;
+  }
+  get area() {
+    return this.base * this.height / 2;
+  }
+}
+class CustomShape extends Shape {
+  constructor(area) {
+    super(area);
+    this.area = area;
+  }
+}
+
+let side = 1.1234;
+let radius = 1.1234;
+let base = 5;
+let height = 2;
+
+new Square(side) //?
+
+let shapes = [ new Square(side)
+             , new Triangle(base, height)
+             , new Circle(radius)
+             ];
+shapes.sort( (a,b) => Number(a>b)-Number(a<b) );//?
+
+
+ var DI = function (dependency) {
+  this.dependency = dependency;
+};
+
+// Should return new function with resolved dependencies
+// shouldn't pass any dependencies into the function if such dependencies aren't specified
+DI.prototype.inject = function (func) {
+  let args = func.toString().match(/\((.*?)\)/)[1].split(',').map((item) => item.trim());
+  let arr = [];
+  args.forEach((item) => {
+    if (this.dependency[item]) {
+      arr.push(this.dependency[item]);
+    }
+  });
+  return func.bind(null, ...arr);
+}
+var deps = {
+  'dep1': function () {return 'this is dep1';},
+  'dep2': function () {return 'this is dep2';},
+  'dep3': function () {return 'this is dep3';},
+  'dep4': function () {return 'this is dep4';}
+};
+
+var di = new DI(deps);
+var myFunc = di.inject(function (dep3, dep1, dep2) {
+  return [dep1(), dep2(), dep3()].join(' -> ');
+});
+myFunc();//?
+
+
+function rowSumOddNumbers(n) {
+  let count = 0;
+  for (let i = 0; i < n; i++) {
+    count = count + i + 1;
+  }
+  let res = [];
+  for (let i = n; i > 0; i--) {
+    res.push(count * 2 - 1);
+    count--
+  }
+  return res.reduce((acc, item) => acc + item ); 
+}
+
+
+rowSumOddNumbers(2)
+*/
+let res = {} > {}; //?
