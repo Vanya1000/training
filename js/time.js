@@ -268,6 +268,7 @@ function howManyHoursOfTraining() {
     '14.08': 7,
     '15.08': 4,
     '16.08': 4,
+    '17.08': 10,
   };
   let workTimeArray = Object.values(workTime);
   let allHourWorkTime = workTimeArray.reduce((previous, item) => item + previous);
