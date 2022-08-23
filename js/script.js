@@ -7023,3 +7023,25 @@ function rowSumOddNumbers(n) {
 rowSumOddNumbers(2)
 */
 let res = {} > {}; //?
+
+const objHash = {
+  'one': 1,
+  'two': 2,
+  'three': 3,
+}
+
+const objKey = Object.keys(objHash)
+
+
+function foo(){
+  console.log(a); // 5
+}
+
+function bar(){
+  var a = 10;
+  foo();
+}
+
+var a = 5;
+
+bar();

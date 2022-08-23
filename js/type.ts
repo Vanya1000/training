@@ -34,9 +34,8 @@ params: {
 }, */
 
 type userWords = {
-  difficulty?: 'learned' | 'hard' | 'none';
+  difficulty?: 'learned' | 'difficult' | 'none';
   opional?: {
-    isNew?: boolean;
     game?: {
       audioCall?: {
         right?: number;
