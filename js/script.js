@@ -7045,3 +7045,19 @@ function bar(){
 var a = 5;
 
 bar();
+
+// мы передаём объект в функцию
+let options = {
+  title: "My menu",
+  items: ["Item1", "Item2"]
+};
+
+// ...и она немедленно извлекает свойства в переменные
+function showMenu({title = "Untitled", width = 200, height = 100, items = []}) {
+  // title, items – взято из options,
+  // width, height – используются значения по умолчанию
+  console.log( `${title} ${width} ${height}` ); // My Menu 200 100
+  console.log( items ); // Item1, Item2
+}
+
+showMenu(options);
