@@ -7061,3 +7061,25 @@ function showMenu({title = "Untitled", width = 200, height = 100, items = []}) {
 }
 
 showMenu(options);
+
+// получить текущую дату в формате YYYY-MM-DD
+function getCurrentDate() {
+  let date = new Date();
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+  return `${year}-${month}-${day}`;
+}
+
+const data2 = {
+  "2022.08.20": 10,
+  "2022.08.21": 11,
+  "2022.08.25": 19,
+  "2022.08.22": 23,
+  "2022.08.23": 36,
+  "2022.08.24": 55,
+  
+}
+new Date("2022.08.25")//?
+const result = [...Object.entries(data2)].sort((a, b) => new Date(a[0]) - new Date(b[0]));//?
+console.log('result: ', result);
