@@ -7083,3 +7083,15 @@ const data2 = {
 new Date("2022.08.25")//?
 const result = [...Object.entries(data2)].sort((a, b) => new Date(a[0]) - new Date(b[0]));//?
 console.log('result: ', result);
+
+
+const arrr = ['3', '3', '3'].reduce((acc, item) => {
+  acc.res.push(String(Number(item) + acc.sum));
+  acc.sum = acc.sum + Number(item);
+  return acc;
+}, {
+  res: [],
+  sum: 0
+})
+
+arrr//?
