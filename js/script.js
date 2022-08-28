@@ -7021,7 +7021,7 @@ function rowSumOddNumbers(n) {
 
 
 rowSumOddNumbers(2)
-*/
+
 let res = {} > {}; //?
 
 const objHash = {
@@ -7062,7 +7062,6 @@ function showMenu({title = "Untitled", width = 200, height = 100, items = []}) {
 
 showMenu(options);
 
-// получить текущую дату в формате YYYY-MM-DD
 function getCurrentDate() {
   let date = new Date();
   let year = date.getFullYear();
@@ -7095,3 +7094,22 @@ const arrr = ['3', '3', '3'].reduce((acc, item) => {
 })
 
 arrr//?
+
+let obj33 = {
+a: ''
+}
+obj33.a = {34: '34'}
+*/
+
+const user = {
+  name: 'Bob',
+  userThis: this,
+  func() {
+    console.log(this);
+  },
+  arrowFunc: () => {
+    console.log(this);
+  }
+};
+//user.userThis//?
+user.func();//? 
