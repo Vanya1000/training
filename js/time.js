@@ -282,7 +282,8 @@ function howManyHoursOfTraining() {
     '28.08': 10,
     '29.08': 10,
     '30.08': 11,
-    '31.09': 10,
+    '31.08': 10,
+    '01.09': 10,
   };
   let workTimeArray = Object.values(workTime);
   let allHourWorkTime = workTimeArray.reduce((previous, item) => item + previous);
@@ -290,4 +291,39 @@ function howManyHoursOfTraining() {
 ${(allHourWorkTime / workTimeArray.length).toFixed(1)} hours a day. Count day: ${workTimeArray.length}`;
 }
 console.log(howManyHoursOfTraining());//?
+
+const countTime = [
+  {
+    date: '28.08.2022',
+    time: 3,
+    start: '20:00',
+    end: '23:00',
+  },
+  {
+    date: '29.08.2022',
+    time: 4,
+    start: '19:00',
+    end: '23:00',
+  },
+  {
+    date: '30.08.2022',
+    time: 5,
+    start: '15:00',
+    end: '22:00',
+  },
+  {
+    date: '31.08.2022',
+    time: 5.5,
+    start: '17:30',
+    end: '23:00',
+  },
+  {
+    date: '01.09.2022',
+    time: 5,
+    start: '18:00',
+    end: '23:00',
+  }
+]
+
+const totalH = countTime.reduce((acc, item) => acc + item.time, 0)//?
 
