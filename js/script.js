@@ -7113,3 +7113,5 @@ const user = {
 };
 //user.userThis//?
 user.func();//? 
+
+console.log(navigator);
