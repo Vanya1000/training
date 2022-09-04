@@ -7114,4 +7114,66 @@ const user = {
 //user.userThis//?
 user.func();//? 
 
-console.log(navigator);
+
+
+// myFunc('!', 4, -10, 34, 0) -> '4!-10!34!0`. How to implement?
+function myFunc() {
+  let arr = [...arguments];
+  let res = arr.filter((item) => typeof item === 'number').join('!');
+  return res;
+}
+
+// five(plus(seven(minus(three())))) -> 9. How to implement?
+
+
+
+const five = (func) => func ? func(5) : 5;
+const seven = (func) => func ? func(7) : 7;
+const three = (func) => func ? func(3) : 3;
+const minus = (num) => (num2) => num2 - num;
+const plus = (num) => (num2) => num2 + num;
+five(plus(seven(minus(three()))))
+
+// add(5)(9)(-4)(1) -> 11. How to implement?
+
+function add(num) {
+  let sum = num;
+  function f(num2) {
+    sum = sum + num2;
+    return f;
+  }
+  f.toString = function () {
+    return sum;
+  }
+  return f;
+}
+
+
+add(5)(9)(-4)(1)//?
+
+// periodOutput(period) method should output in the console once per every period how mach time has passed since the first function call. Example: periodOutput(100) -> 100(after 100 ms), 200(after 100 ms), 300(after 100 ms), ...
+
+function periodOutput(period) {
+  let count = 0;
+  let timer = setInterval(() => {
+    count = count + period;
+    console.log(count);
+  }, period);
+  return timer;
+}
+
+// periodOutput(100);//? 
+
+// extendedPeriodOutput(period) method should output in the console once per period how mach time has passed since the first function call and then increase the period. Example: // extendedPeriodOutput(100) -> 100(after 100 ms), 200(after 200 ms), 300(after 300 ms)
+
+function extendedPeriodOutput(period) {
+  let count = 0;
+  const tick = () => {
+    let timer = setTimeout(() => {
+      count = count + period;
+      console.log(count);
+      tick();
+    }, period);
+  }
+  tick();
+}

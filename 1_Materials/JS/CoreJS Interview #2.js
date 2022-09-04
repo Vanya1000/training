@@ -2135,12 +2135,108 @@
   }
   /*
   +Object.create implement polyfill
+    */
+  if (!Object.create) {
+    Object.create = function(base) {
+      function F() {}; // создаем функцию
+      F.prototype = base; // прототип функции равен базовому объекту
+      return new F(); // возвращаем новый объект
+    }
+  }
+  /*
   +Array.flat implement polyfill
+    */
+  if (!Array.prototype.flat)
+  Array.prototype.flat = function (depth = 1) {
+    depth = isNaN(depth) ? 0 : Math.floor(depth); // проверяем на число и округляем
+  if (depth < 1) return this.slice(); // если глубина меньше 1 возвращаем копию массива
+  return [].concat( 
+        ...(depth < 2) // если глубина меньше 2
+          ? this // возвращаем массив
+          : this.map(v => Array.isArray(v) ? v.flat(depth - 1) : v) // иначе рекурсивно вызываем flat
+    )
+  };
+  /*
   +Array.reduce implement polyfill
+  */
+  Array.prototype.myReduce= function(callbackFn, initialValue) {
+    let accumulator = initialValue;
+  for (let i = 0; i < this.length; i++) {
+      if (accumulator !== undefined) {
+        accumulator = callbackFn.call(undefined, accumulator, this[i],   i, this); // вызываем функцию с аргументами и контекстом undefined
+      } else {
+        accumulator = this[i]; // если аккумулятор не определен, то присваиваем значение первого элемента
+      }
+    }
+    return accumulator;
+  }
+  /*
   +'hello world'.repeating(3) -> 'hello world hello world hello world'. How to implement?
+    */
+  String.prototype.repeating = function (count) {
+    let res = '';
+    for (let i = 0; i < count; i++) {
+      res += this;
+    }
+    return res;
+  }
+    /*
   +myFunc('!', 4, -10, 34, 0) -> '4!-10!34!0`. How to implement?
+  */
+  function myFunc() {
+    let arr = [...arguments];
+    let res = arr.filter((item) => typeof item === 'number').join('!');
+    return res;
+  }
+  /*
   +five(plus(seven(minus(three())))) -> 9. How to implement?
+   */
+    const five = (func) => func ? func(5) : 5;
+    const seven = (func) => func ? func(7) : 7;
+    const three = (func) => func ? func(3) : 3;
+    const minus = (num) => (num2) => num2 - num;
+    const plus = (num) => (num2) => num2 + num;
+    five(plus(seven(minus(three()))))
+    /*
   +add(5)(9)(-4)(1) -> 11. How to implement?
+    */
+  function add(num) { // 
+    let sum = num;  // создаем переменную и присваиваем ей значение аргумента
+    function f(num2) { // создаем функцию
+      sum = sum + num2; // прибавляем к сумме значение аргумента
+      return f; // возвращаем функцию
+    }
+    f.toString = function () { // переопределяем метод toString
+      return sum; // возвращаем сумму
+    }
+    return f; // возвращаем функцию
+  }
+  /*
   +periodOutput(period) method should output in the console once per every period how mach time has passed since the first function call. Example: periodOutput(100) -> 100(after 100 ms), 200(after 100 ms), 300(after 100 ms), ...
+  */
+  function periodOutput(period) {
+    let count = 0;
+    let timer = setInterval(() => {
+      count = count + period;
+      console.log(count);
+    }, period);
+    return timer;
+  }
+  
+  // periodOutput(100);//? 
+  /*
   +extendedPeriodOutput(period) method should output in the console once per period how mach time has passed since the first function call and then increase the period. Example: // extendedPeriodOutput(100) -> 100(after 100 ms), 200(after 200 ms), 300(after 300 ms)
+  */
+  function extendedPeriodOutput(period) {
+    let count = 0;
+    const tick = () => {
+      let timer = setTimeout(() => {
+        count = count + period;
+        console.log(count);
+        tick();
+      }, period);
+    }
+    tick();
+  }
+  /*
 */
