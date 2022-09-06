@@ -350,6 +350,12 @@ const countTime = [
     time: 5,
     start: '18:00',
     end: '23:00',
+  },
+  {
+    date: '06.09.2022',
+    time: 5,
+    start: '18:00',
+    end: '23:00',
   }
 ]
 

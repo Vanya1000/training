@@ -7099,7 +7099,7 @@ let obj33 = {
 a: ''
 }
 obj33.a = {34: '34'}
-*/
+
 
 const user = {
   name: 'Bob',
@@ -7177,3 +7177,55 @@ function extendedPeriodOutput(period) {
   }
   tick();
 }
+
+
+function foo(){
+  console.log(a); // 5 В лексической области видимости указывается, что ссылка на a в foo() будет преобразована в глобальную переменную a, что приведет к выводу значения 5.
+}
+
+function bar(){
+  var a = 10;
+  foo();
+}
+
+var a = 5;
+
+bar();
+
+[1, 2, 3].map((item) => this)//?
+function Animal(type, legs) {
+  this.type = type;
+  this.legs = legs;
+  this.logInfo = function() {
+    console.log(this === myCat); // => false
+    console.log('The ' + this.type + ' has ' + this.legs + ' legs');
+  };
+}
+var myCat = new Animal('Cat', 4);
+myCat.logInfo(); // => The Cat has 4 legs
+setTimeout(myCat.logInfo, 1000);
+*/
+
+const env = (()=>{
+  return {
+    a: 1,
+    b: 2,
+    c: 3,
+    d: 4
+  }
+})()
+env//?
+function makeCounter() {
+  let count = 0;
+  return function() {
+    return count++;
+  };
+}
+
+let counter1 = makeCounter();
+let counter2 = makeCounter();
+
+console.log( counter1() ); // 0
+console.dir( counter1 ); // 1
+
+console.log( counter2() ); // 0 (независимо)
