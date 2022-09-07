@@ -7229,3 +7229,19 @@ console.log( counter1() ); // 0
 console.dir( counter1 ); // 1
 
 console.log( counter2() ); // 0 (независимо)
+
+class IncreasingCounter {
+  #count = 0;
+  get value() {
+    console.log('Getting the current value!');
+    return this.#count;
+  }
+  increment() {
+    this.#count++;
+  }
+}
+
+let counter = new IncreasingCounter();
+
+let map = new Map();
+map.set('1', 'str1');   // ключ-строка
