@@ -7204,7 +7204,7 @@ function Animal(type, legs) {
 var myCat = new Animal('Cat', 4);
 myCat.logInfo(); // => The Cat has 4 legs
 setTimeout(myCat.logInfo, 1000);
-*/
+
 
 const env = (()=>{
   return {
@@ -7245,3 +7245,42 @@ let counter = new IncreasingCounter();
 
 let map = new Map();
 map.set('1', 'str1');   // ключ-строка
+
+
+let prom = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('success');
+  }, 1000);
+})
+console.log('after promise');
+prom.then((res)=> res).then((res2)=>console.log(res2.slice(0, 4)));
+
+
+function myFunc (first, ...arg) {
+  return arg.join(first);
+}
+
+myFunc('!', 4, -10, 34, 0)
+
+const objHash = {
+  'one': 1,
+  'two': 2,
+  'three': 3,
+}
+for (let key in objHash) {
+  if (Object.hasOwn(objHash, key)) {
+    console.log(`${key}: ${objHash[key]}`);
+  }
+}
+function extendedPeriodOutput(period) {
+  let time = 0;
+  function increaseTime() {
+    time += period;
+    const newPeriod = time + period;
+    console.log(time);
+    setTimeout(increaseTime, newPeriod);
+  }
+  setTimeout(increaseTime, period);
+}
+extendedPeriodOutput(100);
+*/
