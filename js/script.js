@@ -6505,7 +6505,7 @@ squaresNeeded(3) // => 2
 squaresNeeded(9695398707) // => 3
 */
 
-function sum (a, b, c) {
+/* function sum (a, b, c) {
   return a + b + c;
 }
 
@@ -6519,7 +6519,7 @@ function curry(fn) {
 }
 
 const curryedSum = curry(sum);
-curryedSum(1,2,3)//?
+curryedSum(1,2,3)//? */
 
 /* function factorial(n) {
   // Если мы пытаемся найти факториал 1,
@@ -7284,3 +7284,27 @@ function extendedPeriodOutput(period) {
 }
 extendedPeriodOutput(100);
 */
+
+function makeCounter() {
+  let count = 0;
+
+  return function() {
+    return ++count; // есть доступ к внешней переменной "count"
+  };
+}
+
+let counter = makeCounter();
+counter() //?
+counter() //?
+let counter2 = makeCounter();
+counter2() //?
+counter2() //?
+// write nested fn that will return sum of all numbers from 1 to n
+function sumTo(n) {
+  let yy = 6
+  return 55
+  
+} 
+
+const summ = sumTo(4)
+console.dir(summ) //?);
