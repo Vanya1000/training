@@ -1818,11 +1818,214 @@
 + Рефы и DOM
   
 + Рендер-пропсы
+  Термин «рендер-проп» относится к возможности компонентов React разделять код между собой с помощью пропа, значение которого является функцией.
+  Компонент с рендер-пропом берёт функцию, которая возвращает React-элемент, и вызывает её вместо реализации собственного рендера.
+    <DataProvider render={data => (
+      <h1>Привет, {data.target}</h1>
+    )}/>
+    Такой подход, в частности, применяется в библиотеках React Router v5, React hook form, Downshift и Formik.
+  Использование рендер-пропа для сквозных задач
+    Компоненты — это основа повторного использования кода в React. Однако бывает неочевидно, как сделать, чтобы одни компоненты разделяли своё инкапсулированное состояние или поведение с другими компонентами, заинтересованными в таком же состоянии или поведении.
+    Иными словами, рендер-проп — функция, которая сообщает компоненту что необходимо рендерить.
+  */
+  const Mouse = () => {
+    const [position, setPosition] = useState({
+      x: 0,
+      y: 0
+    });
+    const mouseMoveHandler = (e) => {
+      setPosition({
+        x: e.clientX,
+        y: e.clientY
+      })
+    }
+    return <p onMouseMove={mouseMoveHandler}>{position.x}:{position.y}</p>
+  }
   
+  
+  export default function App() {
+    return (
+      <>
+      <Mouse />
+      </>
+    );
+  }
+  //--------------------------------------------------------------------------
+  const Mouse = ({ render }) => {
+    const [position, setPosition] = useState({
+      x: 0,
+      y: 0
+    });
+    const mouseMoveHandler = (e) => {
+      setPosition({
+        x: e.clientX,
+        y: e.clientY
+      })
+    }
+    return <div onMouseMove={mouseMoveHandler}>{render(position)}</div>
+  }
+  
+  
+  export default function App() {
+    return (
+      <>
+      <Mouse render={(data)=> {
+        return <p>{data.x}:{data.y}</p>
+      }} />
+      <Mouse render={(data)=> {
+        return <div style={{width: '100px', height: '100px', background: 'lightBlue'}}> // либо передать как children
+          <p>{data.x}:{data.y}</p>
+        </div>
+      }} />
+      </>
+    );
+  }
+  //--------------------------------------------------------------------------
+  const Mouse = ({ render }) => {
+    const [position, setPosition] = useState({
+      x: 0,
+      y: 0
+    });
+    // const ref = useRef();
+    const mouseMoveHandler = (e) => {
+      setPosition({
+        x: e.clientX, //- rect.left
+        y: e.clientY //- rect.top
+      })
+    }
+    return <div onMouseMove={mouseMoveHandler}>{render(position)}</div>
+    {/*
+          Вместо статического представления того, что рендерит <Mouse>,
+          используем рендер-проп для динамического определения, что надо отрендерить.
+        */}
+  }
+  
+  const Card = () => {
+  
+    return <Mouse /* ref={ref} */ render={(data) => {
+      return <div style={{width: '100%', height: '150px', background: 'lightBlue'}}>
+      <p>{data.x}:{data.y}</p>
+    </div>
+    }} />
+  }
+  
+  export default function App() {
+    return (
+      <>
+      <Card />
+      <Card />
+      <Card />
+      </>
+    );
+  }
+  /*
+  Один интересный момент касательно рендер-пропсов заключается в том, что вы можете реализовать большинство компонентов высшего порядка (HOC), используя обычный компонент вместе с рендер-пропом. 
+    Например, если для вас предпочтительней HOC withMouse вместо компонента <Mouse>, вы можете создать обычный компонент <Mouse> вместе с рендер-пропом:
+    */
+    // Если вам действительно необходим HOC по некоторым причинам, вы можете просто
+    // создать обычный компонент с рендер-пропом!
+    function withMouse(Component) {
+      return class extends React.Component {
+        render() {
+          return (
+            <Mouse render={mouse => (
+              <Component {...this.props} mouse={mouse} />
+            )}/>
+          );
+        }
+      }
+    }
+    /*
+    Таким образом, рендер-пропы позволяют реализовать любой из описанных выше паттернов.
+  Использование пропсов, отличных от render (как название передаваемого свойства)
+    Важно запомнить, что из названия паттерна «рендер-проп» вовсе не следует, что для его использования вы должны обязательно называть проп render. На самом деле, любой проп, который используется компонентом и 
+    является функцией рендеринга, технически является и «рендер-пропом». Несмотря на то, что в вышеприведённых примерах мы используем render, мы можем также легко использовать проп children!
+    <Mouse children={mouse => (
+      <p>Текущее положение курсора мыши: {mouse.x}, {mouse.y}</p>
+    )}/>
+  Предостережения
+    Будьте осторожны при использовании рендер-проп вместе с React.PureComponent
+    Использование рендер-пропа может свести на нет преимущество, которое даёт React.PureComponent, если вы создаёте функцию внутри метода render. Это связано с тем, что поверхностное сравнение пропсов всегда будет возвращать false для новых пропсов и каждый render будет генерировать новое значение для рендер-пропа.
 + Строгий режим
-  
+  https://ru.reactjs.org/docs/strict-mode.html
+  StrictMode — инструмент для обнаружения потенциальных проблем в приложении. Также как и Fragment, StrictMode не рендерит видимого UI. Строгий режим активирует дополнительные проверки и предупреждения для своих потомков.
+  Проверки строгого режима работают только в режиме разработки; они не оказывают никакого эффекта в продакшен-сборке.
+  Строгий режим может быть включён для любой части приложения.
+  На данный момент StrictMode помогает в:
+    -Обнаружении небезопасных методов жизненного цикла
+    -Предупреждении об использовании устаревшего API строковых реф
+    -Предупреждении об использовании устаревшего метода findDOMNode
+    -Обнаружении неожиданных побочных эффектов
+    -Обнаружении устаревшего API контекста
+    -Обеспечение переиспользованного состояния
 + Неуправляемые компоненты
+  В большинстве случаев при работе с формами мы рекомендуем использовать управляемые компоненты. В управляемом компоненте, данные формы обрабатываются React-компонентом. 
+    В качестве альтернативы можно использовать неуправляемые компоненты. Они хранят данные формы прямо в DOM.
+  Вместо того, чтобы писать обработчик события для каждого обновления состояния, вы можете использовать неуправляемый компонент и читать значения из DOM через реф.
+  */
+  class NameForm extends React.Component {
+    constructor(props) {
+      super(props);
+      this.handleSubmit = this.handleSubmit.bind(this);
+      this.input = React.createRef();
+    }
   
+    handleSubmit(event) {
+      alert('Отправленное имя: ' + this.input.current.value);
+      event.preventDefault();
+    }
+  
+    render() {
+      return (
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Имя:
+            <input type="text" ref={this.input} />
+          </label>
+          <input type="submit" value="Отправить" />
+        </form>
+      );
+    }
+  }
+  /*
+  Неуправляемые компоненты опираются на DOM в качестве источника данных и могут быть удобны при интеграции React с кодом, не связанным с React. Количество кода может уменьшиться, правда, за счёт потери в его чистоте. 
+    Поэтому в обычных ситуациях мы рекомендуем использовать управляемые компоненты.
+  Тег поля загрузки файла <input type="file" />
+    В React <input type="file"> всегда является неуправляемым компонентом, потому что его значение может быть установлено только пользователем, а не программным путём.
+    Для взаимодействия с файлами следует использовать File API. В следующем примере показано, как создать реф на DOM-узел, чтобы затем получить доступ к файлам в обработчике отправки формы:
+    */
+    class FileInput extends React.Component {
+      constructor(props) {
+        super(props);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.fileInput = React.createRef();
+      }
+      handleSubmit(event) {
+        event.preventDefault();
+        alert(
+          `Selected file - ${this.fileInput.current.files[0].name}`
+        );
+      }
+    
+      render() {
+        return (
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              Upload file:
+              <input type="file" ref={this.fileInput} />
+            </label>
+            <br />
+            <button type="submit">Submit</button>
+          </form>
+        );
+      }
+    }
+    
+    const root = ReactDOM.createRoot(
+      document.getElementById('root')
+    );
+    root.render(<FileInput />);
+    /*
 + API для работы с Profiler
   https://ru.reactjs.org/docs/profiler.html#gatsby-focus-wrapper  
   Profiler измеряет то, как часто рендерится React-приложение и какова «стоимость» этого. Его задача — помочь найти медленные части приложения, которые можно оптимизировать (например, через мемоизацию).
