@@ -7283,7 +7283,7 @@ function extendedPeriodOutput(period) {
   setTimeout(increaseTime, period);
 }
 extendedPeriodOutput(100);
-*/
+
 
 function makeCounter() {
   let count = 0;
@@ -7308,3 +7308,65 @@ function sumTo(n) {
 
 const summ = sumTo(4)
 console.dir(summ) //?);
+
+let obj1 = {
+  a: 1,
+  b: 2,
+  c: {
+    d: 3,
+    e: 4,
+  }
+}
+console.log(obj1);
+
+let copy  = obj1.c //?
+copy.d = 5
+
+console.log(obj1);
+*/
+function* fn (num) {
+  for (let i = 0; i < num; i += 1) {
+    yield console.log('i: ', i);
+    }
+}
+
+
+const loop = fn(5);//?
+console.log(loop);
+loop.next();
+loop.next();
+loop.next();
+loop.next();
+loop.next();
+loop.next();
+loop.next();
+
+var foo = function bar () {
+  bar //?
+  return 1;
+}
+// console.log(bar()); //?
+
+const obj1 = {
+  a: 1,
+}
+
+const res = Object.create(obj1, {
+  b: {
+    value: 2,
+    writable: true,
+    enumerable: true,
+  }
+});
+res.a//?
+res.b = 1//?
+
+function car (fn) {
+  return function (a) {
+    return function (b) {
+      return fn(a, b)
+    }
+  }
+}
+
+const sum = car((a, b) => a + b)(2)(2);//?
