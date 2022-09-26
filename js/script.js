@@ -7370,3 +7370,13 @@ function car (fn) {
 }
 
 const sum = car((a, b) => a + b)(2)(2);//?
+
+
+Boolean()//?
+
+/* var foo = function bar () {
+  return 1;
+}
+
+console.log(bar()); //? */
+typeof Null //?
