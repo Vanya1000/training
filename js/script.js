@@ -7379,4 +7379,22 @@ Boolean()//?
 }
 
 console.log(bar()); //? */
-typeof Null //?
+
+
+Array.prototype.myReduce = function(callbackFn, initialValue) {
+  let accumulator = initialValue;
+    for (let i = 0; i < this.length; i++) {
+      if (accumulator !== undefined) {
+        accumulator = callbackFn(accumulator, this[i], i, this); // вызываем функцию с аргументами и контекстом undefined
+      } else {
+        accumulator = this[i]; // если аккумулятор не определен, то присваиваем значение первого элемента
+      }
+    }
+    return accumulator
+}
+
+
+const result = [0,1,2,3,3,4,2,1,2].myReduce(function (acc, item, index, arr) {
+  acc[item] = acc[item] ? acc[item] += 1 : 1;
+  return acc
+}, {});//?
