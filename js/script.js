@@ -7398,3 +7398,8 @@ const result = [0,1,2,3,3,4,2,1,2].myReduce(function (acc, item, index, arr) {
   acc[item] = acc[item] ? acc[item] += 1 : 1;
   return acc
 }, {});//?
+
+
+var qwe = function wer () {
+  return 1;
+}
