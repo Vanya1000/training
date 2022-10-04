@@ -7323,7 +7323,7 @@ let copy  = obj1.c //?
 copy.d = 5
 
 console.log(obj1);
-*/
+
 function* fn (num) {
   for (let i = 0; i < num; i += 1) {
     yield console.log('i: ', i);
@@ -7374,13 +7374,6 @@ const sum = car((a, b) => a + b)(2)(2);//?
 
 Boolean()//?
 
-/* var foo = function bar () {
-  return 1;
-}
-
-console.log(bar()); //? */
-
-
 Array.prototype.myReduce = function(callbackFn, initialValue) {
   let accumulator = initialValue;
     for (let i = 0; i < this.length; i++) {
@@ -7403,3 +7396,86 @@ const result = [0,1,2,3,3,4,2,1,2].myReduce(function (acc, item, index, arr) {
 var qwe = function wer () {
   return 1;
 }
+
+
+
+// написать функцию которая сможет считать такое выражение '1+2*(3+4/2-(1+2))*2+1'
+const calculateWithBrackets = (str) => {
+  // заменить в строке .1 на 0.1
+  str = str.replace(/\.(\d)/g, '0.$1');//?
+  const arr = str.split(/(\d+\.?\d*|\+|\*|\(|\))/).filter((item) => item !== ''); //?
+  const stackNumbers = []
+  const stackOperators = []
+  const priority = {
+    '+': 1,
+    '-': 1,
+    '*': 2,
+    '/': 2,
+  }
+
+  const calculate = (a, b, operator) => {
+    switch (operator) {
+      case '+':
+        return a + b;
+      case '-':
+        return a - b;
+      case '*':
+        return a * b;
+      case '/':
+        return a / b;
+    }
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === '(') {
+      stackOperators.push(arr[i]);
+    } else if (arr[i] === ')') {
+      while (stackOperators[stackOperators.length - 1] !== '(') {
+        const b = stackNumbers.pop();
+        const a = stackNumbers.pop();
+        const operator = stackOperators.pop();
+        stackNumbers.push(calculate(a, b, operator));
+      }
+      stackOperators.pop();
+    } else if (priority[arr[i]]) {
+      while (priority[stackOperators[stackOperators.length - 1]] >= priority[arr[i]]) {
+        const b = stackNumbers.pop();
+        const a = stackNumbers.pop();
+        const operator = stackOperators.pop();
+        stackNumbers.push(calculate(a, b, operator));
+      }
+      stackOperators.push(arr[i]);
+    } else {
+      stackNumbers.push(Number(arr[i]));
+    }
+  }
+
+  while (stackOperators.length) {
+    const b = stackNumbers.pop();
+    const a = stackNumbers.pop();
+    const operator = stackOperators.pop();
+    stackNumbers.push(calculate(a, b, operator));
+  }
+  const result = stackNumbers[0].toFixed(3); 
+  const history = `${str} = ${result}`//?
+  return [result, history];
+
+
+
+
+}
+*/
+
+
+
+
+
+// создать шаблонную строку в которой обязательны 2 числа и оператор между ними
+
+const validate = (str) => {
+  return !!str.match(/(\d+\.?\d*)(\+|\-|\*|\/)(\d+\.?\d*)/);
+}
+
+validate('2+4') //?
+
+
