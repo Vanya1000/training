@@ -7464,7 +7464,7 @@ const calculateWithBrackets = (str) => {
 
 
 }
-*/
+
 
 
 
@@ -7483,3 +7483,306 @@ const a = /(\+|\-|\*|\/){2,}/
 const b = /\.{2,}/
 const c = /(\+|\-|\*|\/){2,}|\.{2,}/
 
+const calculateExpression = (str) => {
+  // менять только если перед точкой нет числа на 0.
+  str = str.replace(/(?<!\d)\./g, '0.');//?
+  const replaceStr = str.replace(/(?<!\d)\./g, '0.');
+  // fix split  0.1 
+  const arr = replaceStr.split(/(\d+\.?\d*|\+|\*|\(|\))/).filter((item) => item !== '');//?
+  const stackNumbers = []
+  const stackOperators = []
+  const priority = {
+    '+': 1,
+    '-': 1,
+    '*': 2,
+    '/': 2,
+  }
+
+  const calculate = (a, b, operator) => {
+    switch (operator) {
+      case '+':
+        return a + b;
+      case '-':
+        return a - b;
+      case '*':
+        return a * b;
+      case '/':
+        return a / b;
+    }
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === '(') {
+      stackOperators.push(arr[i]);
+    } else if (arr[i] === ')') {
+      while (stackOperators[stackOperators.length - 1] !== '(') {
+        const b = stackNumbers.pop();
+        const a = stackNumbers.pop();
+        const operator = stackOperators.pop();
+        stackNumbers.push(calculate(a, b, operator));
+      }
+      stackOperators.pop();
+    } else if (priority[arr[i]]) {
+      while (priority[stackOperators[stackOperators.length - 1]] >= priority[arr[i]]) {
+        const b = stackNumbers.pop();
+        const a = stackNumbers.pop();
+        const operator = stackOperators.pop();
+        stackNumbers.push(calculate(a, b, operator));
+      }
+      stackOperators.push(arr[i]);
+    } else {
+      stackNumbers.push(Number(arr[i]));
+    }
+  }
+
+  while (stackOperators.length) {
+    const b = stackNumbers.pop();
+    const a = stackNumbers.pop();
+    const operator = stackOperators.pop();
+    stackNumbers.push(calculate(a, b, operator));
+  }
+  let result = String(Number.isInteger(stackNumbers[0]) ? stackNumbers[0] : stackNumbers[0].toFixed(3)); 
+
+  if (isNaN(result)) {
+    result = 'Error'
+  }
+  
+  const history = `${str} = ${result}`//?
+  return [result, history];
+}
+
+const res = calculateExpression('.1+.2')//?
+
+
+class Calculator {
+  constructor() {
+    this.stackNumbers = [];
+    this.stackOperators = [];
+    this.priority = {
+      '+': 1,
+      '-': 1,
+      '*': 2,
+      '/': 2,
+    };
+    this.history = [];
+  }
+
+  calculate(a, b, operator) {
+    switch (operator) {
+      case '+':
+        return a + b;
+      case '-':
+        return a - b;
+      case '*':
+        return a * b;
+      case '/':
+        return a / b;
+    }
+  }
+
+  validate(str) {
+    return !str.match(/\.{2,}/);
+  }
+
+  calculateExpression(str) {
+    // менять только если перед точкой нет числа на 0.
+    str = str.replace(/(?<!\d)\./g, '0.');
+    const replaceStr = str.replace(/(?<!\d)\./g, '0.');
+    // fix split  0.1
+    const arr = replaceStr.split(/(\d+\.?\d*|\+|\*|\(|\))/).filter((item) => item !== '');
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] === '(') {
+        this.stackOperators.push(arr[i]);
+      } else if (arr[i] === ')') {
+        while (this.stackOperators[this.stackOperators.length - 1] !== '(') {
+          const b = this.stackNumbers.pop();
+          const a = this.stackNumbers.pop();
+          const operator = this.stackOperators.pop();
+          this.stackNumbers.push(this.calculate(a, b, operator));
+        }
+        this.stackOperators.pop();
+      } else if (this.priority[arr[i]]) {
+        while (this.priority[this.stackOperators[this.stackOperators.length - 1]] >= this.priority[arr[i]]) {
+          const b = this.stackNumbers.pop();
+          const a = this.stackNumbers.pop();
+          const operator = this.stackOperators.pop();
+          this.stackNumbers.push(this.calculate(a, b, operator));
+        }
+        this.stackOperators.push(arr[i]);
+      } else {
+        this.stackNumbers.push(Number(arr[i]));
+      }
+    }
+
+    while (this.stackOperators.length) {
+      const b = this.stackNumbers.pop();
+      const a = this.stackNumbers.pop();
+      const operator = this.stackOperators.pop();
+      this.stackNumbers.push(this.calculate(a, b, operator));
+    }
+    
+
+}
+*/
+
+class Calculator {
+  constructor() {
+    this.value = 0;
+    this.history = [];
+  }
+  execute(command) {
+    this.value = command.execute(this.value);
+    this.history.push(command);
+  }
+
+  undo() {
+    const command = this.history.pop();
+    this.value = command.undo(this.value);
+  }
+
+}
+
+class CalculatorCommand {
+  constructor(value) {
+    this.value = value;
+  }
+  execute() {
+    throw new Error('Command is not implemented'); // если  кто то наследует от этого класса и не переопределяет метод execute, то будет ошибка
+  }
+  undo() {
+    throw new Error('Command is not implemented');
+  }
+
+}
+
+class AddCommand extends CalculatorCommand {
+  execute(value) {
+    return value + this.value;
+  }
+  undo(value) {
+    return value - this.value;
+  }
+}
+
+class SubCommand extends CalculatorCommand {
+  execute(value) {
+    return value - this.value;
+  }
+  undo(value) {
+    return value + this.value;
+  }
+}
+
+class MulCommand extends CalculatorCommand {
+  execute(value) {
+    return value * this.value;
+  }
+  undo(value) {
+    return value / this.value;
+  }
+}
+
+class DivCommand extends CalculatorCommand {
+  execute(value) {
+    return value / this.value;
+  }
+  undo(value) {
+    return value * this.value;
+  }
+}
+
+
+// create invoker
+
+
+
+const calc = new Calculator();
+
+calc.execute(new AddCommand(5));
+calc.execute(new AddCommand(5));
+
+calc.execute(new MulCommand(2));
+calc.value; //?
+
+
+calc.value; //?
+calc.history//?
+
+
+
+
+
+class AccountCommand {
+  constructor(operation, account, amount) {
+    this.operation = operation;
+    this.account = account;
+    this.amount = amount;
+  }
+}
+
+class BankAccount {
+  constructor(name) {
+    this.name = name;
+    this.balance = 0;
+    BankAccount.collection.set(name, this);
+  }
+}
+
+BankAccount.collection = new Map();
+
+const operations = {
+  Withdraw: (command) => {
+    const account = BankAccount.collection.get(command.account);
+    account.balance -= command.amount;
+  },
+  Income: (command) => {
+    const account = BankAccount.collection.get(command.account);
+    account.balance += command.amount;
+  },
+  Allowed: (command) => {
+    if (command.operation === 'Income') return true;
+    const account = BankAccount.collection.get(command.account);
+    return account.balance >= command.amount;
+  },
+};
+
+class Bank {
+  constructor() {
+    this.commands = [];
+  }
+
+  operation(account, amount) {
+    const operation = amount < 0 ? 'Withdraw' : 'Income';
+    const execute = operations[operation];
+    const command = new AccountCommand(
+      operation, account.name, Math.abs(amount)
+    );
+    const allowed = operations.Allowed(command);
+    if (!allowed) {
+      const target = BankAccount.collection.get(command.account);
+      throw new Error(
+        'Command is not allowed:\n' + JSON.stringify(command) +
+        '\non ' + JSON.stringify(target)
+      );
+    }
+    this.commands.push(command);
+    execute(command);
+  }
+
+  showOperations() {
+    console.table(this.commands);
+  }
+}
+
+// Usage
+
+const bank = new Bank();
+const account1 = new BankAccount('Marcus Aurelius');
+bank.operation(account1, 1000);
+bank.operation(account1, -50);
+const account2 = new BankAccount('Antoninus Pius');
+bank.operation(account2, 500);
+bank.operation(account2, -100);
+bank.operation(account2, 150);
+bank.showOperations();
+console.table([account1, account2]);
