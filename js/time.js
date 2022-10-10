@@ -436,6 +436,18 @@ const countTime = [
     time: 3,
     start: '18:30',
     end: '21:30',
+  },
+  {
+    date: '09.10.2022',
+    time: 2,
+    start: '21:00',
+    end: '23:00',
+  },
+  {
+    date: '10.10.2022',
+    time: 3.5,
+    start: '19:30',
+    end: '23:00',
   }
 ]
 

@@ -2190,7 +2190,7 @@
         Partial<Type> - создает новый тип, в котором все свойства типа Type являются необязательными. fieldsToUpdate: Partial<Todo>
         Required<Type> - создает новый тип, в котором все свойства типа Type являются обязательными. newTodo: Required<Todo>
         Readonly<Type> - создает новый тип, в котором все свойства типа Type являются только для чтения. readonlyTodo: Readonly<Todo>
-        Pick<Type, Keys> - создает новый тип, в котором все свойства типа Type являются только для чтения. pickTodo: Pick<Todo, "title" | "description">
+        Pick<Type, Keys> - Создает тип, выбирая набор свойств Keys(строковый литерал или объединение строковых литералов) из Type pickTodo: Pick<Todo, "title" | "description">
         !Record<Keys, Type> - создает новый тип, в котором все свойства имеют тип Type. recordTodo: Record<"todo1" | "todo2", Todo> !!!
 
     ?typeguards (optional)
