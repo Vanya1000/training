@@ -6676,7 +6676,7 @@ function compose(...fns) {
 }
 
 const multiFilter = function(...fns){
-	return function(item){
+  return function(item){
     return fns.every((fn) => fn(item))
   };
 };
@@ -7623,7 +7623,7 @@ class Calculator {
     
 
 }
-*/
+
 
 class Calculator {
   constructor() {
@@ -7786,3 +7786,22 @@ bank.operation(account2, -100);
 bank.operation(account2, 150);
 bank.showOperations();
 console.table([account1, account2]);
+
+*/
+
+
+
+
+const currentMonth = (month, year ) => {
+  if (!year && !month) {
+    const date = new Date();
+    year = date.getFullYear();
+    month = date.getMonth();
+  }
+  const firstDay = `${new Date(year, month, 2).toISOString().slice(0, 10)  }T00:00:00.000Z`;
+  const lastDay = `${new Date(year, month + 1, 2).toISOString().slice(0, 10)  }T00:00:00.000Z`;
+  return {start: firstDay, end: lastDay};
+}
+
+currentMonth('12', '2022');//?
+currentMonth('15', '2022');//?
