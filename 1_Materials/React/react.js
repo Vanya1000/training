@@ -1247,6 +1247,7 @@
   }  
   /*
 + useLayoutEffect
+  Выполнить код до отрисовки в браузере
   Сигнатура идентична useEffect, но этот хук запускается синхронно после всех изменений DOM. Используйте его для чтения макета из DOM и синхронного повторного рендеринга. Обновления, 
     запланированные внутри useLayoutEffect, будут полностью применены синхронно перед тем, как браузер получит шанс осуществить отрисовку.
   Предпочитайте стандартный useEffect, когда это возможно, чтобы избежать блокировки визуальных обновлений.
@@ -1593,6 +1594,34 @@
     };
 
     export default withSecretToLife;
+    //---------------------------------------------
+    const HOC = (Component) => {
+      return (props) => <Component {...props} val={42} />;
+    }
+    //---------------------------------------------
+    const SampleProvider = props => {
+      const [value, setValue] = useState("Default Value");
+      const sampleContext = { value, setValue };
+    
+      useEffect(() => console.log("Context Value: ", value));
+    
+      return (
+        <SampleCtx.Provider value={sampleContext}>
+          {props.children}
+        </SampleCtx.Provider>
+      );
+    };
+    
+    const useSample = WrappedComponent => props => {
+      const sampleCtx = useContext(SampleCtx);
+      return (
+        <WrappedComponent
+          {...props}
+          value={sampleCtx.value}
+          setValue={sampleCtx.setValue}
+        />
+      );
+    };
     /* Всё, что мы сделали, так это просто проп secretToLife={42}, который позволил обернутому компоненту получить доступ к значению через this.props.secretToLife.
     Первый вызов функции higherOrderComponent возвращает вторую функцию, которая принимает в качестве параметра компонент, который оборачивается в HOC. Второй вызов функции higherOrderComponent возвращает
 + JSX в деталях

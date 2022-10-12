@@ -7792,16 +7792,37 @@ console.table([account1, account2]);
 
 
 
-const currentMonth = (month, year ) => {
-  if (!year && !month) {
+
+const currentMonth = (dateISO, increment, decrement ) => {
+  let year; 
+  let month;
+  if (!dateISO) {
     const date = new Date();
     year = date.getFullYear();
     month = date.getMonth();
+  } else {
+    const date = new Date(dateISO);
+    year = date.getFullYear();
+    month = date.getMonth();
+  }
+  if (increment) {
+    month += increment;
+    if (month > 11) {
+      month = 0;
+      year += 1;
+    }
+  }
+  if (decrement) {
+    month -= decrement;
+    if (month < 0) {
+      month = 11;
+      year -= 1;
+    }
   }
   const firstDay = `${new Date(year, month, 2).toISOString().slice(0, 10)  }T00:00:00.000Z`;
   const lastDay = `${new Date(year, month + 1, 2).toISOString().slice(0, 10)  }T00:00:00.000Z`;
   return {start: firstDay, end: lastDay};
 }
 
-currentMonth('12', '2022');//?
-currentMonth('15', '2022');//?
+
+currentMonth('2022-08-01T00:00:00.000Z', false, true);//?
