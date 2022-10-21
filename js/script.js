@@ -7836,4 +7836,4 @@ const printNumberFromToWithSpace = (from, to) => {
 }
 
 printNumberFromToWithSpace(1, 10)//?
-console.log(printNumberFromToWithSpace(71, 150));
+console.log(printNumberFromToWithSpace(1, 150));

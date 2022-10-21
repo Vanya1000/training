@@ -333,6 +333,7 @@ function howManyHoursOfTraining() {
     '18.10': 8,
     '19.10': 8,
     '20.10': 8,
+    '21.10': 8,
   };
   let workTimeArray = Object.values(workTime);
   let allHourWorkTime = workTimeArray.reduce((previous, item) => item + previous);
@@ -521,7 +522,13 @@ const countTime = [
     time: 7,
     start: '16:00',
     end: '23:00',
-  }
+  },
+  {
+    date: '21.10.2022',
+    time: 7,
+    start: '16:00',
+    end: '23:00',
+  },
 ]
 
 const totalH = countTime.reduce((acc, item) => acc + item.time, 0)//?
