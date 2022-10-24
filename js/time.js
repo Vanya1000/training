@@ -542,6 +542,12 @@ const countTime = [
     time: 8,
     start: '15:00',
     end: '23:00',
+  },
+  {
+    date: '24.10.2022',
+    time: 9,
+    start: '14:00',
+    end: '23:00',
   }
 ]
 
