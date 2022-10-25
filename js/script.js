@@ -7830,10 +7830,10 @@ currentMonth('2022-08-01T00:00:00.000Z', false, true);//?
 const printNumberFromToWithSpace = (from, to) => {
   let result = '';
   for (let i = from; i <= to; i++) {
-    result += `${i} ${'\n'}${'\n'}`;
+    result += `${i} ${'\n'}`;
   }
   return result;
 }
 
 printNumberFromToWithSpace(1, 10)//?
-console.log(printNumberFromToWithSpace(1, 150));
+console.log(printNumberFromToWithSpace(151, 300));
