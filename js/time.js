@@ -562,9 +562,15 @@ const countTime = [
     time: 8,
     start: '15:00',
     end: '23:00',
+  },
+  {
+    date: '27.10.2022',
+    time: 8,
+    start: '15:00',
+    end: '23:00',
   }
 ]
 
-const totalH = countTime.reduce((acc, item) => acc + item.time, 0)//?
+const totalH = countTime.reduce((acc, item) => acc + item.time, 0)*5*2.5//?
 const totalD = countTime.length//?
 

@@ -7787,7 +7787,7 @@ bank.operation(account2, 150);
 bank.showOperations();
 console.table([account1, account2]);
 
-*/
+
 
 
 
@@ -7837,3 +7837,42 @@ const printNumberFromToWithSpace = (from, to) => {
 
 printNumberFromToWithSpace(1, 10)//?
 console.log(printNumberFromToWithSpace(151, 300));
+*/
+const daysInThisMonth = (date) => {
+  const dateObj = new Date(date);
+  return new Date(dateObj.getFullYear(), dateObj.getMonth() + 1, 0).getDate();
+}
+
+const currentMonth = (dateISO, increment, decrement ) => {
+  let year; 
+  let month;
+  if (!dateISO) {
+    const date = new Date();
+    year = date.getFullYear();
+    month = date.getMonth();
+  } else {
+    const date = new Date(dateISO);
+    year = date.getFullYear();
+    month = date.getMonth();
+  }
+  if (increment) {
+    month += increment;
+    if (month > 11) {
+      month = 0;
+      year += 1;
+    }
+  }
+  if (decrement) {
+    month -= decrement;
+    if (month < 0) {
+      month = 11;
+      year -= 1;
+    }
+  }
+  const firstDay = `${new Date(year, month, 2).toISOString().slice(0, 10)}T00:00:00.000Z`;
+  const lastDay = `${new Date(year, month, 2).toISOString().slice(0, 8)}${daysInThisMonth(dateISO ? dateISO : new Date)}T23:59:59.000Z`;
+  return {start: firstDay, end: lastDay};
+}
+
+
+currentMonth('2022-10-01T00:00:00.000Z');//?
