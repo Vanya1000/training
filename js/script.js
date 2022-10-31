@@ -7876,3 +7876,13 @@ const currentMonth = (dateISO, increment, decrement ) => {
 
 
 currentMonth('2022-10-01T00:00:00.000Z');//?
+const printNumberFromToWithSpace = (from, to) => {
+  let result = '';
+  for (let i = from; i <= to; i++) {
+    result += `${i} ${'\n'}`;
+  }
+  return result;
+}
+
+printNumberFromToWithSpace(1, 10)//?
+console.log(printNumberFromToWithSpace(301, 500));
