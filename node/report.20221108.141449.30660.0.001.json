@@ -1,0 +1,161 @@
+
+{
+  "header": {
+    "reportVersion": 2,
+    "event": "JavaScript API",
+    "trigger": "API",
+    "filename": "report.20221108.141449.30660.0.001.json",
+    "dumpEventTime": "2022-11-08T14:14:49Z",
+    "dumpEventTimeStamp": "1667906089138",
+    "processId": 30660,
+    "threadId": 0,
+    "cwd": "C:\\Users\\Vanya\\Desktop\\web\\lessons\\node",
+    "commandLine": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "app.js"
+    ],
+    "nodejsVersion": "v18.12.1",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "win32",
+    "componentVersions": {
+      "node": "18.12.1",
+      "v8": "10.2.154.15-node.12",
+      "uv": "1.43.0",
+      "zlib": "1.2.11",
+      "brotli": "1.0.9",
+      "ares": "1.18.1",
+      "modules": "108",
+      "nghttp2": "1.47.0",
+      "napi": "8",
+      "llhttp": "6.0.10",
+      "openssl": "3.0.7+quic",
+      "cldr": "41.0",
+      "icu": "71.1",
+      "tz": "2022b",
+      "unicode": "14.0",
+      "ngtcp2": "0.8.1",
+      "nghttp3": "0.7.0"
+    },
+    "release": {
+      "name": "node",
+      "lts": "Hydrogen",
+      "headersUrl": "https://nodejs.org/download/release/v18.12.1/node-v18.12.1-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v18.12.1/node-v18.12.1.tar.gz",
+      "libUrl": "https://nodejs.org/download/release/v18.12.1/win-x64/node.lib"
+    },
+    "osName": "Windows_NT",
+    "osRelease": "10.0.22000",
+    "osVersion": "Windows 10 Home",
+    "osMachine": "x86_64",
+    "cpus": [
+      {
+        "model": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+        "speed": 2208,
+        "user": 13005343,
+        "nice": 0,
+        "sys": 15159328,
+        "idle": 219536125,
+        "irq": 3849859
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+        "speed": 2208,
+        "user": 6360234,
+        "nice": 0,
+        "sys": 4248218,
+        "idle": 237092015,
+        "irq": 204953
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+        "speed": 2208,
+        "user": 26067687,
+        "nice": 0,
+        "sys": 10367281,
+        "idle": 211265484,
+        "irq": 201671
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+        "speed": 2208,
+        "user": 15720062,
+        "nice": 0,
+        "sys": 5348968,
+        "idle": 226631437,
+        "irq": 87468
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+        "speed": 2208,
+        "user": 21095187,
+        "nice": 0,
+        "sys": 8658078,
+        "idle": 217947203,
+        "irq": 183359
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+        "speed": 2208,
+        "user": 8719328,
+        "nice": 0,
+        "sys": 3484312,
+        "idle": 235496828,
+        "irq": 78375
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+        "speed": 2208,
+        "user": 18518109,
+        "nice": 0,
+        "sys": 8936406,
+        "idle": 220245953,
+        "irq": 163953
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+        "speed": 2208,
+        "user": 9897437,
+        "nice": 0,
+        "sys": 3485375,
+        "idle": 234317609,
+        "irq": 70328
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+        "speed": 2208,
+        "user": 14848500,
+        "nice": 0,
+        "sys": 8426281,
+        "idle": 224425656,
+        "irq": 180281
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+        "speed": 2208,
+        "user": 9857281,
+        "nice": 0,
+        "sys": 4234546,
+        "idle": 233608625,
+        "irq": 97718
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+        "speed": 2208,
+        "user": 15513750,
+        "nice": 0,
+        "sys": 9910640,
+        "idle": 222276062,
+        "irq": 130234
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+        "speed": 2208,
+        "user": 11971531,
+        "nice": 0,
+        "sys": 5515281,
+        "idle": 230213625,
+        "irq": 91671
+      }
+    ],
+    "network

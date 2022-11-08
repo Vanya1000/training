@@ -2,13 +2,18 @@
   "name": "node-lesson",
   "version": "1.0.0",
   "description": "nodeJS",
+  "type": "module",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
   "keywords": [
     "node"
   ],
   "author": "Ivan Zaharenko <Vanya1000@yandex.ru>",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
 }

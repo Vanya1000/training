@@ -27,11 +27,11 @@
   -const myCoolModule = require('my-cool-module')
 +Node.js API
   Process (global object we can use it without import) https://nodejs.org/api/process.html
-    -console.log(proccess.pid) id current Node process
-    -console.log(proccess.argv) CLI arguments
-    -proccess.report.writeReport() JSON-formatted diagnostic report
+    -console.log(process.pid) id current Node process
+    -console.log(process.argv) CLI arguments
+    -process.report.writeReport() JSON-formatted diagnostic report
     -peoccess.on('exit', () => {console.log('exit')}) //exit event //! 
-    -proccess.exit() // terminate the Node.js process with a specified exit code
+    -process.exit() // terminate the Node.js process with a specified exit code
   Events https://nodejs.org/api/events.html
     -const EventEmitter = require('events')
     -const calculator = new EventEmitter()
