@@ -1,6 +1,5 @@
-import { readFile, writeFile, mkdir, rmdir } from 'node:fs/promises';
+import { mkdir, rmdir } from 'node:fs/promises';
 import { join } from 'node:path';
-import { niceBytes } from './utils/index.js';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
