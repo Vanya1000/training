@@ -1,15 +1,16 @@
 import { mkdir, rmdir } from 'node:fs/promises';
-import { join } from 'node:path';
+import { join, resolve, parse } from 'node:path'; // join path beyond dependencies OS | path.join(__dirname, '..', '..')
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __filename = fileURLToPath(import.meta.url); // path to current file
+const __dirname = dirname(__filename); // path from root folder (OS) to current file
 
-
+resolve('first', 'second', 'third'); // less predictable!
+parse( __filename) // { root: 'C:\\', dir: 'C:\\Users\\Vanya\\Desktop\\web\\Lessons\\node', base: 'app.js', ext: '.js', name: 'app' }
 
 const createNestedFolders = async (countNested) => {
 	try {
-		const path = join(__dirname, '/folder');
+		const path = join(__dirname, 'folder');
 		let concatPath = path;
 		const count = Array.from({ length: countNested });
 

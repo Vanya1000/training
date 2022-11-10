@@ -9,10 +9,35 @@
   -JavaScript
   -V8 Engine JIT (Just in time) compiler
   -Single threaded (by default)
-  -Cross platform
+  -Cross platform 
+  -Libuv (event loop, cross platform I/O)
+    Another language use thread for anblocking read/write, but Node.js use event loop!
   -Event driven 
   -Scalable
   -Reach API
++Library may be multithreaded https://habr.com/ru/post/479062/
+  -Node.js is single threaded.
+  Libuv is multithreaded. (4 threads)
+      import {pbkdf2} from 'node:crypto';
+      const start = Date.now();
+      pbkdf2('12345', '5', 100000, 64, 'sha512', (err, derivedKey) => {
+      	console.log(Date.now() - start, derivedKey.toString('hex'));
+      }); // 114ms
+      pbkdf2('12345', '5', 100000, 64, 'sha512', (err, derivedKey) => {
+      	console.log(Date.now() - start, derivedKey.toString('hex'));
+      }); // 124ms
+      pbkdf2('12345', '5', 100000, 64, 'sha512', (err, derivedKey) => {
+      	console.log(Date.now() - start, derivedKey.toString('hex'));
+      }); // 126ms
+      pbkdf2('12345', '5', 100000, 64, 'sha512', (err, derivedKey) => {
+      	console.log(Date.now() - start, derivedKey.toString('hex'));
+      }); // 128ms
+      pbkdf2('12345', '5', 100000, 64, 'sha512', (err, derivedKey) => {
+      	console.log(Date.now() - start, derivedKey.toString('hex'));
+      }); // 231ms
+
++Demultiplexing events
+  Сборка и постановка на учет событий ввода / вывода в один поток
 +Version of Node.js
   even number: stable LTS (Long Term Support) https://github.com/nodejs/release#release-schedule
 +Build in modules
