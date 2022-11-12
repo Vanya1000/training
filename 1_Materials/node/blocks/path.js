@@ -8,3 +8,18 @@ resolve('first', 'second', 'third'); // less predictable!
 parse( __filename) // { root: 'C:\\', dir: 'C:\\Users\\Vanya\\Desktop\\web\\Lessons\\node', base: 'app.js', ext: '.js', name: 'app' }
 
 const siteURL = 'https://www.youtube.com/watch?v=Q7AOvWpIVHU';
+const url = new URL(siteURL);
+/* URL {
+  href: 'https://www.youtube.com/watch?v=Q7AOvWpIVHU',
+  origin: 'https://www.youtube.com',
+  protocol: 'https:',
+  username: '',
+  password: '',
+  host: 'www.youtube.com',
+  hostname: 'www.youtube.com',
+  port: '',
+  pathname: '/watch',
+  search: '?v=Q7AOvWpIVHU',
+  searchParams: URLSearchParams { 'v' => 'Q7AOvWpIVHU' },
+  hash: ''
+} */
