@@ -6,24 +6,18 @@ const router = new Router();
 const users = [
 	{ name: "Vanya", age: 25 },
 	{ name: "Vova", age: 26 },
-	{ name: "Vasya", age: 27 },
+	{ name: "Vasya", age: 27 }, // use uuid
 ];
 
 router.get("/users", (req, res) => {
-	res.writeHead(200, { "Content-Type": "application/json" });
-	res.end(
-		JSON.stringify(users)
-	);
+	console.log('handler');
+	res.sendMy(users);
 });
 
 router.post("/users", (req, res) => {
-	req.on("data", (data) => {
-		console.log(data);
-	});
-	res.writeHead(200, { "Content-Type": "application/json" });
-	res.end(
-		JSON.stringify(users)
-	);
+	console.log(req.body);
+	users.push(req.body);
+	res.sendMy(users);
 });
 
 export default router;
