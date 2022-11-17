@@ -15,8 +15,8 @@ router.get("/users", (req, res) => {
 });
 
 router.post("/users", (req, res) => {
-	console.log(req.body);
-	users.push(req.body);
+	console.log('user router',req.body);
+	// users.push(req.body);
 	res.sendMy(users);
 });
 

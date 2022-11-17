@@ -47,7 +47,7 @@ class Application {
       req.on("end", () => {
         if (body) {
           req.body = JSON.parse(body); // todo cut to middleware
-        }
+        } // que to middleware
         const emmitted = this.emitter.emit(this._getRouteMask(req.url, req.method), req, res); // return true or false
         if (!emmitted) {
           res.end("404 Not Found");

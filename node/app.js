@@ -15,6 +15,7 @@ const __dirname = dirname(__filename);
 import Application from "./framework/Application.js";
 import usersRouter from "./src/users-router.js";
 import middlewareJsonParser from "./framework/parseJson.js";
+import middlewareBodyParser from "./framework/bodyParser.js";
 
 
 
@@ -22,7 +23,7 @@ import middlewareJsonParser from "./framework/parseJson.js";
 const PORT = process.env.PORT || 5000;
 
 const app = new Application();
-
+app.use(middlewareBodyParser);
 app.use(middlewareJsonParser);
 
 app.addRouter(usersRouter);
