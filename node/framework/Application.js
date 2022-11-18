@@ -29,26 +29,30 @@ class Application {
       Object.keys(endpoint).forEach((method) => {
         this.emitter.on(this._getRouteMask(path, method), (req, res) => {
           const handler = endpoint[method];
-          this.middlewares.forEach((middleware) => {
-            middleware(req, res);
-          });
-          handler(req, res);
+
+            handler(req, res);
+
         });
       });
     });
   }
 
+  _executeMiddlewares(middlewares, req, res, next) {
+    // console.log(middlewares);
+    if (middlewares.length === 0) {
+      return next();
+    }
+    const currentMiddlware = middlewares[0];
+    const nextMiddlewares = middlewares.slice(1);
+    return currentMiddlware(req, res, () => 
+      this._executeMiddlewares(nextMiddlewares, req, res, next)
+    );
+  }
+
   _createServer() {
     return http.createServer((req, res) => {
-      let body = "";
-      req.on("data", (chunk) => {
-        body += chunk;
-      });
-      req.on("end", () => {
-        if (body) {
-          req.body = JSON.parse(body); // todo cut to middleware
-        } // que to middleware
-        const emmitted = this.emitter.emit(this._getRouteMask(req.url, req.method), req, res); // return true or false
+      this._executeMiddlewares(this.middlewares, req, res, () => {
+      const emmitted = this.emitter.emit(this._getRouteMask(req.pathname, req.method), req, res); // return true or false
         if (!emmitted) {
           res.end("404 Not Found");
         }

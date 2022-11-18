@@ -14,21 +14,20 @@ const __dirname = dirname(__filename);
 
 import Application from "./framework/Application.js";
 import usersRouter from "./src/users-router.js";
-import middlewareJsonParser from "./framework/parseJson.js";
-import middlewareBodyParser from "./framework/bodyParser.js";
-
-
-
+import middlewareJsonParser from "./framework/middlewares/parseJson.js";
+import middlewareBodyParser from "./framework/middlewares/bodyParser.js";
+import middlwareParseUrl from "./framework/middlewares/parseUrl.js";
 
 const PORT = process.env.PORT || 5000;
 
 const app = new Application();
+
 app.use(middlewareBodyParser);
 app.use(middlewareJsonParser);
+app.use(middlwareParseUrl("http://localhost:5000"));
 
 app.addRouter(usersRouter);
 
 app.listen(PORT, () => {
   console.log(`Server has been started on port ${PORT}...`);
 });
-

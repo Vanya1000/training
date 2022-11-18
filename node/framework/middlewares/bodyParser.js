@@ -7,13 +7,11 @@ const middlewareBodyParser = (req, res, next) => {
   req.on("end", () => {
     try {
       req.body = JSON.parse(body);
-      console.log(req.body);
       next();
     } catch (err) {
       req.body = {};
       next();
     }
-    // next();
   });
 }
 

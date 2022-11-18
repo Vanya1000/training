@@ -7,7 +7,6 @@ console.log(document.querySelectorAll('div')[0]) */
 console.log(elem.childNodes[elem.childNodes.length] === elem.lastChild);
 elem.childNodes[elem.childNodes.length - 1] === elem.lastChild */
 
-
 //document.querySelector('.wrapper').childNodes.split(',')
 //let elem = document.querySelector('.wrapper')
 //console.log(elem);
@@ -15,7 +14,6 @@ elem.childNodes[elem.childNodes.length - 1] === elem.lastChild */
 //console.log(elem.childNodes[elem.childNodes.length]);
 //console.log(document.body.parentNode === document.documentElement);
 //console.log(arr.childNodes[arr.childNodes.length - 1] === arr.lastChild);
-
 
 /*
 //----------------reduce-------------------
@@ -3557,7 +3555,6 @@ function explode(s) {
 explode("312")//?
 */
 
-
 /* function getParticipants(handshakes) {
   let participants = 1;
   let maxH = 0;
@@ -5071,7 +5068,6 @@ console.log(tree.root());
 //!!! ctrl + D
 */
 
-
 /* let animal = {
   eats: true
 };
@@ -5880,7 +5876,6 @@ console.log(guy); //?
 //var guyNew = new Person('Guy');//?
 */
 
-
 /* class Event {
   constructor(type) {
     this.name = type;
@@ -5983,7 +5978,6 @@ qwe//?
 qwe--
 qwe//?
 f() */
-
 
 /* function doItAfterAsync(seconds) {
   let promise = new Promise((resolve, reject) => {
@@ -7838,7 +7832,7 @@ const printNumberFromToWithSpace = (from, to) => {
 printNumberFromToWithSpace(1, 10)//?
 console.log(printNumberFromToWithSpace(151, 300));
 */
-const daysInThisMonth = (date) => {
+/* const daysInThisMonth = (date) => {
   const dateObj = new Date(date);
   return new Date(dateObj.getFullYear(), dateObj.getMonth() + 1, 0).getDate();
 }
@@ -7882,7 +7876,42 @@ const printNumberFromToWithSpace = (from, to) => {
     result += `${i} ${'\n'}`;
   }
   return result;
-}
-
+} 
 printNumberFromToWithSpace(1, 10)//?
 console.log(printNumberFromToWithSpace(301, 500));
+*/
+
+const middleware1 = (req, res, next) => {
+  console.log("middleware1");
+  next();
+};
+
+const middleware2 = (req, res, next) => {
+  setTimeout(() => {
+    console.log("middleware2");
+    next();
+  }, 1000);
+};
+
+const middleware3 = (req, res, next) => {
+  console.log("middleware3");
+  next();
+};
+
+const arrMiddleware = [middleware1, middleware2, middleware3];
+
+// middleware iterator
+const executeMiddleware = (middleware, req, res, next) => {
+  if (middleware.length === 0) {
+    return next();
+  }
+  const currentMiddleware = middleware[0];
+  const nextMiddleware = middleware.slice(1);
+  currentMiddleware(req, res, () =>
+    executeMiddleware(nextMiddleware, req, res, next)
+  );
+};
+
+executeMiddleware(arrMiddleware, {}, {}, () => console.log("next"));
+
+
