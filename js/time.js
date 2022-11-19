@@ -717,6 +717,12 @@ const countTime = [
     time: 5,
     start: '18:00',
     end: '23:00',
+  },
+  {
+    date: '18.11.2022',
+    time: 6,
+    start: '17:00',
+    end: '23:00',
   }
 ]
 
