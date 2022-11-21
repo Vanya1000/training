@@ -735,6 +735,12 @@ const countTime = [
     start: "20:00",
     end: "23:00",
   },
+  {
+    date: "20.11.2022",
+    time: 3,
+    start: "20:00",
+    end: "23:00",
+  }
 ];
 
 const totalH = countTime.reduce((acc, item) => acc + item.time, 0) * 5; //?

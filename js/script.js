@@ -7914,4 +7914,15 @@ const executeMiddleware = (middleware, req, res, next) => {
 
 executeMiddleware(arrMiddleware, {}, {}, () => console.log("next"));
 
+export const addAlpha = (color, opacity) => {
+  // coerce values so ti is between 0 and 1.
+  const sliceColor = color.slice(1);
+  const _opacity = Math.round(Math.min(Math.max(opacity || 1, 0), 1) * 255);
+  return '#' + sliceColor + _opacity.toString(16).toUpperCase();
+}
 
+addAlpha('#FF0000', 0.5);//?
+
+const setOpacity = (hex, alpha) => `${hex}${Math.floor(alpha * 255).toString(16).padStart(2, 0)}`;
+
+setOpacity('FF0000', 0.5);//?
