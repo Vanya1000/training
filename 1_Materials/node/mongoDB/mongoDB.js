@@ -1,4 +1,4 @@
-/* 
+/*
 Mongo - документо-ориентированная СУБД, которая хранит данные в формате JSON.
   +Высокая доступность
   +Масштабируемость
@@ -39,13 +39,21 @@ Mongo - документо-ориентированная СУБД, котора
     $elemMatch - элемент соответствует
     $size - размер
     $mod - остаток от деления
+  Полезные методы и операторы
+    db.users.find({age: {$gt: 25}}).pretty() // найти документы в коллекции users, где age > 25 и отформатировать вывод
+    db.users.find({age: null}) // найти документы в коллекции users, где нет поля age
+    distinct - возвращает массив уникальных значений
+      db.users.distinct("age") // вернет массив уникальных значений поля age
+    replaceOne - заменяет один документ
+      db.users.replaceOne({name: "John"}, {name: "John", age: 30, status: "active"}) // заменит документ с name: "John" на новый 3й аргумент - опции (upsert: true - если не найдет, то создаст новый)
+    slice - возвращает массив с определенным количеством элементов 
   Поиск
     db.users.find({age: 25}) // найти документы в коллекции users, где age = 25
     db.users.find({age: 25}, {name: 1}) // найти документы в коллекции users, где age = 25 и вернуть только поле name!
     db.users.find({}, {name: 1}) // найти все документы в коллекции users и вернуть только поле name!
     db.users.find({age: {$gt: 25}}) // найти документы в коллекции users, где age > 25
     db.users.find({$or: [{age: 25}, {name: 'John'}]}) // найти документы в коллекции users, где age = 25 или age = 30
-    db.users.find({age: {$gt: 25}}).pretty() // найти документы в коллекции users, где age > 25 и отформатировать вывод
+    
     db.users.findOne({_id: ObjectId("637cfab992629361ada16352")}) // найти документ в коллекции users по id
     findAndModify - найти и изменить
     findAndReplace - найти и заменить
@@ -182,6 +190,29 @@ https://www.youtube.com/watch?v=aAmS5oFeEQ0 - выборка данных
     -позволяет ограничить значения, которые могут быть использованы в документе.
     -позволяет ограничить размер документа.
     -позволяет ограничить количество документов в коллекции.
-    
+
++Подключение и работа с MongoDB в Node.js
+  -npm install mongodb
+  const { MongoClient } = require('mongodb');
+  const uri = "mongodb://localhost:27017";
+  const client = new MongoClient(uri);
+  async function run() {
+    try {
+      await client.connect();
+      const database = client.db('test');
+      const collection = database.collection('devices');
+      // Query for a movie that has the title 'Back to the Future'
+      const query = { title: 'Back to the Future' };
+      const movie = await collection
+        .findOne
+        (query);
+      console.log(movie);
+    } finally {
+      // Ensures that the client will close when you finish/error
+      await client.close();
+    }
+  }
+
+  run().catch(console.dir);
 */
 
