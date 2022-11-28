@@ -7879,7 +7879,7 @@ const printNumberFromToWithSpace = (from, to) => {
 } 
 printNumberFromToWithSpace(1, 10)//?
 console.log(printNumberFromToWithSpace(301, 500));
-*/
+
 
 const middleware1 = (req, res, next) => {
   console.log("middleware1");
@@ -7926,3 +7926,57 @@ addAlpha('#FF0000', 0.5);//?
 const setOpacity = (hex, alpha) => `${hex}${Math.floor(alpha * 255).toString(16).padStart(2, 0)}`;
 
 setOpacity('FF0000', 0.5);//?
+
+
+class Coffee {
+  constructor() {
+    this.cost = 5;
+  }
+  getCost() {
+    return this.cost;
+  }
+}
+
+const coffee = new Coffee();
+
+const addMilk = (coffee) => {
+  coffee.addMilk = true;
+  coffee.cost += 1;
+}
+
+const addSugar = (coffee) => {
+  coffee.addSugar = true;
+  coffee.cost += 1;
+}
+
+const addChocolate = (coffee) => {
+  coffee.addChocolate = true;
+  coffee.cost += 2;
+}
+
+addMilk(coffee);
+addSugar(coffee);
+addChocolate(coffee);
+console.log('coffee: ', coffee);
+*/
+const user = {
+  name: 'Александр',
+  email: 'example@site.com',
+}
+
+function update(name, email) {
+  user.name = name
+  user.email = email
+}
+
+const loggedFn = (fn) => {
+  return (...args) => {
+    console.log(args);
+    return fn(...args);
+  }
+}
+
+const wrapped = loggedFn(update);
+wrapped('Алексей', '23@u')
+
+
