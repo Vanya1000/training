@@ -15,7 +15,85 @@
   -Writable — поток записи, используется для записи данных
   -Duplex — поток, который может быть использован как для чтения, так и для записи данных
   -Transform— разновидность Duplex, используемая для преобразования данных
+
+Стримы работают c:
+	-buffers(or strings) - способ хранения данных в памяти фиксированной длинны
+	-Objects - js объекты
+
++ Buffer - это подкласс Uint8Array, который представляет собой фиксированную длину массива байтов. Специфический объект хранящий данные в памяти.
+	Create a buffer:
+	import { Buffer } from "buffer"; //? Глобальный объект Buffer!!! Можно использовать без импорта 
+		const buf = Buffer.alloc(10); // создаёт буфер длиной 10 байт
+		const buf = Buffer.alloc(10, 1); // создаёт буфер длиной 10 байт, заполненный единицами
+		const buf = Buffer.from('test'); // создаёт буфер длиной 4 байта и заполняет его байтами соответствующими символам строки 'test'
+		const buf = Buffer.from('jacaScript'); // кодировка по умолчанию utf-8
+		const buf = Buffer.from('test', 'latin1'); // создаёт буфер длиной 4 байта и заполняет его байтами соответствующими символам строки 'test' в кодировке latin1
+		const buf = Buffer.from([1, 2, 3]); // создаёт буфер длиной 3 байта и заполняет его байтами соответствующими числам в массиве [1, 2, 3]
+	Buffer are iterable (print char code):
+		for (const chunk of buf) {
+			console.log(chunk.toString());
+		}
+	Concatenate buffers:
+		const buf1 = Buffer.from('This ');
+		const buf2 = Buffer.from('is ');
+		const buf3 = Buffer.from('a ');
+		const combined = Buffer.concat([buf1, buf2, buf3]);
+	Существует много методов для работы с буферами:
+		В документации: https://nodejs.org/api/buffer.html
+	Все стримы используют встроенные буферы.
+	Количесто информации которое может быть записано в буфере ограничено его размером.
+	HighWaterMark - максимальное количество байт (или объектов) которое может храниться в буфере.
+		По умолчанию 16kb. И когда он заполнен, стрим перестаёт читать данные из источника. Пока буфер не освободится.
++ Writenle stream - это поток, который может быть использован для записи данных.
+  Экземпляры writable stream предоставляют 2 основных метода:
+		- write(chunk, encoding, callback) - записывает данные в поток
+		- end(chunk, encoding, callback) - завершает запись данных в поток
+		Мы вместо того что бы писать в файл, пишем в стрим, а стрим уже пишет в файл.
+	Виды writable stream:
+		-requst - это стрим который предоставляет интерфейс для записи данных в HTTP запрос.
+		-response - это стрим который предоставляет интерфейс для записи данных в HTTP ответ.
+		-process.stdout, process.stdin, process.stderr - это стримы для записи данных в консоль.
+		-child_process.stdin, child_process.stdout, child_process.stderr - это стримы для записи данных в потоки дочернего процесса.
+		-fs stream - это стримы для записи данных в файл.
+		-zlib, crypto, TCP sockets, etc.
+	Все стримы используют API event emitter:
+		-error - событие которое генерируется при возникновении ошибки.
+			Обычно запуск этого события приводит к завершению работы стрима.
+		-drain - когда внутренний буфер запоняется и метод write возвращает false. Сделать что то когда буфер освободится.
+		-close - событие которое генерируется когда поток закрывается.
+		-finish - событие которое генерируется когда все данные были записаны в поток.
+		-pipe - событие которое генерируется когда стрим подключается к другому стриму.
+		-unpipe - событие которое генерируется когда стрим отключается от другого стрима.
+	Методы writable stream:
+		- write(chunk, encoding, callback) - записывает данные в поток.
+				process.stdout.write('Hello world!'); 
+				process.stdout.write('Hello world!', () => process.stdout.write('done')); 
+				Возвращает true если буфер не заполнен, и false если буфер заполнен. И тогда нужно обработать этот момент!!!
+		- end(chunk, encoding, callback) - завершает запись данных в поток.
+				const writable = fs.createWriteStream('file.txt');
+				writable.write('Hello world!');
+				writable.end('done'); // Когда мы хотим завершить запись данных в поток, мы вызываем метод end. И после этого стрим закрывается.
+		- destroy() - уничтожает стрим. // will cause error
+			writable.destroy(new Error('something bad happened'));
+		- cork() - заставляет все записанные данные буферизоваться в памяти пока не будет вызван метод uncork.
+				writable.cork();
+				writable.write('Hello world!');
+				writable.write('Hello world!');
+				writable.uncork(); // Все данные записываются в поток.
+	Другие свойства и методы:
+		- writable.writableEnded - true если стрим был закрыт.
+		- writable.cork - является ли стрим закорканным)
+		- writable.writableFinished - true если все данные были записаны в стрим.
+		- writable.writableHighWaterMark - максимальный размер буфера.
+		- writable.writableLength - текущий размер буфера.
+		- writable.destroyed - true если стрим был уничтожен.
+		- writable.needsDrain - нужно ли чистить буфер.
+		- writable.setDefaultEncoding(encoding) - устанавливает кодировку по умолчанию.
+		- writable.writableObjectMode - true если стрим работает в режиме объектов.
++ Readable stream 
+
 */
+
 
 import fs from 'node:fs';
 import { niceBytes } from '../../../node/utils';
