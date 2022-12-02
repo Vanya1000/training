@@ -17,51 +17,46 @@ const __dirname = dirname(__filename);
 
 
 
-//  transform stream
+console.log('script started');
 
-const upperCaseTransform = new Transform({
-  transform(chunk, encoding, callback) {
-    this.push(chunk.toString().toUpperCase());
-    callback();
-  }
-});
+const interval = setInterval(() => {
+  console.log('setInterval');
+}, 0);
 
-// stdin.pipe(upperCaseTransform).pipe(stdout);
+setTimeout(() => {
+  console.log('setTimeout 1')
+  Promise.resolve().then(() => {
+    console.log('promise 3')
+  }).then(() => {
+    console.log('promise 4')
+  }).then(() => {
+    setTimeout(() => {
+      console.log('setTimeout 2')
+      Promise.resolve().then(() => {
+        console.log('promise 5')
+      }).then(() => {
+        console.log('promise 6')
+      }).then(() => {
+        clearInterval(interval);
+      })
+    }, 0)
+  })
+}, 0);
 
-pipeline(
-  stdin,
-  upperCaseTransform,
-  stdout,
-  (err) => {
-    if (err) {
-      console.error("Pipeline failed.", err);
-    }
-  }
-)
-
-// pipeline promise example
-
-const processData = async () => {
-  try {
-    await pipeline(
-      fsPromises.createReadStream("file.txt"),
-      upperCaseTransform,
-      fsPromises.createWriteStream("file.txt")
-    );
-    console.log("Pipeline succeeded.");
-  } catch (err) {
-    console.error("Pipeline failed.", err);
-  }
-};
-
-class MyWritable extends Writable {
-  constructor(options) {
-    // Calls the stream.Writable() constructor.
-    super(options);
-    // ...
-  }
-  _write(chunk, encoding, callback) {
-    process.stdout.write(chunk);
-    callback();
-  }
-}
+Promise.resolve().then(() => {
+  console.log('promise 1');
+}).then(() => {
+  console.log('promise 2');
+})
+console.log('script ended');
+/* script started
+promise 1
+promise 2
+setInterval
+setTimeout 1
+promise 3
+promise 4
+setInterval
+setTimeout 2
+promise 5
+promise 6 */
