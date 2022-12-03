@@ -14,10 +14,23 @@ import { dirname } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+console.log('start');
+setTimeout(function a() {
+  console.log('1');
+  process.nextTick(function a() {console.log('next1');});
+  Promise.resolve().then(function b() {console.log('promise');});
+  process.nextTick(function a() {console.log('next2');});
+}, 0);
+setTimeout(function a() {
+  console.log('2');
+}, 0);
+process.nextTick(function a() {console.log('3');});
+setImmediate(function a() {console.log('4');});
+
+console.log('end');
 
 
-
-console.log('script started');
+/* console.log('script started');
 
 const interval = setInterval(() => {
   console.log('setInterval');
@@ -48,7 +61,7 @@ Promise.resolve().then(() => {
 }).then(() => {
   console.log('promise 2');
 })
-console.log('script ended');
+console.log('script ended'); */
 /* script started
 promise 1
 promise 2
