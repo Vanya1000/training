@@ -14,7 +14,11 @@ import { dirname } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-console.log('start');
+console.log(process.argv);
+console.log(process.env);
+
+
+/* console.log('start');
 setTimeout(function a() {
   console.log('1');
   process.nextTick(function a() {console.log('next1');});
@@ -28,7 +32,7 @@ process.nextTick(function a() {console.log('3');});
 setImmediate(function a() {console.log('4');});
 
 console.log('end');
-
+ */
 
 /* console.log('script started');
 
