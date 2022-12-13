@@ -7979,4 +7979,66 @@ const loggedFn = (fn) => {
 const wrapped = loggedFn(update);
 wrapped('Алексей', '23@u')
 
+const splitBySpaceOrQuote = (str) => {
+  const trimStr = str.toString().trim();
+  const arr = [];
+  let word = '';
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === ' ') {
+      arr.push(word);
+      word = '';
+    } else if (str[i] === "'") {
+      arr.push(word);
+      word = '';
+      i++;
+      while (str[i] !== "'") {
+        word += str[i];
+        i++;
+      }
+      arr.push(word);
+      word = '';
+    } else {
+      word += str[i];
+    }
+  }
+  arr.push(word);
+  return arr;
+}
 
+// split by double quotes or space
+
+const splitBySpaceOrDoubleQuote = (str) => {
+  const trimStr = str.toString().trim(); 
+  const arr = [];
+  let word = '';
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === ' ') {
+      arr.push(word);
+      word = '';
+    } else if (str[i] === '"') {
+      arr.push(word);
+      word = '';
+      i++;
+      while (str[i] !== '"') {
+        word += str[i];
+        i++;
+      }
+      arr.push(word);
+      word = '';
+    } else {
+      word += str[i];
+    }
+  }
+  arr.push(word);
+  return arr.filter((item) => item !== '');
+};
+
+const str = 'add "new file" to new_branch';
+console.log(splitBySpaceOrDoubleQuote(str));
+
+const arr = ['add', 'new file', 'to', 'new_branch'];
+const emptyArr = ['123'];
+
+if (arr.length === 0 || emptyArr.length === 0) {
+  console.log('loading');
+}
