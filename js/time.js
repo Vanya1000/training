@@ -390,6 +390,10 @@ function howManyHoursOfTraining() {
     '14.12': 8,
     '15.12': 5,
     '16.12': 6,
+    '17.12': 6,
+    '18.12': 5,
+    '19.12': 4,
+    '20.12': 4,
   };
   let workTimeArray = Object.values(workTime);
   let allHourWorkTime = workTimeArray.reduce(
