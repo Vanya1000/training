@@ -64,8 +64,38 @@ Create a Dockerfile: image for node.js app
   Build parameters:
     -t - tag an image (docker build -t myName .)
 
++Docker Hub:
+  docker login - login to docker hub
+  docker tag id ivanzaharenko/myRepo - tag an image (rename an image to ivanzaharenko/myRepo)
+  docker push ivanzaharenko/myRepo - push an image to docker hub
 
++Docker Ignore:
+  .dockerignore - file with files and folders that we don't want to copy to container
+  node_modules
+  .git
+  Dockerfile
 
++ENV variables:
+1. In Dockerfile:
+  ENV PORT 3000 - set environment variable PORT to 3000
+  EXPOSE $PORT - expose port 3000
+2. In docker run command:
+  -e PORT=3000 - set environment variable PORT to 3000 when run a container (docker run -d -p 3000:3000 -e PORT=3000 id) we can set multiple variables (-e PORT=3000 -e NODE_ENV=production)
+3. In .env file:
+  --env-file ./config/.env - set environment variables from .env file when run a container (docker run -d -p 3000:3000 --env-file .env id)
+
++Docker volumes:
+  set volume in Dockerfile:
+    VOLUME ["/app/data"] - set volume in container
+
+  set volume in docker run command:
+    -v /app/data - set volume in container (docker run -d -p 3000:3000 -v nameVolume /app/data id) create  volume automatically
+  
+  we can create volume manually:
+    docker volume create nameVolume - create volume
+
+  set named volume in docker run command:
+    -v nameVolume:/app/data - set named volume in container (docker run -d -p 3000:3000 -v nameVolume:/app/data id)
 
 
 
