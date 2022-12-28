@@ -165,3 +165,5 @@ type statistic = {
       throw err;
     });
 }; */
+
+// how extends res object in typescript?
