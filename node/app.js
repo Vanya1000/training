@@ -5,18 +5,30 @@ import os from "node:os";
 import cluster from "node:cluster";
 import http, { Server } from "node:http";
 import { join, resolve, parse } from "node:path";
-import { Duplex, pipeline, Transform } from "node:stream";
+import { Duplex, pipeline, Transform, Readable, Writable } from "node:stream";
 import { EventEmitter } from "node:events";
 import { niceBytes } from "./utils/index.js";
 import { stdin, stdout } from "node:process";
+import fs from "node:fs";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-console.log(process.argv);
-console.log(process.env);
+const readableStream = process.stdin;
+const writableStream = fs.createWriteStream("notes.txt");
+pipeline(readableStream, writableStream)
 
+/* const stream = new Readable.from(['RSSchool', 'NodeJS', 'Course'])
+stream.setEncoding("utf8");
+let dataT = "";
+stream.on("data", (data) => {
+  dataT += data;
+});
+
+stream.on("end", () => {
+  console.log(dataT);
+}); */
 
 /* console.log('start');
 setTimeout(function a() {
