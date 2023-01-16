@@ -1,4 +1,4 @@
-import {} from "dotenv/config";
+/* import {} from "dotenv/config";
 import { createWriteStream } from "node:fs";
 import fsPromises from "node:fs/promises";
 import os from "node:os";
@@ -13,11 +13,19 @@ import fs from "node:fs";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const readableStream = process.stdin;
-const writableStream = fs.createWriteStream("notes.txt");
-pipeline(readableStream, writableStream)
+const __dirname = dirname(__filename); */
+setTimeout(() => {
+  console.log("setTimeout");
+  process.nextTick(() => {
+    console.log("nextTick");
+  });
+  setTimeout(() => {
+    console.log("setTimeout");
+  }, 0);
+}, 0);
+setImmediate(() => {
+  console.log("setImmediate");
+});
 
 /* const stream = new Readable.from(['RSSchool', 'NodeJS', 'Course'])
 stream.setEncoding("utf8");
