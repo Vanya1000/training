@@ -430,6 +430,9 @@ function howManyHoursOfTraining() {
     26.01: 11,
     27.01: 11,
     28.01: 11,
+    29.01: 11,
+    30.01: 11,
+    31.01: 6,
   };
   let workTimeArray = Object.values(workTime);
   let allHourWorkTime = workTimeArray.reduce(
@@ -994,7 +997,31 @@ const countTime = [
     time: 4,
     start: "19:00",
     end: "23:00",
-  }
+  },
+  {
+    date: "01.27.2022",
+    time: 4,
+    start: "19:00",
+    end: "22:00",
+  },
+  {
+    date: "01.28.2022",
+    time: 4,
+    start: "18:00",
+    end: "22:00",
+  },
+  {
+    date: "01.30.2022",
+    time: 4,
+    start: "19:00",
+    end: "23:00",
+  },
+  {
+    date: "01.31.2022",
+    time: 6,
+    start: "10:00",
+    end: "16:00",
+  },
 ];
 
 const totalH = countTime.reduce((acc, item) => acc + item.time, 0) * 5; //?
