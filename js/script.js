@@ -7959,7 +7959,7 @@ addSugar(coffee);
 addChocolate(coffee);
 console.log('coffee: ', coffee);
 */
-const user = {
+/* const user = {
   name: 'Александр',
   email: 'example@site.com',
 }
@@ -8041,4 +8041,8 @@ const emptyArr = ['123'];
 
 if (arr.length === 0 || emptyArr.length === 0) {
   console.log('loading');
+} */
+
+for (let i = 0; i < 100; i++) {
+  console.log(`${i}. `)
 }
