@@ -85,6 +85,10 @@ Create a Dockerfile: image for node.js app
   --env-file ./config/.env - set environment variables from .env file when run a container (docker run -d -p 3000:3000 --env-file .env id)
 
 +Docker volumes:
+
+  volumes:
+  - <host path>:<container path>
+  
   set volume in Dockerfile:
     VOLUME ["/app/data"] - set volume in container
 
@@ -100,4 +104,10 @@ Create a Dockerfile: image for node.js app
 
 
 
++Useful 
+docker-compose down -v - remove all containers and volumes
+docker-compose logs -f [service name] - show logs of a service
+docker-compose ps - show all services
+docker-compose exec [service name] [command] - run a command in a service
+docker-compose images - show all images
 */
