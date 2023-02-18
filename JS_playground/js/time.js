@@ -450,6 +450,7 @@ function howManyHoursOfTraining() {
     "15.02": 10,
     "16.02": 10,
     "17.02": 10,
+    "18.02": 10,
   };
   let workTimeArray = Object.values(workTime);
   let allHourWorkTime = workTimeArray.reduce(
