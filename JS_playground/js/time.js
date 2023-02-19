@@ -1073,6 +1073,10 @@ const countTime = [
     date: "17.02.2022",
     time: 7,
   },
+  {
+    date: "18.02.2022",
+    time: 2,
+  }
 ];
 
 const totalH = countTime.reduce((acc, item) => acc + item.time, 0) * 5; //?
