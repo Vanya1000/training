@@ -8046,3 +8046,5 @@ if (arr.length === 0 || emptyArr.length === 0) {
 for (let i = 0; i < 100; i++) {
   console.log(`${i}. `)
 }
+
+Array.from({length: 100}, (v, i) => i + 510).forEach((item) => console.log(`${item}. `));
