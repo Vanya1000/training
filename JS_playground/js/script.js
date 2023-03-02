@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /* document.body.appendChild(document.createElement("p")).innerHTML = "Hello World!";
 let element = document.querySelector('body')
@@ -8043,8 +8043,9 @@ if (arr.length === 0 || emptyArr.length === 0) {
   console.log('loading');
 } */
 
-for (let i = 0; i < 100; i++) {
-  console.log(`${i}. `)
-}
+/* for (let i = 0; i < 100; i++) {
+  console.log(`${i}. `);
+} */
 
-Array.from({length: 100}, (v, i) => i + 510).forEach((item) => console.log(`${item}. `));
+// Array.from({length: 100}, (v, i) => i + 510).forEach((item) => console.log(`${item}. `));
+const datev1 = '2023-03-08T06:00:00.000Z';
