@@ -88,6 +88,91 @@ Security
 
 
 ! IAM 
+  AWS Identity and Access Management (IAM) is a web service that helps you securely control access to AWS resources. With IAM, you can centrally manage permissions that control which AWS resources users can access. 
+    You use IAM to control who is authenticated (signed in) and authorized (has permissions) to use resources.
+    Safeguard your root user credentials and use them to perform the tasks that only the root user can perform.
+  Tasks that require root user credentials
+    -Change your account settings. (This includes the account name, email address, root user password, and root user access keys. Other account settings, such as contact information, payment currency preference, and AWS Regions, don't require root user credentials.)
+    -Restore IAM user permissions. (If the only IAM administrator accidentally revokes their own permissions, you can sign in as the root user to edit policies and restore those permissions.)
+    -Activate IAM access to the Billing and Cost Management console.
+    -View certain tax invoices.
+    -Close your AWS account.
+    -Register as a seller in the Reserved Instance Marketplace.
+    -Configure an Amazon S3 bucket to enable MFA (multi-factor authentication).
+    -Edit or delete an Amazon Simple Storage Service (Amazon S3) bucket policy that includes an invalid virtual private cloud (VPC) ID or VPC endpoint ID.
+    -Sign up for AWS GovCloud (US).
+    -Request AWS GovCloud (US) account root user access keys from AWS Support.
+  IAM gives you the following features:
+    -Shared access to your AWS account
+      You can grant other people permission to administer and use resources in your AWS account without having to share your password or access key.
+    -Granular permissions
+      You can grant different permissions to different people for different resources. For example, you might allow some users complete access to Amazon Elastic Compute Cloud (Amazon EC2),
+    -Secure access to AWS resources for applications that run on Amazon EC2
+      You can use IAM to control access to your Amazon EC2 resources, such as instances and volumes, from applications that run on Amazon EC2.
+    -Multi-factor authentication (MFA)
+      You can add two-factor authentication to your account and to individual users for extra security.
+    -Identity federation
+      You can use identity federation to allow users in your corporate directory to access AWS resources using their existing credentials.
+    -Identity information for assurance
+      You can use IAM to view information about the identity of the person who is making a request to your AWS resources.
+    -PCI DSS Compliance
+      You can use IAM to help you meet the requirements of the Payment Card Industry Data Security Standard (PCI DSS).
+    -Integrated with many AWS services
+      For a list of AWS services that work with IAM, see AWS services that work with IAM.
+    -Free to use
+  Accessing IAM You can work with AWS Identity and Access Management in any of the following ways:
+    - AWS Management Console
+      The console is a browser-based interface to manage IAM and AWS resources.
+    - AWS Command Line Tools
+      You can use the AWS command line tools to issue commands at your system's command line to perform IAM and AWS tasks. Using the command line can be faster and more convenient than the console. 
+      The command line tools are also useful if you want to build scripts that perform AWS tasks.
+    - AWS Software Development Kits (SDKs)
+    - IAM Query API
+      You can use the IAM Query API to perform IAM tasks programmatically. The IAM Query API is a SOAP-based API that uses XML for requests and responses.
+  ? Security best practices in IAM
+    -Require human users to use federation with an identity provider to access AWS using temporary credentials
+    -Require workloads to use temporary credentials with IAM roles to access AWS
+    -Require multi-factor authentication (MFA)
+    -Rotate access keys regularly for use cases that require long-term credentials
+    -Safeguard your root user credentials and don't use them for everyday tasks
+    -Apply least-privilege permissions
+    -Get started with AWS managed policies and move toward least-privilege permissions
+    -Use IAM Access Analyzer to generate least-privilege policies based on access activity
+    -Regularly review and remove unused users, roles, permissions, policies, and credentials
+    -Use conditions in IAM policies to further restrict access
+    -Verify public and cross-account access to resources with IAM Access Analyzer
+    -Use IAM Access Analyzer to validate your IAM policies to ensure secure and functional permissions
+    -Establish permissions guardrails across multiple accounts
+    -Use permissions boundaries to delegate permissions management within an account
+! Serverless Application Model (SAM)
+  What is a serverless architecture?
+    A serverless architecture is a way to build and run applications and services without having to manage infrastructure. Your application still runs on servers, but all the server management is done by AWS.
+    You no longer have to provision, scale, and maintain servers to run your applications, databases, and storage systems. Learn more about serverless computing here.
+  Why use serverless architectures?
+    By using a serverless architecture, your developers can focus on their core product instead of worrying about managing and operating servers or runtimes, either in the cloud or on-premises.
+  Use cases of serverless architectures
+    -Web and mobile applications
+    -Backend services
+    -Data processing
+! Agnostic framework
+  We use agnostic framework for development our application. Agnostic framework can works with Amazon Azure and Google Cloud. This approach calls infrastructure as a code.
+  We don't enter in the console and click it open.Open buckets run EC2 And so on. We use the code to do this. 
+  Advantages of infrastructure as a code
+    -Cost reduction
+    -Faster execution
+    -List risk of human errors and security violations
+    -Ability to preview proposed configuration changed before committing to value correctness of definition.
+    -Automotive dependency management brokers sequencing.
+
+
+
+
+
+
+
+
+
+
 
 
 */
