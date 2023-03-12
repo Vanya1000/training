@@ -364,6 +364,20 @@
         Например, пользователь ввел какой-то текст, и вам нужно изменить несколько компонентов. И, достаточно сложно, все это синхронизировать.
         Он позволяет делать связи один ко многим между компонентами. Мы хотим реализовать класс, у которого будут такие методы.
         */
+      let observers = [];
+
+      export default Object.freeze({
+        notify: (data) => observers.forEach((observer) => observer(data)),
+        subscribe: (func) => observers.push(func),
+        unsubscribe: (func) => {
+          [...observers].forEach((observer, index) => {
+            if (observer === func) {
+              observers.splice(index, 1);
+            }
+          });
+        },
+      });
+      
       {
         const observer1 = new EventObserver()
 
