@@ -2,6 +2,45 @@
 +OSI Model Introduction (Open System Interconnection)
 
 
+  ? Layer 7 - Application Layer
+    Protocols: HTTP, HTTPS, FTP, SSH, Telnet, SMTP, DNS, DHCP, SNMP, TFTP, NTP, IMAP, POP3, LDAP, RDP, VNC, etc.
+      DNS - Domain Name System Transorm domain name to IP address
+        Advanteges:
+          -Human readable
+          -Possible to change IP address without changing domain name
+        Utils:
+          nslookup - query Internet name servers interactively
+        features:
+          -Not exist 1 DNS server, exist many DNS servers
+          -Delegation - DNS servers can delegate authority to other DNS servers
+            -Namespace divided different parts
+            -Each part has a different DNS server
+          Reliability:
+            -duplication DNS servers
+        Structure domen name:
+          www.google.com.
+          -root - . (dot)
+          -TLD - Top Level Domain (com, net, org, ru, ua, etc.)
+            have 3 types:
+              -country code TLD (ccTLD) - ua, ru, etc.
+              -generic TLD (gTLD) - com, net, org, etc.
+              -infrastructure TLD (iTLD) - edu, gov, mil, etc.
+          -2LD - Second Level Domain (cisco, google, etc.)
+          -3LD - Third Level Domain (www, mail, etc.) Computer name in domain?
+        Domain zone:
+          -Root zone - . (dot) -  contains all TLDs
+          -Top Level Domain zone (com, net, org, ru, ua, etc.) - contains all 2LDs
+          -Second Level Domain zone (cisco, google, etc.) - contains all 3LDs
+          Every zone can serve many DNS servers 
+  ? Layer 6 - Presentation Layer
+    Task presentation layer:
+      -Data encryption  (SSL, TLS)
+      -Data compression (ZIP, RAR)
+
+
+  ? Layer 5 - Session Layer
+    Protocols: RPC, NetBIOS, etc.
+
   ? Layer 4 - Transport Layer (segment)
     Task transport layer:
       -Passing data between processes on different hosts
@@ -140,7 +179,7 @@
       IP address is unique to your device and it's used to communicate with other devices on the internet.
       IANA (Internet Assigned Numbers Authority) is responsible for allocating IP addresses. https://www.iana.org/
       Regional Internet Registries (RIRs) are responsible for allocating IP addresses to ISPs.
-    Reserved IP addresses:
+    ?Reserved IP addresses:
       -10.0.0.0/8 - private IP address
       -172.16.0.0/12
       -192.168.0.0/16
@@ -256,4 +295,13 @@
       -No device addressing all data is processed by all devices.  
       -If multiple device transmit at once, a collision occurs
       -Anything received on any port is transmitted on every other port, *including a errors and collisions.
+
++ 3 types DDOS attack:
+  -Apllication layer HTTP flood
+  -Protocol attack (SYN flood) - TCP
+  -Volumetric attack (ping flood) - ICMP
+
++ VLANs, TRUNKS & QinQ
+  -VLAN - Virtual Local Area Network
+  
 */
