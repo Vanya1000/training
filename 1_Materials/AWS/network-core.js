@@ -296,6 +296,173 @@
       -If multiple device transmit at once, a collision occurs
       -Anything received on any port is transmitted on every other port, *including a errors and collisions.
 
++ TLS/SSL
+  -SSL - Secure Sockets Layer(deprecated)
+    -SSL 1.0 - 1994 
+    -SSL 2.0 - 1995
+    -SSL 3.0 - 1996
+  -TLS - Transport Layer Security
+    -TLS 1.0 - 1999
+    -TLS 1.1 - 2006
+    -TLS 1.2 - 2008
+    -TLS 1.3 - 2018
+  Place in OSI model:
+    -Layer 4 - Transport Layer - pass data between process as well as Transport Layer 
+    -Layer 5 - Session Layer - establish, manage and terminate sessions
+    -Layer 6 - Presentation Layer - data encryption and decryption
+  3 aspect defend data:
+    ?1) Privacy - data is encrypted
+      the attacker can not read the data
+      Instruments for defend:
+      2 ways of encryption:
+        symmetric - one key for encrypt and decrypt (server and client have same key)
+          fast encryption and decryption
+          aloritms: AES, DES, 3DES, RC4
+        asymmetric - two keys for encrypt and decrypt (server and client have different keys - private and public) - data encrypted with public key and decrypted with only private key
+          aloritms: 
+          -DH(Diffie-Helman),
+            Base algoritm!
+            1) Before communication, both parties generate a random number and send it to each other (for example, p=29, g=3) and also gen priveate 5 and 8
+            2) Client calculate the public key (A=3^5 mod 29 = 11) and pass 11 to server.
+            3) Server calculate the public key (B=3^8 mod 29 = 7) and pass 7 to client.
+            4) Client calculate the secret key (K=7^5 mod 29 = 16) and pass 16 to server.
+            5) Server calculate the secret key (K=11^8 mod 29 = 16) and pass 16 to client.
+            6) Both parties have the same secret key (16) and can use it to encrypt and decrypt messages.
+            Conditions:
+              -p is a prime number min 1024 bit
+              -g is a primitive root of p
+              -not possible calculate even contemporary computers
+            There are more perfect algoritm - ECDH(Elliptic Curve Diffie-Helman)
+          -RSA(Rievest-Shamir-Adleman), 
+            Don't ensure perfect direct secrecy - key don't change, and if malicious user intercept key, he can decrypt all data wich save before
+          -DSA, 
+          -ECC
+          slow encryption and decryption but safe
+        Hybrid encryption - combination of symmetric and asymmetric encryption
+          Assymentric encryption for pass symmetric key
+          Symmetric encryption for encrypt data
+    ?2) Integrity - data is not modified
+      the attacker can not modify the data
+      Instruments for defend:
+        -hash function
+          Transform data to hash string concrete length (malicious user can't determine original data)
+          Problem: collision - two different data can have same hash
+          Criptographic hash function:
+            -SHA-1(Secure Hash Algoritm) - 160 bit
+            -SHA-256 - 256 bit
+            -SHA-512 - 512 bit
+            -MD5 - 128 bit - deprecated
+        1) When cliend want pass data he calculate hash and send data and hash to server. (addition hash calculated not only data but also private key) => MAC (Message Authentication Code) |data|MAC|
+        2) Server calculate hash and compare with hash from client. If hash is same, data is not modified.
+      Restrict MAC - Not possibility confirm authenticity server (attak man in the middle) help next algoritm
+    ?3) Authentication - the sender is who they say they are
+      the attacker can not impersonate the sender
+      Instruments for defend:
+        -digital signature
+        -public key infrastructure (PKI)
+      Problem: 
+        We connect to server and exchange keys, but how we can be sure that server is real server and not malicious user?
+      Solution:
+        If usually in symetric encryption we use public key for encrypt and private key for decrypt, but in digital signature we use private key for encrypt and public key for decrypt.
+          It seems wierd, but if we can decript with public key we can ensure that we use key from server. (For example bank server)
+          In digital signature encript not all data, but only hash of data. With for example SHA-256
+          Hash encrypt with private key and send client
+          Client get data and with public key decrypt digital signature and apply hash to data and compare with hash from digital signature.
+          .!!But it's not enough, because malicious user can intercept request and send to client fake digital signature. (and hash will be same)
+          Solution:
+            It is assumed that net consist clients and servers which no trust each other, but trust to CA (Certificate Authority)
+            Certificate Authority (CA) take server sertificate (file special format) base component is public key and sign it with private key AC. Client also have AC public key(assusms that true)).
+      public key infrastructure (PKI) consist of:
+        -root certificate authority (CA) - dont take sertificate
+        -with root CA work intermediate CA which take sertificate.
+        -server get sertificate from CA
+        -use chain trust - client have root CA public key and intermediate CA public key. Client get sertificate from intermediate CA and intermediate CA get sertificate from root CA.
+        -client should go through all chain of trust and check if all sertificates are valid.
+          -ISRG Root X1 - root CA
+            -Let's Encrypt Authority X3 - intermediate CA
+              -www.black.uivi.cc - server
+      Last problem how we knownthat sertificate root CA is real root CA and not malicious user?
+        Solution:
+          In OS we have root CA sertificate and we can check if sertificate is valid. Sertificate write in this storage whet we install OS.
+      Self signed sertificate - sertificate which we create by ourself. It's not safe, because malicious user can intercept sertificate and send to client.
+  ?How work Protocol TLS:
+    | HTTPS |
+    | TLS   |!
+    | TCP   |
+    | IP    |
+    | L2    |
+    | L1    |
+    Also TLS consist of:
+    |Handshake protocol| Alert protocol | Change cipher spec protocol | Application data protocol |
+                                    Record protocol
+    Record protocol: (base TLS)
+      Format:
+        |type message(not encripted)|version protocol(not encripted)|length message(not encripted)|data(encripted)|
+    Session TLS:
+      Shipers collect
+        -Algoritm symetric encryption and MAC
+      Keys:
+        -symetric encryption key
+        -MAC key
+      Description session:
+        -ID session
+        -ID client
+      Create session:
+        -Handshake protocol
+        -resuming session, which already created previously
+    How work passing data when session created:
+      client <---------------------------------------> server
+      key symetric encryption                          key symetric encryption
+      key MAC                                          key MAC
+    clientsget data from above (https) can be huge  => split data to small packets => calc MAC |data|MAC| => encrypt => send to server
+  ? Install connection TLS 1.2:
+    1) Client send to server message Client Hello with:
+      -Shipers collect which client support
+      -client random number
+    2) Server send to client message Server Hello with:
+      -Shipers which server coose from client list
+      -server random number
+      -ID session (if client want resuming session in future)
+    3) Server send to client message Certificate with:
+      File special format which contain:
+        sertificate center authority (CA) with signed digital signature (client can check with public key CA)
+    4) Client check sertificate CA:
+      -check if sertificate CA is valid
+      -check domain name
+      -check if sertificate CA is not expired
+      -check if sertificate CA is not revoked
+      -check if sertificate CA is not self signed
+    5)  Server send Server key exchange with:
+      data for create symetric encryption key (p,g,Y)
+    6) Server Hello Done ( it does mean that server pass all data regard 1 phase of handshake)
+    7) Client send Client key exchange with (you can see above)
+    After this stage client and server have symetric encryption key and MAC key
+    8) Client send Change cipher spec (it does mean that client pass all data regard 2? phase of handshake)
+    9) Cliend send finished (and encript data with symetric encryption key and MAC key)
+    10) Server send Change cipher spec 
+    After this stage client and server installed session TLS
+    If all good few message can be joint in one message
++ HTTPS:
+https://www.youtube.com/watch?v=1r1iWq67v3c&list=PLtPJ9lKvJ4oiFnWCsVRElorOLt69YDEnv&index=12
+  Repeat HTTP
+    1) install connect TCP
+      TCP connection: 
+      client ------------SYN--------> server
+      client ------------SYN+ACK--------> server
+      client ------------ACK--------> server
+    2) Client send to server GET:
+      Get / HTTP/1.1
+      Host: www.black.uivi.cc
+    3) Server send to client response:
+      HTTP/1.1 200 OK
+      Content-Type: text/html
+      ...
+  HTTPS - HTTP over TLS (443 port and server know that it's HTTPS)
+    1) install connect TCP (wach above)
+    2) Try install connect TLS and send Client Hello (wach above)
+    After successful install connect TLS:
+    3) Client send to server GET:
+    4) Server send to client response:
 + 3 types DDOS attack:
   -Apllication layer HTTP flood
   -Protocol attack (SYN flood) - TCP
@@ -303,5 +470,34 @@
 
 + VLANs, TRUNKS & QinQ
   -VLAN - Virtual Local Area Network
+    Use in Data Link Layer
+    802.1Q - IEEE standard for VLANs
+      Add to Ethernet frame 4 bytes (32 bits) with VLAN ID and when we receive frame we can check VLAN ID and send frame to correct port.
+      For example when FF packet come to switch, switch check VLAN ID and send packet to port 1.
+  For what we use VLANs:
+    -Create separate L2 network segments
+    -Isolated ..trafic isolation
+      ..different customers..
+      ..different networks (AWS Direct Connect VPCs)
+    -separete broadcast domains
+    -802.1Q(VLANS) .. 802.1AD (nested QinQ VLANs) 
++Decemal to binary
+  Table:
+    Position:        |  1  |  2 |  3 |  4 | 5 | 6 | 7 | 8 |
+    Binary position: | 128 | 64 | 32 | 16 | 8 | 4 | 2 | 1 |
+  Dec => Bin:
+    Moving throught the binary table left to right
+    1) Compare decimal number to the binary position val, if SMALLER WRITE 0 => Move on to the next table position, go to #1
+    2) IF IT IS EQUAL OR LARGER - Minus the binary position value from your decimal number at one, add 1 in the binary value column.
+    3) Move on to next position go to #1(which the new decimal value)
++BGP
+  Border Gateway Protocol (BGP) is a routing protocol used to exchange routing information between different networks on the internet. 
+    BGP is the protocol that enables the internet to function as a global network of interconnected networks. BGP is responsible for choosing 
+    the best path for network traffic to follow from one network to another, and for announcing that path to other routers on the internet. In this lesson, we will explore the key features of BGP.
+  -Border Gateway Protocol
+  -Protocol for exchanging routing information between autonomous systems
+  -BGP is a TCP based protocol
+  -BGP is a path vector protocol
+  -BGP is a distance vector protocol
   
 */
