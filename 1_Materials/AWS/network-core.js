@@ -1,7 +1,6 @@
 /* 
 +OSI Model Introduction (Open System Interconnection)
 
-
   ? Layer 7 - Application Layer
     Protocols: HTTP, HTTPS, FTP, SSH, Telnet, SMTP, DNS, DHCP, SNMP, TFTP, NTP, IMAP, POP3, LDAP, RDP, VNC, etc.
       DNS - Domain Name System Transorm domain name to IP address
@@ -500,4 +499,26 @@ https://www.youtube.com/watch?v=1r1iWq67v3c&list=PLtPJ9lKvJ4oiFnWCsVRElorOLt69YD
   -BGP is a path vector protocol
   -BGP is a distance vector protocol
   
++Statefull vs Stateless firewalls:
+  -Stateless firewall:
+    -Dont't distinguish between incoming and outgoing traffic
+    -Dont't keep track of connections
+  -Statefull firewall:
+    -Distinguish between incoming and outgoing traffic
+    -Keep track of connections
+
++Jumbo frames:
+  -Jumbo frames are Ethernet frames that are larger than the standard 1500 bytes.
+  -Jumbo frames are used to increase the amount of data that can be sent in a single frame(9000)
+  AWS support:
+    -same region
+    -Direct Connection
+    -TGW up to 8500
++Layer 7 firewall:
+  -Layer 7 firewall is a firewall that can inspect the content of the packets.
+  -Layer 7 firewall can inspect the content of the packets and make decisions based on the content of the packets.
+  In AWS we can use:
+    -AWS WAF
+    -AWS Shield
+    -AWS Web Application Firewall
 */
