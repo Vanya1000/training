@@ -521,4 +521,13 @@ https://www.youtube.com/watch?v=1r1iWq67v3c&list=PLtPJ9lKvJ4oiFnWCsVRElorOLt69YD
     -AWS WAF
     -AWS Shield
     -AWS Web Application Firewall
+
++ Recovery Point Objective (RPO) & Recovery Time Objective (RTO)
+  -RPO - Recovery Point Objective
+    -How much data can be lost in the worst case scenario (maximum time between backups)
+    Solution:
+      -Backup every 5 minutes (RPO = 5 minutes)
+  -RTO - Recovery Time Objective
+    -How long can the system be down in the worst case scenario after a disaster (maximum time to recover)
+
 */
