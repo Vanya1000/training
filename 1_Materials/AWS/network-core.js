@@ -31,6 +31,13 @@
           -Top Level Domain zone (com, net, org, ru, ua, etc.) - contains all 2LDs
           -Second Level Domain zone (cisco, google, etc.) - contains all 3LDs
           Every zone can serve many DNS servers 
+      Process registration domain name (cats.com):
+      1. Pay for domain name
+      2. Domain register - company that sells domain names (GoDaddy, NameCheap, Route53, etc.)
+      3. Domain registrar company apply to NSI (Network Solutions Inc.) for registration domain name
+      4. NSI check domain name for availability
+      5. NSI register domain name
+      6. Domain registrar company send you email with information about registration domain name
   ? Layer 6 - Presentation Layer
     Task presentation layer:
       -Data encryption  (SSL, TLS)
@@ -530,4 +537,16 @@ https://www.youtube.com/watch?v=1r1iWq67v3c&list=PLtPJ9lKvJ4oiFnWCsVRElorOLt69YD
   -RTO - Recovery Time Objective
     -How long can the system be down in the worst case scenario after a disaster (maximum time to recover)
 
++ DNSSEC - Domain Name System Security Extensions
+  -DNSSEC (Domain Name System Security Extensions) is used to provide security and authenticity to the DNS (Domain Name System). Here are some reasons why DNSSEC is used:
+    -Prevent DNS Spoofing: DNSSEC provides authentication to the DNS system, which helps to prevent DNS spoofing attacks. DNS spoofing is a type of cyberattack in which 
+      an attacker tries to redirect the user to a fake website by manipulating the DNS response.
+    -Data Integrity: DNSSEC ensures data integrity by using digital signatures to verify the authenticity of DNS data. This helps to prevent data tampering during the transfer of DNS data.
+    -Trustworthiness: DNSSEC helps to increase the trustworthiness of the DNS system by providing a chain of trust. This means that each level of the DNS hierarchy can be 
+      verified using digital signatures, which provides assurance that the data is authentic.
+    -Protection from Cache Poisoning: DNSSEC helps to protect against cache poisoning attacks. Cache poisoning is a type of attack in which an attacker inserts false information 
+      into the DNS cache, which can lead to incorrect DNS resolutions.
+    -Compliance: Some organizations may be required to comply with DNSSEC standards as part of their regulatory requirements. DNSSEC helps these organizations to meet these standards 
+      and avoid potential fines or other penalties.
+  Overall, DNSSEC provides a more secure and trustworthy DNS system, which helps to protect against various types of cyberattacks and ensure the integrity of DNS data.
 */
