@@ -480,11 +480,13 @@ function howManyHoursOfTraining() {
     "17.03": 8,
     "18.03": 8,
     "19.03": 8,
-    "10.03": 8,
-    "11.03": 10,
-    "12.03": 8,
-    "13.03": 4,
-    "14.03": 5,
+    "20.03": 8,
+    "21.03": 10,
+    "22.03": 8,
+    "23.03": 4,
+    "24.03": 5,
+    "25.03": 8,
+    "26.03": 5,
   };
   let workTimeArray = Object.values(workTime);
   let allHourWorkTime = workTimeArray.reduce(
