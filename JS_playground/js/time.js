@@ -498,6 +498,10 @@ function howManyHoursOfTraining() {
     "04.04": 8,
     "05.04": 8,
     "06.04": 3,
+    "07.04": 8,
+    "08.04": 8,
+    "09.04": 8,
+    "10.04": 8,
   };
   let workTimeArray = Object.values(workTime);
   let allHourWorkTime = workTimeArray.reduce(
