@@ -528,6 +528,7 @@ function howManyHoursOfTraining() {
     "03.05": 10,
     "04.05": 10,
     "05.05": 12,
+    "06.05": 10,
   };
   let workTimeArray = Object.values(workTime);
   let allHourWorkTime = workTimeArray.reduce(
@@ -1285,6 +1286,10 @@ const countTime = [
   {
     date: "05.05.2022",
     time: 10,
+  },
+  {
+    date: "06.05.2022",
+    time: 7,
   }
 ];
 
