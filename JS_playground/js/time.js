@@ -1387,6 +1387,10 @@ const countTime = [
   {
     date: "31.05.2022",
     time: 7,
+  },
+  {
+    date: "01.06.2022",
+    time: 7,
   }
 ];
 
